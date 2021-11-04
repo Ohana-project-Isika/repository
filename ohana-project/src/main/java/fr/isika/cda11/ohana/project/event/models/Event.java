@@ -1,71 +1,53 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
+
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 public class Event {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // TODO Field Validation Errors
+    // TODO Other Field Validation Controls if Any
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
+
     private String name;
     private String description;
-    private LocalDate dateOfStart;
-    private LocalDate dateOfEnd;
-    private Integer numberOfTicket;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Long getId() {return id;}
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
+            mappedBy = "event",
+            orphanRemoval = true
+    )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Ticket> tickets = new HashSet<>();
 
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-
-    public String getDescription() {return description;}
-    public void setDescription(String description) {this.description = description;}
-
-    public LocalDate getDateOfStart() {return dateOfStart;}
-    public void setDateOfStart(LocalDate dateOfStart) {this.dateOfStart = dateOfStart;}
-
-    public LocalDate getDateOfEnd() {return dateOfEnd;}
-    public void setDateOfEnd(LocalDate dateOfEnd) {this.dateOfEnd = dateOfEnd;}
-
-    public Integer getNumberOfTicket() {return numberOfTicket;}
-    public void setNumberOfTicket(Integer numberOfTicket) {this.numberOfTicket = numberOfTicket;}
-
-    public Event() {}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return Objects.equals(id, event.id)
-                && Objects.equals(name, event.name)
-                && Objects.equals(description, event.description)
-                && Objects.equals(dateOfStart, event.dateOfStart)
-                && Objects.equals(dateOfEnd, event.dateOfEnd)
-                && Objects.equals(numberOfTicket, event.numberOfTicket);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, dateOfStart, dateOfEnd, numberOfTicket);
-    }
-
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", dateOfStart=" + dateOfStart +
-                ", dateOfEnd=" + dateOfEnd +
-                ", numberOfTicket=" + numberOfTicket +
-                '}';
+    /**
+     * Adds a ticket to an event bidirectionally
+     * @param ticket a ticket to be added
+     */
+    public void addTickets(Ticket ticket) {
+        ticket.setEvent(this);
+        tickets.add(ticket);
     }
 }
+
+
+
+
+
+
+
