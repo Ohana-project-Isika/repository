@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 /**
  * Created on 11/03/2021
@@ -17,17 +16,17 @@ public class Address /*implements Serializable*/ {
 //    private static final long serialVersionUID = 8803763357383317624L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Integer number;
+    private Integer streetNumber;
     private String street;
     private String department;
     private String city;
-    public Integer getNumber() {
-        return number;
+    public Integer getStreetNumber() {
+        return streetNumber;
     }
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setStreetNumber(Integer streetNumber) {
+        this.streetNumber = streetNumber;
     }
     public String getStreet() {
         return street;
@@ -56,7 +55,7 @@ public class Address /*implements Serializable*/ {
     }
 
     public Address(Integer number, String street, String department, String city) {
-        this.number = number;
+        this.streetNumber = number;
         this.street = street;
         this.department = department;
         this.city = city;
