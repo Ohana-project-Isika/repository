@@ -1,5 +1,6 @@
 package fr.isika.cda11.ohana.project.event.models;
 
+import fr.isika.cda11.ohana.project.common.models.Address;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +13,9 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode
 @ToString
+@NamedQueries({
+        @NamedQuery(name = "Events.findAll", query = "SELECT e FROM Event e")
+})
 public class Event {
 
     // TODO Field Validation Errors
@@ -22,10 +26,13 @@ public class Event {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    private String name;
+    private String eventName;
     private String description;
-    private LocalDate startDate;
+    private LocalDate startDate = LocalDate.now();
     private LocalDate endDate;
+
+    @Transient
+    private int ticketQuantity;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
             mappedBy = "event",
@@ -35,14 +42,10 @@ public class Event {
     @ToString.Exclude
     private Set<Ticket> tickets = new HashSet<>();
 
-    /**
-     * Adds a ticket to an event bidirectionally
-     * @param ticket a ticket to be added
-     */
-    public void addTickets(Ticket ticket) {
-        ticket.setEvent(this);
-        tickets.add(ticket);
-    }
+    @OneToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Address address;
 }
 
 
