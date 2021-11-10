@@ -1,4 +1,10 @@
 /target/
+.settings/
+.classpath
+.project
+.tern-project
+
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,intellij
@@ -178,4 +184,4 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,intellij
 /.idea/
 /.jpb/
-/.settings/
+
