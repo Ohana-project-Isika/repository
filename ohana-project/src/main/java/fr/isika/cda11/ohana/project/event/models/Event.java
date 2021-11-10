@@ -1,14 +1,14 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Event {
+public class Event implements Serializable {
 
     private static final long serialVersionUID = 8845474287191812919L;
     @Id
@@ -19,6 +19,10 @@ public class Event {
     private LocalDate dateOfStart;
     private LocalDate dateOfEnd;
     private Integer numberOfTicket;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "event_ticket_id")
+    private List<Ticket> tickets = new ArrayList<>();
 
     public Long getId() {return id;}
 
@@ -37,6 +41,9 @@ public class Event {
     public Integer getNumberOfTicket() {return numberOfTicket;}
     public void setNumberOfTicket(Integer numberOfTicket) {this.numberOfTicket = numberOfTicket;}
 
+    public List<Ticket> getTickets() {return tickets;}
+    public void setTickets(List<Ticket> tickets) {this.tickets = tickets;}
+
     public Event() {}
 
     @Override
@@ -49,12 +56,13 @@ public class Event {
                 && Objects.equals(description, event.description)
                 && Objects.equals(dateOfStart, event.dateOfStart)
                 && Objects.equals(dateOfEnd, event.dateOfEnd)
-                && Objects.equals(numberOfTicket, event.numberOfTicket);
+                && Objects.equals(numberOfTicket, event.numberOfTicket)
+                && Objects.equals(tickets, event.tickets);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, dateOfStart, dateOfEnd, numberOfTicket);
+        return Objects.hash(id, name, description, dateOfStart, dateOfEnd, numberOfTicket, tickets);
     }
 
     @Override
@@ -66,6 +74,7 @@ public class Event {
                 ", dateOfStart=" + dateOfStart +
                 ", dateOfEnd=" + dateOfEnd +
                 ", numberOfTicket=" + numberOfTicket +
+                ", tickets=" + tickets +
                 '}';
     }
 }
