@@ -1,4 +1,4 @@
-package fr.isika.cda11.ohana.project.crowdfunding.controller;
+package src.main.java.fr.isika.cda11.ohana.project.crowdfunding.controller;
 
 import java.util.List;
 
