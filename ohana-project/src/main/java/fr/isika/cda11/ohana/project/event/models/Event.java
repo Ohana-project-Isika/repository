@@ -8,14 +8,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Event implements Serializable {
+public class Event {
 
-    private static final long serialVersionUID = 8845474287191812919L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String description;
+    private String eventName;
+    private String eventDescription;
     private LocalDate dateOfStart;
     private LocalDate dateOfEnd;
     private Integer numberOfTicket;
@@ -26,11 +25,11 @@ public class Event implements Serializable {
 
     public Long getId() {return id;}
 
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    public String getEventName() {return eventName;}
+    public void setEventName(String eventName) {this.eventName = eventName;}
 
-    public String getDescription() {return description;}
-    public void setDescription(String description) {this.description = description;}
+    public String getEventDescription() {return eventDescription;}
+    public void setEventDescription(String eventDescription) {this.eventDescription = eventDescription;}
 
     public LocalDate getDateOfStart() {return dateOfStart;}
     public void setDateOfStart(LocalDate dateOfStart) {this.dateOfStart = dateOfStart;}
@@ -52,8 +51,8 @@ public class Event implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
         return Objects.equals(id, event.id)
-                && Objects.equals(name, event.name)
-                && Objects.equals(description, event.description)
+                && Objects.equals(eventName, event.eventName)
+                && Objects.equals(eventDescription, event.eventDescription)
                 && Objects.equals(dateOfStart, event.dateOfStart)
                 && Objects.equals(dateOfEnd, event.dateOfEnd)
                 && Objects.equals(numberOfTicket, event.numberOfTicket)
@@ -62,15 +61,15 @@ public class Event implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, dateOfStart, dateOfEnd, numberOfTicket, tickets);
+        return Objects.hash(id, eventName, eventDescription, dateOfStart, dateOfEnd, numberOfTicket, tickets);
     }
 
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", name='" + eventName + '\'' +
+                ", description='" + eventDescription + '\'' +
                 ", dateOfStart=" + dateOfStart +
                 ", dateOfEnd=" + dateOfEnd +
                 ", numberOfTicket=" + numberOfTicket +

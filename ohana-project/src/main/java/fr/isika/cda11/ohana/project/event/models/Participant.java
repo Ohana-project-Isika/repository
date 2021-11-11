@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Participant implements Serializable {
+public class Participant {
 
-    private static final long serialVersionUID = 8845474287191812919L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
