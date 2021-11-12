@@ -178,72 +178,17 @@
             </h:column>
 
             <h:column>
+                <f:facet name="header">Taux TVA</f:facet>
+                #{event.ticket.tvaRate}
+            </h:column>
+
+            <h:column>
                 <f:facet name="header">Lieu</f:facet>
                 #{event.address}
             </h:column>
 
         </h:dataTable>
     </div>
-
-    <h1>Formulaire d'ajout d'un évènement</h1>
-    <h:form method="post">
-
-        <h:panelGrid columns="3">
-            <h:outputText value="Nom :"/>
-            <h:inputText id="Name"
-                         value="#{eventController.event.name}"/>
-            <h:message style="color:red" for="Name"/>
-
-            <h:outputText value="Description :"/>
-            <h:inputText id="description"
-                         value="#{eventController.event.description}"/>
-            <h:message style="color:red" for="description"/>
-
-            <h:outputText value="Date de début :"/>
-            <h:outputText id="startDate" disabled="true"
-                          value="#{eventController.event.startDate}"/>
-            <h:message style="color:red" for="startDate"/>
-
-            <h:outputText value="Date de fin :"/>
-            <p:calendar id="endDate"
-                        value="#{eventController.event.endDate}" mode="inline"/>
-            <p:calendar/>
-            <h:message style="color:red" for="endDate"/>
-
-            <h:outputText value="Quantité de billet :"/>
-            <h:inputText id="ticketQty"
-                         value="#{eventController.event.ticketQuantity}"/>
-            <h:message style="color:red" for="ticketQty"/>
-
-            <h:commandButton action="#{eventController.addEvent}" value="Créer"/>
-        </h:panelGrid>
-    </h:form>
-
-    <div>
-
-        <h3>L'évènement <h:outputText value="#{eventController.event.name}"/> dont la description est
-            <h:outputText value="#{eventController.event.description}"/> a été créé</h3>
-    </div>
-
-    <h:dataTable value="#{eventController.events}" var="event"
-                 headerClass="employeeTableHeader"
-                 rowClasses="employeeTableOddRow,employeeTableEvenRow">
-
-        <h:column>
-            <f:facet name="header">Nom</f:facet>
-            #{event.name}
-        </h:column>
-
-        <h:column>
-            <f:facet name="header">Description</f:facet>
-            #{event.description}
-        </h:column>
-
-        <h:column>
-            <f:facet name="header">Date de début</f:facet>
-            #{event.startDate}
-        </h:column>
-    </h:dataTable>
 
 </h:body>
 </html>

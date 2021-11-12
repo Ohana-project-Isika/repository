@@ -5,6 +5,7 @@ import fr.isika.cda11.ohana.project.common.model.Address;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -14,6 +15,16 @@ import java.util.*;
 @Setter
 @EqualsAndHashCode
 @ToString
+@NamedQueries({
+        @NamedQuery(name = "Events.IDF.findAll",
+                query = "SELECT e FROM Event e INNER JOIN e.tickets t WHERE SUBSTRING(e.address.postCode, 1, 2) = '75'" +
+                        "OR SUBSTRING(e.address.postCode, 1, 2) = '77' " +
+                        "OR SUBSTRING(e.address.postCode, 1, 2) = '78' " +
+                        "OR SUBSTRING(e.address.postCode, 1, 2) = '92' " +
+                        "OR SUBSTRING(e.address.postCode, 1, 2) = '93' " +
+                        "OR SUBSTRING(e.address.postCode, 1, 2) = '94' " +
+                        "OR SUBSTRING(e.address.postCode, 1, 2) = '95' ")
+})
 public class Event {
 
     // TODO Field Validation Errors
@@ -42,9 +53,6 @@ public class Event {
     @Column(name = "end_time")
     private LocalTime endTime;
 
-    @Transient
-    private int ticketQuantity;
-
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
             mappedBy = "event",
             orphanRemoval = true
@@ -58,11 +66,14 @@ public class Event {
     @ToString.Exclude
     private Address address;
 
+    @Transient
+    private int ticketQuantity;
+
+    @Transient
+    private Ticket ticket;
+
     public void addTicket(Ticket ticket) {
         ticket.setEvent(this);
         tickets.add(ticket);
     }
-
-    @Transient
-    private Ticket ticket;
 }

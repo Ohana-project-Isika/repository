@@ -1,7 +1,6 @@
 package fr.isika.cda11.ohana.project.ticketing.controller;
 
 import fr.isika.cda11.ohana.project.ticketing.models.Event;
-import fr.isika.cda11.ohana.project.ticketing.models.Ticket;
 import fr.isika.cda11.ohana.project.ticketing.service.EventService;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +13,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 @Named
 @ViewScoped
@@ -27,11 +25,13 @@ public class EventController implements Serializable {
     private EventService eventService;
 
     private List<Event> events;
+    private List<Event> eventsIDF;
     private Event event = new Event();
 
     @PostConstruct
     public void init() {
-        events = eventService.findAll();
+        events = eventService.findAllEventsIDF();
+        eventsIDF = eventService.findAllEventsIDF();
     }
 
     public void addEvent() {

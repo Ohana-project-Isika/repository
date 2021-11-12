@@ -29,7 +29,5 @@ public class EventRepository {
         return entityManager.find(Event.class, id);
     }
 
-    public List<Event> findAll() {
-        return entityManager.createQuery(SELECT_EVENTS_JOIN_TICKETS).getResultList();
-    }
+    public List<Event> findAllEventsIDF() { return entityManager.createNamedQuery("Events.IDF.findAll").getResultList(); }
 }

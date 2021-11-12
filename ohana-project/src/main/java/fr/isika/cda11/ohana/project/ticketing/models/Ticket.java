@@ -25,6 +25,9 @@ public class Ticket {
     @Column(name = "applied_TVA")
     private TVA appliedTVA;
 
+    @Transient
+    private BigDecimal tvaRate;
+
     @ManyToOne
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
