@@ -1,8 +1,10 @@
 package fr.isika.cda11.ohana.project.crowdfunding.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,8 +25,12 @@ public class Project {
 	
 	private String description;
 	
-	@OneToMany(mappedBy = "project")
-	private List<Funding> fundings;
+	@OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+	private List<Funding> fundings = new ArrayList<Funding>();
+	
+	public void addFunding(Funding funding) {
+		this.fundings.add(funding);
+	}
 	
 	public List<Funding> getFundings() {
 		return fundings;

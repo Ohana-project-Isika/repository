@@ -20,7 +20,6 @@ public class Funding {
 	
 	
 	//private Person person;
-/*
 	public Project getProject() {
 		return project;
 	}
@@ -28,7 +27,7 @@ public class Funding {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-*/
+	
 	public Funding() {
 		
 	}

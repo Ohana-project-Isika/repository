@@ -84,13 +84,18 @@ public class CrowdfundingController {
 		return "projects";
 	}
 	
-	public String finance(Long id) {
+	public String finance(Integer id) {
 		
+		Project p = cr.findProject(id);
+		theFunding.setProject(p);
+		p.addFunding(theFunding);
 		return "financeProject?faces-redirect=true";
 	}
 	
-	public String newFunding() {
+	public String payer() {
+		
 		cr.saveFunding(theFunding);
+		
 		theFunding = new Funding();
 		return "customerProjectList";
 	}
