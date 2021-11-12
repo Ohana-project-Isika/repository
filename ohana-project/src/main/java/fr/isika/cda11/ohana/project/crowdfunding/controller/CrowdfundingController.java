@@ -11,6 +11,7 @@ import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Person;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
 import fr.isika.cda11.ohana.project.crowdfunding.repository.CrowdfundingRepository;
+import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 
 
 
@@ -20,6 +21,9 @@ public class CrowdfundingController {
 	
 	@Inject
 	CrowdfundingRepository cr;
+	
+	@Inject
+	ProjectService projectService;
 	
 	Project theProject = new Project();
 	Project newProject = new Project();
@@ -36,7 +40,7 @@ public class CrowdfundingController {
 			p1.setName("Architecture JEE");
 			p1.setFinancialGoal(500000);
 			p1.setDescription("gros projet");
-			cr.saveProject(p1);
+			cr.updateProjectRepos(p1);
 		}
 	}
 
@@ -69,20 +73,23 @@ public class CrowdfundingController {
 		return "showProject";
 	}
 
-	public String deleteProject() {
-		cr.deleteProject(theProject);
-		return "projects";
-	}
-	public String save() {
-		cr.saveProject(theProject);
-		return "showProject";
-	}
-
-	public String newProject() {
-		cr.saveProject(newProject);
+	
+	public String createProject() {
+		projectService.createProjectService(newProject);
 		newProject = new Project();
 		return "projects";
 	}
+	
+	public String updateProject() {
+		projectService.updateProjectService(theProject);
+		return "showProject";
+	}
+	
+	public String deleteProject() {
+		projectService.deleteProjectService(theProject);
+		return "projects";
+	}
+	
 	
 	public String finance(Integer id) {
 		
@@ -92,10 +99,9 @@ public class CrowdfundingController {
 		return "financeProject?faces-redirect=true";
 	}
 	
-	public String payer() {
+	public String payer() {		
 		
 		cr.saveFunding(theFunding);
-		
 		theFunding = new Funding();
 		return "customerProjectList";
 	}
