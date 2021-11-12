@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Named
@@ -25,12 +26,12 @@ public class EventController implements Serializable {
 //    @Setter(AccessLevel.NONE)
     private EventService eventService;
 
-    private Set<Event> events;
+    private List<Event> events;
     private Event event = new Event();
 
     @PostConstruct
     public void init() {
-        events = eventService.findAllDistinct();
+        events = eventService.findAll();
     }
 
     public void addEvent() {

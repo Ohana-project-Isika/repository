@@ -30,6 +30,6 @@ public class EventRepository {
     }
 
     public List<Event> findAll() {
-        return entityManager.createNativeQuery(SELECT_EVENTS_JOIN_TICKETS, Event.class).getResultList();
+        return entityManager.createQuery(SELECT_EVENTS_JOIN_TICKETS).getResultList();
     }
 }

@@ -51,7 +51,7 @@ public class Event {
     )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<Ticket> tickets = new HashSet<>();
+    private List<Ticket> tickets = new ArrayList<>();
 
     @OneToOne
     @EqualsAndHashCode.Exclude

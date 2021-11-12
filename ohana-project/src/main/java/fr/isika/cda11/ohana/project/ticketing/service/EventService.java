@@ -29,41 +29,13 @@ public class EventService {
 
     public List<Event> findAll() {
         List<Event> list = eventRepository.findAll();
-        System.out.println(list.size());
-        for (Event o : list)
-            System.out.println(o.toString());
 
-        List<Event> result  =  new ArrayList<>();
-//        for(int i = 0; i < list.size(); i++) {
-//            Object[] row = (Object[]) list.get(i);
-//            Event event = (Event) row[0];
-//            Ticket ticket = (Ticket) row[1];
-//            event.addTicket(ticket);
-//            result.add(event);
-//        }
-        return result;
-    }
-
-    public Set<Event> findAllDistinct() {
-        List<Event> list = findAll();
-        Set<Event> distinct = findAll().stream().filter(distinctByKey(e -> e.getId())).collect(Collectors.toSet());
-
-        for (Event dist : distinct) {
-            int count = 0;
-            for (Event event : findAll()) {
-                if (dist.getId().equals(event.getId())) {
-                    for (Ticket ticket : event.getTickets()) {
-                        dist.addTicket(ticket);
-                        dist.setTicketQuantity(++count);
-                        dist.setTicket(ticket);
-                    }
-                }
-            }
-
-            dist.setTickets(dist.getTickets().stream().filter(distinctByKey(t -> t.getId())).collect(Collectors.toSet()));
+        for (Event event : list) {
+            event.setTicketQuantity(event.getTickets().size());
+            event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
         }
 
-        return distinct;
+        return list;
     }
 
     public Event findById(Long id) {
