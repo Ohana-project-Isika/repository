@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+
+*{
+	margin: 0;
+	padding:0;
+	box-sizing : border-box;
+}
+
+.body_table {
+	padding: 5;
+	width:100%;
+	display: flex;
+	justify-content: center;
+	font-family: 'Roboto', sans-serif;
+}
+
+.header_fixed{
+	height: 500px;
+	overflow: auto;
+	margin-top: 30px;
+	background-color:black;
+	color:white;
+	font-size:15px;
+	font-weight:800;
+	
+}
+table{
+	border-collapse: collapse;
+}
+th,td{
+	border-bottom: 1px solid #dddddd;
+	padding: 10px 20px;
+	font-size: 14px;
+}
+
+td img{
+	height : 50px;
+	width: 60px;
+	border-radius: 100%;
+	border: 5px solid #E6E7E8;
+}
+
+tr:nth-child(even){
+	background-color:#dddddd;
+}
+tr:nth-child(odd){
+	background-color:#EDEEF1;
+}
+
+::webkit-scrollbar{
+	width: 6px;
+}
+
+::webkit-scrollbar-track{
+	-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3)
+}
+
+::webkit-scrollbar-thumb{
+	-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3)
+}

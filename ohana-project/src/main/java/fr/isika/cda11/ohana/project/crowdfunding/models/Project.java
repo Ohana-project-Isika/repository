@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import fr.isika.cda11.ohana.project.common.models.Association;
+
 @Entity
 public class Project {
 	
