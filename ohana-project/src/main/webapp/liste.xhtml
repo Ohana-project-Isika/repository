@@ -3,15 +3,15 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    template="/WEB-INF/templates/layout.xhtml">
+    template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
-        <h1>Welcome to WildFly!</h1>
+        <h1>Bravo!</h1>
 
         <div>
-            <p>You have successfully deployed a Java EE 7 Enterprise
-                Application.</p>
-            <h3>Your application can run on:</h3>
-            <img src="resources/gfx/wildfly_400x130.jpg" />
+            
+            <h3>L'association <h:outputText value="#{associationController.findAssos()}"/> a été crée</h3>
+            
+            <img src="resources/gfx/validation.jpg" />
         </div>
 
     </ui:define>

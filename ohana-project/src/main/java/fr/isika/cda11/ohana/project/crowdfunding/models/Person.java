@@ -1,5 +1,6 @@
 package fr.isika.cda11.ohana.project.crowdfunding.models;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
