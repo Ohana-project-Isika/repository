@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h1>Liste des projets</h1>
+			<h:form>
+				<h:dataTable value="#{projectMB.projects}" var="o">
+					<h:column>
+						<f:facet name="header">ID</f:facet>
+						<h:outputText value="#{o.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
+						<h:outputText value="#{o.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Objectif financier</f:facet>
+						<h:outputText value="#{o.financialGoal}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Description</f:facet>
+						<h:outputText value="#{o.description}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Durée de la campagne</f:facet>
+						<h:outputText value="#{o.duration}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombre de financeurs</f:facet>
+						<h:outputText value="#" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Argent Récolté</f:facet>
+						<h:outputText value="#" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Action</f:facet>
+						<h:commandLink action="financeProject">Financer</h:commandLink>
+					</h:column>
+				</h:dataTable>
+				
+				<h:dataTable value="#{projectMB.fundings}" var="o">
+					<h:column>
+						<f:facet name="header">ID</f:facet>
+						<h:outputText value="#{o.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Montant</f:facet>
+						<h:outputText value="#{o.fundingAmount}" />
+					</h:column>
+
+				</h:dataTable>
+				
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
