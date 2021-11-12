@@ -1,87 +1,67 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import fr.isika.cda11.ohana.project.common.models.Address;
+import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
 
 @Entity
-public class Event implements Serializable {
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+public class Event {
 
-    private static final long serialVersionUID = 8845474287191812919L;
+    // TODO Field Validation Errors
+    // TODO Other Field Validation Controls if Any
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
+
+    @Column(name = "event_name")
     private String name;
+
+    @Column(name = "event_description")
     private String description;
-    private LocalDate dateOfStart;
-    private LocalDate dateOfEnd;
-    private Integer numberOfTicket;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "event_ticket_id")
-    private List<Ticket> tickets = new ArrayList<>();
+    @Column(name = "start_date")
+    private LocalDate startDate = LocalDate.now();
 
-    public Long getId() {return id;}
+    @Column(name = "start_time")
+    private LocalTime startTime;
 
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
-    public String getDescription() {return description;}
-    public void setDescription(String description) {this.description = description;}
+    @Column(name = "end_time")
+    private LocalTime endTime;
 
-    public LocalDate getDateOfStart() {return dateOfStart;}
-    public void setDateOfStart(LocalDate dateOfStart) {this.dateOfStart = dateOfStart;}
+    @Transient
+    private int ticketQuantity;
 
-    public LocalDate getDateOfEnd() {return dateOfEnd;}
-    public void setDateOfEnd(LocalDate dateOfEnd) {this.dateOfEnd = dateOfEnd;}
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
+            mappedBy = "event",
+            orphanRemoval = true
+    )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Ticket> tickets = new HashSet<>();
 
-    public Integer getNumberOfTicket() {return numberOfTicket;}
-    public void setNumberOfTicket(Integer numberOfTicket) {this.numberOfTicket = numberOfTicket;}
+    @OneToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Address address;
 
-    public List<Ticket> getTickets() {return tickets;}
-    public void setTickets(List<Ticket> tickets) {this.tickets = tickets;}
-
-    public Event() {}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return Objects.equals(id, event.id)
-                && Objects.equals(name, event.name)
-                && Objects.equals(description, event.description)
-                && Objects.equals(dateOfStart, event.dateOfStart)
-                && Objects.equals(dateOfEnd, event.dateOfEnd)
-                && Objects.equals(numberOfTicket, event.numberOfTicket)
-                && Objects.equals(tickets, event.tickets);
+    public void addTicket(Ticket ticket) {
+        ticket.setEvent(this);
+        tickets.add(ticket);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, dateOfStart, dateOfEnd, numberOfTicket, tickets);
-    }
-
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", dateOfStart=" + dateOfStart +
-                ", dateOfEnd=" + dateOfEnd +
-                ", numberOfTicket=" + numberOfTicket +
-                ", tickets=" + tickets +
-                '}';
-    }
+    @Transient
+    private Ticket ticket;
 }

@@ -1,16 +1,33 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
-public class Ticket{
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+public class Ticket {
 
-    private static final long serialVersionUID = 8845474287191812919L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
-    private Integer price;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "rate_type")
+    private RATE_TYPE rateType;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "applied_TVA")
+    private TVA appliedTVA;
+
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JoinColumn(name = "event_id")
+    private Event event;
 }
