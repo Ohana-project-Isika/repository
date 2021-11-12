@@ -29,7 +29,7 @@ public class EventRepository {
         return entityManager.find(Event.class, id);
     }
 
-    public List<Object[]> findAll() {
-        return entityManager.createNativeQuery(SELECT_EVENTS_JOIN_TICKETS).getResultList();
+    public List<Event> findAll() {
+        return entityManager.createNativeQuery(SELECT_EVENTS_JOIN_TICKETS, Event.class).getResultList();
     }
 }

@@ -28,10 +28,11 @@ public class EventService {
     }
 
     public List<Event> findAll() {
-        List<Object[]> list = eventRepository.findAll();
+        List<Event> list = eventRepository.findAll();
         System.out.println(list.size());
-        for (Object[] o : list)
+        for (Event o : list)
             System.out.println(o.toString());
+
         List<Event> result  =  new ArrayList<>();
 //        for(int i = 0; i < list.size(); i++) {
 //            Object[] row = (Object[]) list.get(i);

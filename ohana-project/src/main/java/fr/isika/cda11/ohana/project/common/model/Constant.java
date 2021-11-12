@@ -9,6 +9,6 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class Constant {
-    public static final String SELECT_EVENTS_JOIN_TICKETS = "SELECT event_name, event_description, start_date, " +
-            "end_date, start_time, end_time, address_id, rate_type, applied_TVA FROM Event e JOIN Ticket t ON e.id = t.event_id";
+    public static final String SELECT_EVENTS_JOIN_TICKETS = "SELECT e.id, event_name, event_description, start_date, " +
+            "end_date, start_time, end_time, address_id, t.rate_type, t.applied_TVA FROM Event e JOIN Ticket t ON e.id = t.event_id";
 }
