@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import fr.isika.cda11.ohana.project.crowdfunding.models.Association;
+import fr.isika.cda11.ohana.project.common.models.Association;
 
 @Entity
 public class Membership {
