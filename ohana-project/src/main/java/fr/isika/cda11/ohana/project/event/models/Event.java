@@ -13,6 +13,9 @@ import java.util.*;
 @Setter
 @EqualsAndHashCode
 @ToString
+@NamedQueries({
+        @NamedQuery(name = "Event.findAllEvent", query = "SELECT e FROM Event e")
+})
 public class Event {
 
     // TODO Field Validation Errors
