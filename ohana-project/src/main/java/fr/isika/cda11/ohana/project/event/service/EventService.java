@@ -22,4 +22,6 @@ public class EventService {
     public Event update(Event event) {eventRepository.updateEvent(event); return event;}
 
     public List<Event> findAll() {return eventRepository.findAssociationEvents();}
+
+    public Event findById(Long objectId) {return eventRepository.readEvent(objectId);}
 }

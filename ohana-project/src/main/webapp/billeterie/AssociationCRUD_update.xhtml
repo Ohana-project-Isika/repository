@@ -30,13 +30,11 @@
             <h:outputText value="Date de début de l'évènement :"/>
             <h:outputText id="updateStartDate" disabled="true"
                           value="#{eventControllerUpdateDelete.event.startDate}"/>
-
             <h:message style="color:red" for="updateStartDate"/>
 
             <h:outputText value="Date de fin de l'évènement:"/>
-            <p:calendar id="updateEndDate"
-                        value="#{eventControllerUpdateDelete.event.endDate}" mode="inline"/>
-            <p:calendar/>
+            <h:outputText id="updateEndDate" disabled="true"
+                          value="#{eventControllerUpdateDelete.event.endDate}"/>
             <h:message style="color:red" for="updateEndDate"/>
 
             <h:outputText value="Quantité de billet disponible :"/>
@@ -49,5 +47,4 @@
     </h:form>
     <br />
 </h:body>
-
 </html>

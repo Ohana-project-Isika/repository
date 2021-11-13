@@ -11,7 +11,7 @@
     <script src="../resources/js/ticketing.js"></script>
 </h:head>
 <h:body>
-    <h1>ASSOCIATIONS : Créer, lire, modifier et supprimer un évènement</h1>
+    <h1>ASSOCIATIONS : Créer un évènement</h1>
     <p:separator />
     <br />
     <h2>Formulaire de création d'un évènement</h2>
@@ -28,17 +28,13 @@
             <h:message style="color:red" for="description"/>
 
             <h:outputText value="Date de début de l'évènement :"/>
-            <p:calendar id="startDate"
-                        value="#{eventControllerCreate.event.startDate}" />
-
-            <p:calendar/>
+            <h:outputText id="startDate" disabled="true"
+                          value="#{eventControllerCreate.event.startDate}"/>
             <h:message style="color:red" for="startDate"/>
 
             <h:outputText value="Date de fin de l'évènement:"/>
-            <p:calendar id="endDate"
-                        value="#{eventControllerCreate.event.endDate}" />
-
-            <p:calendar/>
+            <h:outputText id="endDate" disabled="true"
+                          value="#{eventControllerCreate.event.endDate}"/>
             <h:message style="color:red" for="endDate"/>
 
             <h:outputText value="Quantité de billet disponible :"/>
@@ -51,23 +47,6 @@
     </h:form>
     <p:separator />
     <br />
-
-    <h3>DataModel</h3>
-    <p:tabView value="#{eventControllerCreate.events}" var="event">
-        <p:tab title="Evènement : #{event.id}">
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:outputText value="Brand:" style="font-weight: bold"/>
-                <h:outputText value="#{event.name}" />
-
-                <h:outputText value="Year:" style="font-weight: bold"/>
-                <h:outputText value="#{event.description}" />
-
-                <h:outputText value="Year:" style="font-weight: bold"/>
-                <h:outputText value="#{event.ticketQuantity}" />
-
-            </h:panelGrid>
-        </p:tab>
-    </p:tabView>
 </h:body>
 
 </html>
