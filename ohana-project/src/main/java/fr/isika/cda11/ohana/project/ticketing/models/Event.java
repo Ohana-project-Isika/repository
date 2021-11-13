@@ -72,6 +72,9 @@ public class Event {
     @Transient
     private Ticket ticket;
 
+    @Transient
+    private String fullAddress;
+
     public void addTicket(Ticket ticket) {
         ticket.setEvent(this);
         tickets.add(ticket);

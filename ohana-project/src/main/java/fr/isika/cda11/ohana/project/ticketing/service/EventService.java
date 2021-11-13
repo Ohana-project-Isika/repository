@@ -1,5 +1,6 @@
 package fr.isika.cda11.ohana.project.ticketing.service;
 
+import fr.isika.cda11.ohana.project.common.model.Address;
 import fr.isika.cda11.ohana.project.ticketing.models.Event;
 import fr.isika.cda11.ohana.project.ticketing.models.RATE_TYPE;
 import fr.isika.cda11.ohana.project.ticketing.models.TVA;
@@ -8,6 +9,7 @@ import fr.isika.cda11.ohana.project.ticketing.repository.EventRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.*;
 
 import static fr.isika.cda11.ohana.project.ticketing.models.TVA.*;
@@ -30,13 +32,7 @@ public class EventService {
 
     public List<Event> findAllEventsIDF() {
         List<Event> list = eventRepository.findAllEventsIDF();
-
-        for (Event event : list) {
-            event.setTicketQuantity(event.getTickets().size());
-            event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
-            setTVAFor(event, event.getTicket().getRateType(), event.getTicket().getAppliedTVA());
-        }
-
+        manageEvents(list);
         return list;
     }
 
@@ -49,62 +45,63 @@ public class EventService {
         return findById(event.getId());
     }
 
-    private void setTVAFor(Event event, RATE_TYPE rateType, TVA tva) {
+    private void manageEvents(List<Event> list) {
+        for (Event event : list) {
+            event.setTicketQuantity(event.getTickets().size());
+            event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
+            event.getTicket().setTvaRate(setTVAFor(event.getTicket().getRateType(), event.getTicket().getAppliedTVA())
+                    .multiply(BigDecimal.valueOf(100)).setScale(2,BigDecimal.ROUND_UP));
+            event.getTicket().setPostTaxPrice(event.getTicket().getPreTaxPrice().multiply(BigDecimal.valueOf(1)
+                    .add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
+                    .setScale(2,BigDecimal.ROUND_UP));
+            event.setFullAddress(setFullAddress(event.getAddress()));
+        }
+    }
+    private String setFullAddress(Address address) {
+        return String.format("%s %s %s %s %s %s",
+                address.getNumber(), Optional.ofNullable(address.getSuffix().toString().toLowerCase()).orElse(""),
+                address.getStreetName(), Optional.ofNullable(address.getStreetComplement()).orElse(""),
+                address.getPostCode(), address.getCity());
+    }
+
+    private BigDecimal setTVAFor(RATE_TYPE rateType, TVA tva) {
         switch (rateType) {
             case REDUCED1:
                 switch (tva) {
                     case CORSE:
-                        event.getTicket().setTvaRate(CORSE.getReducedRate1());
-                        break;
+                        return CORSE.getReducedRate1();
                     case DOM:
-                        event.getTicket().setTvaRate(DOM.getReducedRate1());
-                        break;
+                        return DOM.getReducedRate1();
                     default:
-                        event.getTicket().setTvaRate(METROPOLITAN.getReducedRate1());
-                        break;
+                        return METROPOLITAN.getReducedRate1();
                 }
-                break;
             case REDUCED2:
                 switch (tva) {
                     case CORSE:
-                        event.getTicket().setTvaRate(CORSE.getReducedRate2());
-                        break;
+                        return CORSE.getReducedRate2();
                     case DOM:
-                        event.getTicket().setTvaRate(DOM.getReducedRate2());
-                        break;
+                        return DOM.getReducedRate2();
                     default:
-                        event.getTicket().setTvaRate(METROPOLITAN.getReducedRate2());
-                        break;
+                        return METROPOLITAN.getReducedRate2();
                 }
-                break;
             case REGULAR:
                 switch (tva) {
                     case CORSE:
-                        event.getTicket().setTvaRate(CORSE.getRegularRate());
-                        break;
+                        return CORSE.getRegularRate();
                     case DOM:
-                        event.getTicket().setTvaRate(DOM.getRegularRate());
-                        break;
+                        return DOM.getRegularRate();
                     default:
-                        event.getTicket().setTvaRate(METROPOLITAN.getRegularRate());
-                        break;
+                        return METROPOLITAN.getRegularRate();
                 }
-                break;
-            case SUPER_REDUCED:
-                break;
             default:
                 switch (tva) {
                     case CORSE:
-                        event.getTicket().setTvaRate(CORSE.getSuperReducedRate());
-                        break;
+                        return CORSE.getSuperReducedRate();
                     case DOM:
-                        event.getTicket().setTvaRate(DOM.getSuperReducedRate());
-                        break;
+                        return DOM.getSuperReducedRate();
                     default:
-                        event.getTicket().setTvaRate(METROPOLITAN.getSuperReducedRate());
-                        break;
+                        return METROPOLITAN.getSuperReducedRate();
                 }
-                break;
         }
     }
 }

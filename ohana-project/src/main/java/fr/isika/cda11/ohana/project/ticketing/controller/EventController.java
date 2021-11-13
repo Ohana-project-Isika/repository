@@ -7,15 +7,13 @@ import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@Named
-@ViewScoped
+@SessionScoped
 @Getter
 @Setter
 public class EventController implements Serializable {
@@ -30,7 +28,6 @@ public class EventController implements Serializable {
 
     @PostConstruct
     public void init() {
-        events = eventService.findAllEventsIDF();
         eventsIDF = eventService.findAllEventsIDF();
     }
 
@@ -41,5 +38,8 @@ public class EventController implements Serializable {
     public void update() {
         events.forEach(eventService::update);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Update successful"));
+    }
+
+    public void book() {
     }
 }

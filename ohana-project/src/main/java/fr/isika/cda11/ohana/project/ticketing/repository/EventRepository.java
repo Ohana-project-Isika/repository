@@ -6,10 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static fr.isika.cda11.ohana.project.common.model.Constant.SELECT_EVENTS_JOIN_TICKETS;
 
 @Stateless
 public class EventRepository {

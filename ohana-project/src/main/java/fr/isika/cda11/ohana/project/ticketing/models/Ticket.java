@@ -25,12 +25,18 @@ public class Ticket {
     @Column(name = "applied_TVA")
     private TVA appliedTVA;
 
-    @Transient
-    private BigDecimal tvaRate;
+    @Column(name = "pre_tax_price")
+    private BigDecimal preTaxPrice;
 
     @ManyToOne
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JoinColumn(name = "event_id")
     private Event event;
+
+    @Transient
+    private BigDecimal tvaRate;
+
+    @Transient
+    private BigDecimal postTaxPrice;
 }
