@@ -128,7 +128,7 @@
     </div>
 
     <div id="idf" hidden="hidden">
-        <h:dataTable value="#{eventController.events}" var="event"
+        <h:dataTable value="#{eventControllerCreate.events}" var="event"
                      headerClass="eventTableHeader"
                      rowClasses="eventTableOddRow,eventTableEvenRow">
 
@@ -191,41 +191,41 @@
         <h:panelGrid columns="3">
             <h:outputText value="Nom :"/>
             <h:inputText id="Name"
-                         value="#{eventController.event.name}"/>
+                         value="#{eventControllerCreate.event.name}"/>
             <h:message style="color:red" for="Name"/>
 
             <h:outputText value="Description :"/>
             <h:inputText id="description"
-                         value="#{eventController.event.description}"/>
+                         value="#{eventControllerCreate.event.description}"/>
             <h:message style="color:red" for="description"/>
 
             <h:outputText value="Date de début :"/>
             <h:outputText id="startDate" disabled="true"
-                          value="#{eventController.event.startDate}"/>
+                          value="#{eventControllerCreate.event.startDate}"/>
             <h:message style="color:red" for="startDate"/>
 
             <h:outputText value="Date de fin :"/>
             <p:calendar id="endDate"
-                        value="#{eventController.event.endDate}" mode="inline"/>
+                        value="#{eventControllerCreate.event.endDate}" mode="inline"/>
             <p:calendar/>
             <h:message style="color:red" for="endDate"/>
 
             <h:outputText value="Quantité de billet :"/>
             <h:inputText id="ticketQty"
-                         value="#{eventController.event.ticketQuantity}"/>
+                         value="#{eventControllerCreate.event.ticketQuantity}"/>
             <h:message style="color:red" for="ticketQty"/>
 
-            <h:commandButton action="#{eventController.addEvent}" value="Créer"/>
+            <h:commandButton action="#{eventControllerCreate.addEvent}" value="Créer"/>
         </h:panelGrid>
     </h:form>
 
     <div>
 
-        <h3>L'évènement <h:outputText value="#{eventController.event.name}"/> dont la description est
-            <h:outputText value="#{eventController.event.description}"/> a été créé</h3>
+        <h3>L'évènement <h:outputText value="#{eventControllerCreate.event.name}"/> dont la description est
+            <h:outputText value="#{eventControllerCreate.event.description}"/> a été créé</h3>
     </div>
 
-    <h:dataTable value="#{eventController.events}" var="event"
+    <h:dataTable value="#{eventControllerCreate.events}" var="event"
                  headerClass="employeeTableHeader"
                  rowClasses="employeeTableOddRow,employeeTableEvenRow">
 

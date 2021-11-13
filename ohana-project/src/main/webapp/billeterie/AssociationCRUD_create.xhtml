@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://primefaces.org/ui ">
 <h:head>
-    <title>Premier exemple JSF 2.0</title>
+    <title>Formulaire création evenement</title>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <link rel="stylesheet" href="../resources/css/styles.css"/>
     <script src="../resources/js/ticketing.js"></script>
@@ -19,41 +19,41 @@
         <h:panelGrid columns="3">
             <h:outputText value="Nom de l'évènement :"/>
             <h:inputText id="Name"
-                         value="#{eventController.event.name}"/>
+                         value="#{eventControllerCreate.event.name}"/>
             <h:message style="color:red" for="Name"/>
 
             <h:outputText value="Description de l'évènement :"/>
             <h:inputText id="description"
-                         value="#{eventController.event.description}"/>
+                         value="#{eventControllerCreate.event.description}"/>
             <h:message style="color:red" for="description"/>
 
             <h:outputText value="Date de début de l'évènement :"/>
             <p:calendar id="startDate"
-                        value="#{eventController.event.startDate}" />
+                        value="#{eventControllerCreate.event.startDate}" />
 
             <p:calendar/>
             <h:message style="color:red" for="startDate"/>
 
             <h:outputText value="Date de fin de l'évènement:"/>
             <p:calendar id="endDate"
-                        value="#{eventController.event.endDate}" />
+                        value="#{eventControllerCreate.event.endDate}" />
 
             <p:calendar/>
             <h:message style="color:red" for="endDate"/>
 
             <h:outputText value="Quantité de billet disponible :"/>
             <h:inputText id="ticketQty"
-                         value="#{eventController.event.ticketQuantity}"/>
+                         value="#{eventControllerCreate.event.ticketQuantity}"/>
             <h:message style="color:red" for="ticketQty"/>
 
-            <h:commandButton action="#{eventController.addEvent}" value="Création de l'évènement"/>
+            <h:commandButton action="#{eventControllerCreate.addEvent}" value="Création de l'évènement"/>
         </h:panelGrid>
     </h:form>
     <p:separator />
     <br />
 
     <h3>DataModel</h3>
-    <p:tabView value="#{eventController.events}" var="event">
+    <p:tabView value="#{eventControllerCreate.events}" var="event">
         <p:tab title="Evènement : #{event.id}">
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputText value="Brand:" style="font-weight: bold"/>
