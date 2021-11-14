@@ -1,6 +1,5 @@
 package fr.isika.cda11.ohana.project.common.models;
 import lombok.*;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+
+
+    <ui:define name="content">
+        <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>
+        <link type="text/css" href="#{request.contextPath}/resources/css/styles.css" />
+
+        <h:form id="test">
+
+            <h:dataTable value="#{eventController.cart.events}" var="event">
+                <h:column>
+                    <f:facet name="header">Nom</f:facet>
+                    #{event.name}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    #{event.description}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Nombre de tickets</f:facet>
+                    #{event.ticketQuantity}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Tarif</f:facet>
+                    #{event.ticket.rateType}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">TVA</f:facet>
+                    #{event.ticket.appliedTVA}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Taux TVA</f:facet>
+                    #{event.ticket.tvaRate} %
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Prix HT</f:facet>
+                    <input type="text" id="preTax" value="#{event.ticket.preTaxPrice}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Prix TTC</f:facet>
+                    <input type="text" id="postTax" value="#{event.ticket.postTaxPrice}"/>
+                </h:column>
+
+                <h:column >
+                    <input type="button" onclick="decrement()" value="-"/>
+                    <input id="byAmount" type="number" value="1" min="1" max="#{event.ticketQuantity}"/>
+                    <input type="button" onclick="increment()" value="+"/>
+                </h:column>
+
+                <h:column >
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Total HT</f:facet>
+                    <p id="subTotal">
+                        #{event.ticket.preTaxPrice}
+                    </p>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Total TTC</f:facet>
+                    <p id="total">
+                        #{event.ticket.postTaxPrice}
+                    </p>
+                </h:column>
+            </h:dataTable>
+
+            <h:column>
+                <f:facet name="header">Total Panier HT</f:facet>
+                <p id="cartsubTotal">
+                    0.00
+                </p>
+                <h:column>
+                    <f:facet name="header">Total Panier TTC</f:facet>
+                    <p id="cartTotal">
+                        0.00
+                    </p>
+                </h:column>
+            <h:commandButton onclick="getVars()" action="#{authorizePaymentController.pay(eventController.cart)}" value="Payer" />
+        </h:form>
+
+    </ui:define>
+</ui:composition>
