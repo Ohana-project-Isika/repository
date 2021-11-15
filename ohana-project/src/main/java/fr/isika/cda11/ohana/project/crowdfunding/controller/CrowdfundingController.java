@@ -45,7 +45,7 @@ public class CrowdfundingController {
 	}
 
 	public List<Project> getProjects() {
-	return projectService.findListProjectsService();
+		return projectService.findListProjectsService();
 	}
 	
 	public List<Funding> getFundings() {
@@ -89,9 +89,23 @@ public class CrowdfundingController {
 		return "projects";
 	}
 	
-	public Long countFundings() {
-		Long res = getFundings().stream().count();
+	public Long countFundings(Integer id) {
+		Project p = projectService.findProjectService(id);
+		Long res = p.getFundings().stream().count();
+	//	Long res = getFundings().stream().count();
 		return res;
+	}
+	
+	public int getActualsFundingsProject(Integer idProject) {
+		Project p = projectService.findProjectService(idProject);
+		List<Funding> res = p.getFundings();
+		int amount = 0;
+		
+		 for (Funding funding : res)
+         {
+             amount += funding.getFundingAmount();
+         }
+         return amount;
 	}
 	
 	public String finance(Integer id) {

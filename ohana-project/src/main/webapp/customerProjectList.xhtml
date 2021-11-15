@@ -32,28 +32,16 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Nombre de financeurs</f:facet>
-						<h:outputText value="#{projectMB.countFundings()}" />
+						<h:outputText value="#{projectMB.countFundings(o.id)}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Argent Récolté</f:facet>
-						<h:outputText value="#" />
+						<h:outputText value="#{projectMB.getActualsFundingsProject(o.id)}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Action</f:facet>
 						<h:commandLink action="#{projectMB.finance(o.id)}">Financer</h:commandLink>
 					</h:column>
-				</h:dataTable>
-				
-				<h:dataTable value="#{projectMB.fundings}" var="o">
-					<h:column>
-						<f:facet name="header">ID</f:facet>
-						<h:outputText value="#{o.id}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Montant</f:facet>
-						<h:outputText value="#{o.fundingAmount}" />
-					</h:column>
-
 				</h:dataTable>
 				
 			</h:form>
