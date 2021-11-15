@@ -1,10 +1,8 @@
 package fr.isika.cda11.ohana.project.event.controller;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,25 +10,26 @@ import fr.isika.cda11.ohana.project.event.models.Event;
 import fr.isika.cda11.ohana.project.event.service.EventService;
 
 @Named
-@ViewScoped
-public class EventsController implements Serializable {
+@SessionScoped
+public class EventsControllerDetails implements Serializable {
 
     private static final long serialVersionUID = -1606040173965309710L;
 
-    private List<Event> events;
+    private Event event;
 
     @Inject
     private EventService eventService;
 
-    @PostConstruct
-    private void init() {
-        events = eventService.findAll();
+    public String afficherDetails(Long eventId) {
+    	event = eventService.findById(eventId);
+        return "eventDetails";
     }
-
-    public List<Event> getEvents() {
-		return events;
+    
+    public Event getEvent() {
+		return event;
 	}
-    public void setEvents(List<Event> events) {
-		this.events = events;
+    public void setEvent(Event event) {
+		this.event = event;
 	}
+    
 }

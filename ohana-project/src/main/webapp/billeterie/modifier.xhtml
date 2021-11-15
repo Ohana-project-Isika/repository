@@ -5,26 +5,24 @@
       xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://primefaces.org/ui ">
 <h:head>
-    <title>Formulaire création evenement</title>
+    <title>Formulaire modification evenement</title>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <link rel="stylesheet" href="../resources/css/styles.css"/>
     <script src="../resources/js/ticketing.js"></script>
 </h:head>
 <h:body>
-    <h1>ASSOCIATIONS : Tout les évènements</h1>
-    <p:separator />
     <br />
-    <h2>Détails d'un Event</h2>
+    <h2>Modifier l'évènement</h2>
     <div>
-
-        <p:outputLabel for="eventName" value="Nom de l'évènement" />
-        <br />
-        <p:outputLabel id="eventName" value="#{eventControllerRead.event.name}" />
-
-        <h:link outcome="AssociationCRUD_update" value="Modifier l'évènement" />
-        <br />
-        <h:link outcome="" value="Supprimer l'évènement" />
-
+        <h:form>
+	        <p:outputLabel>Nom Evt : </p:outputLabel>
+	        <p:inputText value="#{eventsControllerUpdate.event.name}"/>
+	        
+			<p:outputLabel>Description Evt : </p:outputLabel>
+	        <p:inputText value="#{eventsControllerUpdate.event.description}"/>
+	        
+			<h:commandLink action="#{eventsControllerUpdate.modifier()}" value="Modifier" />
+        </h:form>
     </div>
 </h:body>
 </html>
