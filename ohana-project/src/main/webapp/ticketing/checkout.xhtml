@@ -44,9 +44,9 @@
                 </h:column>
 
                 <h:column >
-                    <input type="button" onclick="decrement('#{event.id}')" value="-"/>
-                    <input class="byAmount" id="#{event.id}" type="number" value="1" min="1" max="#{event.ticketQuantity}"/>
-                    <input type="button" onclick="increment('#{event.id}')" value="+"/>
+                    <input class="fixedAmount" type="button" id="#{event.ticketQuantity}" onclick="decrement('#{event.id}', '#{event.ticketQuantity}')" value="-"/>
+                    <input class="dynamicAmount" id="#{event.id}" type="number" value="1" min="1" max="#{event.ticketQuantity}"/>
+                    <input type="button" onclick="increment('#{event.id}', '#{event.ticketQuantity}')" value="+"/>
                 </h:column>
 
                 <h:column >

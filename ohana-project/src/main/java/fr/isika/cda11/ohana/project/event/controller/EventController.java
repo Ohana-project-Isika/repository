@@ -52,9 +52,7 @@ public class EventController implements Serializable {
     }
 
     public String checkout(Event event) {
-        cart.addEvents(event);
-        cart.addSubTotal(event.getTicket().getPreTaxPrice());
-        cart.addTotal(event.getTicket().getPostTaxPrice());
+        cart = eventService.addEvents(event, cart);
         return "ticketing/checkout?faces-redirect=true";
     }
 

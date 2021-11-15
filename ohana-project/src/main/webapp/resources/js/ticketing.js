@@ -1,6 +1,7 @@
 let cartSubTotal = 0, cartTotal = 0;
 let subTotal, total;
-let byAmount = document.getElementsByClassName('byAmount');
+let dynamicAmount = document.getElementsByClassName('dynamicAmount');
+let fixedAmount = document.getElementsByClassName('fixedAmount');
 
 function invokeCommandLink(string) {
     document.getElementById("form:region").value = string;
@@ -8,47 +9,59 @@ function invokeCommandLink(string) {
     jsfCommandLink.click();
 }
 
-function increment(string) {
-    for (let amount of byAmount) {
-        if (amount.id === string) {
+function increment(string1, string2) {
+    let cartSubTotalMax = 0, cartTotalMax = 0;
+
+    for (let amount of fixedAmount) {
+        cartSubTotalMax += parseFloat(document.getElementById(`preTax_${string1}`).value) * string2;
+        cartTotalMax += parseFloat(document.getElementById(`postTax_${string1}`).value) * string2;
+    }
+
+    for (let amount of dynamicAmount) {
+        if (amount.id === string1) {
             amount.stepUp();
-            assign(string);
+            assign(string1);
+        }
 
-            cartSubTotal += parseFloat(document.getElementById(string).value)
-                * parseFloat(document.getElementById(`preTax_${string}`).value);
-            cartTotal += parseFloat(document.getElementById(string).value)
-                * parseFloat(document.getElementById(`postTax_${string}`).value);
-
+        if (cartSubTotal > cartSubTotalMax) {
+            cartSubTotal = cartSubTotalMax;
             document.getElementById("cartSubTotal").innerHTML = cartSubTotal.toString();
-            document.getElementById("cartTotal").innerHTML = cartTotal.toString();
+        } else {
+            cartSubTotal += parseFloat(document.getElementById(`preTax_${string1}`).value) * amount.value;
+            document.getElementById("cartSubTotal").innerHTML = cartSubTotal.toString();
+        }
 
-            break;
+        if (cartTotal > cartTotalMax) {
+            cartTotal = cartTotalMax;
+            document.getElementById("cartTotal").innerHTML = cartTotal.toString();
+        } else {
+            cartTotal += parseFloat(document.getElementById(`postTax_${string1}`).value) * amount.value;
+            document.getElementById("cartTotal").innerHTML = cartTotal.toString();
         }
     }
 }
 
-function decrement(string) {
-    for (let amount of byAmount) {
-        if (amount.id === string) {
+function decrement(string1, string2) {
+    for (let amount of dynamicAmount) {
+        if (amount.id === string1) {
             amount.stepDown();
-            assign(string);
+            assign(string1);
+        }
 
-            cartSubTotal -= parseFloat(document.getElementById(string).value)
-                * parseFloat(document.getElementById(`preTax_${string}`).value);
-            cartTotal -= parseFloat(document.getElementById(string).value)
-                * parseFloat(document.getElementById(`postTax_${string}`).value);
-
-            if (cartSubTotal <= 0 || cartSubTotal <= 0) {
-                cartSubTotal = (parseFloat(document.getElementById(string).value)
-                    * parseFloat(document.getElementById(`preTax_${string}`).value)).toString();
-                cartTotal = document.getElementById(`total_${string}`).innerHTML = (parseFloat(document.getElementById(string).value)
-                    * parseFloat(document.getElementById(`postTax_${string}`).value)).toString();
-            }
-
+        if (cartSubTotal <= 0) {
+            cartSubTotal = parseFloat(document.getElementById(`preTax_${string1}`).value);
             document.getElementById("cartSubTotal").innerHTML = cartSubTotal.toString();
-            document.getElementById("cartTotal").innerHTML = cartTotal.toString();
+        } else {
+            cartSubTotal -= parseFloat(document.getElementById(`preTax_${string1}`).value) * amount.value;
+            document.getElementById("cartSubTotal").innerHTML = cartSubTotal.toString();
+        }
 
-            break;
+        if (cartTotal <= 0) {
+            cartTotal -= parseFloat(document.getElementById(`postTax_${string1}`).value);
+            document.getElementById("cartTotal").innerHTML = cartTotal.toString();
+        } else {
+            cartTotal -= parseFloat(document.getElementById(`postTax_${string1}`).value) * amount.value;
+            document.getElementById("cartTotal").innerHTML = cartTotal.toString();
         }
     }
 }

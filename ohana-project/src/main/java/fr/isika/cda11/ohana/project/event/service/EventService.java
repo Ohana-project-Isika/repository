@@ -122,6 +122,16 @@ public class EventService {
         return sum.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
+    public Cart addEvents(Event event, Cart cart) {
+        if (!cart.getEvents().contains(event)) {
+            cart.addEvents(event);
+            cart.addSubTotal(event.getTicket().getPreTaxPrice());
+            cart.addTotal(event.getTicket().getPostTaxPrice());
+        }
+
+        return cart;
+    }
+
     private void manageEvents(List<Event> list) {
         for (Event event : list) {
             event.setTicketQuantity(event.getTickets().size());
