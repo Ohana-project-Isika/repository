@@ -3,8 +3,10 @@ package fr.isika.cda11.ohana.project.crowdfunding.controller;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
@@ -44,13 +46,7 @@ public class CrowdfundingController {
 		}
 	}
 
-	public List<Project> getProjects() {
-		return projectService.findListProjectsService();
-	}
 	
-	public List<Funding> getFundings() {
-		return fundingService.findListFundingsService();
-	}
 	
 	public Funding getTheFunding() {
 		return theFunding;
@@ -68,17 +64,27 @@ public class CrowdfundingController {
 		return newProject;
 	}
 
-	public String show(Integer id) {
-		theProject = projectService.findProjectService(id);
-		return "showProject";
+	
+	public List<Project> getProjects() {
+		return projectService.findListProjectsService();
 	}
-
+	
+	public List<Funding> getFundings() {
+		return fundingService.findListFundingsService();
+	}
+	
+	
 	public String createProject() {
 		projectService.createProjectService(newProject);
 		newProject = new Project();
 		return "projects";
 	}
 	
+	public String show(Integer id) {
+		theProject = projectService.findProjectService(id);
+		return "showProject";
+	}
+
 	public String updateProject() {
 		projectService.updateProjectService(theProject);
 		return "showProject";
@@ -89,10 +95,43 @@ public class CrowdfundingController {
 		return "projects";
 	}
 	
+	
+	public String finance(Integer id) {
+		
+		Project p = projectService.findProjectService(id);
+		theFunding.setProject(p);
+		p.addFunding(theFunding);
+		return "financeProject?faces-redirect=true";
+	}
+	
+	public String payer() {		
+		
+		// vrifier que le mt de theFunding ne dépasse pas ce qu'on a récolté
+		
+		int idProject = theFunding.getProject().getId().intValue();
+		int finalncialGoal = theFunding.getProject().getFinancialGoal();
+		System.out.println("récolte :  " + finalncialGoal);
+
+		if(theFunding.getFundingAmount() <= getFundingAmountMax(idProject, finalncialGoal)) {
+		
+			fundingService.updateFundingService(theFunding);
+			theFunding = new Funding();
+			return "customerProjectList";
+		} else {
+			// afficher un message d'erreur ppur le champ montant
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+					"Montant maximum atteint", 
+					"Vous avez atteint le montant maximum de récolte de fonds pour ce projet"));
+			// ensuite revenir sur la même page
+			return "financeProject";
+		}
+	}
+	
+	
 	public Long countFundings(Integer id) {
 		Project p = projectService.findProjectService(id);
 		Long res = p.getFundings().stream().count();
-	//	Long res = getFundings().stream().count();
 		return res;
 	}
 	
@@ -108,18 +147,17 @@ public class CrowdfundingController {
          return amount;
 	}
 	
-	public String finance(Integer id) {
-		
-		Project p = projectService.findProjectService(id);
-		theFunding.setProject(p);
-		p.addFunding(theFunding);
-		return "financeProject?faces-redirect=true";
+	
+	public int getFundingAmountMax(Integer idProject, int financialGoal) {
+        int amount = getActualsFundingsProject(idProject);
+        return financialGoal - amount;
+    }
+	
+	public String maximum(Integer idProject, int financialGoal) {
+		int maximum = getFundingAmountMax(idProject, financialGoal);
+		String max = String.valueOf(maximum);
+		return max;
 	}
 	
-	public String payer() {		
-		
-		fundingService.updateFundingService(theFunding);
-		theFunding = new Funding();
-		return "customerProjectList";
-	}
+    
 }

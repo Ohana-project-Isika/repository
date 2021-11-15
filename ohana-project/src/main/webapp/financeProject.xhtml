@@ -63,6 +63,7 @@
 					<h:inputText id="fundingAmount" value="#{projectMB.theFunding.fundingAmount}"
 						required="true"
 						requiredMessage="Le montant est obligatoire">
+						<f:validateLength minimum="1" maximum="20" />
 					</h:inputText>
 					<h:message style="color:red" for="fundingAmount" />
 					
