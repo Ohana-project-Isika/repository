@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -19,21 +18,21 @@ import java.util.Map;
 @ViewScoped
 @Getter
 @Setter
-public class EventControllerRead implements Serializable {
+public class EventsController implements Serializable {
 
     private static final long serialVersionUID = -1606040173965309710L;
 
-    private Event event;
+    private List<Event> events;
 
     @Inject
     private EventService eventService;
 
-    public void findEvent() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        Map<String, String> parameterMap =
-                facesContext.getExternalContext().getRequestParameterMap();
-        Long eventId = Long.parseLong(parameterMap.get("eventId"));
-        event = eventService.findById(eventId);
+    @PostConstruct
+    private void init() {
+        events = eventService.findAll();
     }
 
+    public String viewEvent() {
+        return "AssociationCRUD_readById";
+    }
 }

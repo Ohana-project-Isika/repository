@@ -16,63 +16,65 @@
     <br />
     <h2>Liste de tout les évènements</h2>
     <div>
-        <h:dataTable value="#{eventControllerRead.events}" var="event"
-                     headerClass="eventTableHeader"
-                     rowClasses="eventTableOddRow,eventTableEvenRow">
-            <h:column>
-                <f:facet name="header">Nom de l'évènement</f:facet>
-                #{event.name}
-            </h:column>
+        <h:form>
+            <h:dataTable value="#{eventsController.events}" var="event"
+                         headerClass="eventTableHeader"
+                         rowClasses="eventTableOddRow,eventTableEvenRow">
+                <h:column>
+                    <f:facet name="header">Nom de l'évènement</f:facet>
+                    #{event.name}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">Description de l'évènement</f:facet>
-                #{event.description}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">Description de l'évènement</f:facet>
+                    #{event.description}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">Date de début</f:facet>
-                #{event.startDate}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">Date de début</f:facet>
+                    #{event.startDate}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">Heure de début</f:facet>
-                #{event.startTime}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">Heure de début</f:facet>
+                    #{event.startTime}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">Date de fin</f:facet>
-                #{event.endDate}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">Date de fin</f:facet>
+                    #{event.endDate}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">Heure de fin</f:facet>
-                #{event.endTime}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">Heure de fin</f:facet>
+                    #{event.endTime}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">Nombre de tickets disponible</f:facet>
-                #{event.ticketQuantity}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre de tickets disponible</f:facet>
+                    #{event.ticketQuantity}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">Tarif</f:facet>
-                #{event.ticket.rateType}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">Tarif</f:facet>
+                    #{event.ticket.rateType}
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">TVA</f:facet>
-                #{event.ticket.appliedTVA}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Lieu de l'évènement</f:facet>
-                #{event.address}
-            </h:column>
-        </h:dataTable>
+                <h:column>
+                    <f:facet name="header">TVA</f:facet>
+                    #{event.ticket.appliedTVA}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandButton value="Voir l'évènement" action="AssociationCRUD_readById">
+                        <f:param name="eventId" value="#{event.id}"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <h:link outcome="AssociationCRUD_create" value="Créer un évènement" />
+        <h:link outcome="AssociationCRUD_update" value="Modifier l'évènement" />
+        <h:link outcome="" value="Supprimer l'évènement" />
     </div>
-    <h:link outcome="AssociationCRUD_create" value="Créer un évènement" />
-    <h:link outcome="AssociationCRUD_update" value="Modifier l'évènement" />
-    <h:link outcome="" value="Supprimer l'évènement" />
 </h:body>
-
 </html>
