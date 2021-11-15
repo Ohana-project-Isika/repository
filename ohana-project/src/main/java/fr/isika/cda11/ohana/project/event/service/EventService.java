@@ -5,10 +5,11 @@ import fr.isika.cda11.ohana.project.event.repository.EventRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class EventService {
+public class EventService implements Serializable {
 
     @Inject
     private EventRepository eventRepository;

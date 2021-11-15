@@ -22,7 +22,7 @@ public class EventsControllerDetails implements Serializable {
 
     public String afficherDetails(Long eventId) {
     	event = eventService.findById(eventId);
-        return "eventDetails";
+        return "eventDetails?faces-redirect=true";
     }
     
     public Event getEvent() {
