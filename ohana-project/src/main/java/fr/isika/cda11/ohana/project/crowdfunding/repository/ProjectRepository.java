@@ -6,48 +6,25 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.isika.cda11.ohana.project.common.models.Address;
-import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
 
 
 
 @Stateless
-public class CrowdfundingRepository {
+public class ProjectRepository {
 
 	@PersistenceContext
 	EntityManager em;
 
-	public List<Project> findProjects() {
+	public List<Project> findProjectsRepos() {
 		return em.createQuery("Select c From Project c", Project.class)
 				.getResultList();
 	}
 
-	public List<Funding> findFundings() {
-		return em.createQuery("Select f From Funding f", Funding.class)
-				.getResultList();
-	}
-
-	public Project findProject(Integer n) {
+	public Project findProjectRepos(Integer n) {
 		return em.find(Project.class, Long.valueOf(n));
 	}
-
-
-	public Funding saveFunding(Funding f) {
-		if (f.getId() == null) 
-		{
-			em.persist(f);
-		} 
-		else 
-		{
-			f = em.merge(f);
-		}
-
-		return f;
-	}
-
-
-
+	
 	public void createProjectRepos(Project project) {
 		em.persist(project);
 

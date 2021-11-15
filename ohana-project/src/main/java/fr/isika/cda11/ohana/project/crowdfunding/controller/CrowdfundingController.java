@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Person;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
-import fr.isika.cda11.ohana.project.crowdfunding.repository.CrowdfundingRepository;
+import fr.isika.cda11.ohana.project.crowdfunding.service.FundingService;
 import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 
 
@@ -20,10 +20,10 @@ import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 public class CrowdfundingController {
 	
 	@Inject
-	CrowdfundingRepository cr;
+	ProjectService projectService;
 	
 	@Inject
-	ProjectService projectService;
+	FundingService fundingService;
 	
 	Project theProject = new Project();
 	Project newProject = new Project();
@@ -34,24 +34,24 @@ public class CrowdfundingController {
 	@PostConstruct
 	public void init() {
 		System.out.println("Create " + this);
-		if (cr.findProjects().size() == 0) {
+		if (projectService.findListProjectsService().size() == 0) {
 			
 			Project p1 = new Project();
 			p1.setName("Architecture JEE");
 			p1.setFinancialGoal(500000);
 			p1.setDescription("gros projet");
-			cr.updateProjectRepos(p1);
+			projectService.updateProjectService(p1);
 		}
 	}
 
 	public List<Project> getProjects() {
-		return cr.findProjects();
+	return projectService.findListProjectsService();
 	}
+	
 	public List<Funding> getFundings() {
-		return cr.findFundings();
+		return fundingService.findListFundingsService();
 	}
-
-
+	
 	public Funding getTheFunding() {
 		return theFunding;
 	}
@@ -68,12 +68,11 @@ public class CrowdfundingController {
 		return newProject;
 	}
 
-	public String show(Integer n) {
-		theProject = cr.findProject(n);
+	public String show(Integer id) {
+		theProject = projectService.findProjectService(id);
 		return "showProject";
 	}
 
-	
 	public String createProject() {
 		projectService.createProjectService(newProject);
 		newProject = new Project();
@@ -90,10 +89,14 @@ public class CrowdfundingController {
 		return "projects";
 	}
 	
+	public Long countFundings() {
+		Long res = getFundings().stream().count();
+		return res;
+	}
 	
 	public String finance(Integer id) {
 		
-		Project p = cr.findProject(id);
+		Project p = projectService.findProjectService(id);
 		theFunding.setProject(p);
 		p.addFunding(theFunding);
 		return "financeProject?faces-redirect=true";
@@ -101,7 +104,7 @@ public class CrowdfundingController {
 	
 	public String payer() {		
 		
-		cr.saveFunding(theFunding);
+		fundingService.updateFundingService(theFunding);
 		theFunding = new Funding();
 		return "customerProjectList";
 	}
