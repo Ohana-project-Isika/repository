@@ -132,7 +132,7 @@ import java.util.*;
         @NamedQuery(name = "Events.GUADELOUPE.findAll",
                 query = "SELECT DISTINCT e FROM Event e INNER JOIN e.tickets t WHERE SUBSTRING(e.address.postCode, 1, 2) = '971' " ),
         @NamedQuery(name = "Events.REUNION.findAll",
-                query = "SELECT DISTINCT e FROM Event e INNER JOIN e.tickets t WHERE SUBSTRING(e.address.postCode, 1, 2) = '974' " )
+                query = "SELECT DISTINCT e FROM Event e INNER JOIN e.tickets t WHERE SUBSTRING(e.address.postCode, 1, 2) = '974' " ),
         @NamedQuery(name = "Events.MAYOTTE.findAll",
                 query = "SELECT DISTINCT e FROM Event e INNER JOIN e.tickets t WHERE SUBSTRING(e.address.postCode, 1, 2) = '976' " )
 })

@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.event.service;
 
 import fr.isika.cda11.ohana.project.common.models.Address;
+import fr.isika.cda11.ohana.project.common.models.Cart;
 import fr.isika.cda11.ohana.project.common.models.Region;
 import fr.isika.cda11.ohana.project.event.models.Event;
 import fr.isika.cda11.ohana.project.event.models.RATE_TYPE;
@@ -33,13 +34,6 @@ public class EventService {
 
     public List<Event> findAllEvents() {
         List<Event> list = eventRepository.findAllEvents();
-        manageEvents(list);
-        return list;
-    }
-
-    public List<Event> findAllEventsIDF() {
-        List<Event> list = eventRepository.findAllEventsIDF();
-        System.out.println("repository " + list);
         manageEvents(list);
         return list;
     }
@@ -110,8 +104,22 @@ public class EventService {
         }
     }
 
-    public void setCheckout(List<Event> eventsCheckedOut) {
+    public BigDecimal computeCartSubTotal(Cart cart) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (Event event : cart.getEvents()) {
+            sum.add(event.getTicket().getPreTaxPrice());
+        }
 
+        return sum.setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public BigDecimal computeCartTotal(Cart cart) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (Event event : cart.getEvents()) {
+            sum.add(event.getTicket().getPostTaxPrice());
+        }
+
+        return sum.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     private void manageEvents(List<Event> list) {

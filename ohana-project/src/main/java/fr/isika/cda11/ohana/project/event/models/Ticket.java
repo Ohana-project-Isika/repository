@@ -29,7 +29,7 @@ public class Ticket {
     private TVA appliedTVA;
 
     @Column(name = "pre_tax_price")
-    private BigDecimal preTaxPrice;
+    private BigDecimal preTaxPrice = BigDecimal.ZERO;
 
     @ManyToOne
     @EqualsAndHashCode.Exclude
@@ -44,17 +44,17 @@ public class Ticket {
     private Map<Individual, Integer> individualTicketsMap = new HashMap<Individual, Integer>();
 
     @Transient
-    private BigDecimal tvaRate;
+    private BigDecimal tvaRate = BigDecimal.ZERO;
 
     @Transient
-    private BigDecimal postTaxPrice;
+    private BigDecimal postTaxPrice = BigDecimal.ZERO;
 
     @Transient
     private int quantity;
 
     @Transient
-    private BigDecimal preTaxPricePerQuantity;
+    private BigDecimal preTaxPricePerQuantity = BigDecimal.ZERO;
 
     @Transient
-    private BigDecimal postTaxPricePerQuantity;
+    private BigDecimal postTaxPricePerQuantity = BigDecimal.ZERO;
 }

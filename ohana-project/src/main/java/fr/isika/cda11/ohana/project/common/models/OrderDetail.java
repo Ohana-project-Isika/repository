@@ -1,18 +1,24 @@
 package fr.isika.cda11.ohana.project.common.models;
 
-import java.math.BigDecimal;
-
+/**
+ * Created on 11/13/2021
+ *
+ * @author manu
+ */
 public class OrderDetail {
     private String productName;
-    private BigDecimal subtotal;
-    private BigDecimal tax;
-    private BigDecimal total;
+    private float subtotal;
+    private float shipping;
+    private float tax;
+    private float total;
 
-    public OrderDetail(String productName, String subtotal, String tax, String total) {
+    public OrderDetail(String productName, String subtotal,
+                       String shipping, String tax, String total) {
         this.productName = productName;
-        this.subtotal = BigDecimal.valueOf(Double.valueOf(subtotal)).setScale(2, BigDecimal.ROUND_HALF_UP);
-        this.tax = BigDecimal.valueOf(Double.valueOf(tax)).setScale(2, BigDecimal.ROUND_HALF_UP);
-        this.total = BigDecimal.valueOf(Double.valueOf(total)).setScale(2, BigDecimal.ROUND_HALF_UP);
+        this.subtotal = Float.parseFloat(subtotal);
+        this.shipping = Float.parseFloat(shipping);
+        this.tax = Float.parseFloat(tax);
+        this.total = Float.parseFloat(total);
     }
 
     public String getProductName() {
@@ -20,14 +26,18 @@ public class OrderDetail {
     }
 
     public String getSubtotal() {
-        return subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+        return String.format("%.2f", subtotal);
+    }
+
+    public String getShipping() {
+        return String.format("%.2f", shipping);
     }
 
     public String getTax() {
-        return tax.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+        return String.format("%.2f", tax);
     }
 
     public String getTotal() {
-        return total.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+        return String.format("%.2f", total);
     }
 }

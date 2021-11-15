@@ -57,10 +57,10 @@ public class PaymentServices {
     private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
         Details details = new Details();
         details.setSubtotal(orderDetail.getSubtotal());
-        details.setTax(orderDetail.getTax());
+//        details.setTax(orderDetail.getTax());
 
         Amount amount = new Amount();
-        amount.setCurrency("USD");
+        amount.setCurrency("EUR");
         amount.setTotal(orderDetail.getTotal());
         amount.setDetails(details);
 
@@ -72,10 +72,10 @@ public class PaymentServices {
         List<Item> items = new ArrayList<>();
 
         Item item = new Item();
-        item.setCurrency("USD");
+        item.setCurrency("EUR");
         item.setName(orderDetail.getProductName());
         item.setPrice(orderDetail.getSubtotal());
-        item.setTax(orderDetail.getTax());
+//        item.setTax(orderDetail.getTax());
         item.setQuantity("1");
 
         items.add(item);

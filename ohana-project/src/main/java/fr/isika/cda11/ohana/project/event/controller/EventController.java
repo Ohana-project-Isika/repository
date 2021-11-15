@@ -13,7 +13,6 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +40,6 @@ public class EventController implements Serializable {
     @PostConstruct
     public void init() {
         events = eventService.findAllEvents();
-        System.out.println(events);
-        eventsIDF = eventService.findAllEventsIDF();
     }
 
     public void addEvent() {
@@ -56,17 +53,13 @@ public class EventController implements Serializable {
 
     public String checkout(Event event) {
         cart.addEvents(event);
-//        subTotal = eventService.computePreTaxTotal(cart.getEvents());
-//        total = eventService.computePostTaxTotal(cart.getEvents());
+        cart.addSubTotal(event.getTicket().getPreTaxPrice());
+        cart.addTotal(event.getTicket().getPostTaxPrice());
         return "ticketing/checkout?faces-redirect=true";
     }
 
     public String delete(Event event) {
         cart.getEvents().remove(event);
         return "ticketing/checkout?faces-redirect=true";
-    }
-
-    public void pay() {
-        System.out.println("ggggggggggggggg" + hiddenTotal);
     }
 }
