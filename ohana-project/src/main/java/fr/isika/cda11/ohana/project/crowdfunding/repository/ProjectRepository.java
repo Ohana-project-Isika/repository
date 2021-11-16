@@ -21,8 +21,8 @@ public class ProjectRepository {
 				.getResultList();
 	}
 
-	public Project findProjectRepos(Integer n) {
-		return em.find(Project.class, Long.valueOf(n));
+	public Project findProjectRepos(Long n) {
+		return em.find(Project.class,n);
 	}
 	
 	public void createProjectRepos(Project project) {

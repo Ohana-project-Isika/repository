@@ -33,7 +33,7 @@ public class ProjectService {
 		
 	}
 	
-	public Project findProjectService(Integer id) {
+	public Project findProjectService(Long id) {
 		
 		return projectRepos.findProjectRepos(id);
 		
@@ -44,10 +44,5 @@ public class ProjectService {
 		return projectRepos.findProjectsRepos();
 		
 	}
-	
-
-
-	
-	
 	
 }

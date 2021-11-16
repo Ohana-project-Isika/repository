@@ -19,7 +19,7 @@ public class Project {
 	
 	private String name;
 	
-	private Integer financialGoal;
+	private double financialGoal;
 	
 	private String duration;
 	
@@ -52,11 +52,11 @@ public class Project {
 		this.name = name;
 	}
 
-	public Integer getFinancialGoal() {
+	public double getFinancialGoal() {
 		return financialGoal;
 	}
 
-	public void setFinancialGoal(Integer financialGoal) {
+	public void setFinancialGoal(double financialGoal) {
 		this.financialGoal = financialGoal;
 	}
 

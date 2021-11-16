@@ -80,14 +80,14 @@ public class CrowdfundingController {
 		return "projects";
 	}
 	
-	public String show(Integer id) {
+	public String showProject(Long id) {
 		theProject = projectService.findProjectService(id);
 		return "showProject";
 	}
-
+	
 	public String updateProject() {
 		projectService.updateProjectService(theProject);
-		return "showProject";
+		return "projects";
 	}
 	
 	public String deleteProject() {
@@ -96,7 +96,18 @@ public class CrowdfundingController {
 	}
 	
 	
-	public String finance(Integer id) {
+	public String editProjectLink(Long id) {
+		theProject = projectService.findProjectService(id);
+		return "editProject";
+	}
+	
+	public String deleteProjectLink(Long id) {
+		theProject = projectService.findProjectService(id);
+		return "deleteProject";
+	}
+	
+	
+	public String finance(Long id) {
 		
 		Project p = projectService.findProjectService(id);
 		theFunding.setProject(p);
@@ -106,36 +117,38 @@ public class CrowdfundingController {
 	
 	public String payer() {		
 		
-		// vrifier que le mt de theFunding ne dépasse pas ce qu'on a récolté
+		// vérifier que le mt de theFunding ne dépasse pas ce qu'on a récolté
 		
-		int idProject = theFunding.getProject().getId().intValue();
-		int finalncialGoal = theFunding.getProject().getFinancialGoal();
-		System.out.println("récolte :  " + finalncialGoal);
+		Long idProject = theFunding.getProject().getId();
+		double financialGoal = theFunding.getProject().getFinancialGoal();
+		System.out.println("récolte :  " + financialGoal);
 
-		if(theFunding.getFundingAmount() <= getFundingAmountMax(idProject, finalncialGoal)) {
+		if(theFunding.getFundingAmount() <= getFundingAmountMax(idProject, financialGoal)) {
 		
 			fundingService.updateFundingService(theFunding);
 			theFunding = new Funding();
 			return "customerProjectList";
-		} else {
-			// afficher un message d'erreur ppur le champ montant
 			
+		} else {
+			
+			// afficher un message d'erreur ppur le champ montant
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
 					"Montant maximum atteint", 
 					"Vous avez atteint le montant maximum de récolte de fonds pour ce projet"));
+			
 			// ensuite revenir sur la même page
 			return "financeProject";
 		}
 	}
 	
 	
-	public Long countFundings(Integer id) {
+	public Long countFundings(Long id) {
 		Project p = projectService.findProjectService(id);
 		Long res = p.getFundings().stream().count();
 		return res;
 	}
 	
-	public int getActualsFundingsProject(Integer idProject) {
+	public double getActualsFundingsProject(Long idProject) {
 		Project p = projectService.findProjectService(idProject);
 		List<Funding> res = p.getFundings();
 		int amount = 0;
@@ -146,18 +159,10 @@ public class CrowdfundingController {
          }
          return amount;
 	}
-	
-	
-	public int getFundingAmountMax(Integer idProject, int financialGoal) {
-        int amount = getActualsFundingsProject(idProject);
+
+	public double getFundingAmountMax(Long idProject, double financialGoal) {
+		double amount = getActualsFundingsProject(idProject);
         return financialGoal - amount;
     }
-	
-	public String maximum(Integer idProject, int financialGoal) {
-		int maximum = getFundingAmountMax(idProject, financialGoal);
-		String max = String.valueOf(maximum);
-		return max;
-	}
-	
     
 }
