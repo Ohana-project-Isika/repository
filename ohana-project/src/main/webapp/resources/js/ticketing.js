@@ -93,3 +93,11 @@ function getVars(string1, string2) {
     const jsfCommandLink = document.getElementById("test:link");
     jsfCommandLink.click();
 }
+function myFunction() {
+    var x = document.getElementById("idf");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
