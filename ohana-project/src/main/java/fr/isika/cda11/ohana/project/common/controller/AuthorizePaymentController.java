@@ -19,9 +19,12 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+
+import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
 
 @ManagedBean
 @SessionScoped
@@ -38,9 +41,13 @@ public class AuthorizePaymentController implements Serializable {
 
     public String pay(Cart cart) {
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(component.getClientId(), new FacesMessage("Vous devez d'abord vous connecter pour " +
-                "poursuivre le paiement"));
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+                .getSession(false);
+        if (session.getAttribute(ACCOUNT_ATTRIBUTE) == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(component.getClientId(), new FacesMessage("Vous devez d'abord vous connecter pour " +
+                    "poursuivre le paiement"));
+        }
 
         String product = Long.toString(cart.getId());
         String subtotal = "10";

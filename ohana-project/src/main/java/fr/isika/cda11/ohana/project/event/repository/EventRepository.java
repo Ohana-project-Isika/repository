@@ -26,8 +26,6 @@ public class EventRepository {
         return entityManager.find(Event.class, id);
     }
 
-    //public List<Event> findAllEventsIDF() { return entityManager.createNamedQuery("Events.IDF.findAll").getResultList(); }
-
     public List<Event> findAllEvents() { return entityManager.createNamedQuery("Events.findAll").getResultList(); }
 
     public void createEvent(Event event) {
@@ -52,7 +50,7 @@ public class EventRepository {
 
     public List<Event> findAssociationEvents() {
         // @formatter:off
-        return this.entityManager.createNamedQuery("Events.findAll", Event.class)
+        return this.entityManager.createNamedQuery("Event.findAllEvent", Event.class)
                 .getResultList();
         // @formatter:on
     }

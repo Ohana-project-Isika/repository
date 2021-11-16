@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Tp Gestion</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h2>Login Page</h2>
+		<br></br>
+		<h:panelGrid columns="3" cellpadding="5" style="position: relative; right: 0;">
+			<p:outputLabel id="userNameLbl" for="userNameTxt" value="Identifiant :" />
+			<p:inputText id="userNameTxt" value="#{loginController.account.username}"></p:inputText>
+			<p:message for="userNameTxt" severity=""></p:message>
+
+			<p:outputLabel id="passwordLbl" for="passwordTxt" value="Mot de passe :" />
+			<p:password id="passwordTxt" value="#{loginController.account.password}"></p:password>
+			<p:message for="passwordTxt"></p:message>
+
+			<br></br>
+			<p:commandButton id="loginBtn" action="#{loginController.validateLogin}" value="Login"></p:commandButton>
+			<br></br>
+		</h:panelGrid>
+		<h4>
+			<h:link outcome="index" value="Retour vers l'accueil" />
+		</h4>
+	</h:form>
+</h:body>
+</html>
