@@ -29,11 +29,11 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Nombre de financeurs</f:facet>
-						<h:outputText value="#{projectMB.countFundings(o.id)}" />
+						<h:outputText value="#{fundingMB.countFundings(o.id)}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Argent Récolté</f:facet>
-						<h:outputText value="#{projectMB.getActualsFundingsProject(o.id)} €" />
+						<h:outputText value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Action</f:facet>

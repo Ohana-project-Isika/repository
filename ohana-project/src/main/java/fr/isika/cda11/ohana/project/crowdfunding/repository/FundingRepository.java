@@ -19,8 +19,8 @@ public class FundingRepository {
 				.getResultList();
 	}
 	
-	public Funding findFundingRepos(Integer n) {
-		return em.find(Funding.class, Long.valueOf(n));
+	public Funding findFundingRepos(Long id) {
+		return em.find(Funding.class, id);
 	}
 	
 	public void createFundingRepos(Funding funding) {

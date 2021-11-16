@@ -15,7 +15,7 @@
 					<h:outputText value="Nom :" />
 					<p:inputText id="name" value="#{projectMB.theProject.name}"
 						required="true" requiredMessage="Le nom est obligatoire">
-						<f:validateLength minimum="3" maximum="20" />
+						<f:validateLength minimum="2"/>
 					</p:inputText>
 					<h:message style="color:red" for="name" />
 
@@ -30,7 +30,7 @@
 
 					<h:outputText value="Descritption :" />
 					<p:inputText id="description" value="#{projectMB.theProject.description}">
-						<f:validateLength minimum="3" maximum="20" />
+						<f:validateLength minimum="3" maximum="500" />
 					</p:inputText>
 					<h:message style="color:red" for="description" />
 

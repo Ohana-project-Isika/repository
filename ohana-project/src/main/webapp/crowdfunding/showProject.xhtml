@@ -16,8 +16,8 @@
 			<p>Objectif financier: #{c.financialGoal} €</p>
 			<p>Description: #{c.description}</p>
 			<p>Durée: #{c.duration}</p>
-			<p>Nombre de financeurs: #{projectMB.countFundings(c.id)}</p>
-			<p>Argent Récolté: #{projectMB.getActualsFundingsProject(c.id)} € </p>
+			<p>Nombre de financeurs: #{fundingMB.countFundings(c.id)}</p>
+			<p>Argent Récolté: #{fundingMB.getActualsFundingsProject(c.id)} € </p>
 			<p>
 				<h:link outcome="projects">Liste des projets</h:link>
 			</p>

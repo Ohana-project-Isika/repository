@@ -16,7 +16,7 @@
 					<h:outputText value="Nom :" />
 					<p:inputText id="name" value="#{projectMB.thePerson.lastName}"
 						required="true" requiredMessage="Le nom est obligatoire">
-						<f:validateLength minimum="3" maximum="20" />
+						<f:validateLength minimum="2" />
 					</p:inputText>
 					<h:message style="color:red" for="name" />
 
@@ -25,7 +25,7 @@
 					<p:inputText id="firstname"
 						value="#{projectMB.thePerson.firstName}" required="true"
 						requiredMessage="Le nom est obligatoire">
-						<f:validateLength minimum="3" maximum="20" />
+						<f:validateLength minimum="2"/>
 					</p:inputText>
 					<h:message style="color:red" for="firstname" />
 
@@ -62,16 +62,16 @@
 
 					<h:outputText value="Montant :" />
 					<p:inputText id="fundingAmount"
-						value="#{projectMB.theFunding.fundingAmount}" required="true"
+						value="#{fundingMB.theFunding.fundingAmount}" required="true"
 						requiredMessage="Le montant est obligatoire">
-						<f:validateLength minimum="1" maximum="20" />
+						<f:validateLength minimum="1"/>
 					</p:inputText>
 					<h:message style="color:red" for="fundingAmount" />
 
 					<p:messages id="messages" showDetail="true" closable="true">
 						<p:autoUpdate />
 					</p:messages>
-					<p:commandButton action="#{projectMB.payer()}" value="Payer"
+					<p:commandButton action="#{fundingMB.payer()}" value="Payer"
 						update="messages" />
 
 

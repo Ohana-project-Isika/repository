@@ -34,7 +34,7 @@ public class FundingService {
 		
 	}
 	
-	public Funding findFundingService(Integer id) {
+	public Funding findFundingService(Long id) {
 		
 		return fundingRepos.findFundingRepos(id);
 		
