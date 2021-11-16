@@ -31,11 +31,10 @@ public class EventService {
         }
     }
 
-
     public List<Event> findAllEvents() {
-        List<Event> list = eventRepository.findAllEvents();
-        manageEvents(list);
-        return list;
+        List<Event> events = eventRepository.findAllEvents();
+        manageEvents(events);
+        return events;
     }
 
     public Event findById(Long id) {
@@ -61,47 +60,6 @@ public class EventService {
             total.add(event.getTicket().getPostTaxPrice());
 
         return total.setScale(2, BigDecimal.ROUND_HALF_UP);
-    }
-
-    public List<Event> findByRegion(String region) {
-        switch (Enum.valueOf(Region.class, region)) {
-            case CORSE:
-                return eventRepository.findAllEventsCORSE();
-            case CVDL:
-                return eventRepository.findAllEventsCVDL();
-            case BRETAGNE:
-                return eventRepository.findAllEventsBRETAGNE();
-            case BFC:
-                return eventRepository.findAllEventsBFC();
-            case GE:
-                return eventRepository.findAllEventsGE();
-            case OCCITANIE:
-                return eventRepository.findAllEventsOCCITANIE();
-            case HDF:
-                return eventRepository.findAllEventsHDF();
-            case ARA:
-                return eventRepository.findAllEventsARA();
-            case NORMANDIE:
-                return eventRepository.findAllEventsNORMANDIE();
-            case PDLL:
-                return eventRepository.findAllEventsPDLL();
-            case PACA:
-                return eventRepository.findAllEventsPACA();
-            case NA:
-                return eventRepository.findAllEventsNA();
-            case GUYANE:
-                return eventRepository.findAllEventsGUYANE();
-            case MARTINIQUE:
-                return eventRepository.findAllEventsMARTINIQUE();
-            case MAYOTTE:
-                return eventRepository.findAllEventsMAYOTTE();
-            case GUADELOUPE:
-                return eventRepository.findAllEventsGUADELOUPE();
-            case REUNION:
-                return eventRepository.findAllEventsREUNION();
-            default:
-                return eventRepository.findAllEventsIDF();
-        }
     }
 
     public BigDecimal computeCartSubTotal(Cart cart) {
@@ -132,15 +90,97 @@ public class EventService {
         return cart;
     }
 
+    public List<Event> findAllEventsByRegion(String region) {
+        List<Event> events = eventRepository.findAllEvents();
+        List<Event> regionalEvents = new ArrayList<>();
+
+        switch (Enum.valueOf(Region.class, region)) {
+            case CORSE:
+                regionalEvents = getRegionalEvents(events, Region.CORSE);
+                break;
+            case CVDL:
+                regionalEvents = getRegionalEvents(events, Region.CVDL);
+                break;
+            case BRETAGNE:
+                regionalEvents = getRegionalEvents(events, Region.BRETAGNE);
+                break;
+            case BFC:
+                regionalEvents = getRegionalEvents(events, Region.BFC);
+                break;
+            case GE:
+                regionalEvents = getRegionalEvents(events, Region.GE);
+                break;
+            case OCCITANIE:
+                regionalEvents = getRegionalEvents(events, Region.OCCITANIE);
+                break;
+            case HDF:
+                regionalEvents = getRegionalEvents(events, Region.HDF);
+                break;
+            case ARA:
+                regionalEvents = getRegionalEvents(events, Region.ARA);
+                break;
+            case NORMANDIE:
+                regionalEvents = getRegionalEvents(events, Region.NORMANDIE);
+                break;
+            case PDLL:
+                regionalEvents = getRegionalEvents(events, Region.PDLL);
+                break;
+            case PACA:
+                regionalEvents = getRegionalEvents(events, Region.PACA);
+                break;
+            case NA:
+                regionalEvents = getRegionalEvents(events, Region.NA);
+                break;
+            case GUYANE:
+                regionalEvents = getRegionalEvents(events, Region.GUYANE);
+                break;
+            case MARTINIQUE:
+                regionalEvents = getRegionalEvents(events, Region.MARTINIQUE);
+                break;
+            case MAYOTTE:
+                regionalEvents = getRegionalEvents(events, Region.MAYOTTE);
+                break;
+            case GUADELOUPE:
+                regionalEvents = getRegionalEvents(events, Region.GUADELOUPE);
+                break;
+            case REUNION:
+                regionalEvents = getRegionalEvents(events, Region.REUNION);
+                break;
+            default:
+                regionalEvents = getRegionalEvents(events, Region.IDF);
+                break;
+        }
+
+        manageEvents(regionalEvents);
+        return regionalEvents;
+    }
+
+    private List<Event> getRegionalEvents(List<Event> events, Region region) {
+        List<Event> regionalEvents = new ArrayList<>();
+
+        for (Event event : events) {
+            for (String department : region.getDepartments()) {
+                if (event.getAddress().getPostCode().substring(0, 2).equals(department) ||
+                        event.getAddress().getPostCode().substring(0, 3).equals(department))
+                    regionalEvents.add(event);
+            }
+        }
+
+        return regionalEvents;
+    }
+
     private void manageEvents(List<Event> list) {
         for (Event event : list) {
             event.setTicketQuantity(event.getTickets().size());
             event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
+
             event.getTicket().setTvaRate(setTVAFor(event.getTicket().getRateType(), event.getTicket().getAppliedTVA())
                     .multiply(BigDecimal.valueOf(100)).setScale(2,BigDecimal.ROUND_UP));
+
             event.getTicket().setPostTaxPrice(event.getTicket().getPreTaxPrice().multiply(BigDecimal.valueOf(1)
                     .add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
                     .setScale(2,BigDecimal.ROUND_UP));
+
             event.setFullAddress(setFullAddress(event.getAddress()));
         }
     }

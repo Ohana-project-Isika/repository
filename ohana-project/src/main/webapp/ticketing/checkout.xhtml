@@ -35,12 +35,16 @@
 
                 <h:column>
                     <f:facet name="header">Prix HT</f:facet>
-                    <input type="text" id="preTax_#{event.id}" value="#{event.ticket.preTaxPrice}"/>
+                    <p id="preTax_#{event.id}">
+                        #{event.ticket.preTaxPrice}"
+                    </p>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Prix TTC</f:facet>
-                    <input type="text" id="postTax_#{event.id}" value="#{event.ticket.postTaxPrice}"/>
+                    <p id="postTax_#{event.id}">
+                        #{event.ticket.postTaxPrice}
+                    </p>
                 </h:column>
 
                 <h:column >
@@ -54,39 +58,43 @@
 
                 <h:column>
                     <f:facet name="header">Total HT</f:facet>
-                    <p id="subTotal_#{event.id}" >
+                    <p id="subTotal_#{event.id}">
                         #{event.ticket.preTaxPrice}
                     </p>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Total TTC</f:facet>
-                    <p id="total_#{event.id}" >
+                    <p id="total_#{event.id}">
                         #{event.ticket.postTaxPrice}
                     </p>
                 </h:column>
+
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <input id="remove_#{event.id}" class="remove" type="button" value="Supprimer"/>
+                </h:column>
             </h:dataTable>
 
-            <h:column>
-                <f:facet name="header">Total Panier HT</f:facet>
-                <p id="cartSubTotal">
-                    #{eventController.cart.subTotal}
-                </p>
-            </h:column>
-                <h:column>
-                    <f:facet name="header">Total Panier TTC</f:facet>
-                    <p id="cartTotal">
-                        #{eventController.cart.total}
-                    </p>
-                </h:column>
+            <f:facet name="header">Total Panier HT</f:facet>
+            <p id="cartSubTotal">#{eventController.cart.subTotal}</p>
+            <br/>
+
+            <f:facet name="header">Total Panier TTC</f:facet>
+            <p id="cartTotal">#{eventController.cart.total}</p>
+
+            <a href="../ticketing.xhtml">Retour à la liste des événements</a>
             <a href="#"><p onclick="getVars('#{eventController.cart.subTotal}', '#{eventController.cart.total}')">Payer</p></a>
             <div hidden="hidden">
-            <h:inputHidden id="subTotal" value="#{authorizePaymentController.cartSubTotal}" />
-            <h:inputHidden id="total" value="#{authorizePaymentController.cartTotal}" />
-            <h:commandLink id="link" action="#{authorizePaymentController.pay(eventController.cart)}"
-                           value="click"/>
+                <h:inputHidden id="subTotal" value="#{authorizePaymentController.cartSubTotal}" />
+                <h:inputHidden id="total" value="#{authorizePaymentController.cartTotal}" />
+                <h:commandLink id="link" action="#{authorizePaymentController.pay(eventController.cart)}"
+                               value="click"/>
+
             </div>
         </h:form>
 
+        <h:outputText id="msg" value="" binding="#{authorizePaymentController.component}"/>
+        <h:message for="msg"/>
     </ui:define>
 </ui:composition>

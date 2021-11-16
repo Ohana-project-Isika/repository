@@ -37,6 +37,11 @@ public class AuthorizePaymentController implements Serializable {
     private UIComponent component;
 
     public String pay(Cart cart) {
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(component.getClientId(), new FacesMessage("Vous devez d'abord vous connecter pour " +
+                "poursuivre le paiement"));
+
         String product = Long.toString(cart.getId());
         String subtotal = "10";
         String shipping = "0";

@@ -47,7 +47,7 @@ public class EventController implements Serializable {
     }
 
     public String update() {
-        events = eventService.findByRegion(region);
+        events = eventService.findAllEventsByRegion(region);
         return "ticketing?faces-redirect=true";
     }
 
