@@ -3,10 +3,16 @@ package fr.isika.cda11.ohana.project.event.models;
 
 import fr.isika.cda11.ohana.project.common.models.Address;
 import lombok.*;
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @Entity
@@ -34,13 +40,19 @@ public class Event {
     private String description;
 
     @Column(name = "start_date")
-    private LocalDate startDate = LocalDate.now();
+    private Date startDate;
+    public Date getStartDate() {return startDate;}
+    public void setStartDate(Date startDate) {this.startDate = startDate;}
+
 
     @Column(name = "start_time")
-    private LocalTime startTime;
+    private Date startTime;
+
 
     @Column(name = "end_date")
-    private LocalDate endDate;
+    private Date endDate;
+    public Date getEndDate() {return endDate;}
+    public void setEndDate(Date endDate) {this.endDate = endDate;}
 
     @Column(name = "end_time")
     private LocalTime endTime;
@@ -71,4 +83,5 @@ public class Event {
         ticket.setEvent(this);
         tickets.add(ticket);
     }
+
 }

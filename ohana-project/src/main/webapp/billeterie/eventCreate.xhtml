@@ -21,14 +21,19 @@
                 <h:inputText id="description" value="#{eventControllerCreate.event.description}"/>
                 <h:message style="color:red" for="description"/>
 
-                <h:outputText value="Date de début de l'évènement :"/>
-                <h:outputText id="startDate" value="#{eventControllerCreate.event.startDate}"/>
-                <h:message style="color:red" for="startDate"/>
+                <p:outputLabel for="startDate" value="Date de début de l'évènement :" />
+                <p:calendar id="startDate" value="#{eventControllerCreate.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
+                <h:outputText value="Date de début de l'évènement :" />
+                <h:outputText value="#{eventControllerCreate.event.startDate}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
 
-                <h:outputText value="Date de fin de l'évènement:"/>
-                <p:calendar id="endDate" value="#{eventControllerCreate.event.endDate}" mode="inline"/>
-                <p:calendar/>
-                <h:message style="color:red" for="endDate"/>
+                <p:outputLabel for="endDate" value="Date de fin de l'évènement:" />
+                <p:calendar id="endDate" value="#{eventControllerCreate.event.endDate}" pattern="dd-MM-yyyy" mask="true" />
+                <h:outputText value="Date de fin de l'évènement:" />
+                <h:outputText value="#{eventControllerCreate.event.endDate}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
 
                 <h:outputText value="Quantité de billet disponible :"/>
                 <h:inputText id="ticketQty" value="#{eventControllerCreate.event.ticketQuantity}"/>
