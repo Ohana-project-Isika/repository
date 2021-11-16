@@ -13,7 +13,7 @@ import fr.isika.cda11.ohana.project.event.service.EventService;
 
 @Named
 @ViewScoped
-public class EventsController implements Serializable {
+public class EventsListController implements Serializable {
 
     private static final long serialVersionUID = -1606040173965309710L;
 
