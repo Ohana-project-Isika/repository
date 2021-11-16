@@ -4,6 +4,7 @@ import static fr.isika.cda11.ohana.project.event.models.TVA.CORSE;
 import static fr.isika.cda11.ohana.project.event.models.TVA.DOM;
 import static fr.isika.cda11.ohana.project.event.models.TVA.METROPOLITAN;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import fr.isika.cda11.ohana.project.event.models.Ticket;
 import fr.isika.cda11.ohana.project.event.repository.EventRepository;
 
 @Stateless
-public class EventService {
+public class EventService implements Serializable {
 
 	@Inject
 	private EventRepository eventRepository;

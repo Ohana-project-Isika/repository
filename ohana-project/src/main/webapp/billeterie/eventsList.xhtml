@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/WEB-INF/templates/layout.xhtml"
+				xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://primefaces.org/ui ">
+	<ui:define name="content">
+		<h1>ASSOCIATIONS : Tout les évènements</h1>
+		<p:separator />
+		<br />
+		<h2>Liste de tout les évènements</h2>
+		<div>
+			<h:form>
+				<h:dataTable value="#{eventsController.events}" var="event"
+							 headerClass="eventTableHeader"
+							 rowClasses="eventTableOddRow,eventTableEvenRow">
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
+						#{event.name}
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Description </f:facet>
+						#{event.description}
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Date de début</f:facet>
+						#{event.startDate}
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Tarif</f:facet>
+						#{event.ticket.rateType}
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Actions</f:facet>
+
+						<h:commandLink value="Détails"
+									   action="#{eventsControllerDetails.afficherDetails(event.id)}" />
+
+						<h:commandLink value="Modifier"
+									   action="#{eventsControllerUpdate.afficherModifier(event.id)}" />
+
+						<h:commandLink value="Supprimer"
+									   action="#{eventsControllerDelete.supprimer(event.id)}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

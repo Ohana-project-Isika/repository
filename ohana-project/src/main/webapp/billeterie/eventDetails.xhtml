@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/layout.xhtml"
+                xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://primefaces.org/ui ">
+    <ui:define name="content">
+        <h:form>
+            <h1>ASSOCIATIONS : Tout les évènements</h1>
+            <p:separator />
+            <br />
+            <h2><h:outputText value="#{eventsControllerDetails.event.name}" /></h2>
+            <div>
+                <p><h:outputText value="#{eventsControllerDetails.event.description}" /></p>
+                <p> <h:outputText value="#{eventsControllerDetails.event.startDate}" />
+                    <h:outputText value="#{eventsControllerDetails.event.startTime}" /></p>
+                <p><h:outputText value="#{eventsControllerDetails.event.endDate}" />
+                    <h:outputText value="#{eventsControllerDetails.event.endTime}" /></p>
+                <p>Tickets disponible :
+                    <h:outputText value="#{eventsControllerDetails.event.ticketQuantity}" />
+                    Tarif :
+                    <h:outputText value="#{eventsControllerDetails.event.ticket.rateType}" /></p>
+
+                    <h:commandLink value="Détails"
+                                   action="#{eventsControllerDetails.afficherDetails(eventsControllerDetails.event.id)}" />
+                    <h:commandLink value="Modifier"
+                                   action="#{eventsControllerUpdate.afficherModifier(eventsControllerUpdate.event.id)}" />
+                    <h:commandLink value="Supprimer"
+                                   action="#{eventsControllerDelete.supprimer(eventsControllerDetails.event.id)}" />
+            </div>
+        </h:form>
+</ui:define>
+</ui:composition>
