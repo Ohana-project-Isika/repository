@@ -24,11 +24,11 @@
                     <h:outputText value="#{eventsControllerDetails.event.ticket.rateType}" /></p>
 
                     <h:commandLink value="Détails"
-                                   action="#{eventsControllerDetails.afficherDetails(event.id)}" />
+                                   action="#{eventsControllerDetails.afficherDetails(eventsControllerDetails.event.id)}" />
                     <h:commandLink value="Modifier"
-                                   action="#{eventsControllerUpdate.afficherModifier(event.id)}" />
+                                   action="#{eventsControllerUpdate.afficherModifier(eventsControllerUpdate.event.id)}" />
                     <h:commandLink value="Supprimer"
-                                   action="#{eventsControllerDelete.supprimer(event.id)}" />
+                                   action="#{eventsControllerDelete.supprimer(eventsControllerDetails.event.id)}" />
             </div>
         </h:form>
 </ui:define>

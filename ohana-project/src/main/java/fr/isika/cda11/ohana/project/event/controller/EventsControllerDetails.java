@@ -15,7 +15,7 @@ public class EventsControllerDetails implements Serializable {
 
     private static final long serialVersionUID = -1606040173965309710L;
 
-    private Event event;
+    private Event event = new Event();
 
     @Inject
     private EventService eventService;
