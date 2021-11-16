@@ -18,7 +18,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #F1F1F1;
+  background-color:#363636;
+  /*background-image:url(#{request.contextPath}/resources/gfx/childbackground.jpg);*/
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-size: 0.8em;
   color:#363636;
@@ -26,31 +27,32 @@ body {
 
 #container {
   margin: 0 auto;
-  padding: 0 20px 10px 20px;
-  border-top: 5px solid #000000;
-  border-left: 5px solid #8c8f91;
-  border-right: 5px solid #8c8f91;
-  border-bottom: 25px solid #8c8f91;
+  padding: 10px 20px 10px 20px;
+  border-top: 5px solid #d5d5d5;
+  border-left: 5px solid #d5d5d5;
+  border-right: 5px solid #d5d5d5;
+  border-bottom: 5px solid #d5d5d5;
   width: 865px; /* subtract 40px from banner width for padding */
   background: #FFFFFF;
   background-image: url(#{request.contextPath}/resources/gfx/headerbkg.png);
   background-repeat: repeat-x;
   padding-top: 30px;
   box-shadow: 3px 3px 15px #d5d5d5;
+  float: center;
 }
 #content {
-  float: left;
+  float: center;
   width: 500px;
-  margin: 20px;
+  margin: 10px;
 }
 #aside {
   font-size: 0.9em;
   width: 275px;
-  float: left;
+  float: center;
   margin: 20px 0px;
   border: 1px solid #D5D5D5;
   background: #F1F1F1;
-  background-image: url(#{request.contextPath}/resources/gfx/asidebkg.png);
+  /*background-image: url(#{request.contextPath}/resources/gfx/asidebkg.png);*/
   background-repeat: repeat-x;
   padding: 20px;
 }
@@ -60,7 +62,8 @@ body {
 }
 .dualbrand {
   float: right;
-  padding-right: 10px;
+  padding-right: 100px;
+  text-align:center;
 }
 #footer {
   clear: both;
@@ -80,8 +83,9 @@ a:hover {
   text-decoration: underline;
 }
 h1 {
-  color:#243446;
+  color:#369;
   font-size: 2.25em;
+  font-family:fantasy;
 }
 h2 {
   font-size: 1em;
@@ -101,14 +105,14 @@ span.invalid {
   color: red;
 }
 form {
-  padding: 1em;
+  padding: 10em;
   font: 80%/1 sans-serif;
-  width: 375px;
+  width: 575px;
   border: 1px solid #D5D5D5;
 }
 label {
   float: left;
-  width: 15%;
+  width: 30%;
   margin-left: 20px;
   margin-right: 0.5em;
   padding-top: 0.2em;
@@ -120,7 +124,7 @@ input {
   margin-bottom: 8px;
 }
 .register {
-  float: left;
+  float: center;
   margin-left: 85px;
 }
 
