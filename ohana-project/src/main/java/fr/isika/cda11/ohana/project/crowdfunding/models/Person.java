@@ -1,6 +1,8 @@
 package fr.isika.cda11.ohana.project.crowdfunding.models;
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +17,7 @@ public class Person {
 	
 	private String lastName;
 	private String firstName;
-	private String dateOfBirth;
+	private Date dateOfBirth;
 	private String address;
 	private String email;
 	private String phoneNumber;
@@ -46,12 +48,12 @@ public class Person {
 	}
 
 
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
