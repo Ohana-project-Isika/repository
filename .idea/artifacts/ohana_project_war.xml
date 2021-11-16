@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ohana-project:war">
+    <output-path>$PROJECT_DIR$/ohana-project/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ohana-project</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ohana-project.war">
+      <element id="artifact" artifact-name="ohana-project:war exploded" />
+    </root>
+  </artifact>
+</component>
