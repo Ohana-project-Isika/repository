@@ -35,12 +35,19 @@
 					<h:message style="color:red" for="description" />
 
 
-					<h:outputText value="Durée :" />
-					<p:inputText id="duration" value="#{projectMB.theProject.duration}" required="true"
-						requiredMessage="La durée est obligatoire">
-						<f:validateLength minimum="3" maximum="20" />
-					</p:inputText>
-					<h:message style="color:red" for="duration" />
+					<h:outputText for="startDate" value="Date de début:" />
+					<p:calendar id="startDate" value="#{projectMB.theProject.startDate}"
+						pattern="dd-MM-yyyy" mask="true" />
+					<h:outputText value="#{projectMB.newProject.startDate}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
+					
+					<h:outputText for="endDate" value="Date de fin:" />
+					<p:calendar id="endDate" value="#{projectMB.theProject.endDate}"
+						pattern="dd-MM-yyyy" mask="true" />
+					<h:outputText value="#{projectMB.newProject.endDate}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
 
 					<h:commandButton action="#{projectMB.updateProject()}" value="Sauvegarder" />
 					<h:link outcome="projects" value="Liste des projets" />

@@ -15,34 +15,44 @@
 					<h:outputText value="Nom :" />
 					<p:inputText id="name" value="#{projectMB.newProject.name}"
 						required="true" requiredMessage="Le nom est obligatoire">
-						<f:validateLength minimum="2"/>
+						<f:validateLength minimum="2" />
 					</p:inputText>
 					<h:message style="color:red" for="name" />
 
 
 					<h:outputText value="Objectif financier :" />
-					<p:inputText id="financialGoal" value="#{projectMB.newProject.financialGoal}"
-						required="true"
+					<p:inputText id="financialGoal"
+						value="#{projectMB.newProject.financialGoal}" required="true"
 						requiredMessage="L'objectif financier est obligatoire">
 					</p:inputText>
 					<h:message style="color:red" for="financialGoal" />
 
 
 					<h:outputText value="Descritption :" />
-					<p:inputText id="description" value="#{projectMB.newProject.description}">
+					<p:inputText id="description"
+						value="#{projectMB.newProject.description}">
 						<f:validateLength minimum="3" maximum="500" />
 					</p:inputText>
 					<h:message style="color:red" for="description" />
 
 
-					<h:outputText value="Durée :" />
-					<p:inputText id="duration" value="#{projectMB.newProject.duration}" required="true"
-						requiredMessage="La durée est obligatoire">
-						<f:validateLength minimum="3" maximum="20" />
-					</p:inputText>
-					<h:message style="color:red" for="duration" />
+					<h:outputText for="startDate" value="Date de début:" />
+					<p:calendar id="startDate"
+						value="#{projectMB.newProject.startDate}" pattern="dd-MM-yyyy"
+						mask="true" />
+					<h:outputText value="#{projectMB.newProject.startDate}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
 
-					<h:commandButton action="#{projectMB.createProject()}" value="Créer" />
+					<h:outputText for="endDate" value="Date de fin:" />
+					<p:calendar id="endDate" value="#{projectMB.newProject.endDate}"
+						pattern="dd-MM-yyyy" mask="true" />
+					<h:outputText value="#{projectMB.newProject.endDate}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
+
+					<h:commandButton action="#{projectMB.createProject()}"
+						value="Créer" />
 					<h:link outcome="projects" value="Liste des projets" />
 
 				</h:panelGrid>

@@ -19,7 +19,8 @@
 					<h:outputText value="Nom : #{projectMB.theProject.name}" />
 					<h:outputText value="Objectif financier : #{projectMB.theProject.financialGoal}" />
 					<h:outputText value="Descritption : #{projectMB.theProject.description}" />
-					<h:outputText value="Durée : #{projectMB.theProject.duration}" />
+					<h:outputText value="Date de début : #{projectMB.theProject.startDate}" />
+					<h:outputText value="Date de fin : #{projectMB.theProject.endDate}" />
 					
 					<h:commandButton action="#{projectMB.deleteProject()}" value="Supprimer" />
 					<h:commandButton action="projects" value="Annuler" />

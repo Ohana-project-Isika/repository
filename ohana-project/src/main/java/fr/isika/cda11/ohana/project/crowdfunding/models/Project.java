@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.crowdfunding.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,7 +22,9 @@ public class Project {
 	
 	private double financialGoal;
 	
-	private String duration;
+	private Date startDate;
+	
+	private Date endDate;
 	
 	private String description;
 	
@@ -60,12 +63,20 @@ public class Project {
 		this.financialGoal = financialGoal;
 	}
 
-	public String getDuration() {
-		return duration;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setDuration(String duration) {
-		this.duration = duration;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public String getDescription() {

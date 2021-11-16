@@ -30,12 +30,13 @@
 					<h:message style="color:red" for="firstname" />
 
 
-					<h:outputText value="Date de naissance :" />
-					<p:inputText id="dateOfBirth"
-						value="#{projectMB.thePerson.dateOfBirth}" required="true"
-						requiredMessage="La date de naissance est obligatoire">
-					</p:inputText>
-					<h:message style="color:red" for="dateOfBirth" />
+					<h:outputText for="startDate" value="Date de naissance :" />
+					<p:calendar id="dateOfBirth"
+						value="#{projectMB.thePerson.dateOfBirth}" pattern="dd-MM-yyyy"
+						mask="true" />
+					<h:outputText value="#{projectMB.thePerson.dateOfBirth}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
 
 
 					<h:outputText value="Adresse :" />
