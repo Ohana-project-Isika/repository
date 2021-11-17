@@ -4,79 +4,63 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/layout.xhtml">
-	<ui:define name="head">
-		<h:outputStylesheet name="css/table.css" />
-	</ui:define>
 	<ui:define name="content">
-		<h1>Liste des associations</h1>
 		<div class="body_table">
 			<div class="header_fixed">
-				<f:view>
-					<h:form>
-
-						<h:dataTable value="#{associationController.listAssociations()}"
-							var="o">
-							<h:column>
-								<f:facet name="header">Id</f:facet>
-								<h:outputText value="#{o.id}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Image</f:facet>
-								<img src="resources/gfx/logoAsah.jpg"></img>
-							</h:column>
-							<h:column>
-								<f:facet name="header">Nom</f:facet>
-								<h:outputText value="#{o.name}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Numero</f:facet>
-								<h:outputText value="#{o.address.number}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Rue</f:facet>
-								<h:outputText value="#{o.address.street}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Departement</f:facet>
-								<h:outputText value="#{o.address.department}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Adresse</f:facet>
-								<h:outputText value="#{o.address.city}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header"></f:facet>
-								<button>
-									<h:commandLink value="Voir"
-										action="#{associationController.ShowAssociation(o.id)}" />
-								</button>
-							</h:column>
-							<h:column>
-								<f:facet name="header"></f:facet>
-								<button>
-									<h:commandLink value="Modifier"
-										action="#{associationController.updateAssociationForm(o.id)}" />
-								</button>
-							</h:column>
-							<h:column>
-								<f:facet name="header"></f:facet>
-								<button>
-									<h:commandLink value="Supprimer"
-										action="#{associationController.deleteAssociation(o.id)}" />
-								</button>
-							</h:column>
-							<h:column>
-								<f:facet name="header"></f:facet>
-								<button>
-									<h:commandLink value="Creer un formulaire"
-										action="#{membershipController.createMembershipManage(o.id)}" />
-								</button>
-							</h:column>
-						</h:dataTable>
-
-					</h:form>
-				</f:view>
-
+				<table>
+					<thead>
+						<tr>
+							<th>S .No</th>
+							<th>Image</th>
+							<th>Username</th>
+							<th>Email</th>
+							<th>Departement</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td><img src="resources/gfx/logoAsah.jpg"></img></td>
+							<td>Rah rah</td>
+							<td>rue rozemburg</td>
+							<td>engineering</td>
+							<td><button>View</button></td>
+						</tr>
+											<tr>
+							<td>1</td>
+							<td><img src="resources/gfx/logoAsah.jpg"></img></td>
+							<td>Rah rah</td>
+							<td>rue rozemburg</td>
+							<td>engineering</td>
+							<td><button>View</button></td>
+						</tr>
+											<tr>
+							<td>1</td>
+							<td><img src="resources/gfx/logoAsah.jpg"></img></td>
+							<td>Rah rah</td>
+							<td>rue rozemburg</td>
+							<td>engineering</td>
+							<td><button>View</button></td>
+						</tr>
+											<tr>
+							<td>1</td>
+							<td><img src="resources/gfx/logoAsah.jpg"></img></td>
+							<td>Rah rah</td>
+							<td>rue rozemburg</td>
+							<td>engineering</td>
+							<td><button>View</button></td>
+						</tr>
+											<tr>
+							<td>1</td>
+							<td><img src="resources/gfx/logoAsah.jpg"></img></td>
+							<td>Rah rah</td>
+							<td>rue rozemburg</td>
+							<td>engineering</td>
+							<td><button>View</button></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 
