@@ -7,17 +7,24 @@
 	<meta charset="UTF-8"  content=""/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<h:outputStylesheet name="css/navbar.css" />
+
 	<h:outputStylesheet name="css/table.css" />
 	<script src="https://kit.fontawesome.com/a076d05399.js"  type=""/>
 	<script src="http://d3js.org/d3.v3.min.js" type=""></script>
 	<link rel="stylesheet" href="../resources/css/styles.css"/>
 	<script src="../resources/js/ticketing.js" type=""></script>
+
+	<ui:insert name="head">
+                    [Template head will be inserted here]              
+    </ui:insert>
+	<script src="https://kit.fontawesome.com/a076d05399.js" />
 	<title>Ohana</title>
 </h:head>
 <h:body>
 
 	<!--============================= HEADER =============================-->
-	<nav> <label class="logo">Ohana</label>
+	<nav> 
+		<label class="logo">Ohana</label>
 		<ul class="nav-list">
 			<li class="nav-item"><a class="active" href="#">Home</a></li>
 			<li class="nav-item"><a href="#">About</a></li>
@@ -27,6 +34,7 @@
 			</li>
 			<li class="nav-item"><a href="">Adhésion</a></li>
 		</ul>
+
 	</nav>
 
 
@@ -34,7 +42,6 @@
 
 	<ui:insert name="content">
                     [Template content will be inserted here]
-                    
     </ui:insert>
 </h:body>
 </html>
