@@ -25,6 +25,7 @@ import fr.isika.cda11.ohana.project.event.repository.EventRepository;
 @Stateless
 public class EventService implements Serializable {
 
+	private static final long serialVersionUID = -2395116975169375108L;
 	@Inject
 	private EventRepository eventRepository;
 
@@ -192,7 +193,7 @@ public class EventService implements Serializable {
 	}
 
 	private String setFullAddress(Address address) {
-		return String.format("%s %s %s %s %s %s", address.getNumber(),
+		return String.format("%s %s %s %s %s %s", address.getNumRue(),
 				Optional.of(address.getSuffix().toString().toLowerCase()).orElse(""), address.getStreetName(),
 				Optional.ofNullable(address.getStreetComplement()).orElse(""), address.getPostCode(),
 				address.getCity());
