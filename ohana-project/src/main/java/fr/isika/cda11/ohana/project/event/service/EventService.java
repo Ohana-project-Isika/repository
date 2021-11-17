@@ -6,7 +6,11 @@ import static fr.isika.cda11.ohana.project.event.models.TVA.METROPOLITAN;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,6 +98,19 @@ public class EventService implements Serializable {
 		}
 
 		return cart;
+	}
+
+	public static LocalDate convertToLocalDate(Date dateToConvert) {
+		return Instant.ofEpochMilli(dateToConvert.getTime())
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate();
+	}
+
+	public Event changeTicketPrice(Event event, int count) {
+		event.getTicket().setSubTotal(BigDecimal.valueOf(count).multiply(event.getTicket().getPreTaxPrice()).setScale(2, BigDecimal.ROUND_HALF_UP));
+		event.getTicket().setTotal(BigDecimal.valueOf(count).multiply(event.getTicket().getPreTaxPrice()).setScale(2, BigDecimal.ROUND_HALF_UP));
+
+		return event;
 	}
 
 	public List<Event> findAllEventsByRegion(String region) {
@@ -187,6 +204,9 @@ public class EventService implements Serializable {
 					.multiply(BigDecimal.valueOf(1).add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
 					.setScale(2, BigDecimal.ROUND_UP));
 
+			event.getTicket().setSubTotal(event.getTicket().getPreTaxPrice());
+			event.getTicket().setTotal(event.getTicket().getPostTaxPrice());
+
 			event.setFullAddress(setFullAddress(event.getAddress()));
 		}
 	}
@@ -250,5 +270,4 @@ public class EventService implements Serializable {
 	public List<Event> findAll() {
 		return eventRepository.findAssociationEvents();
 	}
-
 }

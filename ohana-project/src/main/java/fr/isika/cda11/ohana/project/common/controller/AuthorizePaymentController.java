@@ -38,6 +38,9 @@ public class AuthorizePaymentController implements Serializable {
     private String cartSubTotal;
     private String cartTotal;
     private UIComponent component;
+    private static final String CLIENT_ID = "AX-azce-xi8k1iprgyUpHzMdtCC6XyefgvcrKSG8veczA0VZP_E3vdZ0zrtCv4OwjsGgWYA0Ut_kuhPg";
+    private static final String CLIENT_SECRET = "ENIvN4brKTEH8c9vMUMo35zHqkn5VJiRjNNrGLcehypqEz6ERKsioT3t2sKLNz1ubFhsu_GxXzriT0F9";
+    private static final String MODE = "sandbox";
 
     public String pay(Cart cart) {
 

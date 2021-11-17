@@ -8,6 +8,12 @@ USE `ohana-database`;
 INSERT INTO Address (street_number, suffix, street_name, street_complement, postcode, city) VALUES (193, 'TER', 'Avenue Jean Jaurès', '', '93300', 'Aubervilliers');
 INSERT INTO Address (street_number, suffix, street_name, street_complement, postcode, city) VALUES (20, 'BIS', 'Allée de Vanteaux', '', '87000', 'Limoges');
 
+# ASSOCIATION TABLE
+INSERT INTO Association (association_name, address_id) VALUES ('assoce', (SELECT id FROM Address WHERE city = 'Limoges'));
+
+# TICKETING TABLE
+INSERT INTO ticketing (ticketing_name, association_id) VALUES ('billetterie', (SELECT id FROM Association WHERE association_name = 'assoce'));
+
 # EVENT TABLE
 INSERT INTO Event (event_name, event_description, start_date, end_date, start_time, end_time, address_id) VALUES ('nnnnnn', 'ffffffffffffffffffff', curdate(), '2022-01-01', curtime(), '05:00:00', (SELECT id FROM Address WHERE city = 'Aubervilliers'));
 INSERT INTO Event (event_name, event_description, start_date, end_date, start_time, end_time, address_id) VALUES ('gggggg', 'rrrrrrrrrrrrrrrrrrrr', curdate(), '2022-01-01', curtime(), '05:00:00', (SELECT id FROM Address WHERE city = 'Limoges'));

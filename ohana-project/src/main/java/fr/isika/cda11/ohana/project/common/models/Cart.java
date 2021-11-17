@@ -42,7 +42,14 @@ public class Cart implements Serializable {
         setSubTotal(this.subTotal.add(subTotal).setScale(2, BigDecimal.ROUND_HALF_UP));
     }
 
+    public void subtractSubTotal(BigDecimal subTotal) {
+        setSubTotal(this.subTotal.subtract(subTotal).setScale(2, BigDecimal.ROUND_HALF_UP));
+    }
+
     public void addTotal(BigDecimal total) {
         setTotal(this.total.add(total).setScale(2, BigDecimal.ROUND_HALF_UP));
+    }
+    public void subtractTotal(BigDecimal total) {
+        setSubTotal(this.subTotal.subtract(total).setScale(2, BigDecimal.ROUND_HALF_UP));
     }
 }

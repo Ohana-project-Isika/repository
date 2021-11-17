@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/layout.xhtml">
+
+
+    <ui:define name="content">
+        <script type="text/javascript" src="#{request.contextPath}/resources/js/cart.js"></script>
+        <link type="text/css" href="#{request.contextPath}/resources/css/cart.css" />
+
+<section class="container content-section">
+    <h2 class="section-header">CART</h2>
+    <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-price cart-header cart-column">PRICE</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+    </div>
+    <div class="cart-items">
+    </div>
+    <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-price">$0</span>
+    </div>
+    <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+</section>
+<footer class="main-footer">
+    <div class="container main-footer-container">
+        <h3 class="band-name">The Generics</h3>
+        <ul class="nav footer-nav">
+            <li>
+                <a href="https://www.youtube.com" target="_blank">
+<!--                    <img src="Images/YouTube Logo.png">-->
+                    Image
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com" target="_blank">
+<!--                    <img src="Images/Spotify Logo.png">-->
+                    Image
+                </a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com" target="_blank">
+<!--                    <img src="Images/Facebook Logo.png">-->
+                            Image
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+    </ui:define>
+</ui:composition>

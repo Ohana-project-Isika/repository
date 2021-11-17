@@ -59,11 +59,17 @@ public class Event {
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
             mappedBy = "event",
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Ticket> tickets = new ArrayList<>();
+
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Ticketing ticketing;
 
     @OneToOne
     @EqualsAndHashCode.Exclude

@@ -28,12 +28,11 @@ public class EventController implements Serializable {
 
     private List<Event> events;
     private Cart cart = new Cart();
-    private List<Event> eventsIDF;
-    private Event event;
+    private Event event = new Event();
     private BigDecimal subTotal;
     private BigDecimal total;
     private Map<Ticket, Integer> ticketQuantity = new HashMap<>();
-    private int quantity;
+    private int count = 1;
     private double hiddenTotal;
     private String region;
 
@@ -54,6 +53,38 @@ public class EventController implements Serializable {
     public String checkout(Event event) {
         cart = eventService.addEvents(event, cart);
         return "ticketing/checkout?faces-redirect=true";
+    }
+
+    public String decrement(Event event) {
+        if (count > 1 && count <= event.getTicketQuantity()) {
+            --count;
+//            this.event = eventService.changeTicketPrice(event, count);
+            cart.subtractSubTotal(event.getTicket().getPreTaxPrice());
+            cart.subtractTotal(event.getTicket().getPostTaxPrice());
+        }
+
+        return "ticketing/checkout?faces-redirect=true";
+    }
+
+    public String increment(Event event) {
+        if (count >= 1 && count < event.getTicketQuantity()) {
+            ++count;
+//            this.event = eventService.changeTicketPrice(event, count);
+            cart.addSubTotal(event.getTicket().getPreTaxPrice());
+            cart.addTotal(event.getTicket().getPostTaxPrice());
+        }
+
+        return "ticketing/checkout?faces-redirect=true";
+    }
+
+    public String detail(Event event) {
+        this.event = event;
+        return "ticketing/detail?faces-redirect=true";
+    }
+
+    public String back() {
+        events = eventService.findAllEvents();
+        return "ticketing?faces-redirect=true";
     }
 
     public String delete(Event event) {

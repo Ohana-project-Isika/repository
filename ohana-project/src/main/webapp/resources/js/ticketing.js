@@ -80,7 +80,7 @@ function decrement(eventId, ticketQuantity) {
 }
 
 function innerJSF(eventId, amount) {
-    console.log("dddddd", eventId + " " + amount.value + " " + document.getElementById(`subTotal_${eventId}`) + " " + document.getElementById(`preTax_${eventId}`));
+    console.log(document.getElementById(`subTotal_${eventId}`), document.getElementById(`preTax_${eventId}`));
     document.getElementById(`subTotal_${eventId}`).innerHTML = (amount.value
         * parseFloat(document.getElementById(`preTax_${eventId}`).value)).toString();
     document.getElementById(`total_${eventId}`).innerHTML = (amount.value

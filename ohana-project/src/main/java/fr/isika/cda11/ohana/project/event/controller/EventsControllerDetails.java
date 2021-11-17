@@ -21,8 +21,9 @@ public class EventsControllerDetails implements Serializable {
     private EventService eventService;
 
     public String afficherDetails(Long eventId) {
+        System.out.println(eventId);
     	event = eventService.findById(eventId);
-        return "eventDetails?faces-redirect=true";
+        return "billeterie/eventDetails?faces-redirect=true";
     }
     
     public Event getEvent() {

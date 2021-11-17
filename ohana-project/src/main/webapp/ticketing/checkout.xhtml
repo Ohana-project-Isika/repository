@@ -7,7 +7,7 @@
 
 
     <ui:define name="content">
-        <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>
+<!--        <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>-->
         <link type="text/css" href="#{request.contextPath}/resources/css/styles.css" />
 
         <h:form id="test">
@@ -35,22 +35,20 @@
 
                 <h:column>
                     <f:facet name="header">Prix HT</f:facet>
-                    <p id="preTax_#{event.id}">
-                        #{event.ticket.preTaxPrice}"
-                    </p>
+                    <p id="preTax_#{event.id}">#{event.ticket.preTaxPrice}</p>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Prix TTC</f:facet>
-                    <p id="postTax_#{event.id}">
-                        #{event.ticket.postTaxPrice}
-                    </p>
+                    <p id="postTax_#{event.id}">#{event.ticket.postTaxPrice}</p>
                 </h:column>
 
                 <h:column >
-                    <input class="fixedAmount" type="button" id="#{event.ticketQuantity}" onclick="decrement('#{event.id}', '#{event.ticketQuantity}')" value="-"/>
-                    <input class="dynamicAmount" id="#{event.id}" type="number" value="1" min="1" max="#{event.ticketQuantity}"/>
-                    <input type="button" onclick="increment('#{event.id}', '#{event.ticketQuantity}')" value="+"/>
+                    <h:commandButton action="#{eventController.decrement(event)}" value="-"/>
+<!--                    <input class="fixedAmount" type="button" id="#{event.ticketQuantity}" "decrement('#{event.id}', '#{event.ticketQuantity}')" value="-"/>-->
+                    <input class="dynamicAmount" id="#{event.id}" type="number" value="#{eventController.count}" min="1" max="#{event.ticketQuantity}"/>
+                    <h:commandButton action="#{eventController.increment(event)}" value="+"/>
+<!--                    <input type="button" onclick="increment('#{event.id}', '#{event.ticketQuantity}')" value="+"/>-->
                 </h:column>
 
                 <h:column >
@@ -58,16 +56,12 @@
 
                 <h:column>
                     <f:facet name="header">Total HT</f:facet>
-                    <p id="subTotal_#{event.id}">
-                        #{event.ticket.preTaxPrice}
-                    </p>
+                    <p id="subTotal_#{event.id}">#{event.ticket.subTotal}</p>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Total TTC</f:facet>
-                    <p id="total_#{event.id}">
-                        #{event.ticket.postTaxPrice}
-                    </p>
+                    <p id="total_#{event.id}">#{event.ticket.total}</p>
                 </h:column>
 
                 <h:column>

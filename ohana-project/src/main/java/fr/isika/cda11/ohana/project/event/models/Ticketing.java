@@ -1,24 +1,28 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-import fr.isika.cda11.ohana.project.common.models.Individual;
+
+import fr.isika.cda11.ohana.project.common.models.Association;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Ticket {
+public class Ticketing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
+
+    @Column(name = "ticketing_name")
+    private String name;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "rate_type")
@@ -33,35 +37,22 @@ public class Ticket {
 
     private BigDecimal oldPostTaxPrice = BigDecimal.ZERO;
 
-    @ManyToOne
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
+            mappedBy = "ticketing",
+            orphanRemoval = true, fetch = FetchType.EAGER
+    )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Event event;
+    private List<Event> events;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "Individual_Tickets", joinColumns = @JoinColumn(name = "ticket_id") )
-    @Column(name="ticket_amount")
-    @MapKeyJoinColumn(name = "individual_id")
-    private Map<Individual, Integer> individualTicketsMap = new HashMap<Individual, Integer>();
+    @OneToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Association association;
 
     @Transient
     private BigDecimal tvaRate = BigDecimal.ZERO;
 
     @Transient
     private BigDecimal postTaxPrice = BigDecimal.ZERO;
-
-    @Transient
-    private int quantity;
-
-    @Transient
-    private BigDecimal preTaxPricePerQuantity = BigDecimal.ZERO;
-
-    @Transient
-    private BigDecimal postTaxPricePerQuantity = BigDecimal.ZERO;
-
-    @Transient
-    private BigDecimal subTotal = BigDecimal.ZERO;
-
-    @Transient
-    private BigDecimal total = BigDecimal.ZERO;
 }
