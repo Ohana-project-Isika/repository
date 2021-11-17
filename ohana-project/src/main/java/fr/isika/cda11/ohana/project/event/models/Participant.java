@@ -1,6 +1,9 @@
 package fr.isika.cda11.ohana.project.event.models;
 
 import javax.persistence.*;
+
+import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,7 @@ public class Participant implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "participant")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private PrivatePerson privatePerson;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
