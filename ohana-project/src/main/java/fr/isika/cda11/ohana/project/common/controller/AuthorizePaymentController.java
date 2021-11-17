@@ -1,14 +1,6 @@
 package fr.isika.cda11.ohana.project.common.controller;
 
-import com.paypal.base.rest.PayPalRESTException;
-import fr.isika.cda11.ohana.project.common.models.Cart;
-import fr.isika.cda11.ohana.project.common.models.OrderDetail;
-import fr.isika.cda11.ohana.project.common.models.PaymentServices;
-import fr.isika.cda11.ohana.project.common.service.AuthorizePaymentService;
-import fr.isika.cda11.ohana.project.event.models.Event;
-import fr.isika.cda11.ohana.project.event.service.EventService;
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -16,12 +8,15 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
+
+import com.paypal.base.rest.PayPalRESTException;
+
+import fr.isika.cda11.ohana.project.common.models.Cart;
+import fr.isika.cda11.ohana.project.common.models.OrderDetail;
+import fr.isika.cda11.ohana.project.common.models.PaymentServices;
+import fr.isika.cda11.ohana.project.common.service.AuthorizePaymentService;
+import lombok.Getter;
+import lombok.Setter;
 
 @ManagedBean
 @SessionScoped

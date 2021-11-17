@@ -25,6 +25,7 @@ import fr.isika.cda11.ohana.project.event.repository.EventRepository;
 @Stateless
 public class EventService implements Serializable {
 
+	private static final long serialVersionUID = -2395116975169375108L;
 	@Inject
 	private EventRepository eventRepository;
 
@@ -166,8 +167,8 @@ public class EventService implements Serializable {
 
 		for (Event event : events) {
 			for (String department : region.getDepartments()) {
-				if (event.getAddress().getPostCode().substring(0, 2).equals(department)
-						|| event.getAddress().getPostCode().substring(0, 3).equals(department))
+				if (event.getAddress().getCodePostal().substring(0, 2).equals(department)
+						|| event.getAddress().getCodePostal().substring(0, 3).equals(department))
 					regionalEvents.add(event);
 			}
 		}
@@ -192,10 +193,9 @@ public class EventService implements Serializable {
 	}
 
 	private String setFullAddress(Address address) {
-		return String.format("%s %s %s %s %s %s", address.getNumber(),
-				Optional.of(address.getSuffix().toString().toLowerCase()).orElse(""), address.getStreetName(),
-				Optional.ofNullable(address.getStreetComplement()).orElse(""), address.getPostCode(),
-				address.getCity());
+		return String.format("%s %s %s %s %s", address.getNumRue(),
+				address.getRue(), address.getCodePostal(),
+				address.getVille(), address.getPays());
 	}
 
 	private BigDecimal setTVAFor(RATE_TYPE rateType, TVA tva) {
