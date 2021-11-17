@@ -54,20 +54,11 @@
             </p:panelGrid>
 
             <h:column>
-                <h:commandLink id="link" action="#{eventController.back}"
-                               value="Retour à la liste des évènements"/>
+                <h:commandButton action="#{eventController.back}}" value="Retour à la liste des évènements" />
                 <br/>
                 <h:commandButton action="#{eventController.checkout(event)}" value="Réserver" />
             </h:column>
         </div>
 
-
-<!--        <div id="general">-->
-<!--            <h:form id="test">-->
-
-<!--                   -->
-
-<!--            </h:form>-->
-<!--        </div>-->
     </ui:define>
 </ui:composition>
