@@ -193,9 +193,9 @@ public class EventService implements Serializable {
 	}
 
 	private String setFullAddress(Address address) {
-		return String.format("%s %s %s %s %s %s", address.getNumRue(),
+		return String.format("%s %s %s %s %s", address.getNumRue(),
 				address.getRue(), address.getCodePostal(),
-				address.getVille());
+				address.getVille(), address.getPays());
 	}
 
 	private BigDecimal setTVAFor(RATE_TYPE rateType, TVA tva) {
