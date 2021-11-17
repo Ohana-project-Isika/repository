@@ -1,18 +1,24 @@
 package fr.isika.cda11.ohana.project.common.models;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+
+//TODO : garder ou supprimer les lignes correspondant à l'attribut suffix
 
 
 //TODO : garder ou supprimer les lignes correspondant à l'attribut suffix
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 public class Address {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Setter(AccessLevel.NONE)
 	private Long idAddress;
 	private Integer numRue;	
 	private String rue;
@@ -147,4 +153,15 @@ public class Address {
 	}
 	
 
+	@Enumerated(value = EnumType.STRING)
+	private Suffix suffix;
+
+	@Column(name = "street_name")
+	private String streetName;
+
+	@Column(name = "street_complement")
+	private String streetComplement;
+
+	private String postCode;
+	private String city;
 }

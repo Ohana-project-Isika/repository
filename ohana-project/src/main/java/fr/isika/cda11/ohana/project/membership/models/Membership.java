@@ -14,6 +14,8 @@ import fr.isika.cda11.ohana.project.common.models.Association;
 public class Membership {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	private String name;
 	private Long idMbs;
 	private String nameMbs;				// Mbs pour membership
 	private Date dateOfStart;
@@ -122,6 +124,7 @@ public class Membership {
 		return builder.toString();
 	}
 
-	
+
+
 	
 }

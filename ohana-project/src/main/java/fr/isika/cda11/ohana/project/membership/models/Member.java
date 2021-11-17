@@ -1,4 +1,5 @@
 package fr.isika.cda11.ohana.project.membership.models;
+import java.util.List;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import fr.isika.cda11.ohana.project.common.models.PersonInfo;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 
@@ -93,6 +93,5 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 		builder.append("]");
 		return builder.toString();
 	}
-
 
 }

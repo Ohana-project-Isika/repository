@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h1>Financer une campagne</h1>
+			<p:tooltip />
+			<h:form id="test">
+				<h:panelGrid columns="3">
+
+					<h:outputText value="Nom :" />
+					<p:inputText id="name" value="#{projectMB.thePerson.lastName}"
+						required="true" requiredMessage="Le nom est obligatoire">
+						<f:validateLength minimum="2" />
+					</p:inputText>
+					<h:message style="color:red" for="name" />
+
+
+					<h:outputText value="Prénom :" />
+					<p:inputText id="firstname"
+						value="#{projectMB.thePerson.firstName}" required="true"
+						requiredMessage="Le nom est obligatoire">
+						<f:validateLength minimum="2"/>
+					</p:inputText>
+					<h:message style="color:red" for="firstname" />
+
+
+					<h:outputText for="startDate" value="Date de naissance :" />
+					<p:calendar id="dateOfBirth"
+						value="#{projectMB.thePerson.dateOfBirth}" pattern="dd-MM-yyyy"
+						mask="true" />
+					<h:outputText value="#{projectMB.thePerson.dateOfBirth}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
+
+
+					<h:outputText value="Adresse :" />
+					<p:inputText id="address" value="#{projectMB.thePerson.address}"
+						required="true" requiredMessage="L'adresse est obligatoire">
+					</p:inputText>
+					<h:message style="color:red" for="address" />
+
+
+					<h:outputText value="Email :" />
+					<p:inputText id="email" value="#{projectMB.thePerson.email}"
+						required="true" requiredMessage="L'email est obligatoire">
+					</p:inputText>
+					<h:message style="color:red" for="email" />
+
+
+					<h:outputText value="Téléphone :" />
+					<p:inputText id="phoneNumber"
+						value="#{projectMB.thePerson.phoneNumber}" required="true"
+						requiredMessage="Le téléphone est obligatoire">
+					</p:inputText>
+					<h:message style="color:red" for="phoneNumber" />
+
+
+					<h:outputText value="Montant :" />
+					<p:inputText id="fundingAmount"
+						value="#{fundingMB.theFunding.fundingAmount}" required="true"
+						requiredMessage="Le montant est obligatoire">
+						<f:validateLength minimum="1"/>
+					</p:inputText>
+					<h:message style="color:red" for="fundingAmount" />
+
+					<p:messages id="messages" showDetail="true" closable="true">
+						<p:autoUpdate />
+					</p:messages>
+					<p:commandButton action="#{fundingMB.payer()}" value="Payer"
+						update="messages" />
+
+
+				</h:panelGrid>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>

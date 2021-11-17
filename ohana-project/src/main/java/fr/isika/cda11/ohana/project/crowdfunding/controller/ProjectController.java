@@ -7,51 +7,39 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Person;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
-import fr.isika.cda11.ohana.project.crowdfunding.repository.CrowdfundingRepository;
+import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 
 
 
 @ManagedBean(name = "projectMB")
 @SessionScoped
-public class CrowdfundingController {
+public class ProjectController {
 	
 	@Inject
-	CrowdfundingRepository cr;
+	ProjectService projectService;
 	
 	Project theProject = new Project();
 	Project newProject = new Project();
 	Person thePerson = new Person();
-	Funding theFunding = new Funding();
+
 
 	
 	@PostConstruct
 	public void init() {
 		System.out.println("Create " + this);
-		if (cr.findProjects().size() == 0) {
+		if (projectService.findListProjectsService().size() == 0) {
 			
 			Project p1 = new Project();
 			p1.setName("Architecture JEE");
 			p1.setFinancialGoal(500000);
 			p1.setDescription("gros projet");
-			cr.saveProject(p1);
+			projectService.updateProjectService(p1);
 		}
 	}
 
-	public List<Project> getProjects() {
-		return cr.findProjects();
-	}
-	public List<Funding> getFundings() {
-		return cr.findFundings();
-	}
-
-
-	public Funding getTheFunding() {
-		return theFunding;
-	}
-
+	
 	public Person getThePerson() {
 		return thePerson;
 	}
@@ -63,30 +51,44 @@ public class CrowdfundingController {
 	public Project getNewProject() {
 		return newProject;
 	}
-
-	public String show(Integer n) {
-		theProject = cr.findProject(n);
-		return "showProject";
+	
+	public List<Project> getProjects() {
+		return projectService.findListProjectsService();
 	}
-
-	public String deleteProject() {
-		cr.deleteProject(theProject);
-		return "projects";
-	}
-	public String save() {
-		cr.saveProject(theProject);
-		return "showProject";
-	}
-
-	public String newProject() {
-		cr.saveProject(newProject);
+	
+	
+	
+	public String createProject() {
+		projectService.createProjectService(newProject);
 		newProject = new Project();
 		return "projects";
 	}
 	
-	public String newFunding() {
-		cr.saveFunding(theFunding);
-		theFunding = new Funding();
-		return "customerProjectList";
+	public String showProject(Long id) {
+		theProject = projectService.findProjectService(id);
+		return "showProject";
 	}
+	
+	public String updateProject() {
+		projectService.updateProjectService(theProject);
+		return "projects";
+	}
+	
+	public String deleteProject() {
+		projectService.deleteProjectService(theProject);
+		return "projects";
+	}
+	
+	
+	
+	public String editProjectLink(Long id) {
+		theProject = projectService.findProjectService(id);
+		return "editProject";
+	}
+	
+	public String deleteProjectLink(Long id) {
+		theProject = projectService.findProjectService(id);
+		return "deleteProject";
+	}
+    
 }

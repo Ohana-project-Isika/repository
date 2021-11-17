@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
+import fr.isika.cda11.ohana.project.common.models.Association;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
 import fr.isika.cda11.ohana.project.membership.factories.MembershipFactory;
@@ -16,6 +16,15 @@ public class MembershipService {
 
 	@Inject
 	private MembershipRepos membershiprepos;
+
+	public Membership createMembership(String name, Association association) {
+
+		Membership membership = new Membership();
+		membership.setNameMbs(name);
+		membership.setAssociation(association);
+		return membership;
+	}
+
 
 	// CREATE
 	public MembershipDto createMembership(MembershipDto membershipDto, MemberShipManageDto mbsm) {

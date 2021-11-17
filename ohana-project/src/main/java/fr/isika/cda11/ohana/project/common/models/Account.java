@@ -1,6 +1,4 @@
 package fr.isika.cda11.ohana.project.common.models;
-
-
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -139,4 +137,5 @@ public class Account {
 		this.accountLogin = accountLogin;
 		this.accountLogin = accountLogin;
 	}
+
 }
