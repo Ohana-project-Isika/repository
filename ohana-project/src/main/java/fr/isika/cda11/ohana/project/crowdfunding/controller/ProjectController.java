@@ -1,13 +1,15 @@
 package fr.isika.cda11.ohana.project.crowdfunding.controller;
 
+
 import java.util.List;
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import fr.isika.cda11.ohana.project.crowdfunding.models.Person;
+import fr.isika.cda11.ohana.project.crowdfunding.models.Funder;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
 import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 
@@ -22,7 +24,7 @@ public class ProjectController {
 	
 	Project theProject = new Project();
 	Project newProject = new Project();
-	Person thePerson = new Person();
+	Funder theFunder = new Funder();
 
 
 	
@@ -40,8 +42,8 @@ public class ProjectController {
 	}
 
 	
-	public Person getThePerson() {
-		return thePerson;
+	public Funder getTheFunder() {
+		return theFunder;
 	}
 
 	public Project getTheProject() {
@@ -69,6 +71,7 @@ public class ProjectController {
 		return "showProject";
 	}
 	
+	
 	public String updateProject() {
 		projectService.updateProjectService(theProject);
 		return "projects";
@@ -89,6 +92,11 @@ public class ProjectController {
 	public String deleteProjectLink(Long id) {
 		theProject = projectService.findProjectService(id);
 		return "deleteProject";
+	}
+	
+	public Long duration(Long id){	
+		Long duration = projectService.durationService(id);
+		return duration;
 	}
     
 }
