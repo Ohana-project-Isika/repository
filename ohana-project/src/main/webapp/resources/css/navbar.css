@@ -4,26 +4,34 @@
 	box-sizing: border-box;
 	list-style: none;
 	text-decoration: none;
+	font-family: "Open Sans", sans-serif;
+}
+a {
+	text-decoration: none;
 }
 
 body {
-	background-image: url(#{request.contextPath}/resources/gfx/childhood.png);
-	background-size: cover;
-	background-repeat: no-repeat;
-	font-family:sans-serif;
-	height: 100vh;
-	
+}
+
+.logoOhana {
+	height: 40px;
+	margin: 15px 15px 15px 60px;
 }
 
 nav{
-	background:#2A92A2;
-	height:80px;
+	background:#0072CE;
+	height:50px;
 	width:100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: flex-end;
+	justify-content: center;
 } 
 .nav-list{
-	display:inline-block;
-	justify-content:flex-end;
-	align-items: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
 }
 .nav-item{
 	margin-right: 2rem;
@@ -32,7 +40,6 @@ nav{
 }
 .nav-item a{
 	color:#ffffff;
-	letter-spacing:1.2px;
 }
 
 
@@ -51,16 +58,14 @@ nav ul{
 
 nav ul li{
 	display: inline-block;
-	line-height : 80px;
 	margin : 0 5px;
 }
 
 nav ul li a{
-	color:white;
-	font-size : 17px;
-	padding : 7px 13px;
-	border-radius : 3px;
+	color:#FFFFFF;
+	font-size : 14px;
 	text-transform: uppercase;
+	text-decoration: none;
 }
 
 a.active,a:hover{
