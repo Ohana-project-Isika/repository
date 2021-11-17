@@ -13,10 +13,9 @@ public class Association {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idAssos;
 	private String nameAssos;
-	// private ENUM validateStatusAsso;
-	// private ENUM subscriptionAsso;
-	private Byte logoAsso;
-	private Byte justifAsso;
+	private ValidateStatusAsso validateStatusAsso;
+	private String logoAsso;
+	private String justifAsso;
 	private String numSiret;
 	@OneToOne
 	private Address addressAsso;
@@ -28,35 +27,78 @@ public class Association {
 	// constructeur
 	public Association() {}
 
-	// getter and setter 
-	
-	public String getNameAssos() {return nameAssos;}
-	public void setNameAssos(String nameAssos) {this.nameAssos = nameAssos;}
+	public Long getIdAssos() {
+		return idAssos;
+	}
 
-	public Byte getLogoAsso() {return logoAsso;}
-	public void setLogoAsso(Byte logoAsso) {this.logoAsso = logoAsso;}
+	public void setIdAssos(Long idAssos) {
+		this.idAssos = idAssos;
+	}
 
-	public Byte getJustifAsso() {return justifAsso;}
-	public void setJustifAsso(Byte justifAsso) {this.justifAsso = justifAsso;}
+	public String getNameAssos() {
+		return nameAssos;
+	}
 
-	public String getNumSiret() {return numSiret;}
-	public void setNumSiret(String numSiret) {this.numSiret = numSiret;}
+	public void setNameAssos(String nameAssos) {
+		this.nameAssos = nameAssos;
+	}
 
-	public Address getAddressAsso() {return addressAsso;}
-	public void setAddressAsso(Address addressAsso) {this.addressAsso = addressAsso;}
+	public ValidateStatusAsso getValidateStatusAsso() {
+		return validateStatusAsso;
+	}
 
-	public Services getServices() {	return services;}
-	public void setServices(Services services) {this.services = services;}
+	public void setValidateStatusAsso(ValidateStatusAsso validateStatusAsso) {
+		this.validateStatusAsso = validateStatusAsso;
+	}
 
-	public Role getRole() {	return role;}
-	public void setRole(Role role) {this.role = role;}
+	public String getLogoAsso() {
+		return logoAsso;
+	}
 
-	public Long getIdAssos() {return idAssos;}
-	
+	public void setLogoAsso(String logoAsso) {
+		this.logoAsso = logoAsso;
+	}
 
-	public void setIdAssos(Long idAssos) {this.idAssos = idAssos;}
+	public String getJustifAsso() {
+		return justifAsso;
+	}
 
-	// Hash&equals
+	public void setJustifAsso(String justifAsso) {
+		this.justifAsso = justifAsso;
+	}
+
+	public String getNumSiret() {
+		return numSiret;
+	}
+
+	public void setNumSiret(String numSiret) {
+		this.numSiret = numSiret;
+	}
+
+	public Address getAddressAsso() {
+		return addressAsso;
+	}
+
+	public void setAddressAsso(Address addressAsso) {
+		this.addressAsso = addressAsso;
+	}
+
+	public Services getServices() {
+		return services;
+	}
+
+	public void setServices(Services services) {
+		this.services = services;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,6 +111,7 @@ public class Association {
 		result = prime * result + ((numSiret == null) ? 0 : numSiret.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((services == null) ? 0 : services.hashCode());
+		result = prime * result + ((validateStatusAsso == null) ? 0 : validateStatusAsso.hashCode());
 		return result;
 	}
 
@@ -121,31 +164,19 @@ public class Association {
 				return false;
 		} else if (!services.equals(other.services))
 			return false;
+		if (validateStatusAsso != other.validateStatusAsso)
+			return false;
 		return true;
 	}
 
-	// String toString
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Association [idAssos=");
-		builder.append(idAssos);
-		builder.append(", nameAssos=");
-		builder.append(nameAssos);
-		builder.append(", logoAsso=");
-		builder.append(logoAsso);
-		builder.append(", justifAsso=");
-		builder.append(justifAsso);
-		builder.append(", numSiret=");
-		builder.append(numSiret);
-		builder.append(", addressAsso=");
-		builder.append(addressAsso);
-		builder.append(", services=");
-		builder.append(services);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append("]");
-		return builder.toString();
+		return "Association [idAssos=" + idAssos + ", nameAssos=" + nameAssos + ", validateStatusAsso="
+				+ validateStatusAsso + ", logoAsso=" + logoAsso + ", justifAsso=" + justifAsso + ", numSiret="
+				+ numSiret + ", addressAsso=" + addressAsso + ", services=" + services + ", role=" + role + "]";
 	}
+
+	
+	
 
 }

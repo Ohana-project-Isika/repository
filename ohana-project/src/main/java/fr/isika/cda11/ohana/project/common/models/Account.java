@@ -28,32 +28,53 @@ public class Account {
 	//Constructeur 
 	public Account() {}
 
-	//Getter et setter
+	public Long getIdAccount() {
+		return idAccount;
+	}
 
-	public String getAccountLogin() {return accountLogin;}
-	public void setAccountLogin(String accountLogin) {this.accountLogin = accountLogin;}
+	public void setIdAccount(Long idAccount) {
+		this.idAccount = idAccount;
+	}
 
-	public String getAccountPassword() {return accountPassword;	}
-	public void setAccountPassword(String accountPassword) {this.accountPassword = accountPassword;}
+	public String getAccountLogin() {
+		return accountLogin;
+	}
 
-	public LocalDate getAccountCreationDate() {	return accountCreationDate;}
-	public void setAccountCreationDate(LocalDate accountCreationDate) {	this.accountCreationDate = accountCreationDate;}
+	public void setAccountLogin(String accountLogin) {
+		this.accountLogin = accountLogin;
+	}
 
-	public PersonInfo getPersonInfo() {	return personInfo;}
-	public void setPersonInfo(PersonInfo personInfo) {this.personInfo = personInfo;}
+	public String getAccountPassword() {
+		return accountPassword;
+	}
 
+	public void setAccountPassword(String accountPassword) {
+		this.accountPassword = accountPassword;
+	}
 
-	public Role getRole() {		return role;	}
-	public void setRole(Role role) {this.role = role;	}
+	public LocalDate getAccountCreationDate() {
+		return accountCreationDate;
+	}
 
-	public Long getIdAccount() {return idAccount;}
-	public void setIdAccount(Long idAccount) {this.idAccount = idAccount;}
+	public void setAccountCreationDate(LocalDate accountCreationDate) {
+		this.accountCreationDate = accountCreationDate;
+	}
 
-	
+	public PersonInfo getPersonInfo() {
+		return personInfo;
+	}
 
-	//Hash and Equals
-	
+	public void setPersonInfo(PersonInfo personInfo) {
+		this.personInfo = personInfo;
+	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	@Override
 	public int hashCode() {
@@ -112,30 +133,11 @@ public class Account {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Account [idAccount=");
-		builder.append(idAccount);
-		builder.append(", accountLogin=");
-		builder.append(accountLogin);
-		builder.append(", accountPassword=");
-		builder.append(accountPassword);
-		builder.append(", accountCreationDate=");
-		builder.append(accountCreationDate);
-		builder.append(", personInfo=");
-		builder.append(personInfo);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append("]");
-		return builder.toString();
+		return "Account [idAccount=" + idAccount + ", accountLogin=" + accountLogin + ", accountPassword="
+				+ accountPassword + ", accountCreationDate=" + accountCreationDate + ", personInfo=" + personInfo
+				+ ", role=" + role + "]";
 	}
+
 	
-	// corps de la méthode de uml 
-	public void connect(Long idAcccount, String accountLogin, String accountPassword, LocalDate accountCreationDate, Long idAccount) {
-		this.idAccount = idAccount;
-		this.accountLogin = accountLogin;
-		this.accountPassword = accountPassword;
-		this.accountLogin = accountLogin;
-		this.accountLogin = accountLogin;
-	}
 
 }
