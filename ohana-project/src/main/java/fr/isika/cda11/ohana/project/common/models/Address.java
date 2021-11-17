@@ -15,44 +15,60 @@ public class Address {
 	private Long idAddress;
 	private Integer numRue;	
 	private String rue;
-	//private String rue2; 			// complément d'adresse : lieu-dit, numero de batiment, n° appartement etc...
 	private String codePostal;
 	private String ville;
-	private String pays;			//facultatif ou automatique en France si code postal (5 chiffres) ou ville correspondent
-//	private Enum<?> suffix; 			// à quoi cela correspond-il? TODO
-
-	// pas de Relation 
-
+	private String pays;
 
 	//constructeur
 	public Address( ) {}
-	
 
-	//getter et setter
-	public Integer getNumRue() 			{return numRue;}
-	public void setNumRue(Integer numRue) 	{this.numRue = numRue;}
+	public Long getIdAddress() {
+		return idAddress;
+	}
 
-	public String getRue() 					{return rue;}
-	public void setRue(String rue) 			{this.rue = rue;}
+	public void setIdAddress(Long idAddress) {
+		this.idAddress = idAddress;
+	}
 
-	//public String getRue2() 				{return rue2;}
-	//public void setRue2(String rue2) 		{this.rue2 = rue2;}
+	public Integer getNumRue() {
+		return numRue;
+	}
 
-	public String getCodePostal() 			{return codePostal;}
-	public void setCodePostal(String codePostal) {this.codePostal = codePostal;}
+	public void setNumRue(Integer numRue) {
+		this.numRue = numRue;
+	}
 
-	public String getVille() 				{return ville;}
-	public void setVille(String ville) 		{this.ville = ville;}
+	public String getRue() {
+		return rue;
+	}
 
-	public String getPays() 				{return pays;}
-	public void setPays(String pays)		{this.pays = pays;}
+	public void setRue(String rue) {
+		this.rue = rue;
+	}
 
-//	public Enum getSuffix() 				{return suffix;}
-//	public void setSuffix(Enum suffix) 		{this.suffix = suffix;}
+	public String getCodePostal() {
+		return codePostal;
+	}
 
-	public long getIdAddress() 				{return idAddress;}
-	public void setIdAddress(Long idAddress) {this.idAddress = idAddress;}
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
 
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
 
 	@Override
 	public int hashCode() {
@@ -63,8 +79,6 @@ public class Address {
 		result = prime * result + ((numRue == null) ? 0 : numRue.hashCode());
 		result = prime * result + ((pays == null) ? 0 : pays.hashCode());
 		result = prime * result + ((rue == null) ? 0 : rue.hashCode());
-//		result = prime * result + ((rue2 == null) ? 0 : rue2.hashCode());
-//		result = prime * result + ((suffix == null) ? 0 : suffix.hashCode());
 		result = prime * result + ((ville == null) ? 0 : ville.hashCode());
 		return result;
 	}
@@ -103,16 +117,6 @@ public class Address {
 				return false;
 		} else if (!rue.equals(other.rue))
 			return false;
-//		if (rue2 == null) {
-//			if (other.rue2 != null)
-//				return false;
-//		} else if (!rue2.equals(other.rue2))
-//			return false;
-/*		if (suffix == null) {
-			if (other.suffix != null)
-				return false;
-		} else if (!suffix.equals(other.suffix))
-			return false;*/
 		if (ville == null) {
 			if (other.ville != null)
 				return false;
@@ -123,27 +127,8 @@ public class Address {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Address [idAddress=");
-		builder.append(idAddress);
-		builder.append(", numRue=");
-		builder.append(numRue);
-		builder.append(", rue=");
-		builder.append(rue);
-		builder.append(", rue2=");
-//		builder.append(rue2);
-		builder.append(", codePostal=");
-		builder.append(codePostal);
-		builder.append(", ville=");
-		builder.append(ville);
-		builder.append(", pays=");
-		builder.append(pays);
-		builder.append(", suffix=");
-//		builder.append(suffix);
-		builder.append(", personInfo=");
-		builder.append("]");
-		return builder.toString();
+		return "Address [idAddress=" + idAddress + ", numRue=" + numRue + ", rue=" + rue + ", codePostal=" + codePostal
+				+ ", ville=" + ville + ", pays=" + pays + "]";
 	}
-
 
 }

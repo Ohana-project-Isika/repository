@@ -13,22 +13,30 @@ public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idAdmin;
+	// Relations
+	@OneToOne
+	private Role role;
 
 	// constructeur
 	public Admin() {
 	}
 
-	// Relations
-	@OneToOne
-	private Role role;
+	public Long getIdAdmin() {
+		return idAdmin;
+	}
 
-	// Getter and setter
-	public Role getRole() {	return role;}
-	public void setRole(Role role) {this.role = role;	}
+	public void setIdAdmin(Long idAdmin) {
+		this.idAdmin = idAdmin;
+	}
 
-	public Long getIdAdmin() {return idAdmin;}
+	public Role getRole() {
+		return role;
+	}
 
-	//Hash and code
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,17 +67,11 @@ public class Admin {
 			return false;
 		return true;
 	}
-	
 
-	//String toString
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Admin [idAdmin=");
-		builder.append(idAdmin);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append("]");
-		return builder.toString();
+		return "Admin [idAdmin=" + idAdmin + ", role=" + role + "]";
 	}
+
+
 }
