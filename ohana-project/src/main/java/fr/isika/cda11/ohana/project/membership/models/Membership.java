@@ -122,9 +122,6 @@ public class Membership {
 		builder.append(association);
 		builder.append("]");
 		return builder.toString();
-
 	}
-
-	
 	
 }

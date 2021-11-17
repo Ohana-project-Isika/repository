@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
 import fr.isika.cda11.ohana.project.common.models.Association;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
@@ -48,6 +47,7 @@ public class MembershipService {
 		membershiprepos.updateMembershipRepos(membershipToUpdate);
 		return findMembershipByIdService(membershipToUpdate.getId());
 	}
+
 	// DELETE
 	public void deleteMembershipService(Long id) {
 		membershiprepos.deleteMembershipRepos(id);
