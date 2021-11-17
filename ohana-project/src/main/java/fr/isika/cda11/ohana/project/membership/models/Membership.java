@@ -15,27 +15,17 @@ public class Membership {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idMbs;
-	private String name;
-	@OneToOne
-	private Association association;
+
 
 	private String nameMbs;				// Mbs pour membership
 	private Date dateOfStart;
 	private Date dateOfEnd;
-	
+
 	// relations
 	@OneToOne
 	private SubscriptionFee subscriptionFee;
-
-
-	public Membership(String name, Association association) {
-		super();
-		this.name = name;
-		this.association = association;
-	}
-
-
-
+	@OneToOne
+	private Association association;
 
 	//constructeur
 	public Membership() {}

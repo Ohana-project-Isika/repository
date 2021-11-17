@@ -12,12 +12,6 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(AccessLevel.NONE)
-	private long id;
-
-	@Column(name = "street_number")
-	private Integer number;
-
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idAddress;
 	private Integer numRue;	
 	private String rue;
@@ -150,5 +144,6 @@ public class Address {
 		builder.append("]");
 		return builder.toString();
 	}
+
 
 }

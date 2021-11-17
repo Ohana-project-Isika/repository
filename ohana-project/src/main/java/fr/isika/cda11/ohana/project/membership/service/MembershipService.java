@@ -20,10 +20,9 @@ public class MembershipService {
 
 
 	public Membership createMembership(String name, Association association) {
-
 		Membership membership = new Membership();
-	//	membership.setName(name);
-//		membership.setAssociation(association);
+		membership.setNameMbs(name);
+		membership.setAssociation(association);
 		return membership;
 	}
 
@@ -49,10 +48,8 @@ public class MembershipService {
 		membershiprepos.updateMembershipRepos(membershipToUpdate);
 		return findMembershipByIdService(membershipToUpdate.getId());
 	}
-
 	// DELETE
 	public void deleteMembershipService(Long id) {
 		membershiprepos.deleteMembershipRepos(id);
-
 	}
 }

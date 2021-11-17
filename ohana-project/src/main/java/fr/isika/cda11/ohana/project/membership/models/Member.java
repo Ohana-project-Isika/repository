@@ -1,5 +1,4 @@
 package fr.isika.cda11.ohana.project.membership.models;
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -93,6 +92,5 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 		builder.append("]");
 		return builder.toString();
 	}
-
 
 }

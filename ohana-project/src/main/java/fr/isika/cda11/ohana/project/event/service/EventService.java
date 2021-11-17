@@ -25,6 +25,7 @@ import fr.isika.cda11.ohana.project.event.repository.EventRepository;
 @Stateless
 public class EventService implements Serializable {
 
+	private static final long serialVersionUID = -2395116975169375108L;
 	@Inject
 	private EventRepository eventRepository;
 
