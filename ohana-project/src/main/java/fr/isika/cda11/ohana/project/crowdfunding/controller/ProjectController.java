@@ -1,6 +1,8 @@
 package fr.isika.cda11.ohana.project.crowdfunding.controller;
 
+
 import java.util.List;
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -69,6 +71,7 @@ public class ProjectController {
 		return "showProject";
 	}
 	
+	
 	public String updateProject() {
 		projectService.updateProjectService(theProject);
 		return "projects";
@@ -89,6 +92,11 @@ public class ProjectController {
 	public String deleteProjectLink(Long id) {
 		theProject = projectService.findProjectService(id);
 		return "deleteProject";
+	}
+	
+	public Long duration(Long id){	
+		Long duration = projectService.durationService(id);
+		return duration;
 	}
     
 }

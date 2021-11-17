@@ -10,38 +10,45 @@
 		<f:view>
 			<h1>Liste des projets</h1>
 			<h:form>
-				<h:dataTable value="#{projectMB.projects}" var="o">
-					<h:column>
-						<f:facet name="header">Nom</f:facet>
-						<h:outputText value="#{o.name}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Objectif financier</f:facet>
-						<h:outputText value="#{o.financialGoal} €" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Description</f:facet>
-						<h:outputText value="#{o.description}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Durée de la campagne</f:facet>
-						<h:outputText value="" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Nombre de financeurs</f:facet>
-						<h:outputText value="#{fundingMB.countFundings(o.id)}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Argent Récolté</f:facet>
-						<h:outputText value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Action</f:facet>
-						<h:commandLink value= "Modifier" action="#{projectMB.editProjectLink(o.id)}" />
-						<h:commandLink value= "Supprimer" action="#{projectMB.deleteProjectLink(o.id)}" />
+				<p:dataTable value="#{projectMB.projects}" var="o">
 
-					</h:column>
-				</h:dataTable>
+					<p:column>
+						<h:selectBooleanCheckbox />
+					</p:column>
+
+					<p:column headerText="Nom">
+						<h:outputText value="#{o.name}" />
+					</p:column>
+
+					<p:column headerText="Objectif financier">
+						<h:outputText value="#{o.financialGoal} €" />
+					</p:column>
+
+					<p:column headerText="Durée de la campagne">
+						<h:outputText value="#{projectMB.duration(o.id)} jours" />
+					</p:column>
+
+					<p:column headerText="Nombre de financeurs">
+						<h:outputText value="#{fundingMB.countFundings(o.id)}" />
+					</p:column>
+
+					<p:column headerText="Argent Récolté">
+						<h:outputText
+							value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
+					</p:column>
+
+					<p:column headerText="Description">
+						<h:outputText value="#{o.description}" />
+					</p:column>
+
+					<p:column headerText="Action">
+						<h:commandLink value="Modifier"
+							action="#{projectMB.editProjectLink(o.id)}" />
+						<h:commandLink value="Supprimer"
+							action="#{projectMB.deleteProjectLink(o.id)}" />
+					</p:column>
+
+				</p:dataTable>
 			</h:form>
 			<h:form>
 				<p>

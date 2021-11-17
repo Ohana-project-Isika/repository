@@ -20,12 +20,8 @@
 						<h:outputText value="#{o.financialGoal} €" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">Description</f:facet>
-						<h:outputText value="#{o.description}" />
-					</h:column>
-					<h:column>
 						<f:facet name="header">Durée de la campagne</f:facet>
-						<h:outputText value="" />
+						<h:outputText value="#{projectMB.duration(o.id)} jours" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Nombre de financeurs</f:facet>
@@ -34,6 +30,10 @@
 					<h:column>
 						<f:facet name="header">Argent Récolté</f:facet>
 						<h:outputText value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Description</f:facet>
+						<h:outputText value="#{o.description}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Action</f:facet>
