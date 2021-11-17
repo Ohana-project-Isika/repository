@@ -1,9 +1,6 @@
 package fr.isika.cda11.ohana.project.common.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -15,8 +12,9 @@ public class Contact {
 	private String phoneNb;
 	private String phoneNb2;     							 
 	private String email;
-	
-	
+
+	@ManyToOne
+	private PersonInfo personInfo;
 	//constructeur
 	public Contact( ) {}
 	

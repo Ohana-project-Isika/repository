@@ -20,7 +20,7 @@ public class PersonInfo {
 	private Date dateOfBirth;
 	
 
-	@OneToMany
+	@OneToMany(mappedBy = "personInfo")
 	private List<Contact> contact;
 	
 	@OneToMany

@@ -13,7 +13,7 @@ public class Account {
 
 	//Attributs
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAccount;
 	private String accountLogin;
 	private String accountPassword;
