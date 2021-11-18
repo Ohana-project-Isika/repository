@@ -1,15 +1,19 @@
 package fr.isika.cda11.ohana.project.crowdfunding.models;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Person {
+public class Funder {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +26,24 @@ public class Person {
 	private String email;
 	private String phoneNumber;
 	
+	@OneToMany(mappedBy = "funder", fetch = FetchType.EAGER)
+	private List<Funding> fundings = new ArrayList<Funding>();
 	
-	public Person() {
+	public void addFunding(Funding funding) {
+		this.fundings.add(funding);
+	}
+	
+	public List<Funding> getFundings() {
+		return fundings;
+	}
+
+
+	public void setFundings(List<Funding> fundings) {
+		this.fundings = fundings;
+	}
+
+
+	public Funder() {
 		
 	}
 
