@@ -9,9 +9,9 @@ import javax.persistence.*;
 @Entity
 public class Address {
 
+	//ATTRIBUTS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Setter(AccessLevel.NONE)
 	private Long idAddress;
 	private Integer numRue;	
 	private String rue;
@@ -19,57 +19,26 @@ public class Address {
 	private String ville;
 	private String pays;
 
-	//constructeur
+	//NO RELATIONS
+	
+	//CONSTRUCTOR
 	public Address( ) {}
 
-	public Long getIdAddress() {
-		return idAddress;
-	}
+	//GETTER AND SETTER
+	public Long getIdAddress() {return idAddress;}
+	public void setIdAddress(Long idAddress) {this.idAddress = idAddress;}
+	public Integer getNumRue() {return numRue;}
+	public void setNumRue(Integer numRue) {this.numRue = numRue;}
+	public String getRue() {return rue;}
+	public void setRue(String rue) {this.rue = rue;}
+	public String getCodePostal() {return codePostal;}
+	public void setCodePostal(String codePostal) {this.codePostal = codePostal;}
+	public String getVille() {return ville;}
+	public void setVille(String ville) {this.ville = ville;}
+	public String getPays() {return pays;}
+	public void setPays(String pays) {this.pays = pays;}
 
-	public void setIdAddress(Long idAddress) {
-		this.idAddress = idAddress;
-	}
-
-	public Integer getNumRue() {
-		return numRue;
-	}
-
-	public void setNumRue(Integer numRue) {
-		this.numRue = numRue;
-	}
-
-	public String getRue() {
-		return rue;
-	}
-
-	public void setRue(String rue) {
-		this.rue = rue;
-	}
-
-	public String getCodePostal() {
-		return codePostal;
-	}
-
-	public void setCodePostal(String codePostal) {
-		this.codePostal = codePostal;
-	}
-
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	public String getPays() {
-		return pays;
-	}
-
-	public void setPays(String pays) {
-		this.pays = pays;
-	}
-
+	//HASCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -124,11 +93,15 @@ public class Address {
 			return false;
 		return true;
 	}
+	
+	// METHOD TO STRING
 
 	@Override
 	public String toString() {
 		return "Address [idAddress=" + idAddress + ", numRue=" + numRue + ", rue=" + rue + ", codePostal=" + codePostal
 				+ ", ville=" + ville + ", pays=" + pays + "]";
 	}
+
+	
 
 }

@@ -33,7 +33,7 @@ public class AddressService {
 	//UPDATE
 	public AddressDto updateAddressService(AddressDto addressDto) {
 		addressRepos.updateAddressRepos(addressDto);
-		return findAddressByIdService(addressDto.getId());
+		return findAddressByIdService(addressDto.getIdAddress());
 	}
 
 	//DELETE

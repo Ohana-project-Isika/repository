@@ -59,7 +59,7 @@ public class MembershipController implements Serializable{
 	//Create
 	public String createMembershipManage(long id) {
 		association=associationService.findAssociationByIdService(id);
-		if (mbsm.getAssociation().getId()==id) {
+		if (mbsm.getAssociation().getIdAssos()==id) {
 			return "createMembershipForm";
 		}
 		else {

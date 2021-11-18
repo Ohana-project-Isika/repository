@@ -1,6 +1,6 @@
 package fr.isika.cda11.ohana.project.event.controller;
 
-import fr.isika.cda11.ohana.project.common.models.Cart;
+import fr.isika.cda11.ohana.project.event.models.Cart;
 import fr.isika.cda11.ohana.project.event.models.Event;
 import fr.isika.cda11.ohana.project.event.models.Ticket;
 import fr.isika.cda11.ohana.project.event.service.EventService;
