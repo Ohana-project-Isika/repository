@@ -2,10 +2,8 @@ package fr.isika.cda11.ohana.project.common.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,4 +16,9 @@ public class Individual {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
+
+    private String firstName;
+
+    @OneToMany(mappedBy = "individual")
+    private List<Order> orders;
 }

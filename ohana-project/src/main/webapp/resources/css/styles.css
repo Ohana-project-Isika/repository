@@ -1,6 +1,8 @@
 /*   French map */
 .carte {
-    width: 100%;
+    width: 20%;
+    margin-top: 5em;
+    margin-left: 2em;
 }
 
 .carte path {
@@ -12,4 +14,15 @@
 
 .carte :hover {
     fill: #363636;
+}
+
+/*  Event cards */
+.eventCard {
+    width: 50em;
+    margin-left: 20rem;
+}
+
+#search {
+    margin-top: 2em;
+    margin-left: 2em;
 }

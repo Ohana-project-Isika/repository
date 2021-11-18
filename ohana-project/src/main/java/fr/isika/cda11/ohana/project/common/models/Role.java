@@ -12,7 +12,7 @@ public class Role {
 	
 	//Attributs
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idRole;
 	private EnumRole role;
 	

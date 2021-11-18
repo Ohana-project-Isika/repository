@@ -1,5 +1,7 @@
 package fr.isika.cda11.ohana.project.common.models;
 
+import fr.isika.cda11.ohana.project.event.models.Ticketing;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +12,7 @@ import javax.persistence.OneToOne;
 public class Association {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAssos;
 	private String nameAssos;
 	private ValidateStatusAsso validateStatusAsso;
@@ -23,12 +25,22 @@ public class Association {
 	private Services services;
 	@OneToOne
 	private Role role;
+	@OneToOne
+	private Ticketing ticketing;
 
 	// constructeur
 	public Association() {}
 
 	public Long getIdAssos() {
 		return idAssos;
+	}
+
+	public Ticketing getTicketing() {
+		return ticketing;
+	}
+
+	public void setTicketing(Ticketing ticketing) {
+		this.ticketing = ticketing;
 	}
 
 	public void setIdAssos(Long idAssos) {

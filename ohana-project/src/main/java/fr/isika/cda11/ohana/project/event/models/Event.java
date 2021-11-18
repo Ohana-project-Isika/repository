@@ -21,7 +21,7 @@ import java.util.*;
 @EqualsAndHashCode
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "Events.findAll", query = "SELECT DISTINCT e FROM Event e")
+        @NamedQuery(name = "Events.findAll", query = "SELECT DISTINCT e FROM Event e LEFT JOIN e.ticketing t LEFT JOIN t.association a")
 })
 public class Event {
 
@@ -44,10 +44,8 @@ public class Event {
     public Date getStartDate() {return startDate;}
     public void setStartDate(Date startDate) {this.startDate = startDate;}
 
-
     @Column(name = "start_time")
-    private Date startTime;
-
+    private LocalTime startTime;
 
     @Column(name = "end_date")
     private Date endDate;
@@ -57,6 +55,12 @@ public class Event {
     @Column(name = "end_time")
     private LocalTime endTime;
 
+    @Column(name = "image_file_name")
+    private String imageFileName;
+
+    @Column(name = "image_description")
+    private String imageDescription;
+
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
             mappedBy = "event",
             orphanRemoval = true
@@ -64,6 +68,11 @@ public class Event {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Ticket> tickets = new ArrayList<>();
+
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Ticketing ticketing;
 
     @OneToOne
     @EqualsAndHashCode.Exclude
@@ -75,6 +84,12 @@ public class Event {
 
     @Transient
     private Ticket ticket;
+
+    @Transient
+    private String endDateString;
+
+    @Transient
+    private String startDateString;
 
     @Transient
     private String fullAddress;

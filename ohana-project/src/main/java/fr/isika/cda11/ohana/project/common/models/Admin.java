@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 public class Admin {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAdmin;
 	// Relations
 	@OneToOne

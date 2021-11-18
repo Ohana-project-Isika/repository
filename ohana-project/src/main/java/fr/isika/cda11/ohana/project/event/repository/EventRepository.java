@@ -28,7 +28,9 @@ public class EventRepository {
 
     //public List<Event> findAllEventsIDF() { return entityManager.createNamedQuery("Events.IDF.findAll").getResultList(); }
 
-    public List<Event> findAllEvents() { return entityManager.createNamedQuery("Events.findAll").getResultList(); }
+    public List findAllEvents() {
+        return entityManager.createNamedQuery("Events.findAll").getResultList();
+    }
 
     public void createEvent(Event event) {
         entityManager.persist(event);

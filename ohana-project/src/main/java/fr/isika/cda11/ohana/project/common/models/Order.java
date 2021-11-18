@@ -17,7 +17,7 @@ import java.util.Map;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Cart implements Serializable {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,9 @@ public class Cart implements Serializable {
     @ToString.Exclude
     private List<Event> events = new ArrayList<>();
 
+    @ManyToOne
+    private Individual individual;
+
     @Transient
     private BigDecimal subTotal = BigDecimal.ZERO;
 
@@ -38,11 +41,20 @@ public class Cart implements Serializable {
     public void addEvents(Event event) {
         events.add(event);
     }
+
     public void addSubTotal(BigDecimal subTotal) {
-        setSubTotal(this.subTotal.add(subTotal).setScale(2, BigDecimal.ROUND_HALF_UP));
+       this.subTotal = this.subTotal.add(subTotal);
     }
 
     public void addTotal(BigDecimal total) {
-        setTotal(this.total.add(total).setScale(2, BigDecimal.ROUND_HALF_UP));
+       this.total = this.total.add(total);
+    }
+
+    public void subtractSubTotal(BigDecimal subTotal) {
+        this.subTotal = this.subTotal.subtract(subTotal);
+    }
+
+    public void subtractTotal(BigDecimal total) {
+        this.total = this.total.subtract(total);
     }
 }

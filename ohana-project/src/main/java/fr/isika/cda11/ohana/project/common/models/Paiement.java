@@ -1,5 +1,8 @@
 package fr.isika.cda11.ohana.project.common.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,7 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
+@Getter
+@Setter
 @Entity
 public class Paiement {
 	
@@ -19,6 +23,10 @@ public class Paiement {
 	private String paymentRef;
 	private Boolean validated;
 	private Date paymentDate;
+	private String cardNumber;
+	private String fullName;
+	private String expiry;
+	private String cvc;
 	
 	//Relations
 

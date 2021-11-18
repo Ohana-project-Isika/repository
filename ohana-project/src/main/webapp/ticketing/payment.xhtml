@@ -11,13 +11,18 @@
         <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>
 
         <h:form>
-            <h:outputText id="msg" value="" binding="#{paymentController.component}"/>
-            <h:message for="msg"/>
-            <br/>
-            <h:outputText id="test" value="Erreur"/>
-            <h:commandLink id="billetterie" action="#{paymentController.back}" value="Aller dans la billetterie"/>
 
-<!--            <h:commandButton value="click me" action="#{componentMsgBean.doAction}" />-->
+            <h:column>
+                <f:facet name="header">Total TTC</f:facet>
+                #{paymentController.cartTotal} €
+            </h:column>
+
+            <h:column>
+                <h:commandButton action="#{paymentController.completePayment()}" value="Réserver" />
+            </h:column>
+
+
         </h:form>
+
     </ui:define>
 </ui:composition>

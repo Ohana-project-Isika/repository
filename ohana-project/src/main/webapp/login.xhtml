@@ -5,12 +5,15 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Tp Gestion</title>
+    <title>Connexion</title>
 </h:head>
 <h:body>
     <h:form>
         <h2>Se Connecter</h2>
-        <br></br>
+        <br>
+            <h:outputText id="msg" value="" binding="#{paymentController.component}"/>
+            <h:message for="msg"/>
+        </br>
         <h:panelGrid columns="3" cellpadding="5" style="position: relative; right: 0;">
             <p:outputLabel id="userNameLbl" for="userNameTxt" value="Identifiant :" />
             <p:inputText id="userNameTxt" value="#{loginController.account.accountLogin}"></p:inputText>

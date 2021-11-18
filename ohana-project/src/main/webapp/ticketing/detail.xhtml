@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layout.xhtml">
+    <ui:define name="content">
+        <f:view>
+        <h:outputStylesheet library="css" name="styles.css"  />
+        <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>
+
+        <div class="card">
+            <h5 style="margin-top:0">Détails de l'évènement</h5>
+            <p:panelGrid columns="2">
+                <f:facet name="header">
+                    <!--                    <p:graphicImage name=""/>-->
+                </f:facet>
+
+                <h:outputText value="Organisateur"/>
+                <h:outputText value="#{eventController.event.ticketing.association.nameAssos}"/>
+
+                <h:outputText value="Nom"/>
+                <h:outputText value="#{eventController.event.name}" />
+
+                <h:outputText value="Description"/>
+                <h:outputText value="#{eventController.event.description}" />
+
+                <h:outputText value="Date de début"/>
+                <h:outputText value="#{eventController.event.startDateString}" />
+
+                <h:outputText value="Heure de début"/>
+                <h:outputText value="#{eventController.event.startTime}" />
+
+                <h:outputText value="Date de fin"/>
+                <h:outputText value="#{eventController.event.endDateString}" />
+
+                <h:outputText value="Heure de fin"/>
+                <h:outputText value="#{eventController.event.endTime}" />
+
+                <h:outputText value="Nombre de tickets"/>
+                <h:outputText value="#{eventController.event.ticketQuantity}" />
+
+                <h:outputText value="Tarif"/>
+                <h:outputText value="#{eventController.event.ticket.rateType}" />
+
+                <h:outputText value="Prix HT"/>
+                <h:outputText value="#{eventController.event.ticket.preTaxPrice} €" />
+
+                <h:outputText value="Prix TTC"/>
+                <h:outputText value="#{eventController.event.ticket.postTaxPrice} €" />
+
+                <h:outputText value="Lieu"/>
+                <h:outputText value="#{eventController.event.fullAddress}" />
+
+            </p:panelGrid>
+
+            <h:column>
+                <h:commandButton action="#{eventController.back}" value="Retour à la liste des évènements" />
+                <br/>
+                <h:commandButton action="#{eventController.checkout(eventController.event)}" value="Réserver" />
+            </h:column>
+        </div>
+
+        </f:view>
+    </ui:define>
+</ui:composition>

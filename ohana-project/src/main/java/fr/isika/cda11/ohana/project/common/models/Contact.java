@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Contact {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idContact;
 	private String phoneNb;
 	private String phoneNb2;     							 

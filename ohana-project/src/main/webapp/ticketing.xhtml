@@ -4,19 +4,23 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/WEB-INF/templates/default.xhtml">
-
-    <ui:define name="content">
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layout.xhtml">
+    <ui:define name="head">
+        <h:outputStylesheet library="css" name="table.css" />
         <h:outputStylesheet library="css" name="styles.css"  />
         <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>
+    </ui:define>
 
-        <div hidden="hidden">
-            <h:form id="form">
-                <h:inputHidden id="region" value="#{eventController.region}" />
-            <h:commandLink id="link" action="#{eventController.update}"
-                           value="click"/>
-        </h:form>
-        </div>
+    <ui:define name="content">
+        <f:view>
+            <div hidden="hidden">
+                <h:form id="form">
+                    <h:inputHidden id="region" value="#{eventController.region}" />
+                    <h:commandLink id="link" action="#{eventController.update}"
+                                   value="click"/>
+                </h:form>
+            </div>
 
             <h3>Recherche par région</h3>
 
@@ -133,56 +137,50 @@
         </svg>
             </div>
 
-            <div id="general">
-                <h:form id="test">
-                    <h:dataTable value="#{eventController.events}" var="event">
-                        <h:column>
-                            <f:facet name="header">Nom</f:facet>
-                            <h:outputText value="#{event.name}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Description</f:facet>
-                            <h:outputText value="#{event.description}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Date de début</f:facet>
-                            <h:outputText value="#{event.startDate}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Heure de début</f:facet>
-                            <h:outputText value="#{event.startTime}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Date de fin</f:facet>
-                            <h:outputText value="#{event.endDate}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Heure de fin</f:facet>
-                            <h:outputText value="#{event.endTime}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Nombre de tickets</f:facet>
-                            <h:outputText value="#{event.ticketQuantity}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Tarif</f:facet>
-                            <h:outputText value="#{event.ticket.rateType}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Prix TTC</f:facet>
-                            <h:outputText value="#{event.ticket.postTaxPrice} €" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Lieu</f:facet>
-                            <h:outputText value="#{event.fullAddress}" />
-                        </h:column>
+            <h3>Liste des évènements</h3>
+            <h:form id="events">
+                <h:dataTable value="#{eventController.events}" var="event">
 
-                        <h:column>
-                            <h:commandButton action="#{eventController.checkout(event)}" value="Réserver" />
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-            </div>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:outputText value="#{eventController.numberMap.get(event)}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:graphicImage library="gfx" name="#{event.imageFileName}" alt="#{event.imageDescription}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Organisateur</f:facet>
+                        <h:outputText value="#{event.ticketing.association.nameAssos}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nom</f:facet>
+                        <h:outputText value="#{event.name}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Description</f:facet>
+                        <h:outputText value="#{event.description}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Date de début</f:facet>
+                        <h:outputText value="#{event.startDateString}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Prix TTC</f:facet>
+                        <h:outputText value="#{event.ticket.postTaxPrice} €" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Lieu</f:facet>
+                        <h:outputText value="#{event.fullAddress}" />
+                    </h:column>
 
+                    <h:column>
+                        <h:commandButton action="#{eventController.detail(event)}" value="Détails" />
+                        <h:commandButton action="#{eventController.checkout(event)}" value="Réserver" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+
+        </f:view>
     </ui:define>
 </ui:composition>

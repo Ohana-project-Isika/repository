@@ -23,8 +23,8 @@
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">Nombre de tickets</f:facet>
-                    #{event.ticketQuantity}
+                    <f:facet name="header">Nombre de tickets sélectionnés</f:facet>
+                    #{eventController.countMap.get(event)}
                 </h:column>
 
                 <h:column>
@@ -45,15 +45,6 @@
                 <h:column>
                     <f:facet name="header">Prix TTC</f:facet>
                     <input type="text" id="postTax_#{event.id}" value="#{event.ticket.postTaxPrice}"/>
-                </h:column>
-
-                <h:column >
-                    <input type="button" onclick="decrement('#{event.id}')" value="-"/>
-                    <input class="byAmount" id="#{event.id}" type="number" value="1" min="1" max="#{event.ticketQuantity}"/>
-                    <input type="button" onclick="increment('#{event.id}')" value="+"/>
-                </h:column>
-
-                <h:column >
                 </h:column>
 
                 <h:column>
@@ -83,11 +74,11 @@
                     #{eventController.cart.total}
                 </p>
             </h:column>
-            <a href="#"><p onclick="getVars('#{eventController.cart.subTotal}', '#{eventController.cart.total}')">Payer</p></a>
+            <a href="#"><p onclick="getVars('#{eventController.cart.subTotal}', '#{eventController.cart.total}')">Continuer le paiement</p></a>
             <div hidden="hidden">
-                <h:inputHidden id="subTotal" value="#{authorizePaymentController.cartSubTotal}" />
-                <h:inputHidden id="total" value="#{authorizePaymentController.cartTotal}" />
-                <h:commandLink id="link" action="#{authorizePaymentController.pay(eventController.cart)}"
+                <h:inputHidden id="subTotal" value="#{paymentController.cartSubTotal}" />
+                <h:inputHidden id="total" value="#{paymentController.cartTotal}" />
+                <h:commandLink id="link" action="#{paymentController.continuePayment(eventController.cart)}"
                                value="click"/>
             </div>
         </h:form>
