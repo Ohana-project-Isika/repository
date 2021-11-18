@@ -21,7 +21,7 @@ public class MembershipService {
 	public Membership createMembership(String name, Association association) {
 		Membership membership = new Membership();
 		membership.setNameMbs(name);
-		membership.setAssociation(association);
+	//	membership.setAssociation(association);
 		return membership;
 	}
 

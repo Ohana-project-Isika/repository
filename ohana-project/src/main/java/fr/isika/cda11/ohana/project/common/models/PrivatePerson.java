@@ -2,50 +2,55 @@ package fr.isika.cda11.ohana.project.common.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class PrivatePerson {
 
-	//Attributs
+	//ATTRIBUTS
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPrivatePerson;
-	private Byte photoProfil;
+	private String photoProfil;
 
-	//Relations 
-	@OneToMany				
+	//RELATIONS 
+	@OneToMany
+	@JoinColumn(name="PRIVATEPERSON_ID")
 	private List<Paiement> paiement;
-	@OneToOne
-	private Role role;
+	@OneToOne(cascade = CascadeType.ALL, optional=false)
+	@JoinColumn(name="ACCOUNT_ID", unique=true, nullable=false)
+	private Account account;
 	
-	// Getter and setter
-	public Byte getPhotoProfil() {return photoProfil;}
-	public void setPhotoProfil(Byte photoProfil) {this.photoProfil = photoProfil;}
-	
+	//GETTER AND SETTER
+	public Long getIdPrivatePerson() {return idPrivatePerson;}
+	public void setIdPrivatePerson(Long idPrivatePerson) {this.idPrivatePerson = idPrivatePerson;}
+	public String getPhotoProfil() {return photoProfil;}
+	public void setPhotoProfil(String photoProfil) {this.photoProfil = photoProfil;}
 	public List<Paiement> getPaiement() {return paiement;}
 	public void setPaiement(List<Paiement> paiement) {this.paiement = paiement;}
-	
-	public Role getRole() {	return role;}
-	public void setRole(Role role) {this.role = role;	}
-	
-	public Long getIdPrivatePerson() {return idPrivatePerson;}
+	public Account getAccount() {return account;}
+	public void setAccount(Account account) {this.account = account;}
 	
 	
-	//hash & Equals
+	//CONSTRUCTOR
+	public PrivatePerson() {}
+	
+	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
 		result = prime * result + ((idPrivatePerson == null) ? 0 : idPrivatePerson.hashCode());
 		result = prime * result + ((paiement == null) ? 0 : paiement.hashCode());
 		result = prime * result + ((photoProfil == null) ? 0 : photoProfil.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
 	@Override
@@ -57,6 +62,11 @@ public class PrivatePerson {
 		if (getClass() != obj.getClass())
 			return false;
 		PrivatePerson other = (PrivatePerson) obj;
+		if (account == null) {
+			if (other.account != null)
+				return false;
+		} else if (!account.equals(other.account))
+			return false;
 		if (idPrivatePerson == null) {
 			if (other.idPrivatePerson != null)
 				return false;
@@ -72,32 +82,20 @@ public class PrivatePerson {
 				return false;
 		} else if (!photoProfil.equals(other.photoProfil))
 			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
 		return true;
 	}
-
-	//String toString
+	
+	//METHOD TOSTRING
 	@Override
-		public String toString() {
-			StringBuilder builder = new StringBuilder();
-			builder.append("PrivatePerson [idPrivatePerson=");
-			builder.append(idPrivatePerson);
-			builder.append(", photoProfil=");
-			builder.append(photoProfil);
-			builder.append(", paiement=");
-			builder.append(paiement);
-			builder.append(", role=");
-			builder.append(role);
-			builder.append("]");
-			return builder.toString();
-		}
-
-	// corps de la méthode de uml
-	public void manageProfil() {
-		
+	public String toString() {
+		return "PrivatePerson [idPrivatePerson=" + idPrivatePerson + ", photoProfil=" + photoProfil + ", paiement="
+				+ paiement + ", account=" + account + "]";
 	}
+	
+	
+	
+
+	
+
+	
 }

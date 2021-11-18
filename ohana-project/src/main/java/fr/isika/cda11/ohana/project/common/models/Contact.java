@@ -1,42 +1,37 @@
 package fr.isika.cda11.ohana.project.common.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
 public class Contact {
 
+	//ATTRIBUTS
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idContact;
 	private String phoneNb;
-	private String phoneNb2;     							 
+	private String phoneNb2; 
+	@Column(nullable=false, unique=true)
 	private String email;
-	
-	
-	//constructeur
+
+
+	//CONSTRUCTOR
 	public Contact( ) {}
 	
-	//pas de Relation (lien unidirectionnel par PersonInfo)
+	//GETTER AND SETTER
 
-	//getter et setter
+	public Long getIdContact() {return idContact;}
+	public void setIdContact(Long idContact) {this.idContact = idContact;}
 	public String getPhoneNb() {return phoneNb;}
 	public void setPhoneNb(String phoneNb) {this.phoneNb = phoneNb;}
-	
 	public String getPhoneNb2() {return phoneNb2;}
 	public void setPhoneNb2(String phoneNb2) {this.phoneNb2 = phoneNb2;}
-
-	public String getEmail() {return email;	}
+	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}
 
-	public long getIdContact() {return idContact;}
-	
 
-
-	// hashCode and Equals
+	//HASCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,22 +75,14 @@ public class Contact {
 		return true;
 	}
 
-
-	//toString
+	//METHOD TO STRING
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Contact [idContact=");
-		builder.append(idContact);
-		builder.append(", phoneNb=");
-		builder.append(phoneNb);
-		builder.append(", phoneNb2=");
-		builder.append(phoneNb2);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", personInfo=");
-		builder.append("]");
-		return builder.toString();
+		return "Contact [idContact=" + idContact + ", phoneNb=" + phoneNb + ", phoneNb2=" + phoneNb2 + ", email="
+				+ email + ", personInfo=" + "]";
 	}
+
+
+
 
 }

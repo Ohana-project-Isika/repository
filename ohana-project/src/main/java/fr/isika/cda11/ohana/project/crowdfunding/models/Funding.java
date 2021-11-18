@@ -18,8 +18,11 @@ public class Funding {
 	@ManyToOne
 	private Project project;
 	
+	@ManyToOne
+	private Funder funder;
 	
-	//private Person person;
+	
+	
 	public Project getProject() {
 		return project;
 	}
@@ -39,17 +42,15 @@ public class Funding {
 	public void setFundingAmount(Integer fundingAmount) {
 		this.fundingAmount = fundingAmount;
 	}
-/*
-	
 
-	public Person getPerson() {
-		return person;
+
+	public Funder getFunder() {
+		return funder;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setFunder(Funder funder) {
+		this.funder = funder;
 	}
-	*/
 
 	public Long getId() {
 		return id;

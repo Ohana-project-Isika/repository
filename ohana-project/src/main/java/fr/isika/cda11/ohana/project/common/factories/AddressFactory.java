@@ -11,21 +11,23 @@ public final class AddressFactory {
 	
 	public static Address fromAddressDto(AddressDto addressDto) {
 		Address address= new Address();
-		address.setNumRue(addressDto.getNumber());
-		address.setRue(addressDto.getStreet());
-		address.setCodePostal(addressDto.getDepartment());
-		address.setVille(addressDto.getCity());
-		address.setIdAddress(addressDto.getId());
+		address.setNumRue(addressDto.getNumRue());
+		address.setRue(addressDto.getRue());
+		address.setCodePostal(addressDto.getCodePostal());
+		address.setVille(addressDto.getVille());
+		address.setPays(addressDto.getPays());
+		address.setIdAddress(addressDto.getIdAddress());
 		return address;
 	}
 	
 	public static AddressDto fromAddress(Address address) {
 		AddressDto addressDto= new AddressDto();
-		addressDto.setNumber(address.getNumRue());
-		addressDto.setStreet(address.getRue());
-		addressDto.setDepartment(address.getCodePostal());
-		addressDto.setCity(address.getVille());
-		addressDto.setId(address.getIdAddress());
+		addressDto.setNumRue(address.getNumRue());
+		addressDto.setRue(address.getRue());
+		addressDto.setCodePostal(address.getCodePostal());
+		addressDto.setVille(address.getVille());
+		addressDto.setPays(address.getPays());
+		addressDto.setIdAddress(address.getIdAddress());
 		return addressDto;
 	}
 	

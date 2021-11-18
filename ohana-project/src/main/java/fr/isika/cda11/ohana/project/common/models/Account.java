@@ -2,80 +2,55 @@ package fr.isika.cda11.ohana.project.common.models;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import fr.isika.cda11.ohana.project.enumclass.EnumRole;
 
 @Entity
 public class Account {
 
-	//Attributs
+	//ATTRIBUTS
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAccount;
+	@Column(nullable=false, unique=true)
 	private String accountLogin;
 	private String accountPassword;
+	@Enumerated(EnumType.STRING)
+	private EnumRole role;
 	private LocalDate accountCreationDate;
 	
-	// Relation : OneToOne avec PersonInfo 
-	@OneToOne(cascade = CascadeType.ALL)
-	private PersonInfo personInfo;
-	@OneToOne
-	private Role role;
+	// RELATIONS
+	@OneToOne(cascade = CascadeType.ALL, optional=false)
+	@JoinColumn(name="INFOPERSON_ID", unique=true, nullable=false)
+	private InfoPerson infoPerson;
 
-	//Constructeur 
+	//CONSTRUCTEUR 
 	public Account() {}
 
-	public Long getIdAccount() {
-		return idAccount;
-	}
-
-	public void setIdAccount(Long idAccount) {
-		this.idAccount = idAccount;
-	}
-
-	public String getAccountLogin() {
-		return accountLogin;
-	}
-
-	public void setAccountLogin(String accountLogin) {
-		this.accountLogin = accountLogin;
-	}
-
-	public String getAccountPassword() {
-		return accountPassword;
-	}
-
-	public void setAccountPassword(String accountPassword) {
-		this.accountPassword = accountPassword;
-	}
-
-	public LocalDate getAccountCreationDate() {
-		return accountCreationDate;
-	}
-
-	public void setAccountCreationDate(LocalDate accountCreationDate) {
-		this.accountCreationDate = accountCreationDate;
-	}
-
-	public PersonInfo getPersonInfo() {
-		return personInfo;
-	}
-
-	public void setPersonInfo(PersonInfo personInfo) {
-		this.personInfo = personInfo;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
+	//GETTER AND SETTER
+	public Long getIdAccount() {return idAccount;}
+	public void setIdAccount(Long idAccount) {this.idAccount = idAccount;}
+	public String getAccountLogin() {return accountLogin;}
+	public void setAccountLogin(String accountLogin) {this.accountLogin = accountLogin;}
+	public String getAccountPassword() {return accountPassword;}
+	public void setAccountPassword(String accountPassword) {this.accountPassword = accountPassword;}
+	public LocalDate getAccountCreationDate() {return accountCreationDate;}
+	public void setAccountCreationDate(LocalDate accountCreationDate) {this.accountCreationDate = accountCreationDate;}
+	public InfoPerson getInfoPerson() {return infoPerson;}
+	public void setInfoPerson(InfoPerson infoPerson) {this.infoPerson = infoPerson;}
+	public EnumRole getRole() {return role;}
+	public void setRole(EnumRole role) {this.role = role;}
+	
+	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,7 +59,7 @@ public class Account {
 		result = prime * result + ((accountLogin == null) ? 0 : accountLogin.hashCode());
 		result = prime * result + ((accountPassword == null) ? 0 : accountPassword.hashCode());
 		result = prime * result + ((idAccount == null) ? 0 : idAccount.hashCode());
-		result = prime * result + ((personInfo == null) ? 0 : personInfo.hashCode());
+		result = prime * result + ((infoPerson == null) ? 0 : infoPerson.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -118,24 +93,22 @@ public class Account {
 				return false;
 		} else if (!idAccount.equals(other.idAccount))
 			return false;
-		if (personInfo == null) {
-			if (other.personInfo != null)
+		if (infoPerson == null) {
+			if (other.infoPerson != null)
 				return false;
-		} else if (!personInfo.equals(other.personInfo))
+		} else if (!infoPerson.equals(other.infoPerson))
 			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
+		if (role != other.role)
 			return false;
 		return true;
 	}
 
+	//METHOD TO STRING
 	@Override
 	public String toString() {
 		return "Account [idAccount=" + idAccount + ", accountLogin=" + accountLogin + ", accountPassword="
-				+ accountPassword + ", accountCreationDate=" + accountCreationDate + ", personInfo=" + personInfo
-				+ ", role=" + role + "]";
+				+ accountPassword + ", role=" + role + ", accountCreationDate=" + accountCreationDate + ", infoPerson="
+				+ infoPerson + "]";
 	}
 
 	

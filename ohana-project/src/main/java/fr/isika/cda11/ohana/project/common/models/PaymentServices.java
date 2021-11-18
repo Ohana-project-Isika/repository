@@ -5,6 +5,8 @@ import java.util.*;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.*;
 
+import fr.isika.cda11.ohana.project.event.models.OrderDetail;
+
 public class PaymentServices {
     private static final String CLIENT_ID = "AX-azce-xi8k1iprgyUpHzMdtCC6XyefgvcrKSG8veczA0VZP_E3vdZ0zrtCv4OwjsGgWYA0Ut_kuhPg";
     private static final String CLIENT_SECRET = "ENIvN4brKTEH8c9vMUMo35zHqkn5VJiRjNNrGLcehypqEz6ERKsioT3t2sKLNz1ubFhsu_GxXzriT0F9";

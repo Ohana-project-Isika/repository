@@ -1,5 +1,8 @@
 package fr.isika.cda11.ohana.project.common.models;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,52 +12,33 @@ import javax.persistence.OneToOne;
 @Entity
 public class Services {
 
+	//ATTRIBUTS
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idServices;
-
 	private String typeOfSub;
-	private Integer priceOfSub;
+	@Column(scale = 2)
+	private BigDecimal priceOfSub;
 
-	// bidirectionnel
-	@OneToOne
-	private Association association;
+	
+	//GETTER AND SETTER
+	public Long getIdServices() {return idServices;}
+	public void setIdServices(Long idServices) {this.idServices = idServices;}
+	public String getTypeOfSub() {return typeOfSub;}
+	public void setTypeOfSub(String typeOfSub) {this.typeOfSub = typeOfSub;}
+	public BigDecimal getPriceOfSub() {return priceOfSub;}
+	public void setPriceOfSub(BigDecimal priceOfSub) {this.priceOfSub = priceOfSub;}
+	
+	//CONSTRUCTOR
 
-	// getter and setter
-	public String getTypeOfSub() {
-		return typeOfSub;
-	}
+	public Services() {}
 
-	public void setTypeOfSub(String typeOfSub) {
-		this.typeOfSub = typeOfSub;
-	}
-
-	public Integer getPriceOfSub() {
-		return priceOfSub;
-	}
-
-	public void setPriceOfSub(Integer priceOfSub) {
-		this.priceOfSub = priceOfSub;
-	}
-
-	public Association getAssociation() {
-		return association;
-	}
-
-	public void setAssociation(Association association) {
-		this.association = association;
-	}
-
-	public Long getIdServices() {
-		return idServices;
-	}
-
-	// HAsh ans code
+	
+	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((association == null) ? 0 : association.hashCode());
 		result = prime * result + ((idServices == null) ? 0 : idServices.hashCode());
 		result = prime * result + ((priceOfSub == null) ? 0 : priceOfSub.hashCode());
 		result = prime * result + ((typeOfSub == null) ? 0 : typeOfSub.hashCode());
@@ -70,11 +54,6 @@ public class Services {
 		if (getClass() != obj.getClass())
 			return false;
 		Services other = (Services) obj;
-		if (association == null) {
-			if (other.association != null)
-				return false;
-		} else if (!association.equals(other.association))
-			return false;
 		if (idServices == null) {
 			if (other.idServices != null)
 				return false;
@@ -93,23 +72,12 @@ public class Services {
 		return true;
 	}
 
-	// String toString
+	//METHOD TO STRING
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Services [idServices=");
-		builder.append(idServices);
-		builder.append(", typeOfSub=");
-		builder.append(typeOfSub);
-		builder.append(", priceOfSub=");
-		builder.append(priceOfSub);
-		builder.append(", association=");
-		builder.append(association);
-		builder.append("]");
-		return builder.toString();
+		return "Services [idServices=" + idServices + ", typeOfSub=" + typeOfSub + ", priceOfSub=" + priceOfSub
+				+ ", association=" + "]";
 	}
 
-	// corps de la méthode de uml
-	public void subscribe() {
-	}
+	
 }

@@ -3,67 +3,60 @@ package fr.isika.cda11.ohana.project.common.models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
 public class Paiement {
 	
-	//Attributs
+	//ATTRIBUTS
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPayment;
 	private String paymentRef;
 	private Boolean validated;
+	@Temporal(TemporalType.DATE)  
 	private Date paymentDate;
 	
-	//Relations
+	//RELATION
 
 	@ManyToOne
-	private PrivatePerson privatePerson;
+	@JoinColumn(name="ACCOUNT_ID")
+	private Account account;
 	
-	//Constructeur
+	//CONSTRUCTOR
 	public Paiement() {}
 
-	
-	// Getter &Setter
-	
-	public String getpaymentRef() {	return paymentRef;}
-	public void setpaymentRef(String paymentRef) {this.paymentRef = paymentRef;}
-	
-	public Boolean getValidated() {	return validated;}
+	public Long getIdPayment() {return idPayment;}
+	public void setIdPayment(Long idPayment) {this.idPayment = idPayment;}
+	public String getPaymentRef() {return paymentRef;}
+	public void setPaymentRef(String paymentRef) {this.paymentRef = paymentRef;}
+	public Boolean getValidated() {return validated;}
 	public void setValidated(Boolean validated) {this.validated = validated;}
-
 	public Date getPaymentDate() {return paymentDate;}
-	public void setPaymentDate(Date paymentDate) {	this.paymentDate = paymentDate;}
+	public void setPaymentDate(Date paymentDate) {this.paymentDate = paymentDate;}
+	public Account getAccount() {return account;}
+	public void setAccount(Account account) {this.account = account;}
 
-//	public List<Association> getAssociation() {	return association;}
-//	public void setAssociation(List<Association> association) {this.association = association;}
-
-	public PrivatePerson getPrivatePerson() {return privatePerson;}
-	public void setPrivatePerson(PrivatePerson privatePerson) {	this.privatePerson = privatePerson;}
-
-	public Long getIdPayment() {return idPayment;	}
-
-	
-	// Hash&equals
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-//		result = prime * result + ((association == null) ? 0 : association.hashCode());
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
 		result = prime * result + ((idPayment == null) ? 0 : idPayment.hashCode());
-		result = prime * result + ((paymentRef == null) ? 0 : paymentRef.hashCode());
 		result = prime * result + ((paymentDate == null) ? 0 : paymentDate.hashCode());
-		result = prime * result + ((privatePerson == null) ? 0 : privatePerson.hashCode());
+		result = prime * result + ((paymentRef == null) ? 0 : paymentRef.hashCode());
 		result = prime * result + ((validated == null) ? 0 : validated.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -74,11 +67,11 @@ public class Paiement {
 		if (getClass() != obj.getClass())
 			return false;
 		Paiement other = (Paiement) obj;
-/*		if (association == null) {
-			if (other.association != null)
+		if (account == null) {
+			if (other.account != null)
 				return false;
-		} else if (!association.equals(other.association))
-			return false;  */
+		} else if (!account.equals(other.account))
+			return false;
 		if (idPayment == null) {
 			if (other.idPayment != null)
 				return false;
@@ -94,11 +87,6 @@ public class Paiement {
 				return false;
 		} else if (!paymentRef.equals(other.paymentRef))
 			return false;
-		if (privatePerson == null) {
-			if (other.privatePerson != null)
-				return false;
-		} else if (!privatePerson.equals(other.privatePerson))
-			return false;
 		if (validated == null) {
 			if (other.validated != null)
 				return false;
@@ -107,26 +95,12 @@ public class Paiement {
 		return true;
 	}
 
-	
-	// String toString
-	
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Paiement [idPayment=");
-		builder.append(idPayment);
-		builder.append(", validated=");
-		builder.append(validated);
-		builder.append(", paymentDate=");
-		builder.append(paymentDate);
-		builder.append(", paymentRef=");
-		builder.append(paymentRef);
-		builder.append(", association=");
-//		builder.append(association);
-		builder.append(", privatePerson=");
-		builder.append(privatePerson);
-		builder.append("]");
-		return builder.toString();
+		return "Paiement [idPayment=" + idPayment + ", paymentRef=" + paymentRef + ", validated=" + validated
+				+ ", paymentDate=" + paymentDate + ", account=" + account + "]";
 	}
+
 	
+
 }
