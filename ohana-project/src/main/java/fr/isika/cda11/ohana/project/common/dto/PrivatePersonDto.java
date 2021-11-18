@@ -1,9 +1,9 @@
-package fr.isika.cda11.ohana.project.common.models;
+package fr.isika.cda11.ohana.project.common.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,38 +11,64 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-@Entity
-public class PrivatePerson {
+import fr.isika.cda11.ohana.project.common.models.Account;
+import fr.isika.cda11.ohana.project.common.models.Paiement;
 
+public class PrivatePersonDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 728672485924722258L;
+
+	
 	//ATTRIBUTS
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPrivatePerson;
 	private String photoProfil;
 
 	//RELATIONS 
-	@OneToMany
-	@JoinColumn(name="PRIVATEPERSON_ID")
-	private List<Paiement> paiement;
-	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="ACCOUNT_ID", unique=true, nullable=false)
-	private Account account;
-	
-	//GETTER AND SETTER
-	public Long getIdPrivatePerson() {return idPrivatePerson;}
-	public void setIdPrivatePerson(Long idPrivatePerson) {this.idPrivatePerson = idPrivatePerson;}
-	public String getPhotoProfil() {return photoProfil;}
-	public void setPhotoProfil(String photoProfil) {this.photoProfil = photoProfil;}
-	public List<Paiement> getPaiement() {return paiement;}
-	public void setPaiement(List<Paiement> paiement) {this.paiement = paiement;}
-	public Account getAccount() {return account;}
-	public void setAccount(Account account) {this.account = account;}
-	
+	private List<PaiementDto> paiement;
+	private AccountDto account;
 	
 	//CONSTRUCTOR
-	public PrivatePerson() {}
-	
-	//HASHCODE AND EQUALS
+	public PrivatePersonDto() {}
+
+	public Long getIdPrivatePerson() {
+		return idPrivatePerson;
+	}
+
+	public void setIdPrivatePerson(Long idPrivatePerson) {
+		this.idPrivatePerson = idPrivatePerson;
+	}
+
+	public String getPhotoProfil() {
+		return photoProfil;
+	}
+
+	public void setPhotoProfil(String photoProfil) {
+		this.photoProfil = photoProfil;
+	}
+
+	public List<PaiementDto> getPaiement() {
+		return paiement;
+	}
+
+	public void setPaiement(List<PaiementDto> paiement) {
+		this.paiement = paiement;
+	}
+
+	public AccountDto getAccount() {
+		return account;
+	}
+
+	public void setAccount(AccountDto account) {
+		this.account = account;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,6 +79,7 @@ public class PrivatePerson {
 		result = prime * result + ((photoProfil == null) ? 0 : photoProfil.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,7 +88,7 @@ public class PrivatePerson {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PrivatePerson other = (PrivatePerson) obj;
+		PrivatePersonDto other = (PrivatePersonDto) obj;
 		if (account == null) {
 			if (other.account != null)
 				return false;
@@ -84,18 +111,12 @@ public class PrivatePerson {
 			return false;
 		return true;
 	}
-	
-	//METHOD TOSTRING
+
 	@Override
 	public String toString() {
-		return "PrivatePerson [idPrivatePerson=" + idPrivatePerson + ", photoProfil=" + photoProfil + ", paiement="
+		return "PrivatePersonDto [idPrivatePerson=" + idPrivatePerson + ", photoProfil=" + photoProfil + ", paiement="
 				+ paiement + ", account=" + account + "]";
 	}
 	
-	
-	
-
-	
-
 	
 }

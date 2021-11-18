@@ -1,23 +1,21 @@
-package fr.isika.cda11.ohana.project.common.models;
+package fr.isika.cda11.ohana.project.common.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
-@Entity
-public class Services {
-
+public class ServicesDto implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3822590383910797050L;
 	//ATTRIBUTS
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idServices;
 	private String typeOfSub;
-	@Column(scale = 2)
 	private BigDecimal priceOfSub;
 
 	
@@ -31,10 +29,7 @@ public class Services {
 	
 	//CONSTRUCTOR
 
-	public Services() {}
-
-	
-	//HASHCODE AND EQUALS
+	public ServicesDto() {}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,7 +39,6 @@ public class Services {
 		result = prime * result + ((typeOfSub == null) ? 0 : typeOfSub.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -53,7 +47,7 @@ public class Services {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Services other = (Services) obj;
+		ServicesDto other = (ServicesDto) obj;
 		if (idServices == null) {
 			if (other.idServices != null)
 				return false;
@@ -71,13 +65,11 @@ public class Services {
 			return false;
 		return true;
 	}
-
-	//METHOD TO STRING
 	@Override
 	public String toString() {
-		return "Services [idServices=" + idServices + ", typeOfSub=" + typeOfSub + ", priceOfSub=" + priceOfSub
-				+ ", association=" + "]";
+		return "ServicesDto [idServices=" + idServices + ", typeOfSub=" + typeOfSub + ", priceOfSub=" + priceOfSub
+				+ "]";
 	}
-
+	
 	
 }

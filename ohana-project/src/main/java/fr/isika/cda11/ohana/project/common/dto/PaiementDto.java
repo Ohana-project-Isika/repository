@@ -1,10 +1,8 @@
-package fr.isika.cda11.ohana.project.common.models;
+package fr.isika.cda11.ohana.project.common.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,38 +11,71 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import fr.isika.cda11.ohana.project.common.models.Account;
 
-@Entity
-public class Paiement {
-	
+public class PaiementDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6118318281416321468L;
+
 	//ATTRIBUTS
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long idPayment;
 	private String paymentRef;
-	private Boolean validated;
-	@Temporal(TemporalType.DATE)  
+	private Boolean validated; 
 	private Date paymentDate;
 	
 	//RELATION
-
-	@ManyToOne
-	@JoinColumn(name="ACCOUNT_ID")
-	private Account account;
+	private AccountDto account;
 	
 	//CONSTRUCTOR
-	public Paiement() {}
+	public PaiementDto() {}
 
-	public Long getIdPayment() {return idPayment;}
-	public void setIdPayment(Long idPayment) {this.idPayment = idPayment;}
-	public String getPaymentRef() {return paymentRef;}
-	public void setPaymentRef(String paymentRef) {this.paymentRef = paymentRef;}
-	public Boolean getValidated() {return validated;}
-	public void setValidated(Boolean validated) {this.validated = validated;}
-	public Date getPaymentDate() {return paymentDate;}
-	public void setPaymentDate(Date paymentDate) {this.paymentDate = paymentDate;}
-	public Account getAccount() {return account;}
-	public void setAccount(Account account) {this.account = account;}
+	public Long getIdPayment() {
+		return idPayment;
+	}
+
+	public void setIdPayment(Long idPayment) {
+		this.idPayment = idPayment;
+	}
+
+	public String getPaymentRef() {
+		return paymentRef;
+	}
+
+	public void setPaymentRef(String paymentRef) {
+		this.paymentRef = paymentRef;
+	}
+
+	public Boolean getValidated() {
+		return validated;
+	}
+
+	public void setValidated(Boolean validated) {
+		this.validated = validated;
+	}
+
+	public Date getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(Date paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
+	public AccountDto getAccount() {
+		return account;
+	}
+
+	public void setAccount(AccountDto account) {
+		this.account = account;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public int hashCode() {
@@ -66,7 +97,7 @@ public class Paiement {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Paiement other = (Paiement) obj;
+		PaiementDto other = (PaiementDto) obj;
 		if (account == null) {
 			if (other.account != null)
 				return false;
@@ -97,10 +128,10 @@ public class Paiement {
 
 	@Override
 	public String toString() {
-		return "Paiement [idPayment=" + idPayment + ", paymentRef=" + paymentRef + ", validated=" + validated
+		return "PaiementDto [idPayment=" + idPayment + ", paymentRef=" + paymentRef + ", validated=" + validated
 				+ ", paymentDate=" + paymentDate + ", account=" + account + "]";
 	}
 
 	
-
+	
 }

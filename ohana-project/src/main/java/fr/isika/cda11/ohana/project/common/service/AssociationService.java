@@ -19,7 +19,7 @@ public class AssociationService {
 	//CREATE
 
 	public void createAssociationService(AssociationDto associationDto, AddressDto addressDto) {
-		associationDto.setAddress(addressDto);
+		associationDto.setAddressAsso(addressDto);
 		associationRepos.createAssociationRepos(associationDto);
 	}
 	
@@ -43,7 +43,7 @@ public class AssociationService {
 	public AssociationDto updateAssociationService(AssociationDto associationToUpdate) {
 				
 			associationRepos.updateAssociationRepos(associationToUpdate);
-			return findAssociationByIdService(associationToUpdate.getId());
+			return findAssociationByIdService(associationToUpdate.getIdAssos());
 
 	}
 	

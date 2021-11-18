@@ -15,41 +15,40 @@
 					<h:outputText value="Nom :" />
 					<p:inputText id="name" value="#{projectMB.theProject.name}"
 						required="true" requiredMessage="Le nom est obligatoire">
-						<f:validateLength minimum="2"/>
+						<f:validateLength minimum="2" />
 					</p:inputText>
 					<h:message style="color:red" for="name" />
 
 
 					<h:outputText value="Objectif financier :" />
-					<p:inputText id="financialGoal" value="#{projectMB.theProject.financialGoal}"
-						required="true"
+					<p:inputText id="financialGoal"
+						value="#{projectMB.theProject.financialGoal}" required="true"
 						requiredMessage="L'objectif financier est obligatoire">
 					</p:inputText>
 					<h:message style="color:red" for="financialGoal" />
 
-
-					<h:outputText value="Descritption :" />
-					<p:inputText id="description" value="#{projectMB.theProject.description}">
-						<f:validateLength minimum="3" maximum="500" />
-					</p:inputText>
-					<h:message style="color:red" for="description" />
-
-
 					<h:outputText for="startDate" value="Date de début:" />
-					<p:calendar id="startDate" value="#{projectMB.theProject.startDate}"
-						pattern="dd-MM-yyyy" mask="true" />
+					<p:calendar id="startDate"
+						value="#{projectMB.theProject.startDate}" pattern="dd-MM-yyyy"
+						mask="true" />
 					<h:outputText value="#{projectMB.newProject.startDate}">
-						<f:convertDateTime pattern="MM/dd/yyyy" />
+						<f:convertDateTime pattern="dd-MM-yyyy" />
 					</h:outputText>
-					
+
 					<h:outputText for="endDate" value="Date de fin:" />
 					<p:calendar id="endDate" value="#{projectMB.theProject.endDate}"
 						pattern="dd-MM-yyyy" mask="true" />
 					<h:outputText value="#{projectMB.newProject.endDate}">
-						<f:convertDateTime pattern="MM/dd/yyyy" />
+						<f:convertDateTime pattern="dd-MM-yyyy" />
 					</h:outputText>
 
-					<h:commandButton action="#{projectMB.updateProject()}" value="Sauvegarder" />
+					<h:outputText value="Descritption :" />
+					<p:inputTextarea id="description" rows="2" cols="21"
+						value="#{projectMB.theProject.description}" />
+					<h:message style="color:red" for="description" />
+
+					<h:commandButton action="#{projectMB.updateProject()}"
+						value="Sauvegarder" />
 					<h:link outcome="projects" value="Liste des projets" />
 
 				</h:panelGrid>

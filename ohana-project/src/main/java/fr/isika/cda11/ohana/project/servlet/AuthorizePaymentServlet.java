@@ -1,4 +1,4 @@
-package fr.isika.cda11.ohana.project.common.models;
+package fr.isika.cda11.ohana.project.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.paypal.base.rest.PayPalRESTException;
+
+import fr.isika.cda11.ohana.project.common.models.PaymentServices;
+import fr.isika.cda11.ohana.project.event.models.OrderDetail;
 
 @WebServlet("/authorize_payment")
 public class AuthorizePaymentServlet extends HttpServlet {

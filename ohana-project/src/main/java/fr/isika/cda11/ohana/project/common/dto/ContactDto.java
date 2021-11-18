@@ -1,37 +1,74 @@
-package fr.isika.cda11.ohana.project.common.models;
+package fr.isika.cda11.ohana.project.common.dto;
 
-import javax.persistence.*;
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Entity
-public class Contact {
-
+public class ContactDto implements Serializable{
 	//ATTRIBUTS
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6200038750177609749L;
 	private Long idContact;
 	private String phoneNb;
 	private String phoneNb2; 
-	@Column(nullable=false, unique=true)
 	private String email;
 
 
 	//CONSTRUCTOR
-	public Contact( ) {}
-	
-	//GETTER AND SETTER
-
-	public Long getIdContact() {return idContact;}
-	public void setIdContact(Long idContact) {this.idContact = idContact;}
-	public String getPhoneNb() {return phoneNb;}
-	public void setPhoneNb(String phoneNb) {this.phoneNb = phoneNb;}
-	public String getPhoneNb2() {return phoneNb2;}
-	public void setPhoneNb2(String phoneNb2) {this.phoneNb2 = phoneNb2;}
-	public String getEmail() {return email;}
-	public void setEmail(String email) {this.email = email;}
+	public ContactDto( ) {}
 
 
-	//HASCODE AND EQUALS
+	public Long getIdContact() {
+		return idContact;
+	}
+
+
+	public void setIdContact(Long idContact) {
+		this.idContact = idContact;
+	}
+
+
+	public String getPhoneNb() {
+		return phoneNb;
+	}
+
+
+	public void setPhoneNb(String phoneNb) {
+		this.phoneNb = phoneNb;
+	}
+
+
+	public String getPhoneNb2() {
+		return phoneNb2;
+	}
+
+
+	public void setPhoneNb2(String phoneNb2) {
+		this.phoneNb2 = phoneNb2;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,6 +80,7 @@ public class Contact {
 		return result;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -51,7 +89,7 @@ public class Contact {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Contact other = (Contact) obj;
+		ContactDto other = (ContactDto) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -75,14 +113,12 @@ public class Contact {
 		return true;
 	}
 
-	//METHOD TO STRING
+
 	@Override
 	public String toString() {
-		return "Contact [idContact=" + idContact + ", phoneNb=" + phoneNb + ", phoneNb2=" + phoneNb2 + ", email="
-				+ email + ", personInfo=" + "]";
+		return "ContactDto [idContact=" + idContact + ", phoneNb=" + phoneNb + ", phoneNb2=" + phoneNb2 + ", email="
+				+ email + "]";
 	}
-
-
-
-
+	
+	
 }

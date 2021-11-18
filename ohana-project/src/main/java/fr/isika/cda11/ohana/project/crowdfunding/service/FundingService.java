@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import fr.isika.cda11.ohana.project.crowdfunding.models.Funder;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.repository.FundingRepository;
 
@@ -27,6 +28,11 @@ public class FundingService {
 		fundingRepos.updateFundingRepos(funding);
 		
 	}
+	public void updateFunderService(Funder funding) {
+		
+		fundingRepos.updateFunderRepos(funding);
+		
+	}
 	
 	public void deleteFundingService(Funding funding) {
 		
@@ -45,4 +51,7 @@ public class FundingService {
 		return fundingRepos.findFundingsRepos();
 		
 	}
+	
+	
+	
 }

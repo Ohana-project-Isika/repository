@@ -1,7 +1,5 @@
-package fr.isika.cda11.ohana.project.common.models;
+package fr.isika.cda11.ohana.project.event.models;
 
-import fr.isika.cda11.ohana.project.event.models.Event;
-import fr.isika.cda11.ohana.project.event.models.Ticket;
 import lombok.*;
 
 import javax.persistence.*;

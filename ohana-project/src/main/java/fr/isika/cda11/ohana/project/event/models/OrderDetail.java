@@ -1,4 +1,4 @@
-package fr.isika.cda11.ohana.project.common.models;
+package fr.isika.cda11.ohana.project.event.models;
 
 /**
  * Created on 11/13/2021
