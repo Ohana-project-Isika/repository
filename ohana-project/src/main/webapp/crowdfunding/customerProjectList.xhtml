@@ -14,54 +14,59 @@
 			<h1>Liste des projets</h1>
 			<h:form>
 				<h:dataTable value="#{projectMB.projects}" var="o">
-				
+
 					<h:column>
 						<f:facet name="header">Nom</f:facet>
 						<h:outputText value="#{o.name}" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Objectif financier</f:facet>
 						<h:outputText value="#{o.financialGoal} €" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Date de début</f:facet>
-						<h:outputText value="#{o.startDate}" />
+						<h:outputText value="#{o.startDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Date de fin</f:facet>
-						<h:outputText value="#{o.endDate}" />
+						<h:outputText value="#{o.endDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Durée de la campagne</f:facet>
 						<h:outputText value="#{projectMB.duration(o.id)} jours" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Nombre de financeurs</f:facet>
 						<h:outputText value="#{fundingMB.countFundings(o.id)}" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Argent Récolté</f:facet>
-						<h:outputText value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
+						<h:outputText
+							value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Description</f:facet>
 						<h:outputText value="#{o.description}" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Action</f:facet>
-						<h:commandLink action="#{fundingMB.finance(o.id)}">Financer</h:commandLink>
+						<p:commandButton value="Financer" id="Financer"
+							action="#{fundingMB.finance(o.id)}" />
 					</h:column>
-					
 				</h:dataTable>
-				
+
 			</h:form>
 		</f:view>
 	</ui:define>

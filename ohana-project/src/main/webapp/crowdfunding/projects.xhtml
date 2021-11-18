@@ -28,15 +28,19 @@
 						<f:facet name="header">Objectif financier</f:facet>
 						<h:outputText value="#{o.financialGoal} €" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Date de début</f:facet>
-						<h:outputText value="#{o.startDate}" />
+						<h:outputText value="#{o.startDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">Date de fin</f:facet>
-						<h:outputText value="#{o.endDate}" />
+						<h:outputText value="#{o.endDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
 					</h:column>
 
 					<h:column>
@@ -77,7 +81,8 @@
 			</h:form>
 			<h:form>
 				<p>
-					<h:commandLink action="createProject">Créer un projet</h:commandLink>
+				<p:commandButton value="Créer un projet" id="createProject"
+							action="createProject" />
 				</p>
 			</h:form>
 		</f:view>

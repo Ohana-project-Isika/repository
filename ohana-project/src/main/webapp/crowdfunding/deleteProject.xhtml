@@ -17,13 +17,30 @@
 				<h:panelGrid columns="1">
 
 					<h:outputText value="Nom : #{projectMB.theProject.name}" />
-					<h:outputText value="Objectif financier : #{projectMB.theProject.financialGoal}" />
-					<h:outputText value="Descritption : #{projectMB.theProject.description}" />
-					<h:outputText value="Date de début : #{projectMB.theProject.startDate}" />
+					<h:outputText
+						value="Objectif financier : #{projectMB.theProject.financialGoal}" />
+					<h:outputText
+						value="Descritption : #{projectMB.theProject.description}" />
+					<h:outputText
+						value="Date de début : #{projectMB.theProject.startDate}" />
 					<h:outputText value="Date de fin : #{projectMB.theProject.endDate}" />
-					
-					<h:commandButton action="#{projectMB.deleteProject()}" value="Supprimer" />
-					<h:commandButton action="projects" value="Annuler" />
+
+					<p:growl id="message" showDetail="true" />
+					<p:commandButton value="Supprimer"
+						action="#{projectMB.deleteProject()}" update="message">
+						<p:confirm header="Confirmation" message="Êtes-vous sûr ?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Oui" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="Non" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+
+					<p:commandButton value="Annuler" id="Annuler" action="projects" />
+
 
 				</h:panelGrid>
 			</h:form>

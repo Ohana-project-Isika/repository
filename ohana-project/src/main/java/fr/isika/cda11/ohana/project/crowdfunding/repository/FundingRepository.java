@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda11.ohana.project.crowdfunding.models.Funder;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 
 @Stateless
@@ -38,6 +39,19 @@ public class FundingRepository {
 			f = em.merge(f);
 		}
 
+		return f;
+	}
+	
+	public Funder updateFunderRepos(Funder f) {
+		if (f.getId() == null) 
+		{
+			em.persist(f);
+		} 
+		else 
+		{
+			f = em.merge(f);
+		}
+		
 		return f;
 	}
 	

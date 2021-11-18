@@ -24,7 +24,8 @@ public class ProjectController {
 	
 	Project theProject = new Project();
 	Project newProject = new Project();
-	Funder theFunder = new Funder();
+	
+	
 
 
 	
@@ -42,9 +43,6 @@ public class ProjectController {
 	}
 
 	
-	public Funder getTheFunder() {
-		return theFunder;
-	}
 
 	public Project getTheProject() {
 		return theProject;
