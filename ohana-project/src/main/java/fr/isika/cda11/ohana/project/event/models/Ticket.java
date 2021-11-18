@@ -1,6 +1,5 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-import fr.isika.cda11.ohana.project.common.models.Individual;
 import lombok.*;
 
 import javax.persistence.*;

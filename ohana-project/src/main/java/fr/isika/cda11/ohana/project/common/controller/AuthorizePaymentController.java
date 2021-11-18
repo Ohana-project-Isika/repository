@@ -11,10 +11,10 @@ import javax.inject.Inject;
 
 import com.paypal.base.rest.PayPalRESTException;
 
-import fr.isika.cda11.ohana.project.common.models.Cart;
-import fr.isika.cda11.ohana.project.common.models.OrderDetail;
 import fr.isika.cda11.ohana.project.common.models.PaymentServices;
 import fr.isika.cda11.ohana.project.common.service.AuthorizePaymentService;
+import fr.isika.cda11.ohana.project.event.models.Cart;
+import fr.isika.cda11.ohana.project.event.models.OrderDetail;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -14,8 +14,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.common.models.Address;
-import fr.isika.cda11.ohana.project.common.models.Cart;
-import fr.isika.cda11.ohana.project.common.models.Region;
+import fr.isika.cda11.ohana.project.enumclass.Region;
+import fr.isika.cda11.ohana.project.event.models.Cart;
 import fr.isika.cda11.ohana.project.event.models.Event;
 import fr.isika.cda11.ohana.project.event.models.RATE_TYPE;
 import fr.isika.cda11.ohana.project.event.models.TVA;
