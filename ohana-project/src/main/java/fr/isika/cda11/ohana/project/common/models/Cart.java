@@ -39,10 +39,10 @@ public class Cart implements Serializable {
         events.add(event);
     }
     public void addSubTotal(BigDecimal subTotal) {
-        setSubTotal(this.subTotal.add(subTotal).setScale(2, BigDecimal.ROUND_HALF_UP));
+ //       setSubTotal(this.subTotal.add(subTotal).setScale(2, BigDecimal.ROUND_HALF_UP));
     }
 
     public void addTotal(BigDecimal total) {
-        setTotal(this.total.add(total).setScale(2, BigDecimal.ROUND_HALF_UP));
+  //      setTotal(this.total.add(total).setScale(2, BigDecimal.ROUND_HALF_UP));
     }
 }
