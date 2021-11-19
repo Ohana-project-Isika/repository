@@ -1,5 +1,16 @@
 package fr.isika.cda11.ohana.project.event.controller;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.inject.Inject;
+
 import fr.isika.cda11.ohana.project.common.models.Order;
 import fr.isika.cda11.ohana.project.event.models.Event;
 import fr.isika.cda11.ohana.project.event.models.Ticket;
@@ -7,38 +18,28 @@ import fr.isika.cda11.ohana.project.event.service.EventService;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.inject.Inject;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 @ManagedBean
 @SessionScoped
 @Getter
 @Setter
 public class EventController implements Serializable {
 
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 435753971102504589L;
+
+	@Inject
     private EventService eventService;
 
     private List<Event> events;
-    private Order cart = new Order();
     private Event event;
     private Event defaultEvent;
-//    private BigDecimal subTotal;
-//    private BigDecimal total;
-    //private Map<Ticket, Integer> ticketQuantity = new HashMap<>();
-//    private int quantity;
-    private double hiddenTotal;
+    
+    private Order cart = new Order();
+
     private String region;
     private UIComponent component;
-//    private Map<Event, Integer> countMap = new HashMap<>();
     private Map<Event, Integer> numberMap = new HashMap<>();
 
     @PostConstruct
@@ -46,7 +47,6 @@ public class EventController implements Serializable {
         events = eventService.findAllEvents();
         eventService.displayNoEventMsg(events, component);
         numberMap = eventService.computeNumber(events, numberMap);
-//        countMap = eventService.computeCount(events, countMap);
     }
 
     public void addEvent() {
@@ -64,6 +64,10 @@ public class EventController implements Serializable {
         return "ticketing/checkout?faces-redirect=true";
     }
 
+//    public Integer getQuantityForTicket(Ticket ticket) {
+//    	return cart.getQuantityForTicket(ticket);
+//    }
+    
     public String decrement(Ticket ticket) {
         cart.decrement(ticket);
         return "";
@@ -84,12 +88,9 @@ public class EventController implements Serializable {
         return "ticketing";
     }
 
-    public String delete(Event event) {
-        //cart.removeEvent(event);
+    public String delete(Ticket ticket) {
+        cart.removeTicket(ticket);
         return "ticketing/checkout?faces-redirect=true";
     }
 
-    public static void main(String[] args) {
-
-    }
 }

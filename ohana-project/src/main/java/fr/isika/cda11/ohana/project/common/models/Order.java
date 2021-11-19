@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 @Entity
 @Getter
@@ -19,7 +20,12 @@ import java.util.Map;
 @ToString
 public class Order implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5167872310791820758L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private long id;
@@ -39,19 +45,10 @@ public class Order implements Serializable {
     private BigDecimal total = BigDecimal.ZERO;
 
     @Transient
-    private Map<Ticket, Integer> ticketsByQuantity = new HashMap<>();
+    private Map<Long, Integer> ticketsByQuantity = new HashMap<>();
 
-//    public void addEvents(Event event) {
-//        events.add(event);
-//    }
-
-//    public void setSubTotal(BigDecimal subTotal) {
-//       this.subTotal = this.subTotal.add(subTotal);
-//    }
-//
-//    public void setTotal(BigDecimal total) {
-//       this.total = total;
-//    }
+    @Transient
+    private Map<Long, Ticket> ticketsByIds = new HashMap<>();
 
     public void subtractSubTotal(BigDecimal subTotal) {
         this.subTotal = this.subTotal.subtract(subTotal);
@@ -61,29 +58,35 @@ public class Order implements Serializable {
         this.total = this.total.subtract(total);
     }
 
-//    public void removeEvent(Event event) {
-//        this.events.remove(event);
-//        this.updateTotals();
-//    }
-
-
     public void addTicket(Ticket ticket) {
-        if(ticketsByQuantity.containsKey(ticket)) {
+        if(ticketsByQuantity.containsKey(ticket.getId())) {
             increment(ticket);
         } else {
-            ticketsByQuantity.put(ticket, 1);
+        	addOneTicket(ticket);
         }
         computeCart();
     }
 
+	private void addOneTicket(Ticket ticket) {
+		ticket.setQuantity(1);
+		ticketsByQuantity.put(ticket.getId(), 1);
+		ticketsByIds.put(ticket.getId(), ticket);
+	}
+
     public void computeCart() {
         BigDecimal tempsubtotal = BigDecimal.ZERO, temptotal = BigDecimal.ZERO ;
-        for(Map.Entry<Ticket,  Integer> entry : ticketsByQuantity.entrySet()) {
-        //ticketsByQuantity.forEach((ticket, quantity) -> {
-            temptotal = temptotal.add(entry.getKey().getPostTaxPrice().multiply(BigDecimal.valueOf(entry.getValue()))
+        for(Entry<Long, Integer> entry : ticketsByQuantity.entrySet()) {
+        	
+        	Ticket ticket = ticketsByIds.get(entry.getKey());
+        	Integer quantity = entry.getValue();
+        	
+        	ticket.setPreTaxPricePerQuantity(ticket.getPreTaxPrice().multiply(BigDecimal.valueOf(quantity))
                     .setScale(2, BigDecimal.ROUND_HALF_UP));
-            tempsubtotal = tempsubtotal.add(entry.getKey().getPreTaxPrice().multiply(BigDecimal.valueOf(entry.getValue()))
+        	ticket.setPostTaxPricePerQuantity(ticket.getPostTaxPrice().multiply(BigDecimal.valueOf(quantity))
                     .setScale(2, BigDecimal.ROUND_HALF_UP));
+        	
+        	temptotal = temptotal.add(ticket.getPostTaxPricePerQuantity());
+        	tempsubtotal = tempsubtotal.add(ticket.getPreTaxPricePerQuantity());
         }
 
         this.setTotal(temptotal);
@@ -91,18 +94,34 @@ public class Order implements Serializable {
     }
 
     public void increment(Ticket ticket) {
-        Integer oldQte = ticketsByQuantity.get(ticket);
-        ticketsByQuantity.put(ticket, oldQte + 1);
+        Integer oldQte = ticketsByQuantity.get(ticket.getId());
+        Integer newQty = oldQte + 1;
+        
+        ticket.setQuantity(newQty);
+        ticketsByQuantity.put(ticket.getId(), newQty);
+        ticketsByIds.put(ticket.getId(), ticket);
+        
         computeCart();
     }
 
     public void decrement(Ticket ticket) {
-        Integer oldQte = ticketsByQuantity.get(ticket);
-        if(oldQte > 1) {
-            ticketsByQuantity.put(ticket, oldQte - 1);
+        Integer oldQty = ticketsByQuantity.get(ticket.getId());
+        Integer newQty = 0;
+        if(oldQty > 1) {
+        	newQty = oldQty - 1;
+        	ticket.setQuantity(newQty);
+			ticketsByQuantity.put(ticket.getId(), newQty);
+			ticketsByIds.put(ticket.getId(), ticket);
         } else {
-            ticketsByQuantity.remove(ticket);
+            removeTicket(ticket);
         }
         computeCart();
     }
+
+	public void removeTicket(Ticket ticket) {
+		ticketsByQuantity.remove(ticket.getId());
+		ticketsByIds.remove(ticket.getId());
+		computeCart();
+	}
+
 }
