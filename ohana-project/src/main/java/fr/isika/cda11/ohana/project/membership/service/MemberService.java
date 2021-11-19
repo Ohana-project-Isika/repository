@@ -38,7 +38,7 @@ public class MemberService {
 	// UPDATE
 	public MemberDto updateMemberService(MemberDto memberToUpdate) {
 		memberRepos.updateMemberRepos(memberToUpdate);
-		return findMemberByIdService(memberToUpdate.getId());
+		return findMemberByIdService(memberToUpdate.getIdMember());
 	}
 
 	// DELETE
