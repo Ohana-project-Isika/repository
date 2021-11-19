@@ -59,24 +59,17 @@ public class EventService implements Serializable {
 		}
 	}
 
-	public Map<Event, Integer> computeCountDefault(List<Event> events) {
-		Map<Event, Integer> map = new HashMap<>();
-
-		for (Event event : events)
-			map.put(event, 1);
-
-		return map;
-	}
-
-	public Order computeCart(Order cart, Map<Event, Integer> map) {
-		cart.setSubTotal(BigDecimal.ZERO);
-		cart.setTotal(BigDecimal.ZERO);
+	public Order computeCart(Order cart, Map<Event, Integer> map, Event selectedEvent) {
+		//cart.setSubTotal(BigDecimal.ZERO);
+		//cart.setTotal(BigDecimal.ZERO);
 
 		map.forEach((event, quantity) -> {
-			cart.addTotal(((Event) event).getTicketing().getPostTaxPrice().multiply(BigDecimal.valueOf((Integer) quantity))
-					.setScale(2, BigDecimal.ROUND_HALF_UP));
-			cart.addSubTotal(((Event) event).getTicketing().getPreTaxPrice().multiply(BigDecimal.valueOf((Integer) quantity))
-					.setScale(2, BigDecimal.ROUND_HALF_UP));
+			//if(event.equals(selectedEvent)) {
+				cart.addTotal(event.getTicket().getPostTaxPrice().multiply(BigDecimal.valueOf(quantity))
+						.setScale(2, BigDecimal.ROUND_HALF_UP));
+				cart.addSubTotal(event.getTicket().getPreTaxPrice().multiply(BigDecimal.valueOf(quantity))
+						.setScale(2, BigDecimal.ROUND_HALF_UP));
+			//}
 		});
 
 		return cart;

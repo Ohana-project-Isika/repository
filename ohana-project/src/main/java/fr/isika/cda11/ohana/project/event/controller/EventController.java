@@ -46,7 +46,7 @@ public class EventController implements Serializable {
         events = eventService.findAllEvents();
         eventService.displayNoEventMsg(events, component);
         numberMap = eventService.computeNumber(events, numberMap);
-        countMap = eventService.computeCountDefault(events);
+        countMap = eventService.computeCount(events, countMap);
     }
 
     public void addEvent() {
@@ -55,6 +55,7 @@ public class EventController implements Serializable {
 
     public String update() {
         events = eventService.findAllEventsByRegion(region);
+        numberMap = eventService.computeNumber(events, numberMap);
         return "ticketing?faces-redirect=true";
     }
 
@@ -72,11 +73,11 @@ public class EventController implements Serializable {
 //            this.event = eventService.changeTicketPrice(event, count);
         }
 
-        cart = eventService.computeCart(cart, countMap);
+        cart = eventService.computeCart(cart, countMap, event);
 //        cart.subtractSubTotal(event, event.getTicket().getPreTaxPrice());
 //        cart.subtractTotal(event, event.getTicket().getPostTaxPrice());
 
-        return "ticketing/checkout?faces-redirect=true";
+        return "";
     }
 
     public String increment(Event event) {
@@ -90,9 +91,9 @@ public class EventController implements Serializable {
 //            cart.addTotal(event, event.getTicket().getPostTaxPrice());
         }
 
-        cart = eventService.computeCart(cart, countMap);
+        cart = eventService.computeCart(cart, countMap, event);
 
-        return "ticketing/checkout?faces-redirect=true";
+        return "";
     }
 
     public String detail(Event event) {
@@ -106,7 +107,11 @@ public class EventController implements Serializable {
     }
 
     public String delete(Event event) {
-        cart.getEvents().remove(event);
+        cart.removeEvent(event);
         return "ticketing/checkout?faces-redirect=true";
+    }
+
+    public static void main(String[] args) {
+
     }
 }

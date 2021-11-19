@@ -57,4 +57,13 @@ public class Order implements Serializable {
     public void subtractTotal(BigDecimal total) {
         this.total = this.total.subtract(total);
     }
+
+    public void removeEvent(Event event) {
+        this.events.remove(event);
+        this.updateTotals();
+    }
+
+    private void updateTotals() {
+
+    }
 }
