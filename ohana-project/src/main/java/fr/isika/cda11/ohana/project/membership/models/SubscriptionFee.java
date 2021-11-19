@@ -2,11 +2,14 @@ package fr.isika.cda11.ohana.project.membership.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,11 +22,9 @@ public class SubscriptionFee {
 	private Date dateOfEnd;
 
 	// Relations
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, optional=false)
+	@JoinColumn(name="MEMBERSHIP_ID", unique=true, nullable=false)
 	private Membership membership;
-	
-	@ManyToOne
-	private Member member;
 
 	// constructeur vide
 	public SubscriptionFee() {
@@ -62,13 +63,6 @@ public class SubscriptionFee {
 		this.membership = membership;
 	}
 
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
 
 	public Long getIdSubFee() {
 		return idSubFee;
@@ -83,7 +77,6 @@ public class SubscriptionFee {
 		result = prime * result + ((dateOfStart == null) ? 0 : dateOfStart.hashCode());
 		result = prime * result + ((feeAmount == null) ? 0 : feeAmount.hashCode());
 		result = prime * result + ((idSubFee == null) ? 0 : idSubFee.hashCode());
-		result = prime * result + ((member == null) ? 0 : member.hashCode());
 		result = prime * result + ((membership == null) ? 0 : membership.hashCode());
 		return result;
 	}
@@ -117,11 +110,6 @@ public class SubscriptionFee {
 				return false;
 		} else if (!idSubFee.equals(other.idSubFee))
 			return false;
-		if (member == null) {
-			if (other.member != null)
-				return false;
-		} else if (!member.equals(other.member))
-			return false;
 		if (membership == null) {
 			if (other.membership != null)
 				return false;
@@ -145,7 +133,6 @@ public class SubscriptionFee {
 		builder.append(", membership=");
 		builder.append(membership);
 		builder.append(", member=");
-		builder.append(member);
 		builder.append("]");
 		return builder.toString();
 	}

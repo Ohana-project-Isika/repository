@@ -27,16 +27,7 @@
 					</p:inputText>
 					<h:message style="color:red" for="financialGoal" />
 
-
-					<h:outputText value="Descritption :" />
-					<p:inputText id="description"
-						value="#{projectMB.newProject.description}">
-						<f:validateLength minimum="3" maximum="500" />
-					</p:inputText>
-					<h:message style="color:red" for="description" />
-
-
-					<h:outputText for="startDate" value="Date de début:" />
+					<h:outputText for="startDate" value="Date de début :" />
 					<p:calendar id="startDate"
 						value="#{projectMB.newProject.startDate}" pattern="dd-MM-yyyy"
 						mask="true" />
@@ -44,12 +35,18 @@
 						<f:convertDateTime pattern="MM/dd/yyyy" />
 					</h:outputText>
 
-					<h:outputText for="endDate" value="Date de fin:" />
+					<h:outputText for="endDate" value="Date de fin :" />
 					<p:calendar id="endDate" value="#{projectMB.newProject.endDate}"
 						pattern="dd-MM-yyyy" mask="true" />
 					<h:outputText value="#{projectMB.newProject.endDate}">
 						<f:convertDateTime pattern="MM/dd/yyyy" />
 					</h:outputText>
+
+					<h:outputText value="Descritption :" />
+					<p:inputTextarea id="description" rows="2" cols="21"
+						value="#{projectMB.newProject.description}"/>
+
+					<h:message style="color:red" for="description" />
 
 					<h:commandButton action="#{projectMB.createProject()}"
 						value="Créer" />

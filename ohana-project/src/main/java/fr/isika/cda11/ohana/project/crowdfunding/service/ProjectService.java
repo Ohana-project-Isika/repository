@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.crowdfunding.service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -43,6 +44,15 @@ public class ProjectService {
 		
 		return projectRepos.findProjectsRepos();
 		
+	}
+	
+	public Long durationService(Long id) {
+		Project p = projectRepos.findProjectRepos(id);
+		if (p.getStartDate()!=null && p.getEndDate()!=null) {
+			Long duration = p.getEndDate().getTime() - p.getStartDate().getTime();
+			return TimeUnit.DAYS.convert(duration, TimeUnit.MILLISECONDS);
+		}
+		return null;
 	}
 	
 }

@@ -1,6 +1,6 @@
 package fr.isika.cda11.ohana.project.common.service;
 
-import fr.isika.cda11.ohana.project.common.models.Cart;
+import fr.isika.cda11.ohana.project.event.models.Cart;
 import fr.isika.cda11.ohana.project.event.models.Event;
 
 import javax.ejb.Stateless;

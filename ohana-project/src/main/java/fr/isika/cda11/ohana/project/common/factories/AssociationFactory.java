@@ -12,25 +12,29 @@ public final class AssociationFactory {
 	
 	public static Association fromAssociationDto(AssociationDto associationDto) {
 		Association association = new Association();
-		association.setNameAssos(associationDto.getName());
-		association.setAddressAsso(AddressFactory.fromAddressDto(associationDto.getAddress()));
-		/*association.setAddress(new Address());
-		association.getAddress().setNumber(associationDto.getAddress().getNumber());
-		association.getAddress().setStreet(associationDto.getAddress().getStreet());
-		association.getAddress().setCity(associationDto.getAddress().getCity());
-		association.getAddress().setDepartment(associationDto.getAddress().getDepartment());*/	
-		association.setIdAssos(associationDto.getId());
+		association.setNameAssos(associationDto.getNameAssos());
+		association.setValidateStatusAsso(associationDto.getValidateStatusAsso());
+		association.setLogoAsso(associationDto.getLogoAsso());
+		association.setJustifAsso(associationDto.getJustifAsso());
+		association.setNumSiret(associationDto.getNumSiret());
+		association.setAddressAsso(AddressFactory.fromAddressDto(associationDto.getAddressAsso()));
+		association.setServices(ServicesFactory.fromServicesDto(associationDto.getServices()));
+		association.setAccount(AccountFactory.fromAccountDto(associationDto.getAccount()));
+		association.setIdAssos(associationDto.getIdAssos());
 		return association;
 	}
 	
 	public static AssociationDto fromAssociation(Association association) {
-		AssociationDto associationDto= new AssociationDto();
-		associationDto.setName(association.getNameAssos());
-		associationDto.getAddress().setNumber(association.getAddressAsso().getNumRue());
-		associationDto.getAddress().setStreet(association.getAddressAsso().getRue());
-		associationDto.getAddress().setCity(association.getAddressAsso().getVille());
-		associationDto.getAddress().setDepartment(association.getAddressAsso().getCodePostal());
-		associationDto.setId(association.getIdAssos());
+		AssociationDto associationDto = new AssociationDto();
+		associationDto.setNameAssos(association.getNameAssos());
+		associationDto.setValidateStatusAsso(association.getValidateStatusAsso());
+		associationDto.setLogoAsso(association.getLogoAsso());
+		associationDto.setJustifAsso(association.getJustifAsso());
+		associationDto.setNumSiret(association.getNumSiret());
+		associationDto.setAddressAsso(AddressFactory.fromAddress(association.getAddressAsso()));
+		associationDto.setServices(ServicesFactory.fromServices(association.getServices()));
+		associationDto.setAccount(AccountFactory.fromAccount(association.getAccount()));
+		associationDto.setIdAssos(associationDto.getIdAssos());
 		return associationDto;
 	}
 	
