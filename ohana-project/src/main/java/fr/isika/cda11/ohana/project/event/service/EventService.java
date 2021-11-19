@@ -59,29 +59,13 @@ public class EventService implements Serializable {
 		}
 	}
 
-	public Order computeCart(Order cart, Map<Event, Integer> map, Event selectedEvent) {
-		//cart.setSubTotal(BigDecimal.ZERO);
-		//cart.setTotal(BigDecimal.ZERO);
-
-		map.forEach((event, quantity) -> {
-			//if(event.equals(selectedEvent)) {
-				cart.addTotal(event.getTicket().getPostTaxPrice().multiply(BigDecimal.valueOf(quantity))
-						.setScale(2, BigDecimal.ROUND_HALF_UP));
-				cart.addSubTotal(event.getTicket().getPreTaxPrice().multiply(BigDecimal.valueOf(quantity))
-						.setScale(2, BigDecimal.ROUND_HALF_UP));
-			//}
-		});
-
-		return cart;
-	}
-
-	public Map<Event, Integer> computeCount(List<Event> events, Map<Event, Integer> countMap) {
-		for (Event event : events) {
-			countMap.put(event, 1);
-		}
-
-		return countMap;
-	}
+//	public Map<Event, Integer> computeCount(List<Event> events, Map<Event, Integer> countMap) {
+//		for (Event event : events) {
+//			countMap.put(event, 1);
+//		}
+//
+//		return countMap;
+//	}
 
 	public Map<Event, Integer> computeNumber(List<Event> events, Map numberMap) {
 		for (int i = 0; i < events.size(); i++) {
@@ -91,16 +75,16 @@ public class EventService implements Serializable {
 		return numberMap;
 	}
 
-	public Order addEvents(Event event, Order cart) {
-		if (!cart.getEvents().contains(event)) {
-			cart.addEvents(event);
-
-			cart.setSubTotal(event.getTicket().getPreTaxPrice());
-			cart.setTotal(event.getTicket().getPostTaxPrice());
-		}
-
-		return cart;
-	}
+//	public Order addEvents(Event event, Order cart) {
+//		if (!cart.getEvents().contains(event)) {
+//			cart.addEvents(event);
+//
+//			cart.setSubTotal(event.getTicket().getPreTaxPrice());
+//			cart.setTotal(event.getTicket().getPostTaxPrice());
+//		}
+//
+//		return cart;
+//	}
 
 	public List<Event> findAllEventsByRegion(String region) {
 		List<Event> events = eventRepository.findAllEvents();

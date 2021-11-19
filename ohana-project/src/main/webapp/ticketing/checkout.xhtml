@@ -12,45 +12,45 @@
 
         <h:form id="test">
 
-            <h:dataTable value="#{eventController.cart.events}" var="event">
+            <h:dataTable value="#{eventController.cart.ticketsByQuantity.keySet()}" var="ticket">
                 <h:column>
                     <f:facet name="header">Nom</f:facet>
-                    #{event.name}
+                    #{ticket.event.name}
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">Nombre de tickets</f:facet>
-                    #{event.ticketQuantity}
+                    <f:facet name="header">Nombre de tickets Max</f:facet>
+                    #{ticket.event.ticketQuantity}
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Tarif</f:facet>
-                    #{event.ticket.rateType}
+                    #{ticket.rateType}
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Taux TVA</f:facet>
-                    #{event.ticket.tvaRate} %
+                    #{ticket.tvaRate} %
                 </h:column>+
 
                 <h:column>
                     <f:facet name="header">Prix HT</f:facet>
-                    <p id="preTax_#{event.id}">
-                        #{event.ticket.preTaxPrice} €
+                    <p id="preTax_#{ticket.event.id}">
+                        #{ticket.preTaxPrice} €
                     </p>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Prix TTC</f:facet>
-                    <p id="postTax_#{event.id}">
-                        #{event.ticket.postTaxPrice} €
+                    <p id="postTax_#{ticket.event.id}">
+                        #{ticket.postTaxPrice} €
                     </p>
                 </h:column>
 
                 <h:column >
-                    <h:commandButton action="#{eventController.decrement(event)}" value="-"/>
-                    <input class="dynamicAmount" id="#{event.id}" type="number" value="#{eventController.countMap.get(event)}" min="1" max="#{event.ticketQuantity}"/>
-                    <h:commandButton action="#{eventController.increment(event)}" value="+"/>
+                    <h:commandButton action="#{eventController.decrement(ticket)}" value="-"/>
+                    <input class="dynamicAmount" id="#{ticket.event.id}" type="number" value="#{eventController.cart.ticketsByQuantity.get(ticket)}" min="1" max="#{ticket.event.ticketQuantity}"/>
+                    <h:commandButton action="#{eventController.increment(ticket)}" value="+"/>
                 </h:column>
 
                 <h:column >
@@ -58,21 +58,21 @@
 
                 <h:column>
                     <f:facet name="header">Total HT</f:facet>
-                    <p id="subTotal_#{event.id}">
-                        #{event.ticket.preTaxPrice} €
+                    <p id="subTotal_#{ticket.event.id}">
+                        #{eventController.cart.subTotal} €
                     </p>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Total TTC</f:facet>
-                    <p id="total_#{event.id}">
-                        #{event.ticket.postTaxPrice} €
+                    <p id="total_#{ticket.event.id}">
+                        #{eventController.cart.total} €
                     </p>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Action</f:facet>
-                    <h:commandButton action="#{eventController.delete(event)}" value="Supprimer" />
+                    <h:commandButton action="#{eventController.delete(ticket.event)}" value="Supprimer" />
                 </h:column>
             </h:dataTable>
 
@@ -83,7 +83,7 @@
             <f:facet name="header">Total Panier TTC</f:facet>
             <p id="cartTotal">#{eventController.cart.total}</p>
 
-            <h:commandLink id="list" action="#{paymentController.back}" value="Retour à la liste des événements"/>
+            <h:commandLink id="list" action="#{eventController.back}" value="Retour à la liste des événements"/>
             <br/>
             <a href="#"><p onclick="getVars('#{eventController.cart.subTotal}', '#{eventController.cart.total}')">Payer</p></a>
             <div hidden="hidden">
