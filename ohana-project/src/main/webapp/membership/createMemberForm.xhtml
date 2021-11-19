@@ -19,7 +19,7 @@
 				<h:form>
 					<h:panelGrid columns="2">
 						<h:outputText value="Nom : " />
-						<h:inputText id="Name" value="#{membershipController.member.name}" />
+						<h:inputText id="Name" value="#{membershipController.member.privatePerson.account.infoPerson.lastName}" />
 
 						<h:outputText value="Prenom : " />
 						<h:inputText id="Lastame" value="#{membershipController.member.lastname}" />

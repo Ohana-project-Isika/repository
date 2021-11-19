@@ -32,6 +32,7 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('admin', '1111','ADMIN','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomun'));
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('association', '1111', 'ASSOCIATION','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomdeux'));
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PARTICULIER','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtrois'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('vina', '1111', 'ASSOCIATION','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomsix'));
  
  #ADMIN TABLE
  INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
@@ -41,7 +42,7 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  
  #ASSOCIATION TABLE
  INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('asso1', 'VALIDATED', 'logo1', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 4),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'association'));
- 
+
  #PRIVATEPERSON TABLE
  INSERT INTO PrivatePerson(photoProfil, ACCOUNT_ID ) VALUES ('photo1',(SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
  

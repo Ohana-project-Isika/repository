@@ -19,7 +19,7 @@ public class MemberService {
 
 	// CREATE
 	public MemberDto createMember(MemberDto memberDto, MembershipDto membershipDto) {
-		membershipDto.getMembersDto().add(memberDto);
+		membershipDto.getMembers().add(memberDto);
 		Member member= memberRepos.createMember(memberDto);
 		MemberDto newMemberDto = MemberFactory.fromMember(member);
 		return newMemberDto;

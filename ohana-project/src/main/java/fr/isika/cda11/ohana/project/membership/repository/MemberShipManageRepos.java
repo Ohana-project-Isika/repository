@@ -15,10 +15,10 @@ public class MemberShipManageRepos {
 	private EntityManager entityManager;
 
 	// CREATE
-	public MemberShipManageDto createMembershipManage(MemberShipManageDto membershipManageDto) {
+	public MemberShipManage createMembershipManage(MemberShipManageDto membershipManageDto) {
 		MemberShipManage membershipManage = MemberShipManageFactory.fromMembershipManageDto(membershipManageDto);
 		entityManager.persist(membershipManage);
-		return findMembershipManageRepos(membershipManage.getId());
+		return membershipManage;
 	}
 
 	// READ

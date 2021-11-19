@@ -14,20 +14,33 @@ import fr.isika.cda11.ohana.project.membership.models.Membership;
 public class MembershipFactory {
 	public static Membership fromMembershipDto(MembershipDto membershipDto) {
 		Membership membership = new Membership();
+		membership.setNameMbs(membershipDto.getNameMbs());
+		membership.setPriceOfFee(membershipDto.getPriceOfFee());
+		membership.setDateOfStart(membershipDto.getDateOfStart());
+		membership.setDateOfEnd(membershipDto.getDateOfEnd());
+		membership.setMembers(new ArrayList<Member>());
+		if(membershipDto.getMembers().isEmpty() ==false) {
+			for(MemberDto member: membershipDto.getMembers()) {
+				membership.getMembers().add(MemberFactory.fromMemberDto(member));
+			}
+		}
+		membership.setIdMbs(membershipDto.getIdMbs());
 		return membership;
 	}
 	
 	public static MembershipDto fromMembership(Membership membership) {
 		MembershipDto membershipDto = new MembershipDto();
-		membershipDto.setName(membershipDto.getName());
-		membershipDto.setMembersDto(new ArrayList<MemberDto>());
-		
-//		if(membership.getMembers()!=null) {
-//			for(Member members: membership.getMembers()) {
-//				membershipDto.getMembersDto().add(MemberFactory.fromMember(members));
-//			}
-//		}
-//		membershipDto.setId(membership.getId());
+		membershipDto.setNameMbs(membership.getNameMbs());
+		membershipDto.setPriceOfFee(membership.getPriceOfFee());
+		membershipDto.setDateOfStart(membership.getDateOfStart());
+		membershipDto.setDateOfEnd(membership.getDateOfEnd());
+		membershipDto.setMembers(new ArrayList<MemberDto>());
+		if(membership.getMembers().isEmpty() ==false) {
+			for(Member member: membership.getMembers()) {
+				membershipDto.getMembers().add(MemberFactory.fromMember(member));
+			}
+		}
+		membershipDto.setIdMbs(Long.valueOf(membership.getIdMbs()));
 		return membershipDto;
 	}
 }

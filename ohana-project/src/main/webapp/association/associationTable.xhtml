@@ -14,62 +14,66 @@
 				<f:view>
 					<h:form>
 
-						<h:dataTable value="#{associationController.listAssociations()}"
+						<h:dataTable value="#{associationController.associations}"
 							var="o">
 							<h:column>
 								<f:facet name="header">Id</f:facet>
-								<h:outputText value="#{o.id}" />
+								<h:outputText value="#{o.idAssos}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Image</f:facet>
-								<img src="resources/gfx/logoAsah.jpg"></img>
+								<img src="../resources/gfx/assoLogo3.jpg"></img>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Nom</f:facet>
-								<h:outputText value="#{o.name}" />
+								<h:outputText value="#{o.nameAssos}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Numero</f:facet>
-								<h:outputText value="#{o.address.number}" />
+								<h:outputText value="#{o.addressAsso.numRue}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Rue</f:facet>
-								<h:outputText value="#{o.address.street}" />
+								<h:outputText value="#{o.addressAsso.rue}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Departement</f:facet>
-								<h:outputText value="#{o.address.department}" />
+								<h:outputText value="#{o.addressAsso.codePostal}" />
 							</h:column>
 							<h:column>
-								<f:facet name="header">Adresse</f:facet>
-								<h:outputText value="#{o.address.city}" />
+								<f:facet name="header">Ville</f:facet>
+								<h:outputText value="#{o.addressAsso.ville}" />
+							</h:column>
+														<h:column>
+								<f:facet name="header">Pays</f:facet>
+								<h:outputText value="#{o.addressAsso.pays}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Voir"
-										action="#{associationController.ShowAssociation(o.id)}" />
+										action="#{associationController.ShowAssociation(o.idAssos)}" />
 								</button>
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Modifier"
-										action="#{associationController.updateAssociationForm(o.id)}" />
+										action="#{associationController.updateAssociationForm(o.idAssos)}" />
 								</button>
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Supprimer"
-										action="#{associationController.deleteAssociation(o.id)}" />
+										action="#{associationController.deleteAssociation(o.idAssos)}" />
 								</button>
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Creer un formulaire"
-										action="#{membershipController.createMembershipManage(o.id)}" />
+										action="#{membershipController.createMembershipManage(o.idAssos)}" />
 								</button>
 							</h:column>
 						</h:dataTable>

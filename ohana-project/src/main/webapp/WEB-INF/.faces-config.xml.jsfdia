@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:ticketing#checkout.xhtml"
+  PATH="ticketing/checkout.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:ticketing#checkout.xhtml:0" NAME="item"
+   PATH="ticketing/checkout.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ticketing:#{eventController.back()}:#ticketing.xhtml"
+    NAME="output" PATH="/ticketing.xhtml"
+    TARGET="rules:#ticketing.xhtml"
+    TITLE="#{eventController.back()}:ticketing" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ticketing.xhtml" PATH="/ticketing.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#membership#createMembershipForm.xhtml"
+  PATH="/membership/createMembershipForm.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:association#associationTable.jsf"
+  PATH="association/associationTable.jsf" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:association#associationTable.jsf:0"
+   NAME="item" PATH="association/associationTable.jsf" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createMembershipForm:#{membershipController.createMembershipManage(Long id)}:#membership#createMembershipForm.xhtml"
+    NAME="output" PATH="/membership/createMembershipForm.xhtml"
+    TARGET="rules:#membership#createMembershipForm.xhtml"
+    TITLE="#{membershipController.createMembershipManage(Long id)}:createMembershipForm" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

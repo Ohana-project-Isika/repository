@@ -9,13 +9,11 @@
 	template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="content">
 		<f:view>
-			<c:set var="c" value="#{associationController.nouvelAssociation}" />
-			<h1>#{c.nameAssos}</h1>
-			<p>Id: #{c.logoAsso}</p>
-			<p>#{c.numSiret}</p>
+			
+			<h1>Account created</h1>
+
+
+
 		</f:view>
-		
-			<p><h:link outcome="AssociationTable" value="liste"></h:link></p>
-			<p><h:link outcome="createMembershipForm" value="adhesion"></h:link></p>
 	</ui:define>
 </ui:composition>

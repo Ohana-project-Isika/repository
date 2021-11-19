@@ -30,7 +30,7 @@ public class Account {
 	
 	// RELATIONS
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="INFOPERSON_ID", unique=true, nullable=false)
+	@JoinColumn(name="INFOPERSON_ID", nullable=false)
 	private InfoPerson infoPerson;
 
 	//CONSTRUCTEUR 

@@ -18,7 +18,7 @@ import fr.isika.cda11.ohana.project.common.models.Association;
 public class MemberShipManage {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne
 	@JoinColumn(name="ASSOCIATION_ID", unique=true, nullable=false)

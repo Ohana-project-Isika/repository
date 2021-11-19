@@ -1,33 +1,28 @@
-package fr.isika.cda11.ohana.project.membership.models;
+package fr.isika.cda11.ohana.project.membership.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-@Entity
-public class SubscriptionFee {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+import fr.isika.cda11.ohana.project.membership.models.Membership;
+
+public class SubscriptionFeeDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4763026922104611709L;
 	private Long idSubFee;
 	private Integer feeAmount;
 	private Date dateOfStart;
 	private Date dateOfEnd;
 
 	// Relations
-	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="MEMBERSHIP_ID", unique=true, nullable=false)
-	private Membership membership;
 
+	private Membership membership;
+	
 	// constructeur vide
-	public SubscriptionFee() {
+	public SubscriptionFeeDto() {
 	}
 
 	public Long getIdSubFee() {
@@ -70,6 +65,10 @@ public class SubscriptionFee {
 		this.membership = membership;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,7 +89,7 @@ public class SubscriptionFee {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SubscriptionFee other = (SubscriptionFee) obj;
+		SubscriptionFeeDto other = (SubscriptionFeeDto) obj;
 		if (dateOfEnd == null) {
 			if (other.dateOfEnd != null)
 				return false;
@@ -121,9 +120,9 @@ public class SubscriptionFee {
 
 	@Override
 	public String toString() {
-		return "SubscriptionFee [idSubFee=" + idSubFee + ", feeAmount=" + feeAmount + ", dateOfStart=" + dateOfStart
+		return "SubscriptionFeeDto [idSubFee=" + idSubFee + ", feeAmount=" + feeAmount + ", dateOfStart=" + dateOfStart
 				+ ", dateOfEnd=" + dateOfEnd + ", membership=" + membership + "]";
 	}
-
-
+	
+	
 }

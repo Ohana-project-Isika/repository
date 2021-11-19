@@ -1,7 +1,6 @@
 package fr.isika.cda11.ohana.project.common.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,13 +10,16 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AddressDto;
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
-import fr.isika.cda11.ohana.project.common.models.Address;
-import fr.isika.cda11.ohana.project.common.models.Association;
-import fr.isika.cda11.ohana.project.common.repository.AssociationRepos;
+import fr.isika.cda11.ohana.project.common.dto.ContactDto;
+import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
+import fr.isika.cda11.ohana.project.common.dto.ServicesDto;
+import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.AddressService;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
+
 
 @ManagedBean
 @SessionScoped
@@ -29,10 +31,15 @@ public class AssociationController implements Serializable{
 	private AddressService addressService;	
 	@Inject
 	private AssociationService associationService;	
+	@Inject
+	private AccountService accountService;
+	
 	private AssociationDto nouvelAssociation = new AssociationDto();	
 	private AssociationDto associationToUpdate = new AssociationDto();
 	private AssociationDto association = new AssociationDto();
 	private AddressDto nouvelAddresse = new AddressDto();
+	private AccountDto accountDto = new AccountDto();
+	private ServicesDto servicesDto = new ServicesDto();
 	private List<AssociationDto> associations;
 	
 	@PostConstruct
@@ -51,25 +58,45 @@ public class AssociationController implements Serializable{
 	public void setAssociation(AssociationDto association) {this.association = association;}
 	public AddressDto getNouvelAddresse() {return nouvelAddresse;}
 	public void setNouvelAddresse(AddressDto nouvelAddresse) {this.nouvelAddresse = nouvelAddresse;}
+	public AccountDto getAccountDto() {return accountDto;}
+	public void setAccountDto(AccountDto accountDto) {this.accountDto = accountDto;}
+	public List<AssociationDto> getAssociations() {return associations;}
+	public void setAssociations(List<AssociationDto> associations) {this.associations = associations;}
+	public ServicesDto getServicesDto() {return servicesDto;}
+	public void setServicesDto(ServicesDto servicesDto) {this.servicesDto = servicesDto;}
+	
+	
 
 	
 	//METHODE CRUD---------------------------------------------------------------------------
 	
+
+
+
 	//Create
 	public String subscription() {
-		associationService.createAssociationService(nouvelAssociation, nouvelAddresse);
+		AssociationDto assosDto=associationService.createAssociationService(nouvelAssociation, nouvelAddresse, servicesDto, accountDto);
+		nouvelAssociation=assosDto;
+		associations=listAssociations();
 		nouvelAddresse = new AddressDto();
 		nouvelAssociation= new AssociationDto();
-		return "AssociationTable";
+		return "associationTable";
+	}
+	
+	public AccountDto createAccount(InfoPersonDto infoPerson, ContactDto contact, AddressDto address) {
+		
+		return accountDto;
+		
 	}
 
 	//Read
-	public AssociationDto findAssociationById(long id) {
+	public AssociationDto findAssociationById(Long id) {
 		AssociationDto associationDto= associationService.findAssociationByIdService(id);
 		return associationDto;
 	}
 	
 	public List<AssociationDto> listAssociations() {
+		
 		return associationService.listAssociationsService();
 	}
 	
@@ -78,26 +105,28 @@ public class AssociationController implements Serializable{
 		//nouvelAddresse=associationDto.getAddress();
 		//addressService.deleteAddressService(nouvelAddresse.getId());
 		associationToUpdate= associationService.updateAssociationService(associationDto);
-		return "AssociationTable";
+		associations=listAssociations();
+		return "associationTable";
 	}
 	
 	//Delete
-	public String deleteAssociation(long id) {
+	public String deleteAssociation(Long id) {
 		associationService.deleteAssociationService(id);
-		return "AssociationTable";
+		associations=listAssociations();
+		return "associationTable";
 	}
 	
 	
 	//NAVIGATION-----------------------------------------------------------------------------------------
 	
 	//showAssociation.xhtml
-	public String ShowAssociation(long id) {
+	public String ShowAssociation(Long id) {
 		nouvelAssociation=findAssociationById(id);
 		return "showAssociation";
 	}
 
 	//updateAssociationForm.xhtml
-	public String updateAssociationForm(long id) {
+	public String updateAssociationForm(Long id) {
 		associationToUpdate=findAssociationById(id);
 		return "updateAssociationForm";
 	}

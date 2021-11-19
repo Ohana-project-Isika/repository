@@ -12,7 +12,7 @@ public class Contact {
 	private Long idContact;
 	private String phoneNb;
 	private String phoneNb2; 
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String email;
 
 

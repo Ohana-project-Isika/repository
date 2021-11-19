@@ -25,7 +25,7 @@ public class PrivatePerson {
 	@JoinColumn(name="PRIVATEPERSON_ID")
 	private List<Paiement> paiement;
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="ACCOUNT_ID", unique=true, nullable=false)
+	@JoinColumn(name="ACCOUNT_ID", nullable=false)
 	private Account account;
 	
 	//GETTER AND SETTER

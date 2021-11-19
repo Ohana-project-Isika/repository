@@ -19,7 +19,7 @@ import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 public class Member {			// ou extends PrivatePerson  -> pas d'@Id  
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idMember;
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
 	@JoinColumn(name="PRIVATEPERSON_ID", unique=true, nullable=false)
@@ -31,18 +31,36 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 	//constructeur
 	public Member( ) {}
 
-	// getter et setter
-	public List<SubscriptionFee> getSubscriptionFeeList() {return subscriptionFeeList;}
-	public void setSubscriptionFeeList(List<SubscriptionFee> subscriptionFeeList) {	this.subscriptionFeeList = subscriptionFeeList;}
+	public Long getIdMember() {
+		return idMember;
+	}
 
-	public Long getIdMember() {return idMember;}
+	public void setIdMember(Long idMember) {
+		this.idMember = idMember;
+	}
 
-	//hash and Equals
+	public PrivatePerson getPrivatePerson() {
+		return privatePerson;
+	}
+
+	public void setPrivatePerson(PrivatePerson privatePerson) {
+		this.privatePerson = privatePerson;
+	}
+
+	public List<SubscriptionFee> getSubscriptionFeeList() {
+		return subscriptionFeeList;
+	}
+
+	public void setSubscriptionFeeList(List<SubscriptionFee> subscriptionFeeList) {
+		this.subscriptionFeeList = subscriptionFeeList;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((idMember == null) ? 0 : idMember.hashCode());
+		result = prime * result + ((privatePerson == null) ? 0 : privatePerson.hashCode());
 		result = prime * result + ((subscriptionFeeList == null) ? 0 : subscriptionFeeList.hashCode());
 		return result;
 	}
@@ -61,6 +79,11 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 				return false;
 		} else if (!idMember.equals(other.idMember))
 			return false;
+		if (privatePerson == null) {
+			if (other.privatePerson != null)
+				return false;
+		} else if (!privatePerson.equals(other.privatePerson))
+			return false;
 		if (subscriptionFeeList == null) {
 			if (other.subscriptionFeeList != null)
 				return false;
@@ -69,16 +92,12 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 		return true;
 	}
 
-	// String toString
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Member [idMember=");
-		builder.append(idMember);
-		builder.append(", subscriptionFeeList=");
-		builder.append(subscriptionFeeList);
-		builder.append("]");
-		return builder.toString();
+		return "Member [idMember=" + idMember + ", privatePerson=" + privatePerson + ", subscriptionFeeList="
+				+ subscriptionFeeList + "]";
 	}
+
+	
 
 }

@@ -16,18 +16,19 @@
 
 
 				<h1>Créer une adhesion</h1>
+
 				<h:form>
 					<h:panelGrid columns="2">
 						<h:outputText value="Nom : " />
 						<h:inputText id="Name"
-							value="#{membershipController.membership.name}" />
+							value="#{membershipController.membership.nameMbs}" />
+
+							
 
 						<h:commandButton
-							action="#{membershipController.createMemberShip(membershipController.mbsm.id)}"
-							value="Save" />
+							action="#{membershipController.createMemberShip(1)}" value="Save" />
 					</h:panelGrid>
 				</h:form>
-
 
 			</div>
 		</div>

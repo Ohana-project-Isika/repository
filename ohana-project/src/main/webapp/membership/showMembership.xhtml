@@ -11,41 +11,41 @@
 		<h:outputStylesheet name="css/table.css" />
 	</ui:define>
 	<ui:define name="content">>
-	<h1>Liste des associations</h1>
+	<h1>Liste des adhesion</h1>
 		<div class="body_table">
 			<div class="header_fixed">
 				<f:view>
 					<h:form>
 
-						<h:dataTable value="#{membershipController.mbsm.memberships}"
+						<h:dataTable value="#{membershipController.membership}"
 							var="o">
 							<h:column>
 								<f:facet name="header">Id</f:facet>
-								<h:outputText value="#{o.id}" />
+								<h:outputText value="#{o.idMbs}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Nom</f:facet>
-								<h:outputText value="#{o.name}" />
+								<h:outputText value="#{o.nameMbs}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Modifier"
-										action="#{membershipController.updateMembershipForm(o.id)}" />
+										action="#{membershipController.updateMembershipForm(o.idMbs)}" />
 								</button>
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Supprimer"
-										action="#{membershipController.deleteMembership(o.id)}" />
+										action="#{membershipController.deleteMembership(o.idMbs)}" />
 								</button>
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Ajouter un membre"
-										action="#{membershipController.createMemberForm(o.id)}" />
+										action="#{membershipController.createMemberForm(o.idMbs)}" />
 								</button>
 							</h:column>
 						</h:dataTable>
