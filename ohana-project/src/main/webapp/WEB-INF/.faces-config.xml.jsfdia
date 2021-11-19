@@ -15,15 +15,15 @@
   SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#membership#createMembershipForm.xhtml"
   PATH="/membership/createMembershipForm.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:association#associationTable.jsf"
-  PATH="association/associationTable.jsf" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:association#associationTable.jsf:0"
-   NAME="item" PATH="association/associationTable.jsf" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules:association#associationTable.xhtml"
+  PATH="association/associationTable.xhtml" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:association#associationTable.xhtml:0"
+   NAME="item" PATH="association/associationTable.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="createMembershipForm:#{membershipController.createMembershipManage(Long id)}:#membership#createMembershipForm.xhtml"
+    ID="createMembershipForm:#{membershipController.createMembershipManage(o.idAssos)}:#membership#createMembershipForm.xhtml"
     NAME="output" PATH="/membership/createMembershipForm.xhtml"
     TARGET="rules:#membership#createMembershipForm.xhtml"
-    TITLE="#{membershipController.createMembershipManage(Long id)}:createMembershipForm" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{membershipController.createMembershipManage(o.idAssos)}:createMembershipForm" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

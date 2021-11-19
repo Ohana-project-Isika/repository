@@ -15,13 +15,12 @@
 	</navigation-rule>
 	
 		<navigation-rule>
-		<from-view-id>association/associationTable.jsf</from-view-id>
+		<from-view-id>association/associationTable.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{membershipController.createMembershipManage(Long id)}</from-action>
+			<from-action>#{membershipController.createMembershipManage(o.idAssos)}</from-action>
 			<from-outcome>createMembershipForm</from-outcome>
 			<to-view-id>/membership/createMembershipForm.xhtml</to-view-id>
 		</navigation-case>
-		
 	</navigation-rule>
 	
 </faces-config>
