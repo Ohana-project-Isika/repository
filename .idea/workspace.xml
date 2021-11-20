@@ -9,14 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="Bug spotted. Needs Fixing.">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="0ac9d07f-2fbb-42b9-8a6e-87c2bfeb9fa6" name="Default Changelist" comment="Refactor panier - wip - update total bugging">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2021_18_12__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2021_18_12__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/detail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/detail.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="preprod" />
+        <entry key="$PROJECT_DIR$" value="feature/paypal" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,6 +86,19 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JBoss/WildFly 18.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 18.0.1.Final" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -214,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637265507110</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactor panier - wip - update total bugging">
+      <created>1637320519943</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1637320519943</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,17 +253,7 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Added login files." />
     <MESSAGE value="Bug spotted. Needs Fixing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug spotted. Needs Fixing." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Refactor panier - wip - update total bugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor panier - wip - update total bugging" />
   </component>
 </project>
