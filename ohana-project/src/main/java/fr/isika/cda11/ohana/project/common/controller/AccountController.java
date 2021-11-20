@@ -3,8 +3,10 @@ package fr.isika.cda11.ohana.project.common.controller;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -16,6 +18,8 @@ import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.InfoPersonService;
 import fr.isika.cda11.ohana.project.enumclass.EnumRole;
+
+import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
 
 @ManagedBean
 @SessionScoped
@@ -36,7 +40,16 @@ public class AccountController implements Serializable{
 	private InfoPersonDto newInfoPersonDto = new InfoPersonDto();
 	private ContactDto newContactDto = new ContactDto();
 	private AddressDto newAddressDto = new AddressDto();
-	
+	private UIComponent component;
+
+
+	public UIComponent getComponent() {
+		return component;
+	}
+
+	public void setComponent(UIComponent component) {
+		this.component = component;
+	}
 
 	public AccountService getAccountService() {
 		return accountService;
@@ -92,16 +105,21 @@ public class AccountController implements Serializable{
 	//CREATE AN ACCOUNT
 
 	public String createnewAccount() {
-		
-		accountService.createAccountervice(newAccountDto, newInfoPersonDto, newContactDto, newAddressDto);
-		newAccountDto = new AccountDto();
-		newInfoPersonDto = new InfoPersonDto();
-		newContactDto = new ContactDto();
-		return "accountvalidate";
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+				.getSession(false);
+		if (session.getAttribute(ACCOUNT_ATTRIBUTE) != null) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(component.getClientId(), new FacesMessage("Vous devez d'abord vous déconnecter " +
+					"pour créer un nouveau compte"));
+
+			return "";
+		} else {
+			accountService.createAccountervice(newAccountDto, newInfoPersonDto, newContactDto, newAddressDto);
+			newAccountDto = new AccountDto();
+			newInfoPersonDto = new InfoPersonDto();
+			newContactDto = new ContactDto();
+			return "accountvalidate";
+		}
 	}
-
-	
-
-
 }
 

@@ -14,7 +14,13 @@
 			<div id="content">
 				<f:view>
 					<h1>Creation d'un nouveau compte</h1>
-					<h:form method="post">
+
+					<br>
+						<h:outputText id="msg" value="" binding="#{accountController.component}"/>
+						<h:message for="msg"/>
+					</br>
+
+					<h:form id="test">
 						<h:panelGrid columns="2">
 							<h:outputText value="Login :" />
 							<h:inputText id="Login"
@@ -42,7 +48,6 @@
 							<h:outputText value="dateOfBirth :" />
 							<h:inputText id="dateOfBirth"
 								value="#{accountController.newInfoPersonDto.dateOfBirth}" />
-
 
 							<h:outputText value="phoneNb :" />
 							<h:inputText id="phoneNb"
@@ -74,9 +79,8 @@
 							<h:outputText value="Pays :" />
 							<h:inputText id="pays"
 								value="#{accountController.newAddressDto.pays}" />																
-															
-								
-							<h:commandButton action="#{accountController.createnewAccount()}"
+
+							<h:commandButton id="save" action="#{accountController.createnewAccount}"
 								value="Save" />
 						</h:panelGrid>
 					</h:form>

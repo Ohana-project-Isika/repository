@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 	
 	<navigation-rule>
-		<from-view-id>ticketing/checkout.xhtml</from-view-id>
+		<from-view-id>/ticketing/checkout.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{eventController.back()}</from-action>
 			<from-outcome>ticketing</from-outcome>
@@ -15,12 +15,21 @@
 	</navigation-rule>
 	
 		<navigation-rule>
-		<from-view-id>association/associationTable.xhtml</from-view-id>
+		<from-view-id>/association/associationTable.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{membershipController.createMembershipManage(o.idAssos)}</from-action>
+			<from-action>#{membershipController.createMembershipManage(id)}</from-action>
 			<from-outcome>createMembershipForm</from-outcome>
 			<to-view-id>/membership/createMembershipForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
+	<navigation-rule>
+		<from-view-id>/createAccount.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{accountController.createnewAccount}</from-action>
+			<from-outcome>accountvalidate</from-outcome>
+			<to-view-id>/association/accountvalidate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>
