@@ -34,8 +34,8 @@ public class PaymentController implements Serializable {
     private String url;
     private boolean isPaying;
 
-    @ManagedProperty(value="#{eventController}")
-    private EventController eventController;
+//    @ManagedProperty(value="#{eventController}")
+//    private EventController eventController;
 
     private MeansOfPayment meansOfPayment;
     private String cardNumber;
