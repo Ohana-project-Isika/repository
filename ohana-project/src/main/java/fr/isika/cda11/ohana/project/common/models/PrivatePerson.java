@@ -14,7 +14,7 @@ public class PrivatePerson {
 
 	//Attributs
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPrivatePerson;
 	private Byte photoProfil;
 
@@ -23,6 +23,9 @@ public class PrivatePerson {
 	private List<Paiement> paiement;
 	@OneToOne
 	private Role role;
+
+	@OneToMany
+	private List<Order> orders;
 	
 	// Getter and setter
 	public Byte getPhotoProfil() {return photoProfil;}

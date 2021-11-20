@@ -16,71 +16,62 @@
 
         <h:form id="test">
 
-            <h:dataTable value="#{eventController.cart.events}" var="event">
+            <h:dataTable value="#{paymentController.order.ticketsByIds.values()}" var="ticket">
                 <h:column>
                     <f:facet name="header">Nom</f:facet>
-                    #{event.name}
+                    #{ticket.id}
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Nombre de tickets sélectionnés</f:facet>
-                    #{eventController.countMap.get(event)}
+                    #{ticket.quantity}
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Tarif</f:facet>
-                    #{event.ticket.rateType}
+                    #{ticket.rateType}
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Taux TVA</f:facet>
-                    #{event.ticket.tvaRate} %
+                    #{ticket.tvaRate} %
                 </h:column>+
 
                 <h:column>
                     <f:facet name="header">Prix HT</f:facet>
-                    <input type="text" id="preTax_#{event.id}" value="#{event.ticket.preTaxPrice}"/>
+                    #{ticket.preTaxPrice} €
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Prix TTC</f:facet>
-                    <input type="text" id="postTax_#{event.id}" value="#{event.ticket.postTaxPrice}"/>
+                    #{ticket.postTaxPrice} €
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Total HT</f:facet>
-                    <p id="subTotal_#{event.id}" >
-                        #{event.ticket.preTaxPrice}
-                    </p>
+                        #{ticket.preTaxPricePerQuantity} €
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Total TTC</f:facet>
-                    <p id="total_#{event.id}" >
-                        #{event.ticket.postTaxPrice}
-                    </p>
+                        #{ticket.postTaxPricePerQuantity} €
                 </h:column>
             </h:dataTable>
 
-            <h:column>
-                <f:facet name="header">Total Panier HT</f:facet>
-                <p id="cartSubTotal">
-                    #{eventController.cart.subTotal}
-                </p>
-            </h:column>
-            <h:column>
+            <h:panelGroup>
+                <h:outputLabel value="Total Panier HT : "/>
+                    #{paymentController.order.subTotal} €
+            <br/>
                 <f:facet name="header">Total Panier TTC</f:facet>
-                <p id="cartTotal">
-                    #{eventController.cart.total}
-                </p>
-            </h:column>
-            <a href="#"><p onclick="getVars('#{eventController.cart.subTotal}', '#{eventController.cart.total}')">Continuer le paiement</p></a>
-            <div hidden="hidden">
-                <h:inputHidden id="subTotal" value="#{paymentController.cartSubTotal}" />
-                <h:inputHidden id="total" value="#{paymentController.cartTotal}" />
-                <h:commandLink id="link" action="#{paymentController.continuePayment(eventController.cart)}"
-                               value="click"/>
-            </div>
+                    #{paymentController.order.total} €
+            <br/>
+            </h:panelGroup>
+            <h:commandButton action="#{paymentController.completePayment}"
+                           value="Valider le paiement"/>
+            <h:commandButton action="#{paymentController.backToCart}"
+                           value="Retour au panier"/>
+            <h:commandButton action="#{paymentController.backToTicketing}"
+                           value="Retour à la billetterie"/>
         </h:form>
 
     </ui:define>

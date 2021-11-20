@@ -36,7 +36,7 @@ public class Order implements Serializable {
     private List<Event> events = new ArrayList<>();
 
     @ManyToOne
-    private Individual individual;
+    private Account account;
 
     @Transient
     private BigDecimal subTotal = BigDecimal.ZERO;

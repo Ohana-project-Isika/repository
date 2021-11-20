@@ -15,7 +15,7 @@ public class LoginRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Account> validateAccount(String username, String password) {
+    public List<Account> findAccountByCredentials(String username, String password) {
         Query query = entityManager.createQuery("SELECT DISTINCT a FROM Account a WHERE a.accountLogin = :username AND a.accountPassword = :password");
         query.setParameter("username", username);
         query.setParameter("password", password);

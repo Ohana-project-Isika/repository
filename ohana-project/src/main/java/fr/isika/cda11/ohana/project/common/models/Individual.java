@@ -19,6 +19,6 @@ public class Individual {
 
     private String firstName;
 
-    @OneToMany(mappedBy = "individual")
-    private List<Order> orders;
+//    @OneToMany(mappedBy = "individual")
+//    private List<Order> orders;
 }

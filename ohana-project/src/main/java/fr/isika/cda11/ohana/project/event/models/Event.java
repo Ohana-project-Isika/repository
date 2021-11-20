@@ -3,17 +3,12 @@ package fr.isika.cda11.ohana.project.event.models;
 
 import fr.isika.cda11.ohana.project.common.models.Address;
 import lombok.*;
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,13 +16,14 @@ import java.util.*;
 @EqualsAndHashCode
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "Events.findAll", query = "SELECT DISTINCT e FROM Event e LEFT JOIN e.ticketing t LEFT JOIN t.association a")
+        @NamedQuery(name = "Events.findAll", query = "SELECT DISTINCT e FROM Event e")
 })
 public class Event {
 
     // TODO Field Validation Errors
     // TODO Other Field Validation Controls if Any
 
+    //region Entity fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -43,6 +39,12 @@ public class Event {
     private Date startDate;
     public Date getStartDate() {return startDate;}
     public void setStartDate(Date startDate) {this.startDate = startDate;}
+
+    @Column(name = "creation_date")
+    private Date creationDate;
+
+    @Column(name = "deletion_date")
+    private Date deletionDate;
 
     @Column(name = "start_time")
     private LocalTime startTime;
@@ -78,7 +80,9 @@ public class Event {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Address address;
+    //endregion
 
+    //region Transient fields
     @Transient
     private int ticketQuantity;
 
@@ -93,10 +97,5 @@ public class Event {
 
     @Transient
     private String fullAddress;
-
-    public void addTicket(Ticket ticket) {
-        ticket.setEvent(this);
-        tickets.add(ticket);
-    }
-
+    //endregion
 }

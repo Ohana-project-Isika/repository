@@ -20,7 +20,7 @@
                     <p:inputText id="number" placeholder="Numéro de carte" inputmode="numeric" value="#{paymentController.cardNumber}"/>
                     <p:inputText id="name" placeholder="Nom complet" value="#{paymentController.fullName}"/>
                     <p:outputPanel id="expiration">
-                        <p:datePicker id="month" widgetVar="monthPicker" view="month" pattern="MM/yy" yearNavigator="true" yearRange="2021:2050"
+                        <p:datePicker id="month" widgetVar="monthPicker" view="month" pattern="MM/yy" yearNavigator="true" yearRange="2021:2050" mindate="#{paymentController.minExpiry}"
                                       onchange="$('#expiry').val(PF('monthPicker').input.val()); $('#expiry')[0].dispatchEvent(new Event('change'));"/>
                         <!-- Hide Expiration field so we can use PF MonthPicker -->
                         <p:inputText id="expiry" placeholder="MM/YY" inputmode="numeric" style="display:none" value="#{paymentController.expiry}"/>
@@ -29,7 +29,7 @@
                 </p:panelGrid>
 
                 <h:commandLink id="link" action="#{paymentController.validatePayment}"
-                               value="Valider la paiement"/>
+                               value="Valider le paiement"/>
             </h:form>
         </div>
     </ui:define>

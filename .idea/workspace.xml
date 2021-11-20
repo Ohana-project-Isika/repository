@@ -9,10 +9,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac9d07f-2fbb-42b9-8a6e-87c2bfeb9fa6" name="Default Changelist" comment="Refactor panier - wip - update total bugging">
+    <list default="true" id="0ac9d07f-2fbb-42b9-8a6e-87c2bfeb9fa6" name="Default Changelist" comment="Test">
+      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/dto/AccountDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/factories/AccountFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2021_18_12__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2021_18_12__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Individual.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Individual.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/PrivatePerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/PrivatePerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/repository/LoginRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/repository/LoginRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/checkout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/error.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/error.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/review.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/review.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/checkout.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/checkout.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/completePayment.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/completePayment.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/payment.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/return.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/return.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/validatePayment.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/validatePayment.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +56,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/paypal" />
+        <entry key="$PROJECT_DIR$" value="paypal_with_tickets_spinoff" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,15 +110,13 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -167,16 +189,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JBossConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
-      <server-settings>
-        <option name="SERVER" value="" />
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" value="" />
-        <option name="USERNAME" value="" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -255,5 +275,15 @@
     <MESSAGE value="Bug spotted. Needs Fixing." />
     <MESSAGE value="Refactor panier - wip - update total bugging" />
     <option name="LAST_COMMIT_MESSAGE" value="Refactor panier - wip - update total bugging" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLSyntaxErrorException" package="java.sql" />
+          <option name="timeStamp" value="28" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

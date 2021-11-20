@@ -1,14 +1,14 @@
 package fr.isika.cda11.ohana.project.common.models;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "Accounts.findAll", query = "SELECT DISTINCT a FROM Account a")
+})
 public class Account {
 
 	//Attributs
@@ -18,6 +18,9 @@ public class Account {
 	private String accountLogin;
 	private String accountPassword;
 	private LocalDate accountCreationDate;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+	private List<Order> orders = new ArrayList<>();
 	
 	// Relation : OneToOne avec PersonInfo 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -27,6 +30,18 @@ public class Account {
 
 	//Constructeur 
 	public Account() {}
+
+	public void addOrder(Order order) {
+		orders.add(order);
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 
 	public Long getIdAccount() {
 		return idAccount;

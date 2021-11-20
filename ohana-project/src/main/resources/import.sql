@@ -28,8 +28,8 @@ INSERT INTO association (nameAssos, addressAsso_idAddress, role_idRole) VALUES (
 INSERT INTO ticketing (ticketing_name, association_idAssos) VALUES ('ticketing', (SELECT idAssos FROM association WHERE role_idRole = 1));
 
 # EVENT TABLE
-INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Les Enfants d"abord', 'Contre la maltraitance des enfants', curdate(), '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Aubervilliers'), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
-INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('childhood.png', 'Ohana Kids', 'Gâtons nos enfants', curdate(), '2022-01-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Limoges'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Les Enfants d"abord', 'Contre la maltraitance des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Aubervilliers'), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('childhood.png', 'Ohana Kids', 'Gâtons nos enfants', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Limoges'));
 
 # TICKET TABLE
 INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Les Enfants d"abord'), 'REDUCED1', 'METROPOLITAN', 20);

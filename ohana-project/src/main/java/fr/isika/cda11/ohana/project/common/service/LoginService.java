@@ -26,8 +26,8 @@ public class LoginService implements Serializable {
         session.setAttribute(ACCOUNT_CONNECTED, true);
     }
 
-    public boolean isLoginValid(String username, String password) {
-        for (Account a : loginRepository.validateAccount(username, password)) {
+    public boolean validateAccount(String username, String password) {
+        for (Account a : loginRepository.findAccountByCredentials(username, password)) {
             if (username.equals(a.getAccountLogin()) && password.equals(a.getAccountPassword())) {
                 return true;
             }

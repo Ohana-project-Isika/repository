@@ -10,7 +10,13 @@
         <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>
         <link type="text/css" href="#{request.contextPath}/resources/css/styles.css" />
 
-        <h:form id="test">
+        <h:form id="panier">
+
+            <h2>Votre panier</h2>
+            <br/><br/>
+                <h:outputText id="msg" value="" binding="#{eventController.component}"/>
+                <h:message for="msg"/>
+            <br/><br/>
 
             <h:dataTable value="#{eventController.cart.ticketsByIds.values()}" var="ticket" rendered="#{!eventController.cart.ticketsByIds.isEmpty()}">
                 <h:column>
@@ -49,9 +55,9 @@
 
                 <h:column >
                     <h:commandButton action="#{eventController.decrement(ticket)}" value="-"/>
-                    <h:inputText class="dynamicAmount" type="number" 
-                    	value="#{ticket.quantity}" min="1" max="#{ticket.event.ticketQuantity}"
-                    	size="1"/>
+                    <h:inputText class="dynamicAmount" type="number"
+                                 value="#{ticket.quantity}" min="1" max="#{ticket.event.ticketQuantity}"
+                                 size="1"/>
                     <h:commandButton action="#{eventController.increment(ticket)}" value="+"/>
                 </h:column>
 
@@ -75,23 +81,29 @@
                 </h:column>
             </h:dataTable>
 
-            <h:outputLabel value="Total Panier HT"/>
-            <br/>
-            <h:outputText value="#{eventController.cart.subTotal}"/>
-            <br/>
-            <h:outputLabel value="Total Panier TTC"/>
-            <br/>
-            <h:outputText value="#{eventController.cart.total}"/>
-			<br/>
-            <h:commandLink id="list" action="#{eventController.back()}" value="Retour à la liste des événements"/>
-<!--             <a href="#"><p onclick="getVars('#{eventController.cart.subTotal}', '#{eventController.cart.total}')">Payer</p></a> -->
-<!--             <div hidden="hidden"> -->
-<!--                 <h:inputHidden id="subTotal" value="#{paymentController.cartSubTotal}" /> -->
-<!--                 <h:inputHidden id="total" value="#{paymentController.cartTotal}" /> -->
-<!--                 <h:commandLink id="link" action="#{paymentController.pay(eventController.cart)}" -->
-<!--                                value="click"/> -->
+            <h:panelGroup rendered="#{!eventController.cart.ticketsByIds.isEmpty()}">
+                <h:outputLabel value="Total Panier HT : "/>
+                <h:outputText value="#{eventController.cart.subTotal} €"/>
+                <br/>
+                <h:outputLabel value="Total Panier TTC : "/> :
+                <h:outputText value="#{eventController.cart.total} €"/>
+            </h:panelGroup>
 
-<!--             </div> -->
+            <h:panelGroup rendered="#{paymentController.paying}">
+                <br/><br/>
+                <h:outputText id="pmtMsg" value="" binding="#{paymentController.component}"/>
+                <h:message for="pmtMsg"/>
+                <br/><br/>
+                <h:commandLink action="#{loginController.logIn}" value="Connectez-vous"/>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{!paymentController.paying}">
+                <br/><br/>
+                <h:commandLink id="pay" action="#{paymentController.pay}" value="Valider le panier"/>
+            </h:panelGroup>
+            <br/><br/>
+            <h:commandLink id="list" action="#{eventController.back}" value="Retour à la liste des événements"/>
+
         </h:form>
     </ui:define>
 </ui:composition>

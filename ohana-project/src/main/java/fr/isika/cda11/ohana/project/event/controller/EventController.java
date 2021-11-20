@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.common.models.Order;
@@ -85,12 +87,15 @@ public class EventController implements Serializable {
 
     public String back() {
         events = eventService.findAllEvents();
+        numberMap = eventService.computeNumber(events, numberMap);
         return "ticketing";
     }
 
     public String delete(Ticket ticket) {
         cart.removeTicket(ticket);
-        return "ticketing/checkout?faces-redirect=true";
+        FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(component.getClientId(), new FacesMessage("Il n'y a plus d'évènements dans votre panier"));
+        return "";
     }
 
 }

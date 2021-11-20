@@ -5,14 +5,40 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 	
 	<navigation-rule>
-		<from-view-id>ticketing/checkout.xhtml</from-view-id>
+		<from-view-id>/ticketing/checkout.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{eventController.back()}</from-action>
+			<from-action>#{eventController.back}</from-action>
 			<from-outcome>ticketing</from-outcome>
 			<to-view-id>/ticketing.xhtml</to-view-id>
 		</navigation-case>
-		
 	</navigation-rule>
-	
+
+	<navigation-rule>
+		<from-view-id>/ticketing/checkout.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{loginController.logIn}</from-action>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ticketing/checkout.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{paymentController.pay}</from-action>
+			<from-outcome>review</from-outcome>
+			<to-view-id>/review.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ticketing/completePayment.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{paymentController.validatePayment}</from-action>
+			<from-outcome>ticketing/validatePayment</from-outcome>
+			<to-view-id>/ticketing/validatePayment.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 	
 </faces-config>
