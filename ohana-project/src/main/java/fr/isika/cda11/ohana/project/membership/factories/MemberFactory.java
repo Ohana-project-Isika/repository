@@ -14,7 +14,8 @@ public class MemberFactory {
 		Member member = new Member();
 		member.setPrivatePerson(PrivatePersonFactory.fromPrivatePersonDto(memberDto.getPrivatePerson()));
 		member.setIdMember(memberDto.getIdMember());
-		member.setSubscriptionFeeList(new ArrayList<SubscriptionFee>());
+		member.setDateOfStart(memberDto.getDateOfStart());
+		member.setDateOfEnd(memberDto.getDateOfEnd());
 		return member;
 	}
 	
@@ -22,7 +23,8 @@ public class MemberFactory {
 		MemberDto memberDto = new MemberDto();
 		memberDto.setPrivatePerson(PrivatePersonFactory.fromPrivatePerson(member.getPrivatePerson()));
 		memberDto.setIdMember(Long.valueOf(member.getIdMember()));
-		memberDto.setSubscriptionFeeList(new ArrayList<SubscriptionFeeDto>());
+		memberDto.setDateOfStart(member.getDateOfStart());
+		memberDto.setDateOfEnd(member.getDateOfEnd());
 		return memberDto;
 	}
 }

@@ -26,9 +26,6 @@ import fr.isika.cda11.ohana.project.enumclass.EnumRole;
 @SessionScoped
 public class AccountController implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1373993544070458079L;
 
 	@Inject 
@@ -42,8 +39,6 @@ public class AccountController implements Serializable{
 	private ContactDto newContactDto = new ContactDto();
 	private AddressDto newAddressDto = new AddressDto();
 	private AccountDto accountnew= new AccountDto();
-	
-
 
 	public AccountService getAccountService() {return accountService;}
 	public void setAccountService(AccountService accountService) {this.accountService = accountService;}
@@ -68,10 +63,6 @@ public class AccountController implements Serializable{
 
 		
 	//CREATE AN ACCOUNT
-
-
-
-
 	public String createnewAccount() {
 		
 		accountnew= accountService.createAccountervice(newAccountDto, newInfoPersonDto, newContactDto, newAddressDto);
@@ -83,9 +74,6 @@ public class AccountController implements Serializable{
 		}
 		return "accountvalidate";
 	}
-
-	
-
 
 }
 

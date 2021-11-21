@@ -14,8 +14,7 @@
 				<f:view>
 					<h:form>
 
-						<h:dataTable value="#{associationController.associations}"
-							var="o">
+						<h:dataTable value="#{associationController.associations}" var="o">
 							<h:column>
 								<f:facet name="header">Id</f:facet>
 								<h:outputText value="#{o.idAssos}" />
@@ -44,9 +43,16 @@
 								<f:facet name="header">Ville</f:facet>
 								<h:outputText value="#{o.addressAsso.ville}" />
 							</h:column>
-														<h:column>
+							<h:column>
 								<f:facet name="header">Pays</f:facet>
 								<h:outputText value="#{o.addressAsso.pays}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Justificatif</f:facet>
+
+								<h:commandLink value="#{o.justifAsso}"
+									action="#{associationController.readPdf(o.idAssos)}" />
+
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
@@ -74,6 +80,13 @@
 								<button>
 									<h:commandLink value="Creer un formulaire"
 										action="#{membershipController.createMembershipManage(o.idAssos)}" />
+								</button>
+							</h:column>
+							<h:column>
+								<f:facet name="header"></f:facet>
+								<button>
+									<h:commandLink value="DASHBOARD"
+										action="#{dashboardAssociationController.ReadListMemberByAssociation(o.idAssos)}" />
 								</button>
 							</h:column>
 						</h:dataTable>

@@ -1,5 +1,7 @@
 package fr.isika.cda11.ohana.project.common.controller;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,6 +54,10 @@ public class AssociationController implements Serializable{
 	private Part uploadedFile;
 	public Part getUploadedFile() {return uploadedFile;}
 	public void setUploadedFile(Part uploadedFile) {this.uploadedFile = uploadedFile;}
+	private String folder2 = "C:\\Github\\Ohana\\ohana-project\\src\\main\\webapp\\resources\\justification\\";
+	private Part uploadedFile2;
+	public Part getUploadedFile2() {return uploadedFile2;}
+	public void setUploadedFile2(Part uploadedFile2) {this.uploadedFile2 = uploadedFile2;}
 	
 	//--------------fin test
 	
@@ -90,7 +96,9 @@ public class AssociationController implements Serializable{
 	public String subscription(Long id) {
 		accountDto=accountService.findAccountByIdService(id);
 		saveFile();
+		saveFile2();
 		nouvelAssociation.setLogoAsso("../resources/logoAssociation/"+getFilename(uploadedFile));
+		nouvelAssociation.setJustifAsso("../resources/Justification/"+getFilename(uploadedFile2));
 		AssociationDto assosDto=associationService.createAssociationService(nouvelAssociation, nouvelAddresse, servicesDto, accountDto);
 		nouvelAssociation=assosDto;
 		associations=listAssociations();
@@ -147,7 +155,7 @@ public class AssociationController implements Serializable{
 		return "updateAssociationForm";
 	}
 
-	//test---------------------------
+	//upload file---------------------------
 
 	public void saveFile() {
 
@@ -190,51 +198,82 @@ public class AssociationController implements Serializable{
 
 
 
+	public void saveFile2() {
+
+		System.out.println("saveFile method invoked..");
+		System.out.println( "content-type:{0}" + uploadedFile2.getContentType());
+		System.out.println("filename:{0}" + uploadedFile2.getName());
+		System.out.println( "submitted filename:{0}"+ uploadedFile2.getSubmittedFileName());
+		System.out.println( "size:{0}" + uploadedFile2.getSize());
+		String fileName2 = "";
+
+		try {
+
+			fileName2 = getFilename2(uploadedFile2);
+
+			System.out.println("fileName2  " + fileName2);
+
+			uploadedFile2.write(folder2+fileName2);
 
 
+		} catch (IOException ex) {
+			System.out.println(ex);
+
+
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("File " + fileName2+ " Uploaded!"));
+
+	}
+
+
+	private static String getFilename2(Part part2) {
+		for (String cd : part2.getHeader("content-disposition").split(";")) {
+			if (cd.trim().startsWith("filename")) {
+				String filename2 = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+				return filename2.substring(filename2.lastIndexOf('/') + 1).substring(filename2.lastIndexOf('\\') + 1); // MSIE fix.
+			}
+		}
+		return null;
+	}
+
+	
+	
 
 	public static void main(String[] args) {
 
 	}
 
 
-	/*
-	 	public void init() {
-		System.out.println("Create " + this);
-		if (cm.findCourses().size() == 0) {
-			Course c1 = new Course();
-			c1.setName("Architecture JEE");
-			c1.setHours(60);
-			c1.setDescription("Introduction `a JEE.");
-			cm.saveCourse(c1);
-		}
+//open file
+	public void readPdf(Long id) {
+		AssociationDto associationtoRead = findAssociationById(id);	
+		readFile(associationtoRead.getJustifAsso());
 	}
-	public List<Course> getCourses() {
-		return cm.findCourses();
-	}
-	public Course getTheCourse() {
-		return theCourse;
-	}
-	public String show(Long n) {
-		theCourse = cm.findCourse(n);
-		return "showCourse";
-	}
-	public String save() {
-		if (theCourse.getHours() % 3 != 0) {
-		FacesContext ct = FacesContext.getCurrentInstance();
-		FacesMessage msg = new FacesMessage("Hours is not multiple of 3");
-		ct.addMessage("test:hours", msg);
-		ct.validationFailed();
-		return "editCourse";
-		}
-		cm.saveCourse(theCourse);
-		return "showCourse";
-		}
+	
+	
+	public static void readFile(String file) {
+		  try {
 
-	public String newCourse() {
-		theCourse = new Course();
-		return "editCourse";
-	}
-	 */
+			File pdfFile = new File(file);
+			if (pdfFile.exists()) {
+
+				if (Desktop.isDesktopSupported()) {
+					Desktop.getDesktop().open(pdfFile);
+				} else {
+					System.out.println("Awt Desktop is not supported!");
+				}
+
+			} else {
+				System.out.println("File is not exists!");
+			}
+
+			System.out.println("Done");
+
+		  } catch (Exception ex) {
+			ex.printStackTrace();
+		  }
+
+		}
 
 }

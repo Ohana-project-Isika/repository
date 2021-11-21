@@ -18,8 +18,6 @@ public class MembershipDto implements Serializable{
 	private static final long serialVersionUID = -4979763868804195542L;
 	private Long idMbs;
 	private String nameMbs;		
-	private Date dateOfStart;
-	private Date dateOfEnd;
 	private BigDecimal priceOfFee;
 
 	// relations
@@ -49,25 +47,6 @@ public class MembershipDto implements Serializable{
 		this.nameMbs = nameMbs;
 	}
 
-
-	public Date getDateOfStart() {
-		return dateOfStart;
-	}
-
-
-	public void setDateOfStart(Date dateOfStart) {
-		this.dateOfStart = dateOfStart;
-	}
-
-
-	public Date getDateOfEnd() {
-		return dateOfEnd;
-	}
-
-
-	public void setDateOfEnd(Date dateOfEnd) {
-		this.dateOfEnd = dateOfEnd;
-	}
 
 
 	public BigDecimal getPriceOfFee() {
@@ -109,8 +88,6 @@ public class MembershipDto implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dateOfEnd == null) ? 0 : dateOfEnd.hashCode());
-		result = prime * result + ((dateOfStart == null) ? 0 : dateOfStart.hashCode());
 		result = prime * result + ((idMbs == null) ? 0 : idMbs.hashCode());
 		result = prime * result + ((memberShipManage == null) ? 0 : memberShipManage.hashCode());
 		result = prime * result + ((members == null) ? 0 : members.hashCode());
@@ -129,16 +106,6 @@ public class MembershipDto implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		MembershipDto other = (MembershipDto) obj;
-		if (dateOfEnd == null) {
-			if (other.dateOfEnd != null)
-				return false;
-		} else if (!dateOfEnd.equals(other.dateOfEnd))
-			return false;
-		if (dateOfStart == null) {
-			if (other.dateOfStart != null)
-				return false;
-		} else if (!dateOfStart.equals(other.dateOfStart))
-			return false;
 		if (idMbs == null) {
 			if (other.idMbs != null)
 				return false;
@@ -170,12 +137,12 @@ public class MembershipDto implements Serializable{
 
 	@Override
 	public String toString() {
-		return "MembershipDto [idMbs=" + idMbs + ", nameMbs=" + nameMbs + ", dateOfStart=" + dateOfStart
-				+ ", dateOfEnd=" + dateOfEnd + ", priceOfFee=" + priceOfFee + ", memberShipManage=" + memberShipManage
-				+ ", members=" + members + "]";
+		return "MembershipDto [idMbs=" + idMbs + ", nameMbs=" + nameMbs + ", priceOfFee=" + priceOfFee
+				+ ", memberShipManage=" + memberShipManage + ", members=" + members + "]";
 	}
 
 
+	
 	
 
 }

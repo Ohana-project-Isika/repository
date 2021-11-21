@@ -70,6 +70,7 @@ public class MemberController implements Serializable {
 	
 	public String createMember(Long id) {
 		membershipDto=memberShipService.findMembershipByIdService(id);
+		memberDto.setDateOfStart(new Date());
 		memberDto=memberService.createMember(memberDto,membershipDto, contactDto, infopersonDto, accountDto);
 		return "showMember";
 	}

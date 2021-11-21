@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.membership.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
@@ -17,8 +18,9 @@ public class MemberDto implements Serializable{
 	private Long idMember;
 
 	private PrivatePersonDto privatePerson;
+	private Date dateOfStart;
+	private Date dateOfEnd;
 
-	private List<SubscriptionFeeDto> subscriptionFeeList;
 	
 	//constructeur
 	public MemberDto( ) {}
@@ -39,13 +41,11 @@ public class MemberDto implements Serializable{
 		this.privatePerson = privatepersonDto;
 	}
 
-	public List<SubscriptionFeeDto> getSubscriptionFeeList() {
-		return subscriptionFeeList;
-	}
+	public Date getDateOfStart() 				{return dateOfStart;}
+	public void setDateOfStart(Date dateOfStart){this.dateOfStart = dateOfStart;	}
 
-	public void setSubscriptionFeeList(List<SubscriptionFeeDto> subscriptionFeeList) {
-		this.subscriptionFeeList = subscriptionFeeList;
-	}
+	public Date getDateOfEnd() {return dateOfEnd;}
+	public void setDateOfEnd(Date dateOfEnd) {this.dateOfEnd = dateOfEnd;}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -55,9 +55,10 @@ public class MemberDto implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((dateOfEnd == null) ? 0 : dateOfEnd.hashCode());
+		result = prime * result + ((dateOfStart == null) ? 0 : dateOfStart.hashCode());
 		result = prime * result + ((idMember == null) ? 0 : idMember.hashCode());
 		result = prime * result + ((privatePerson == null) ? 0 : privatePerson.hashCode());
-		result = prime * result + ((subscriptionFeeList == null) ? 0 : subscriptionFeeList.hashCode());
 		return result;
 	}
 
@@ -70,6 +71,16 @@ public class MemberDto implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		MemberDto other = (MemberDto) obj;
+		if (dateOfEnd == null) {
+			if (other.dateOfEnd != null)
+				return false;
+		} else if (!dateOfEnd.equals(other.dateOfEnd))
+			return false;
+		if (dateOfStart == null) {
+			if (other.dateOfStart != null)
+				return false;
+		} else if (!dateOfStart.equals(other.dateOfStart))
+			return false;
 		if (idMember == null) {
 			if (other.idMember != null)
 				return false;
@@ -80,20 +91,15 @@ public class MemberDto implements Serializable{
 				return false;
 		} else if (!privatePerson.equals(other.privatePerson))
 			return false;
-		if (subscriptionFeeList == null) {
-			if (other.subscriptionFeeList != null)
-				return false;
-		} else if (!subscriptionFeeList.equals(other.subscriptionFeeList))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDto [idMember=" + idMember + ", privatePerson=" + privatePerson + ", subscriptionFeeList="
-				+ subscriptionFeeList + "]";
+		return "MemberDto [idMember=" + idMember + ", privatePerson=" + privatePerson + ", dateOfStart=" + dateOfStart
+				+ ", dateOfEnd=" + dateOfEnd + "]";
 	}
-	
+
 	
 	
 	

@@ -29,8 +29,11 @@
 							</h:inputFile>
 
 							<h:outputText value="justifAsso :" />
-							<h:inputText id="justifAsso"
-								value="#{associationController.nouvelAssociation.justifAsso}" />
+							<h:inputFile id="file-id2"
+								value="#{associationController.uploadedFile2}" required="true"
+								requiredMessage="Please upload a file" alt="upload file"
+								style="font-size: 30px;">
+							</h:inputFile>
 
 							<h:outputText value="numSiret :" />
 							<h:inputText id="numSiret"
@@ -59,7 +62,7 @@
 
 							<h:commandButton
 								action="#{associationController.subscription(accountController.accountnew.idAccount)}"
-								value="Save" />
+								value="Save" ajax="false" />
 						</h:panelGrid>
 					</h:form>
 				</f:view>

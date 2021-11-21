@@ -1,4 +1,5 @@
 package fr.isika.cda11.ohana.project.membership.models;
+import java.util.Date;
 import java.util.List;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -23,12 +25,11 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idMember;
-	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="PRIVATEPERSON_ID", unique=true, nullable=false)
+	@ManyToOne(cascade = CascadeType.ALL, optional=false)
+	@JoinColumn(name="PRIVATEPERSON_ID", nullable=false)
 	private PrivatePerson privatePerson;
-
-	@ManyToMany
-	private List<SubscriptionFee> subscriptionFeeList;
+	private Date dateOfStart;
+	private Date dateOfEnd;
 	
 	//constructeur
 	public Member( ) {}
@@ -49,21 +50,21 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 		this.privatePerson = privatePerson;
 	}
 
-	public List<SubscriptionFee> getSubscriptionFeeList() {
-		return subscriptionFeeList;
-	}
+	
+	public Date getDateOfStart() 				{return dateOfStart;}
+	public void setDateOfStart(Date dateOfStart){this.dateOfStart = dateOfStart;	}
 
-	public void setSubscriptionFeeList(List<SubscriptionFee> subscriptionFeeList) {
-		this.subscriptionFeeList = subscriptionFeeList;
-	}
+	public Date getDateOfEnd() {return dateOfEnd;}
+	public void setDateOfEnd(Date dateOfEnd) {this.dateOfEnd = dateOfEnd;}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((dateOfEnd == null) ? 0 : dateOfEnd.hashCode());
+		result = prime * result + ((dateOfStart == null) ? 0 : dateOfStart.hashCode());
 		result = prime * result + ((idMember == null) ? 0 : idMember.hashCode());
 		result = prime * result + ((privatePerson == null) ? 0 : privatePerson.hashCode());
-		result = prime * result + ((subscriptionFeeList == null) ? 0 : subscriptionFeeList.hashCode());
 		return result;
 	}
 
@@ -76,6 +77,16 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 		if (getClass() != obj.getClass())
 			return false;
 		Member other = (Member) obj;
+		if (dateOfEnd == null) {
+			if (other.dateOfEnd != null)
+				return false;
+		} else if (!dateOfEnd.equals(other.dateOfEnd))
+			return false;
+		if (dateOfStart == null) {
+			if (other.dateOfStart != null)
+				return false;
+		} else if (!dateOfStart.equals(other.dateOfStart))
+			return false;
 		if (idMember == null) {
 			if (other.idMember != null)
 				return false;
@@ -86,19 +97,16 @@ public class Member {			// ou extends PrivatePerson  -> pas d'@Id
 				return false;
 		} else if (!privatePerson.equals(other.privatePerson))
 			return false;
-		if (subscriptionFeeList == null) {
-			if (other.subscriptionFeeList != null)
-				return false;
-		} else if (!subscriptionFeeList.equals(other.subscriptionFeeList))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [idMember=" + idMember + ", privatePerson=" + privatePerson + ", subscriptionFeeList="
-				+ subscriptionFeeList + "]";
+		return "Member [idMember=" + idMember + ", privatePerson=" + privatePerson + ", dateOfStart=" + dateOfStart
+				+ ", dateOfEnd=" + dateOfEnd + "]";
 	}
+
+
 
 	
 

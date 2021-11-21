@@ -20,9 +20,6 @@ public class Membership {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idMbs;
 	private String nameMbs;
-	
-	private Date dateOfStart;
-	private Date dateOfEnd;
 	@Column(scale = 2)
 	private BigDecimal priceOfFee;
 
@@ -42,14 +39,6 @@ public class Membership {
 	public String getNameMbs()			{return nameMbs;}
 	public void setNameMbs(String nameMbs){this.nameMbs = nameMbs;	}
 
-	public Date getDateOfStart() 				{return dateOfStart;}
-	public void setDateOfStart(Date dateOfStart){this.dateOfStart = dateOfStart;	}
-
-	public Date getDateOfEnd() {return dateOfEnd;}
-	public void setDateOfEnd(Date dateOfEnd) {this.dateOfEnd = dateOfEnd;}
-
-
-
 	public MemberShipManage getMemberShipManage() {
 		return memberShipManage;
 	}
@@ -61,8 +50,6 @@ public class Membership {
 	public void setIdMbs(Long idMbs) {
 		this.idMbs = idMbs;
 	}
-
-
 
 	public long getIdMbs() {return idMbs;}
 
@@ -86,8 +73,6 @@ public class Membership {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dateOfEnd == null) ? 0 : dateOfEnd.hashCode());
-		result = prime * result + ((dateOfStart == null) ? 0 : dateOfStart.hashCode());
 		result = prime * result + ((idMbs == null) ? 0 : idMbs.hashCode());
 		result = prime * result + ((memberShipManage == null) ? 0 : memberShipManage.hashCode());
 		result = prime * result + ((members == null) ? 0 : members.hashCode());
@@ -105,16 +90,6 @@ public class Membership {
 		if (getClass() != obj.getClass())
 			return false;
 		Membership other = (Membership) obj;
-		if (dateOfEnd == null) {
-			if (other.dateOfEnd != null)
-				return false;
-		} else if (!dateOfEnd.equals(other.dateOfEnd))
-			return false;
-		if (dateOfStart == null) {
-			if (other.dateOfStart != null)
-				return false;
-		} else if (!dateOfStart.equals(other.dateOfStart))
-			return false;
 		if (idMbs == null) {
 			if (other.idMbs != null)
 				return false;
@@ -145,10 +120,11 @@ public class Membership {
 
 	@Override
 	public String toString() {
-		return "Membership [idMbs=" + idMbs + ", nameMbs=" + nameMbs + ", dateOfStart=" + dateOfStart + ", dateOfEnd="
-				+ dateOfEnd + ", priceOfFee=" + priceOfFee + ", memberShipManage=" + memberShipManage + ", members="
-				+ members + "]";
+		return "Membership [idMbs=" + idMbs + ", nameMbs=" + nameMbs + ", priceOfFee=" + priceOfFee
+				+ ", memberShipManage=" + memberShipManage + ", members=" + members + "]";
 	}
+
+
 
 	
 	

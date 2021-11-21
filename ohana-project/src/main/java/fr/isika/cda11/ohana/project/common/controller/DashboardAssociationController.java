@@ -8,7 +8,9 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.ItemSelectEvent;
@@ -36,23 +38,87 @@ import org.primefaces.model.charts.polar.PolarAreaChartDataSet;
 import org.primefaces.model.charts.polar.PolarAreaChartModel;
 import org.primefaces.model.charts.radar.RadarChartModel;
 
+import fr.isika.cda11.ohana.project.common.dto.AccountDto;
+import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
+import fr.isika.cda11.ohana.project.common.service.AccountService;
+import fr.isika.cda11.ohana.project.common.service.AssociationService;
+import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
+import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
+import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
+import fr.isika.cda11.ohana.project.membership.service.MemberService;
+import fr.isika.cda11.ohana.project.membership.service.MemberShipManageService;
+import fr.isika.cda11.ohana.project.membership.service.MembershipService;
+
 
 @Named
 @RequestScoped
-public class ChartJsView implements Serializable {
-     
+@ManagedBean
+public class DashboardAssociationController implements Serializable {
 
-     
-    /**
-	 * 
-	 */
+	@Inject
+	AssociationService assosService;
+	@Inject
+	MemberService memberService;
+	@Inject
+	AccountService accountService;
+	@Inject
+	MembershipService membershipService;
+	@Inject
+	MemberShipManageService mbsmService;
+	
 	private static final long serialVersionUID = 5285422635046708301L;
 	private BarChartModel barModel;
     private DonutChartModel donutModel;
-     
-
- 
-    @PostConstruct
+	private AccountDto accountDto = new AccountDto();
+    private MemberDto memberDto = new MemberDto();
+    private MembershipDto memberShipDto = new MembershipDto();
+    private AssociationDto associationDto = new AssociationDto();
+    private MemberShipManageDto mbsmDto = new MemberShipManageDto();
+    List<MemberDto> members = new ArrayList<MemberDto>();
+    
+    public BarChartModel getBarModel() {return barModel;}
+    public void setBarModel(BarChartModel barModel) {this.barModel = barModel;}
+    public DonutChartModel getDonutModel() {return donutModel;}
+    public void setDonutModel(DonutChartModel donutModel) {this.donutModel = donutModel;}
+    public MemberService getMemberService() {return memberService;}
+	public void setMemberService(MemberService memberService) {this.memberService = memberService;}
+	public AccountDto getAccountDto() {return accountDto;}
+	public void setAccountDto(AccountDto accountDto) {this.accountDto = accountDto;}
+	public MemberDto getMemberDto() {return memberDto;}
+	public void setMemberDto(MemberDto memberDto) {this.memberDto = memberDto;}
+	public MembershipDto getMemberShipDto() {return memberShipDto;}
+	public void setMemberShipDto(MembershipDto memberShipDto) {this.memberShipDto = memberShipDto;}
+	public AssociationDto getAssociationDto() {return associationDto;}
+	public void setAssociationDto(AssociationDto associationDto) {this.associationDto = associationDto;}
+    public List<MemberDto> getMembers() {return members;}
+	public void setMembers(List<MemberDto> members) {this.members = members;}	
+	public MemberShipManageDto getMbsmDto() {return mbsmDto;}
+	public void setMbsmDto(MemberShipManageDto mbsmDto) {this.mbsmDto = mbsmDto;}
+	
+	
+	public String ReadListMemberByAssociation(Long id) {
+		//je cherche l'association 
+		associationDto = assosService.findAssociationByIdService(id);
+		// je cherche le service adhesion relie a l'association
+		List<MemberShipManageDto> mbsms = mbsmService.listMembershipManageService();
+		for(MemberShipManageDto mbmdto : mbsms) {
+			if(mbmdto.getAssociation().getIdAssos() == id) {
+				mbsmDto=mbmdto;
+			}
+			else {
+				mbsmDto=new MemberShipManageDto();
+			}
+		}
+		List<MembershipDto> allMembership = mbsmDto.getMemberships();
+		for(MembershipDto memberships : allMembership) {
+			for(MemberDto memberdto : memberships.getMembers()) {
+				members.add(memberdto);
+			}
+		}
+		return "bar";
+		
+	}
+	@PostConstruct
     public void init() {
 
         createBarModel();  
@@ -175,22 +241,7 @@ public class ChartJsView implements Serializable {
      
    
      
-    public BarChartModel getBarModel() {
-        return barModel;
-    }
- 
-    public void setBarModel(BarChartModel barModel) {
-        this.barModel = barModel;
-    }
- 
    
-    public DonutChartModel getDonutModel() {
-        return donutModel;
-    }
- 
-    public void setDonutModel(DonutChartModel donutModel) {
-        this.donutModel = donutModel;
-    }
      
    
 }

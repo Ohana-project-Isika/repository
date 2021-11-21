@@ -1,5 +1,7 @@
 package fr.isika.cda11.ohana.project.membership.service;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -27,6 +29,10 @@ public class MemberShipManageService {
 
 	public MemberShipManageDto findMembershipManageByIdService(long id) {
 		return mbsr.findMembershipManageRepos(id);
+	}
+	
+	public List<MemberShipManageDto> listMembershipManageService(){
+		return mbsr.listMembershipManageRepos();
 	}
 
 	// UPDATE
