@@ -21,15 +21,15 @@ public class InfoPerson {
 	private Long idInfoPers;
 	private String lastName;
 	private String firstName;
-	private LocalDate dateOfBirth;
+	private Date dateOfBirth;
 
 	//RELATIONS
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="CONTACT_ID", unique=true, nullable=false)
+	@JoinColumn(name="CONTACT_ID", nullable=false)
 	private Contact contact;
-	@OneToMany
-	@JoinColumn(name="INFOPERSON_ID")
-	private List<Address> address;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="ADDRESS_ID")
+	private Address address;
 	
 	//CONSTRUCTOR
 	public InfoPerson( ) {}
@@ -58,11 +58,11 @@ public class InfoPerson {
 		this.firstName = firstName;
 	}
 
-	public LocalDate getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -74,11 +74,11 @@ public class InfoPerson {
 		this.contact = contact;
 	}
 
-	public List<Address> getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(List<Address> address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
@@ -142,6 +142,7 @@ public class InfoPerson {
 		return "InfoPerson [idInfoPers=" + idInfoPers + ", lastName=" + lastName + ", firstName=" + firstName
 				+ ", dateOfBirth=" + dateOfBirth + ", contact=" + contact + ", address=" + address + "]";
 	}
+
 
 
 	

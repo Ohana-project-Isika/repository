@@ -30,7 +30,14 @@ public class SubscriptionFee {
 	public SubscriptionFee() {
 	}
 
-	// getter et setter
+	public Long getIdSubFee() {
+		return idSubFee;
+	}
+
+	public void setIdSubFee(Long idSubFee) {
+		this.idSubFee = idSubFee;
+	}
+
 	public Integer getFeeAmount() {
 		return feeAmount;
 	}
@@ -63,12 +70,6 @@ public class SubscriptionFee {
 		this.membership = membership;
 	}
 
-
-	public Long getIdSubFee() {
-		return idSubFee;
-	}
-
-	// hash and Equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,23 +119,11 @@ public class SubscriptionFee {
 		return true;
 	}
 
-	// String toString
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SubscriptionFee [idSubFee=");
-		builder.append(idSubFee);
-		builder.append(", feeAmount=");
-		builder.append(feeAmount);
-		builder.append(", dateOfStart=");
-		builder.append(dateOfStart);
-		builder.append(", dateOfEnd=");
-		builder.append(dateOfEnd);
-		builder.append(", membership=");
-		builder.append(membership);
-		builder.append(", member=");
-		builder.append("]");
-		return builder.toString();
+		return "SubscriptionFee [idSubFee=" + idSubFee + ", feeAmount=" + feeAmount + ", dateOfStart=" + dateOfStart
+				+ ", dateOfEnd=" + dateOfEnd + ", membership=" + membership + "]";
 	}
+
 
 }

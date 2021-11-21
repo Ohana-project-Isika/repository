@@ -21,13 +21,7 @@ public class InfoPersonFactory {
 		infoPerson.setFirstName(infoPersonDto.getFirstName());
 		infoPerson.setDateOfBirth(infoPersonDto.getDateOfBirth());
 		infoPerson.setContact(ContactFactory.fromContactDto(infoPersonDto.getContact()));
-		infoPerson.setAddress(new ArrayList<Address>());
-		if(infoPersonDto.getAddress().isEmpty()== false) {
-		for(AddressDto addressDto: infoPersonDto.getAddress()) {
-			
-				infoPerson.getAddress().add(AddressFactory.fromAddressDto(addressDto));
-			}
-		}
+		infoPerson.setAddress(AddressFactory.fromAddressDto(infoPersonDto.getAddress()));
 		infoPerson.setIdInfoPers(infoPersonDto.getIdInfoPers());
 
 		return infoPerson;
@@ -39,13 +33,7 @@ public class InfoPersonFactory {
 		infoPersonDto.setFirstName(infoPerson.getFirstName());
 		infoPersonDto.setDateOfBirth(infoPerson.getDateOfBirth());
 		infoPersonDto.setContact(ContactFactory.fromContact(infoPerson.getContact()));
-		infoPersonDto.setAddress(new ArrayList<AddressDto>());
-		if(infoPersonDto.getAddress().isEmpty()== false) {
-		for(Address address: infoPerson.getAddress()) {
-			
-				infoPersonDto.getAddress().add(AddressFactory.fromAddress(address));
-			}
-		}
+		infoPersonDto.setAddress(AddressFactory.fromAddress(infoPerson.getAddress()));
 		infoPersonDto.setIdInfoPers(infoPerson.getIdInfoPers());
 		return infoPersonDto;
 	}

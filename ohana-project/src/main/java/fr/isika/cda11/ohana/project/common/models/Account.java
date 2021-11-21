@@ -1,5 +1,6 @@
 package fr.isika.cda11.ohana.project.common.models;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,16 +22,16 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAccount;
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String accountLogin;
-	private String accountPassword;
+	private String accountPassword = "00000";
 	@Enumerated(EnumType.STRING)
 	private EnumRole role;
-	private LocalDate accountCreationDate;
+	private Date accountCreationDate;
 	
 	// RELATIONS
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="INFOPERSON_ID", unique=true, nullable=false)
+	@JoinColumn(name="INFOPERSON_ID", nullable=false)
 	private InfoPerson infoPerson;
 
 	//CONSTRUCTEUR 
@@ -43,8 +44,8 @@ public class Account {
 	public void setAccountLogin(String accountLogin) {this.accountLogin = accountLogin;}
 	public String getAccountPassword() {return accountPassword;}
 	public void setAccountPassword(String accountPassword) {this.accountPassword = accountPassword;}
-	public LocalDate getAccountCreationDate() {return accountCreationDate;}
-	public void setAccountCreationDate(LocalDate accountCreationDate) {this.accountCreationDate = accountCreationDate;}
+	public Date getAccountCreationDate() {return accountCreationDate;}
+	public void setAccountCreationDate(Date accountCreationDate) {this.accountCreationDate = accountCreationDate;}
 	public InfoPerson getInfoPerson() {return infoPerson;}
 	public void setInfoPerson(InfoPerson infoPerson) {this.infoPerson = infoPerson;}
 	public EnumRole getRole() {return role;}

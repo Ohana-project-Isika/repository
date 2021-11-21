@@ -20,7 +20,7 @@ public class Admin {
 	
 	// RELATIONS
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="ACCOUNT_ID", unique=true, nullable=false)
+	@JoinColumn(name="ACCOUNT_ID", nullable=false)
 	private Account account;
 
 	//CONSTRUCTOR

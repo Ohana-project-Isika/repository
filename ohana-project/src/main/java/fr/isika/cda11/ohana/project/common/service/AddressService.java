@@ -22,7 +22,7 @@ public class AddressService {
 	}
 	
 	//READ
-	public AddressDto findAddressByIdService(long id) {
+	public AddressDto findAddressByIdService(Long id) {
 		return addressRepos.findAddressByIdRepos(id);
 	}
 
@@ -37,7 +37,7 @@ public class AddressService {
 	}
 
 	//DELETE
-	public void deleteAddressService(long id) {
+	public void deleteAddressService(Long id) {
 		addressRepos.deleteAddressRepos(id);
 	}
 

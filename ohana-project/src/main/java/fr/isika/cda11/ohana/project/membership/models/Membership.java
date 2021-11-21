@@ -1,34 +1,39 @@
 package fr.isika.cda11.ohana.project.membership.models;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
-import fr.isika.cda11.ohana.project.common.models.Association;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Membership {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idMbs;
-	private String nameMbs;		
+	private String nameMbs;
+	
 	private Date dateOfStart;
 	private Date dateOfEnd;
+	@Column(scale = 2)
+	private BigDecimal priceOfFee;
 
 	// relations
-	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="SUBSCRIPTIONFEE_ID", unique=true, nullable=false)
-	private SubscriptionFee subscriptionFee;
 	@ManyToOne
 	@JoinColumn(name="MEMBERSHIPMANAGE_ID")
 	private MemberShipManage memberShipManage;
+	
+	@OneToMany
+	@JoinColumn(name="MEMBERSHIP_ID")
+	private List<Member> members = new ArrayList<Member>();
 
 	//constructeur
 	public Membership() {}
@@ -57,10 +62,25 @@ public class Membership {
 		this.idMbs = idMbs;
 	}
 
-	public SubscriptionFee getSubscriptionFee() {return subscriptionFee;}
-	public void setSubscriptionFee(SubscriptionFee subscriptionFee) {this.subscriptionFee = subscriptionFee;}
+
 
 	public long getIdMbs() {return idMbs;}
+
+	public BigDecimal getPriceOfFee() {
+		return priceOfFee;
+	}
+
+	public void setPriceOfFee(BigDecimal priceOfFee) {
+		this.priceOfFee = priceOfFee;
+	}
+
+	public List<Member> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
 
 	@Override
 	public int hashCode() {
@@ -70,8 +90,9 @@ public class Membership {
 		result = prime * result + ((dateOfStart == null) ? 0 : dateOfStart.hashCode());
 		result = prime * result + ((idMbs == null) ? 0 : idMbs.hashCode());
 		result = prime * result + ((memberShipManage == null) ? 0 : memberShipManage.hashCode());
+		result = prime * result + ((members == null) ? 0 : members.hashCode());
 		result = prime * result + ((nameMbs == null) ? 0 : nameMbs.hashCode());
-		result = prime * result + ((subscriptionFee == null) ? 0 : subscriptionFee.hashCode());
+		result = prime * result + ((priceOfFee == null) ? 0 : priceOfFee.hashCode());
 		return result;
 	}
 
@@ -104,15 +125,20 @@ public class Membership {
 				return false;
 		} else if (!memberShipManage.equals(other.memberShipManage))
 			return false;
+		if (members == null) {
+			if (other.members != null)
+				return false;
+		} else if (!members.equals(other.members))
+			return false;
 		if (nameMbs == null) {
 			if (other.nameMbs != null)
 				return false;
 		} else if (!nameMbs.equals(other.nameMbs))
 			return false;
-		if (subscriptionFee == null) {
-			if (other.subscriptionFee != null)
+		if (priceOfFee == null) {
+			if (other.priceOfFee != null)
 				return false;
-		} else if (!subscriptionFee.equals(other.subscriptionFee))
+		} else if (!priceOfFee.equals(other.priceOfFee))
 			return false;
 		return true;
 	}
@@ -120,7 +146,8 @@ public class Membership {
 	@Override
 	public String toString() {
 		return "Membership [idMbs=" + idMbs + ", nameMbs=" + nameMbs + ", dateOfStart=" + dateOfStart + ", dateOfEnd="
-				+ dateOfEnd + ", subscriptionFee=" + subscriptionFee + ", memberShipManage=" + memberShipManage + "]";
+				+ dateOfEnd + ", priceOfFee=" + priceOfFee + ", memberShipManage=" + memberShipManage + ", members="
+				+ members + "]";
 	}
 
 	

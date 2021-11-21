@@ -31,7 +31,7 @@ public class AddressRepos {
 	}
 	
 	//READ
-	public AddressDto findAddressByIdRepos(long id) {
+	public AddressDto findAddressByIdRepos(Long id) {
 		return AddressFactory.fromAddress(entityManager.find(Address.class, id));
 	}
 
@@ -45,7 +45,7 @@ public class AddressRepos {
 	
 	//DELETE
 	
-	public void deleteAddressRepos(long id) {
+	public void deleteAddressRepos(Long id) {
 		Address address = entityManager.find(Address.class, id);
 		if (address != null) {
 			entityManager.remove(address);

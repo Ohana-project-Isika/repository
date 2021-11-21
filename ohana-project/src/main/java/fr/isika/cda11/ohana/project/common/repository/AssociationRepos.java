@@ -6,11 +6,10 @@ import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
-import fr.isika.cda11.ohana.project.common.factories.AddressFactory;
 import fr.isika.cda11.ohana.project.common.factories.AssociationFactory;
 import fr.isika.cda11.ohana.project.common.models.Association;
+
 
 @Stateless
 public class AssociationRepos {
@@ -19,16 +18,17 @@ public class AssociationRepos {
 	private EntityManager entityManager;
 
 	//CREATE
-	public void createAssociationRepos(AssociationDto associationDto) {
+	public Association createAssociationRepos(AssociationDto associationDto) {
 		Association association = AssociationFactory.fromAssociationDto(associationDto);
 		entityManager.persist(association);
+		return association;
 	}
 
 	//READ
 	public AssociationDto findAssociationRepos(Long id) {
 
-		AssociationDto associationDto= AssociationFactory.fromAssociation(entityManager.find(Association.class, id));	
-		return associationDto;
+		Association association = (entityManager.find(Association.class, id));	
+		return AssociationFactory.fromAssociation(association);
 	}
 
 	public List<AssociationDto> listAssociationRepos(){

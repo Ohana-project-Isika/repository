@@ -21,10 +21,11 @@ public class MembershipRepos {
 	
 	//CREATE
 	public Membership createMembership(MembershipDto membershipDto, MemberShipManageDto mbsm) {
+		membershipDto.setMemberShipManage(mbsm);
 		Membership membership= MembershipFactory.fromMembershipDto(membershipDto);
 		entityManager.persist(membership);
 		MemberShipManage membershipmanage = entityManager.find(MemberShipManage.class, mbsm.getId());
-		membershipmanage.getMemberships().add(membership);
+		membership.setMemberShipManage(membershipmanage);
 		return membership;
 	}
 	

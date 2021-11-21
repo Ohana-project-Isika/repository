@@ -10,38 +10,60 @@
 		<h:outputStylesheet name="css/table.css" />
 	</ui:define>
 	<ui:define name="content">
-			<div id="container">
-				<div id="content">
-					<f:view>
-						<h1>Formulaire d'inscription d'une association</h1>
-						<h:form method="post">
-							<h:panelGrid columns="2">
-								<h:outputText value="Nom :" />
-								<h:inputText id="Name"
-									value="#{associationController.nouvelAssociation.name}" />
+		<div id="container">
+			<div id="content">
+				<f:view>
+					<h1>Formulaire d'inscription d'une association</h1>
+					<h:form method="post" enctype="multipart/form-data"
+						prependId="false" id="upload-form">
+						<h:panelGrid columns="2">
+							<h:outputText value="nameAssos :" />
+							<h:inputText id="nameAssos"
+								value="#{associationController.nouvelAssociation.nameAssos}" />
 
-								<h:outputText value="Numero rue :" />
-								<h:inputText id="numeroRue"
-									value="#{associationController.nouvelAddresse.number}" />
+							<h:outputText value="logoAsso :" />
+							<h:inputFile id="file-id"
+								value="#{associationController.uploadedFile}" required="true"
+								requiredMessage="Please upload a file" alt="upload file"
+								style="font-size: 30px;">
+							</h:inputFile>
 
-								<h:outputText value="Nom de rue :" />
-								<h:inputText id="nomDeRue"
-									value="#{associationController.nouvelAddresse.street}" />
+							<h:outputText value="justifAsso :" />
+							<h:inputText id="justifAsso"
+								value="#{associationController.nouvelAssociation.justifAsso}" />
 
-								<h:outputText value="Ville :" />
-								<h:inputText id="ville"
-									value="#{associationController.nouvelAddresse.city}" />
+							<h:outputText value="numSiret :" />
+							<h:inputText id="numSiret"
+								value="#{associationController.nouvelAssociation.numSiret}" />
 
-								<h:outputText value="Departement :" />
-								<h:inputText id="departement"
-									value="#{associationController.nouvelAddresse.department}" />
 
-								<h:commandButton
-									action="#{associationController.subscription()}" value="Save" />
-							</h:panelGrid>
-						</h:form>
-					</f:view>
-				</div>
+							<h:outputText value="numRue :" />
+							<h:inputText id="numRue"
+								value="#{associationController.nouvelAddresse.numRue}" />
+
+							<h:outputText value="rue :" />
+							<h:inputText id="rue"
+								value="#{associationController.nouvelAddresse.rue}" />
+
+							<h:outputText value="codePostal :" />
+							<h:inputText id="codePostal"
+								value="#{associationController.nouvelAddresse.codePostal}" />
+
+							<h:outputText value="ville :" />
+							<h:inputText id="ville"
+								value="#{associationController.nouvelAddresse.ville}" />
+
+							<h:outputText value="pays :" />
+							<h:inputText id="pays"
+								value="#{associationController.nouvelAddresse.pays}" />
+
+							<h:commandButton
+								action="#{associationController.subscription(accountController.accountnew.idAccount)}"
+								value="Save" />
+						</h:panelGrid>
+					</h:form>
+				</f:view>
 			</div>
+		</div>
 	</ui:define>
 </ui:composition>

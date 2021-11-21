@@ -5,6 +5,8 @@ import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
+import fr.isika.cda11.ohana.project.membership.factories.MemberShipManageFactory;
+import fr.isika.cda11.ohana.project.membership.models.MemberShipManage;
 import fr.isika.cda11.ohana.project.membership.repository.MemberShipManageRepos;
 
 @Stateless
@@ -14,10 +16,11 @@ public class MemberShipManageService {
 	private MemberShipManageRepos mbsr;
 
 	// CREATE
-	public MemberShipManageDto createMembershipManage(MemberShipManageDto membershipManage,
-			AssociationDto associationDto) {
+	public MemberShipManageDto createMembershipManage(MemberShipManageDto membershipManage,AssociationDto associationDto) {
 		membershipManage.setAssociation(associationDto);
-		return mbsr.createMembershipManage(membershipManage);
+		MemberShipManage membershipmanage = mbsr.createMembershipManage(membershipManage);
+		MemberShipManageDto newMembershipManage = MemberShipManageFactory.fromMembershipManage(membershipmanage);
+		return findMembershipManageByIdService(Long.valueOf(newMembershipManage.getId()));
 	}
 
 	// READ
