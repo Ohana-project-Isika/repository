@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
+import fr.isika.cda11.ohana.project.common.dto.AddressDto;
 import fr.isika.cda11.ohana.project.common.dto.ContactDto;
 import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
@@ -50,6 +51,7 @@ public class MemberController implements Serializable {
 	PrivatePersonDto privatepersonDto= new PrivatePersonDto();
 	MemberDto memberDto = new MemberDto();
 	MembershipDto membershipDto=new MembershipDto();
+	AddressDto adressDto= new AddressDto();
 
 
 
@@ -70,8 +72,11 @@ public class MemberController implements Serializable {
 	
 	public String createMember(Long id) {
 		membershipDto=memberShipService.findMembershipByIdService(id);
+
 		memberDto.setDateOfStart(new Date());
-		memberDto=memberService.createMember(memberDto,membershipDto, contactDto, infopersonDto, accountDto);
+
+		memberDto=memberService.createMember(memberDto,membershipDto, contactDto, infopersonDto, accountDto, adressDto);
+
 		return "showMember";
 	}
 
