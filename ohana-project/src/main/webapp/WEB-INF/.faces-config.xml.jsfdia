@@ -26,6 +26,10 @@
     NAME="output" PATH="/membership/createMembershipForm.xhtml"
     TARGET="rules:#membership#createMembershipForm.xhtml"
     TITLE="#{membershipController.createMembershipManage(o.idAssos)}:createMembershipForm" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="bar:#{dashboardAssociationController.ReadListMemberByAssociation(o.idAssos)}:#bar.xhtml"
+    NAME="output1" PATH="/bar.xhtml" TARGET="rules:#bar.xhtml"
+    TITLE="#{dashboardAssociationController.ReadListMemberByAssociation(o.idAssos)}:bar" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#membership#createMemberForm.xhtml"
@@ -39,4 +43,6 @@
     TITLE="#{membershipController.createMember(membershipController.membership.idMbs)}:showMember" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#bar.xhtml" PATH="/bar.xhtml"
+  SHAPE="256,401,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
