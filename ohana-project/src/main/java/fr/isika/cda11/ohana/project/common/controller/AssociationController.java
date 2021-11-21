@@ -89,6 +89,8 @@ public class AssociationController implements Serializable{
 	//Create
 	public String subscription(Long id) {
 		accountDto=accountService.findAccountByIdService(id);
+		saveFile();
+		nouvelAssociation.setLogoAsso("../resources/logoAssociation/"+getFilename(uploadedFile));
 		AssociationDto assosDto=associationService.createAssociationService(nouvelAssociation, nouvelAddresse, servicesDto, accountDto);
 		nouvelAssociation=assosDto;
 		associations=listAssociations();
