@@ -102,7 +102,7 @@ public class DashboardAssociationController implements Serializable {
 		// je cherche le service adhesion relie a l'association
 		List<MemberShipManageDto> mbsms = mbsmService.listMembershipManageService();
 		for(MemberShipManageDto mbmdto : mbsms) {
-			if(mbmdto.getAssociation().getIdAssos() == id) {
+			if(mbmdto.getAssociation().getIdAssos() == Long.valueOf(id)) {
 				mbsmDto=mbmdto;
 			}
 			else {

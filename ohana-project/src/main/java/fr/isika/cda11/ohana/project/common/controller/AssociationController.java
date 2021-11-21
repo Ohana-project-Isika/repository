@@ -25,6 +25,10 @@ import fr.isika.cda11.ohana.project.common.dto.ServicesDto;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.AddressService;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
+import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
+import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
+import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
+import fr.isika.cda11.ohana.project.membership.service.MemberShipManageService;
 
 
 @ManagedBean
@@ -39,6 +43,8 @@ public class AssociationController implements Serializable{
 	private AssociationService associationService;	
 	@Inject
 	private AccountService accountService;
+	@Inject
+	MemberShipManageService mbsmService;
 	
 	private AssociationDto nouvelAssociation = new AssociationDto();	
 	private AssociationDto associationToUpdate = new AssociationDto();
@@ -47,6 +53,7 @@ public class AssociationController implements Serializable{
 	private AccountDto accountDto = new AccountDto();
 	private ServicesDto servicesDto = new ServicesDto();
 	private List<AssociationDto> associations;
+
 
 	
 	//---------------test
@@ -83,6 +90,7 @@ public class AssociationController implements Serializable{
 	public void setAssociations(List<AssociationDto> associations) {this.associations = associations;}
 	public ServicesDto getServicesDto() {return servicesDto;}
 	public void setServicesDto(ServicesDto servicesDto) {this.servicesDto = servicesDto;}
+
 	
 	
 
@@ -123,6 +131,9 @@ public class AssociationController implements Serializable{
 		
 		return associationService.listAssociationsService();
 	}
+	
+	
+
 	
 	//Update
 	public String updateAssociation(AssociationDto associationDto) {
