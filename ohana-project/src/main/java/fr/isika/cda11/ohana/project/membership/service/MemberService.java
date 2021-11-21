@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
+import fr.isika.cda11.ohana.project.common.dto.AddressDto;
 import fr.isika.cda11.ohana.project.common.dto.ContactDto;
 import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
@@ -24,8 +25,9 @@ public class MemberService {
 	private MemberRepos memberRepos;
 
 	// CREATE
-	public MemberDto createMember(MemberDto memberDto, MembershipDto membershipDto, ContactDto contactDto, InfoPersonDto infopersonDto, AccountDto accounDto) {
+	public MemberDto createMember(MemberDto memberDto, MembershipDto membershipDto, ContactDto contactDto, InfoPersonDto infopersonDto, AccountDto accounDto, AddressDto adressDto) {
 		infopersonDto.setContact(contactDto);
+		infopersonDto.setAddress(adressDto);
 		//valeur par default du login = email
 		accounDto.setAccountLogin(contactDto.getEmail());
 		//valeur par default lors de l'ajout d'un membre par une association
