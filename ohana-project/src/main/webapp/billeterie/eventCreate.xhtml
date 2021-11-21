@@ -7,40 +7,84 @@
                 xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://primefaces.org/ui ">
     <ui:define name="content">
-        <h1>ASSOCIATIONS : Créer un évènement</h1>
-        <p:separator />
-        <br />
-        <h2>Formulaire de création d'un évènement</h2>
-        <h:form method="post">
-            <h:panelGrid columns="3">
-                <h:outputText value="Nom de l'évènement :"/>
-                <h:inputText id="Name" value="#{eventControllerCreate.event.name}"/>
-                <h:message style="color:red" for="Name"/>
-
-                <h:outputText value="Description de l'évènement :"/>
-                <h:inputText id="description" value="#{eventControllerCreate.event.description}"/>
-                <h:message style="color:red" for="description"/>
-
-                <p:outputLabel for="startDate" value="Date de début de l'évènement :" />
-                <p:calendar id="startDate" value="#{eventControllerCreate.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
-                <h:outputText value="Date de début de l'évènement :" />
-                <h:outputText value="#{eventControllerCreate.event.startDate}">
-                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                </h:outputText>
-
-                <p:outputLabel for="endDate" value="Date de fin de l'évènement:" />
-                <p:calendar id="endDate" value="#{eventControllerCreate.event.endDate}" pattern="dd-MM-yyyy" mask="true" />
-                <h:outputText value="Date de fin de l'évènement:" />
-                <h:outputText value="#{eventControllerCreate.event.endDate}">
-                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                </h:outputText>
-
-                <h:outputText value="Quantité de billet disponible :"/>
-                <h:inputText id="ticketQty" value="#{eventControllerCreate.event.ticketQuantity}"/>
-                <h:message style="color:red" for="ticketQty"/>
-
-                <h:commandButton action="#{eventControllerCreate.addEvent}" value="Création de l'évènement"/>
-            </h:panelGrid>
-        </h:form>
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Créer votre évènement</h1>
+                        <p>Lorem ipsum dolore sit amet. You can feel free to use it.
+                            Donec mattis tincidunt ipsum vel efficitur.
+                            Aliquam aliquam interdum rhoncus.
+                            Nam nec condimentum dolor, et pharetra nisi.
+                            In feugiat felis nec erat eleifend condimentum.
+                            Aliquam egestas convallis eros sed gravida.
+                            Curabitur consequat sit amet neque ac ornare.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Forms -->
+        <section class="forms">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="contact" action="" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required=""/>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input name="email" type="text" class="form-control" id="email" placeholder="Your email..." required=""/>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="border-radius-button">
+                                        <h:commandButton action="#{eventControllerCreate.addEvent}" value="Création de l'évènement"/>
+                                    </div>
+                                </div>
+                                <h:form method="post">
+                                    <h:panelGrid styleClass="col-md-6">
+                                        <h:outputText value="Nom de l'évènement :"/>
+                                        <h:inputText id="Name" placeholder="Nom de l'évènement" value="#{eventControllerCreate.event.name}"/>
+                                        <h:message style="color:red" for="Name"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid styleClass="col-md-6">
+                                        <h:outputText value="Description de l'évènement :"/>
+                                        <h:inputText id="description" placeholder="Nom de l'évènement" value="#{eventControllerCreate.event.description}"/>
+                                        <h:message style="color:red" for="description"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid styleClass="col-md-6">
+                                        <p:outputLabel for="startDate" value="Date de début de l'évènement :" />
+                                        <p:calendar id="startDate" placeholder="Nom de l'évènement" value="#{eventControllerCreate.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
+                                        <h:outputText value="Date de début de l'évènement :" />
+                                        <h:outputText value="#{eventControllerCreate.event.startDate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </h:panelGrid>
+                                    <h:panelGrid styleClass="col-md-6">
+                                        <p:outputLabel for="endDate" value="Date de fin de l'évènement:" />
+                                        <p:calendar id="endDate" placeholder="Nom de l'évènement" value="#{eventControllerCreate.event.endDate}" pattern="dd-MM-yyyy" mask="true" />
+                                        <h:outputText value="Date de fin de l'évènement:" />
+                                        <h:outputText value="#{eventControllerCreate.event.endDate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </h:panelGrid>
+                                    <h:panelGrid styleClass="col-md-6">
+                                        <h:outputText value="Quantité de billet disponible :"/>
+                                        <h:inputText id="ticketQty" value="#{eventControllerCreate.event.ticketQuantity}"/>
+                                        <h:message style="color:red" for="ticketQty"/>
+                                    </h:panelGrid>
+                                </h:form>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </ui:define>
 </ui:composition>
