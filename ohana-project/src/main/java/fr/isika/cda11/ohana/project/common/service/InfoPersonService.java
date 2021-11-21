@@ -23,7 +23,7 @@ public class InfoPersonService {
 	}
 	
 	//READ
-	public InfoPersonDto findInfoPersonByIdService(long id) {
+	public InfoPersonDto findInfoPersonByIdService(Long id) {
 		return infoPersonRepos.findInfoPersonByIdRepos(id);
 	}
 
@@ -38,7 +38,7 @@ public class InfoPersonService {
 	}
 
 	//DELETE
-	public void deleteInfoPersonService(long id) {
+	public void deleteInfoPersonService(Long id) {
 		infoPersonRepos.deleteInfoPersonRepos(id);
 	}
 }

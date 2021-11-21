@@ -18,12 +18,12 @@ public class MembershipDto implements Serializable{
 	private static final long serialVersionUID = -4979763868804195542L;
 	private Long idMbs;
 	private String nameMbs;		
-	private LocalDate dateOfStart;
-	private LocalDate dateOfEnd;
+	private Date dateOfStart;
+	private Date dateOfEnd;
 	private BigDecimal priceOfFee;
 
 	// relations
-	private MemberShipManage memberShipManage;
+	private MemberShipManageDto memberShipManage;
 	private List<MemberDto> members = new ArrayList<MemberDto>();
 
 
@@ -50,22 +50,22 @@ public class MembershipDto implements Serializable{
 	}
 
 
-	public LocalDate getDateOfStart() {
+	public Date getDateOfStart() {
 		return dateOfStart;
 	}
 
 
-	public void setDateOfStart(LocalDate dateOfStart) {
+	public void setDateOfStart(Date dateOfStart) {
 		this.dateOfStart = dateOfStart;
 	}
 
 
-	public LocalDate getDateOfEnd() {
+	public Date getDateOfEnd() {
 		return dateOfEnd;
 	}
 
 
-	public void setDateOfEnd(LocalDate dateOfEnd) {
+	public void setDateOfEnd(Date dateOfEnd) {
 		this.dateOfEnd = dateOfEnd;
 	}
 
@@ -80,12 +80,12 @@ public class MembershipDto implements Serializable{
 	}
 
 
-	public MemberShipManage getMemberShipManage() {
+	public MemberShipManageDto getMemberShipManage() {
 		return memberShipManage;
 	}
 
 
-	public void setMemberShipManage(MemberShipManage memberShipManage) {
+	public void setMemberShipManage(MemberShipManageDto memberShipManage) {
 		this.memberShipManage = memberShipManage;
 	}
 

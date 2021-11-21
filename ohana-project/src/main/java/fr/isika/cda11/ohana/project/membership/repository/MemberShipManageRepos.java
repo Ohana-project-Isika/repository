@@ -1,9 +1,15 @@
 package fr.isika.cda11.ohana.project.membership.repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
+import fr.isika.cda11.ohana.project.common.factories.AssociationFactory;
+import fr.isika.cda11.ohana.project.common.models.Association;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
 import fr.isika.cda11.ohana.project.membership.factories.MemberShipManageFactory;
 import fr.isika.cda11.ohana.project.membership.models.MemberShipManage;
@@ -24,7 +30,12 @@ public class MemberShipManageRepos {
 	// READ
 
 	public MemberShipManageDto findMembershipManageRepos(Long id) {
-		return MemberShipManageFactory.fromMembershipManage(entityManager.find(MemberShipManage.class, id));
+		MemberShipManage memberShipManage = entityManager.find(MemberShipManage.class, id);
+		return MemberShipManageFactory.fromMembershipManage(memberShipManage);
+	}
+	
+	public List<MemberShipManageDto> listMembershipManageRepos(){
+		return this.entityManager.createNamedQuery("membershipmanages.findAll", MemberShipManage.class).getResultList().stream().map(membershipmanage -> MemberShipManageFactory.fromMembershipManage(membershipmanage)).collect(Collectors.toList());
 	}
 
 	// UPDATE

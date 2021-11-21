@@ -18,6 +18,7 @@ public class MembershipFactory {
 		membership.setPriceOfFee(membershipDto.getPriceOfFee());
 		membership.setDateOfStart(membershipDto.getDateOfStart());
 		membership.setDateOfEnd(membershipDto.getDateOfEnd());
+		membership.setMemberShipManage(MemberShipManageFactory.fromMembershipManageDto(membershipDto.getMemberShipManage()));
 		membership.setMembers(new ArrayList<Member>());
 		if(membershipDto.getMembers().isEmpty() ==false) {
 			for(MemberDto member: membershipDto.getMembers()) {
@@ -34,6 +35,7 @@ public class MembershipFactory {
 		membershipDto.setPriceOfFee(membership.getPriceOfFee());
 		membershipDto.setDateOfStart(membership.getDateOfStart());
 		membershipDto.setDateOfEnd(membership.getDateOfEnd());
+		membershipDto.setMemberShipManage(MemberShipManageFactory.fromMembershipManage(membership.getMemberShipManage()));
 		membershipDto.setMembers(new ArrayList<MemberDto>());
 		if(membership.getMembers().isEmpty() ==false) {
 			for(Member member: membership.getMembers()) {

@@ -27,9 +27,9 @@ public class MembershipService {
 
 	// CREATE
 	public MembershipDto createMembership(MembershipDto membershipDto, MemberShipManageDto mbsm) {
-		mbsm.getMemberships().add(membershipDto);
 		Membership membership = membershiprepos.createMembership(membershipDto, mbsm);
 		MembershipDto newMembershipDto = MembershipFactory.fromMembership(membership);
+		mbsm.getMemberships().add(newMembershipDto);
 		return findMembershipByIdService(Long.valueOf(newMembershipDto.getIdMbs()));
 	}
 

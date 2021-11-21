@@ -21,8 +21,8 @@ public class Membership {
 	private Long idMbs;
 	private String nameMbs;
 	
-	private LocalDate dateOfStart;
-	private LocalDate dateOfEnd;
+	private Date dateOfStart;
+	private Date dateOfEnd;
 	@Column(scale = 2)
 	private BigDecimal priceOfFee;
 
@@ -42,11 +42,11 @@ public class Membership {
 	public String getNameMbs()			{return nameMbs;}
 	public void setNameMbs(String nameMbs){this.nameMbs = nameMbs;	}
 
-	public LocalDate getDateOfStart() 				{return dateOfStart;}
-	public void setDateOfStart(LocalDate dateOfStart){this.dateOfStart = dateOfStart;	}
+	public Date getDateOfStart() 				{return dateOfStart;}
+	public void setDateOfStart(Date dateOfStart){this.dateOfStart = dateOfStart;	}
 
-	public LocalDate getDateOfEnd() {return dateOfEnd;}
-	public void setDateOfEnd(LocalDate dateOfEnd) {this.dateOfEnd = dateOfEnd;}
+	public Date getDateOfEnd() {return dateOfEnd;}
+	public void setDateOfEnd(Date dateOfEnd) {this.dateOfEnd = dateOfEnd;}
 
 
 

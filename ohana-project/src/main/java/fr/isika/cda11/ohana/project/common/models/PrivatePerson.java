@@ -92,10 +92,4 @@ public class PrivatePerson {
 				+ paiement + ", account=" + account + "]";
 	}
 	
-	
-	
-
-	
-
-	
 }

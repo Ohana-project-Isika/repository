@@ -2,7 +2,10 @@ package fr.isika.cda11.ohana.project.common.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
+
 import fr.isika.cda11.ohana.project.enumclass.EnumRole;
+import fr.isika.cda11.ohana.project.membership.models.Member;
 
 public class AccountDto implements Serializable{
 	/**
@@ -15,7 +18,7 @@ public class AccountDto implements Serializable{
 		private String accountLogin;
 		private String accountPassword;
 		private EnumRole role;
-		private LocalDate accountCreationDate;
+		private Date accountCreationDate;
 		
 		// RELATIONS
 		private InfoPersonDto infoPerson;
@@ -52,11 +55,11 @@ public class AccountDto implements Serializable{
 			this.role = role;
 		}
 
-		public LocalDate getAccountCreationDate() {
+		public Date getAccountCreationDate() {
 			return accountCreationDate;
 		}
 
-		public void setAccountCreationDate(LocalDate accountCreationDate) {
+		public void setAccountCreationDate(Date accountCreationDate) {
 			this.accountCreationDate = accountCreationDate;
 		}
 

@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.membership.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +11,11 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
+import fr.isika.cda11.ohana.project.common.dto.ContactDto;
+import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
+import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
@@ -45,6 +50,8 @@ public class MembershipController implements Serializable{
 	MembershipDto membership = new MembershipDto();
 	AssociationDto association = new AssociationDto();
 	MemberShipManageDto mbsm = new MemberShipManageDto();
+	List<MembershipDto> membershiplist = new ArrayList<MembershipDto>();
+
 
 	
 	
@@ -62,33 +69,34 @@ public class MembershipController implements Serializable{
 	public void setMembership(MembershipDto membership) {this.membership = membership;}
 	public AssociationDto getAssociation() {return association;}
 	public void setAssociation(AssociationDto association) {this.association = association;}
-	public static long getSerialversionuid() {return serialVersionUID;}
+	public List<MembershipDto> getMembershiplist() {return membershiplist;}
+	public void setMembershiplist(List<MembershipDto> membershiplist) {this.membershiplist = membershiplist;}
+
 
 	//CRUD-------------------------------------------------------------------------------------------------
+
+
+
+
 
 	//Create
 	public String createMembershipManage(Long id) {
 		association=associationService.findAssociationByIdService(id);
 		if (mbsm.getAssociation().getIdAssos()!=Long.valueOf(id)) {
+			mbsm=new MemberShipManageDto();
 		mbsm= membershipManageService.createMembershipManage(mbsm, association);
 		}
+		membership = new MembershipDto();
 		return "createMembershipForm";
 	}
 
 	public String createMemberShip(Long id) {
 		mbsm = membershipManageService.findMembershipManageByIdService(id);
 		membership = memberShipService.createMembership(membership, mbsm);
+		membershiplist=mbsm.getMemberships();
 		return "showMembership";
 	}
 	
-	public String createMember(Long id) {
-		membership=memberShipService.findMembershipByIdService(id);
-		member=memberService.createMember(member,membership);
-		return "showMember";
-	}
-
-
-
 	//Read
 	public MembershipDto findMembershipById(Long id) {
 		membership= memberShipService.findMembershipByIdService(id);

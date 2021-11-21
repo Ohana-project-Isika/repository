@@ -20,7 +20,7 @@ public class MemberShipManageService {
 		membershipManage.setAssociation(associationDto);
 		MemberShipManage membershipmanage = mbsr.createMembershipManage(membershipManage);
 		MemberShipManageDto newMembershipManage = MemberShipManageFactory.fromMembershipManage(membershipmanage);
-		return findMembershipManageByIdService(newMembershipManage.getId());
+		return findMembershipManageByIdService(Long.valueOf(newMembershipManage.getId()));
 	}
 
 	// READ

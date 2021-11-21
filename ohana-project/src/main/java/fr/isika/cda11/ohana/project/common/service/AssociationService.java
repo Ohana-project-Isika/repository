@@ -30,7 +30,6 @@ public class AssociationService {
 
 	public AssociationDto createAssociationService(AssociationDto associationDto, AddressDto addressDto, ServicesDto servicesDto, AccountDto accountDto) {
 		servicesDto = servicesRepos.findServicesRepos(Long.valueOf(1));
-		accountDto= accountRepos.findAccountByIdRepos(Long.valueOf(4));
 		associationDto.setServices(servicesDto);
 		associationDto.setAddressAsso(addressDto);
 		associationDto.setAccount(accountDto);

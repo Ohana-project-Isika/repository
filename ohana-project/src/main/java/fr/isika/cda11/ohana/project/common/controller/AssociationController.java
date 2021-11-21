@@ -1,14 +1,18 @@
 package fr.isika.cda11.ohana.project.common.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AddressDto;
@@ -41,11 +45,20 @@ public class AssociationController implements Serializable{
 	private AccountDto accountDto = new AccountDto();
 	private ServicesDto servicesDto = new ServicesDto();
 	private List<AssociationDto> associations;
+
+	
+	//---------------test
+	private String folder = "C:\\Github\\Ohana\\ohana-project\\src\\main\\webapp\\resources\\logoAssociation\\";
+	private Part uploadedFile;
+	public Part getUploadedFile() {return uploadedFile;}
+	public void setUploadedFile(Part uploadedFile) {this.uploadedFile = uploadedFile;}
+	
+	//--------------fin test
 	
 	@PostConstruct
 	public void init() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		this.associations = associationService.listAssociationsService();
+		associations=listAssociations();
 	}
 
 	//GETTER AND SETTER	----------------------------------------------------------------------------
@@ -74,7 +87,8 @@ public class AssociationController implements Serializable{
 
 
 	//Create
-	public String subscription() {
+	public String subscription(Long id) {
+		accountDto=accountService.findAccountByIdService(id);
 		AssociationDto assosDto=associationService.createAssociationService(nouvelAssociation, nouvelAddresse, servicesDto, accountDto);
 		nouvelAssociation=assosDto;
 		associations=listAssociations();
@@ -131,8 +145,46 @@ public class AssociationController implements Serializable{
 		return "updateAssociationForm";
 	}
 
+	//test---------------------------
+
+	public void saveFile() {
+
+		System.out.println("saveFile method invoked..");
+		System.out.println( "content-type:{0}" + uploadedFile.getContentType());
+		System.out.println("filename:{0}" + uploadedFile.getName());
+		System.out.println( "submitted filename:{0}"+ uploadedFile.getSubmittedFileName());
+		System.out.println( "size:{0}" + uploadedFile.getSize());
+		String fileName = "";
+
+		try {
+
+			fileName = getFilename(uploadedFile);
+
+			System.out.println("fileName  " + fileName);
+
+			uploadedFile.write(folder+fileName);
 
 
+		} catch (IOException ex) {
+			System.out.println(ex);
+
+
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("File " + fileName+ " Uploaded!"));
+
+	}
+
+
+	private static String getFilename(Part part) {
+		for (String cd : part.getHeader("content-disposition").split(";")) {
+			if (cd.trim().startsWith("filename")) {
+				String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+				return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
+			}
+		}
+		return null;
+	}
 
 
 

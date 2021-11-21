@@ -3,7 +3,7 @@ package fr.isika.cda11.ohana.project.membership.dto;
 import java.io.Serializable;
 import java.util.List;
 
-
+import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.membership.models.SubscriptionFee;
 
@@ -16,7 +16,7 @@ public class MemberDto implements Serializable{
 
 	private Long idMember;
 
-	private PrivatePerson privatePerson;
+	private PrivatePersonDto privatePerson;
 
 	private List<SubscriptionFeeDto> subscriptionFeeList;
 	
@@ -31,12 +31,12 @@ public class MemberDto implements Serializable{
 		this.idMember = idMember;
 	}
 
-	public PrivatePerson getPrivatePerson() {
+	public PrivatePersonDto getPrivatePerson() {
 		return privatePerson;
 	}
 
-	public void setPrivatePerson(PrivatePerson privatePerson) {
-		this.privatePerson = privatePerson;
+	public void setPrivatePerson(PrivatePersonDto privatepersonDto) {
+		this.privatePerson = privatepersonDto;
 	}
 
 	public List<SubscriptionFeeDto> getSubscriptionFeeList() {

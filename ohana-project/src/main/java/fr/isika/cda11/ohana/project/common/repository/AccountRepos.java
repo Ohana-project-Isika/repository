@@ -1,5 +1,6 @@
 package fr.isika.cda11.ohana.project.common.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,8 +9,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
+import fr.isika.cda11.ohana.project.common.dto.AddressDto;
 import fr.isika.cda11.ohana.project.common.factories.AccountFactory;
+import fr.isika.cda11.ohana.project.common.factories.AddressFactory;
 import fr.isika.cda11.ohana.project.common.models.Account;
+import fr.isika.cda11.ohana.project.common.models.Address;
 
 
 @Stateless
@@ -18,9 +22,10 @@ public class AccountRepos {
 	private EntityManager entityManager;
 
 	//CREATE
-	public void createAccountRepos(AccountDto accountDto) {
+	public Account createAccountRepos(AccountDto accountDto) {
 		Account account = AccountFactory.fromAccountDto(accountDto);
 		entityManager.persist(account);
+		return account;
 	}
 
 	//READ

@@ -3,24 +3,33 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-	
+
 	<navigation-rule>
-		<from-view-id>ticketing/checkout.xhtml</from-view-id>
+		<from-view-id>/ticketing/checkout.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{eventController.back()}</from-action>
 			<from-outcome>ticketing</from-outcome>
 			<to-view-id>/ticketing.xhtml</to-view-id>
 		</navigation-case>
-		
+
 	</navigation-rule>
-	
-		<navigation-rule>
-		<from-view-id>association/associationTable.xhtml</from-view-id>
+
+	<navigation-rule>
+		<from-view-id>/association/associationTable.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{membershipController.createMembershipManage(o.idAssos)}</from-action>
 			<from-outcome>createMembershipForm</from-outcome>
 			<to-view-id>/membership/createMembershipForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
+	<navigation-rule>
+		<from-view-id>/membership/createMemberForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{membershipController.createMember(membershipController.membership.idMbs)}</from-action>
+			<from-outcome>showMember</from-outcome>
+			<to-view-id>/membership/showMember.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>
