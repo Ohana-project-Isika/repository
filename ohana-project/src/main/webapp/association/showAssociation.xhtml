@@ -10,16 +10,12 @@
 	<ui:define name="content">
 		<f:view>
 			<c:set var="c" value="#{associationController.nouvelAssociation}" />
-			<h1>#{c.name}</h1>
-			<p>Id: #{c.id}</p>
-			<p>#{c.address.number}</p>
-			<p>#{c.address.street}</p>
-			<p> #{c.address.department}</p>
-			<p>#{c.address.city}</p>
-
-				<h:link outcome="AssociationTable">Retour à la liste</h:link>
-
-
+			<h1>#{c.nameAssos}</h1>
+			<p>Id: #{c.logoAsso}</p>
+			<p>#{c.numSiret}</p>
 		</f:view>
+		
+			<p><h:link outcome="AssociationTable" value="liste"></h:link></p>
+			<p><h:link outcome="createMembershipForm" value="adhesion"></h:link></p>
 	</ui:define>
 </ui:composition>

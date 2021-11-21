@@ -8,8 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
+import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
 import fr.isika.cda11.ohana.project.membership.factories.MemberFactory;
 import fr.isika.cda11.ohana.project.membership.models.Member;
+import fr.isika.cda11.ohana.project.membership.models.Membership;
 
 @Stateless
 public class MemberRepos {
@@ -18,14 +20,14 @@ public class MemberRepos {
 	private EntityManager entityManager;
 	
 	//CREATE
-	public Member createMember(MemberDto memberDto) {
+	public Member createMember(MemberDto memberDto, MembershipDto membershipDto) {
 		//Long idMembsership en parametre
 		// find membership by id
-		
-		// periste member
+		Membership membership=entityManager.find(Membership.class, membershipDto.getIdMbs());
 		Member member = MemberFactory.fromMemberDto(memberDto);
 		entityManager.persist(member);
-		
+		membership.getMembers().add(member);
+		entityManager.merge(membership);
 		return member;
 		
 		// add member entity to membership list

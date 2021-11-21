@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/templates/layout.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:define name="head">
+		<h:outputStylesheet name="css/table.css" />
+	</ui:define>
+	<ui:define name="content">
+		<div id="container">
+			<div id="content">
+				<f:view>
+					<h1>Creation d'un compte</h1>
+					<h:form method="post">
+						<h:panelGrid columns="2">
+
+							<h:outputText value="Prénom :" />
+							<h:inputText id="prenom"
+								value="#{accountController.newInfoPersonDto.firstName}" />
+
+							<h:outputText value="Nom :" />
+							<h:inputText id="nom"
+								value="#{accountController.newInfoPersonDto.lastName}" />
+
+							<h:outputText for="DateDeNaissance" value="DateDeNaissance :" />
+							<p:calendar id="DateDeNaissance"
+								value="#{accountController.newInfoPersonDto.dateOfBirth}"
+								pattern="dd-MM-yyyy" mask="true" />
+							<h:outputText
+								value="#{accountController.newInfoPersonDto.dateOfBirth}">
+								<f:convertDateTime pattern="MM/dd/yyyy" />
+							</h:outputText>
+							<h:outputText value="" />
+							<h:outputText value="Email :" />
+							<h:inputText id="email"
+								value="#{accountController.newContactDto.email}" />
+
+							<h:outputText value="Numéro de téléphone principal :" />
+							<h:inputText id="number1"
+								value="#{accountController.newContactDto.phoneNb}" />
+
+
+							<h:outputText value="Numéro de téléphone secondaire :" />
+							<h:inputText id="number2"
+								value="#{accountController.newContactDto.phoneNb}" />
+
+							<h:outputText value="Numero rue :" />
+							<h:inputText id="Numerorue"
+								value="#{accountController.newAddressDto.numRue}" />
+
+							<h:outputText value="rue :" />
+							<h:inputText id="rue"
+								value="#{accountController.newAddressDto.rue}" />
+
+							<h:outputText value="codePostal :" />
+							<h:inputText id="codePostal"
+								value="#{accountController.newAddressDto.codePostal}" />
+
+							<h:outputText value="ville :" />
+							<h:inputText id="ville"
+								value="#{accountController.newAddressDto.ville}" />
+
+							<h:outputText value="pays :" />
+							<h:inputText id="pays"
+								value="#{accountController.newAddressDto.pays}" />
+
+							<h:outputText value="Login :" />
+							<h:inputText id="login"
+								value="#{accountController.newAccountDto.accountLogin}" />
+
+							<h:outputText value="password :" />
+							<h:inputText id="password"
+								value="#{accountController.newAccountDto.accountPassword}" />
+
+							<h:selectOneRadio value="#{accountController.newAccountDto.role}">
+								<f:selectItems value="#{accountController.role}" var="role"
+									itemValue="#{role.name()}"
+									itemLabel="#{role.name()}" />
+							</h:selectOneRadio>
+
+							<h:commandButton action="#{accountController.createnewAccount()}"
+								value="Save" />
+						</h:panelGrid>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

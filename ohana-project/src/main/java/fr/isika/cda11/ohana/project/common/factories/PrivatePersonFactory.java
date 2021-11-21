@@ -18,11 +18,6 @@ public class PrivatePersonFactory {
 		privatePerson.setPhotoProfil(privatePersonDto.getPhotoProfil());
 		privatePerson.setAccount(AccountFactory.fromAccountDto(privatePersonDto.getAccount()));
 		privatePerson.setPaiement(new ArrayList<Paiement>());
-		if(privatePersonDto.getPaiement().isEmpty() == false) {
-		for(PaiementDto paiementDto: privatePersonDto.getPaiement()) {
-			privatePerson.getPaiement().add(PaiementFactory.fromPaiementDto(paiementDto));
-		}
-		}
 		privatePerson.setIdPrivatePerson(privatePersonDto.getIdPrivatePerson());
 
 		return privatePerson;
@@ -33,11 +28,6 @@ public class PrivatePersonFactory {
 		privatePersonDto.setPhotoProfil(privatePerson.getPhotoProfil());
 		privatePersonDto.setAccount(AccountFactory.fromAccount(privatePerson.getAccount()));
 		privatePersonDto.setPaiement(new ArrayList<PaiementDto>());
-		if(privatePersonDto.getPaiement().isEmpty() == false) {
-		for(Paiement paiement: privatePerson.getPaiement()) {
-			privatePersonDto.getPaiement().add(PaiementFactory.fromPaiement(paiement));
-		}
-		}
 		privatePersonDto.setIdPrivatePerson(privatePerson.getIdPrivatePerson());
 		return privatePersonDto;
 	}

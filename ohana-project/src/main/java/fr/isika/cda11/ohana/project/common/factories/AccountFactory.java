@@ -29,7 +29,7 @@ public class AccountFactory {
 		accountDto.setRole(account.getRole());
 		accountDto.setAccountCreationDate(account.getAccountCreationDate());
 		accountDto.setInfoPerson(InfoPersonFactory.fromInfoPerson(account.getInfoPerson()));
-		accountDto.setIdAccount(account.getIdAccount());
+		accountDto.setIdAccount(Long.valueOf(account.getIdAccount()));
 
 		return accountDto;
 	}

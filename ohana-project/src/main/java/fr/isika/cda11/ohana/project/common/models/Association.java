@@ -10,11 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda11.ohana.project.enumclass.ValidateStatusAsso;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "association.findAll", query = "SELECT c FROM Association c")})
 public class Association {
 
 	//ATTIBUTS
@@ -24,21 +28,21 @@ public class Association {
 	@Column(nullable=false)
 	private String nameAssos;
 	@Enumerated(EnumType.STRING)
-	private ValidateStatusAsso validateStatusAsso;
+	private ValidateStatusAsso validateStatusAsso = ValidateStatusAsso.INPROCESS;
 	private String logoAsso;
 	private String justifAsso;
 	@Column(nullable=false)
 	private String numSiret;
 	
 	//RELATIONS
-	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="ADDRESS_ID", unique=true, nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="ADDRESS_ID")
 	private Address addressAsso;
-	@ManyToOne(optional=false)
-	@JoinColumn(name="SERVICES_ID", unique=true, nullable=false)
+	@ManyToOne
+	@JoinColumn(name="SERVICES_ID")
 	private Services services;
-	@OneToOne(cascade = CascadeType.ALL, optional=false)
-	@JoinColumn(name="ACCOUNT_ID", unique=true, nullable=false)
+	@OneToOne //(cascade = CascadeType.ALL)
+	@JoinColumn(name="ACCOUNT_ID")
 	private Account account;
 
 	// constructeur

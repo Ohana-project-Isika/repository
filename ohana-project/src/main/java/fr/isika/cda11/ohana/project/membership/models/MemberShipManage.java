@@ -9,19 +9,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda11.ohana.project.common.models.Association;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "membershipmanages.findAll", query = "SELECT c FROM MemberShipManage c")})
 public class MemberShipManage {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne
-	@JoinColumn(name="ASSOCIATION_ID", unique=true, nullable=false)
+	@JoinColumn(name="ASSOCIATION_ID", nullable=false)
 	private Association association = new Association();
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="MEMBERSHIPMANAGE_ID")

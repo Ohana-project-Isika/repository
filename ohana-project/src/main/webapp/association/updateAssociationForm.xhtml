@@ -20,23 +20,33 @@
 					<h:panelGrid columns="2">
 						<h:outputText value="Nom : " />
 						<h:inputText id="Name"
-							value="#{associationController.associationToUpdate.name}" />
+							value="#{associationController.associationToUpdate.nameAssos}" />
 
 						<h:outputText value="Numero rue :" />
 						<h:inputText id="numeroRue"
-							value="#{associationController.associationToUpdate.address.number}" />
+							value="#{associationController.associationToUpdate.addressAsso.numRue}" />
 
 						<h:outputText value="Nom de rue :" />
 						<h:inputText id="nomDeRue"
-							value="#{associationController.associationToUpdate.address.street}" />
+							value="#{associationController.associationToUpdate.addressAsso.rue}" />
 
 						<h:outputText value="Ville :" />
 						<h:inputText id="ville"
-							value="#{associationController.associationToUpdate.address.city}" />
+							value="#{associationController.associationToUpdate.addressAsso.ville}" />
 
 						<h:outputText value="Departement :" />
 						<h:inputText id="departement"
-							value="#{associationController.associationToUpdate.address.department}" />
+							value="#{associationController.associationToUpdate.addressAsso.codePostal}" />
+							
+						<h:outputText value="Pays :" />
+						<h:inputText id="pays"
+							value="#{associationController.associationToUpdate.addressAsso.pays}" />
+						<h:outputText value="Justifasso :" />
+						<h:inputText id="justifasso"
+							value="#{associationController.associationToUpdate.justifAsso}" />
+						<h:outputText value="LogoAsso :" />
+						<h:inputText id="LogoAsso"
+							value="#{associationController.associationToUpdate.logoAsso}" />
 
 						<h:commandButton
 							action="#{associationController.updateAssociation(associationController.associationToUpdate)}"

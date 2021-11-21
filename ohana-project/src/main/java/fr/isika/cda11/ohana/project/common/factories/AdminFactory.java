@@ -12,7 +12,7 @@ public class AdminFactory {
 	}
 
 	
-	public static Admin fromAdmintDto(AdminDto adminDto) {
+	public static Admin fromAdminDto(AdminDto adminDto) {
 		Admin admin = new Admin();
 		admin.setAccount(AccountFactory.fromAccountDto(adminDto.getAccount()));
 		admin.setIdAdmin(adminDto.getIdAdmin());

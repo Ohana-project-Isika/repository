@@ -8,9 +8,32 @@
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (1, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (2, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'Allée Isika', '87000', 'Limoges', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (4, 'Rue de la mairie', '94400', 'Vitry-sur-seine', 'France', 1);
- INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (5, 'Avenue Jean Jaures', '92100', 'Boulogne-Billancourt', 'France', 2);
- INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (6, 'Boulevard Rosa Luxembourg', '75017', 'Paris', 'France', 3);
+ 
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (111, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (122, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (133, 'Allée Isika', '87000', 'Limoges', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (144, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (155, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (166, 'Allée Isika', '87000', 'Limoges', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (177, 'Allée Isika', '87000', 'Limoges', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (188, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (199, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (110, 'Allée Isika', '87000', 'Limoges', 'France');
+ 
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (4, 'Rue de la mairie', '94400', 'Vitry-sur-seine', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (5, 'Avenue Jean Jaures', '92100', 'Boulogne-Billancourt', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (6, 'Boulevard Rosa Luxembourg', '75017', 'Paris', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (10, 'Avenue frédéric mistra', '30220', 'Aigues mortes', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (11, 'rue saint placide', '75006', 'paris', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (12, 'rue de gometz', '91470', 'Les Molières', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (7, '11 rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (8, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'route de Verdun', '21200', 'BEAUNE', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue de gometz', '91470', 'Les Molières', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (11, 'rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (8, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (13, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
+
  
 #CONTACT TABLE
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0111111111','0611111111','contact01@gmail.com');
@@ -19,19 +42,45 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0133333333','0633333333',
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0144444444','0644444444','contact04@gmail.com');
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0155555555','0655555555','contact05@gmail.com');
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666','contact06@gmail.com');
+INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0111111111','0611111111','contact07@gmail.com');
+INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0122222222','0622222222','contact08@gmail.com');
+INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0133333333','0633333333','contact09@gmail.com');
+INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0144444444','0644444444','contact10@gmail.com');
+INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0155555555','0655555555','contact11@gmail.com');
+INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666','contact12@gmail.com');
+INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666','contact13@gmail.com');
 
  #INFOPERSON TABLE
- INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID) VALUES ('nomun', 'prenomun', '1981-01-01',(SELECT idContact FROM contact WHERE email = 'contact01@gmail.com'));
- INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID) VALUES ('nomdeux', 'prenomdeux', '1982-02-17', (SELECT idContact FROM contact WHERE email = 'contact02@gmail.com'));
- INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID) VALUES ('nomtrois', 'prenomtrois', '1983-03-01', (SELECT idContact FROM contact WHERE email = 'contact03@gmail.com'));
- INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID) VALUES ('nomquatre', 'prenomquatre', '1984-04-01', (SELECT idContact FROM contact WHERE email = 'contact04@gmail.com'));
- INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID) VALUES ('nomcinq', 'prenomcinq', '1985-05-01', (SELECT idContact FROM contact WHERE email = 'contact05@gmail.com'));
- INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID) VALUES ('nomsix', 'prenomsix', '1986-06-01', (SELECT idContact FROM contact WHERE email = 'contact06@gmail.com'));
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomun', 'prenomun', '1981-01-01',(SELECT idContact FROM contact WHERE email = 'contact01@gmail.com'), 14);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomdeux', 'prenomdeux', '1982-02-17', (SELECT idContact FROM contact WHERE email = 'contact02@gmail.com'), 15);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomtrois', 'prenomtrois', '1983-03-01', (SELECT idContact FROM contact WHERE email = 'contact03@gmail.com'), 16);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomquatre', 'prenomquatre', '1984-04-01', (SELECT idContact FROM contact WHERE email = 'contact04@gmail.com'), 17);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomcinq', 'prenomcinq', '1985-05-01', (SELECT idContact FROM contact WHERE email = 'contact05@gmail.com'), 18);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomsix', 'prenomsix', '1986-06-01', (SELECT idContact FROM contact WHERE email = 'contact06@gmail.com'), 19);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomsept', 'prenomsept', '1987-07-01',(SELECT idContact FROM contact WHERE email = 'contact07@gmail.com'), 20);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomhuit', 'prenomhuit', '1988-08-17', (SELECT idContact FROM contact WHERE email = 'contact08@gmail.com'), 21);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomneuf', 'prenomneuf', '1989-09-01', (SELECT idContact FROM contact WHERE email = 'contact09@gmail.com'), 22);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomdix', 'prenomdix', '1970-10-01', (SELECT idContact FROM contact WHERE email = 'contact10@gmail.com'), 23);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomonze', 'prenomonze', '1981-11-01', (SELECT idContact FROM contact WHERE email = 'contact11@gmail.com'), 24);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomdouze', 'prenomdouze', '1972-12-01', (SELECT idContact FROM contact WHERE email = 'contact12@gmail.com'), 25);
+ INSERT INTO Infoperson (lastName, firstName, dateOfBirth, CONTACT_ID, ADDRESS_ID) VALUES ('nomtreize', 'prenomtreize', '1972-12-13', (SELECT idContact FROM contact WHERE email = 'contact13@gmail.com'), 26);
  
  #ACCOUNT TABLE
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('admin', '1111','ADMIN','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomun'));
- INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('association', '1111', 'ASSOCIATION','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomdeux'));
- INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PARTICULIER','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtrois'));
+ 
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('aapeec', '1111', 'ASSOCIATION','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomdeux'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('actionSolidairePartage', '1111', 'ASSOCIATION','2021-01-02',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtrois'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('AEJBM', '1111', 'ASSOCIATION','2021-01-03',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomquatre'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('efa', '1111', 'ASSOCIATION','2021-01-04',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomsix'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('enfanceEtPartage', '1111', 'ASSOCIATION','2021-01-05',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomsept'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('laVoixDeLEnfant', '1111', 'ASSOCIATION','2021-01-06',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomhuit'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('paroleDEnfant', '1111', 'ASSOCIATION','2021-01-07',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomneuf'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('Reves', '1111', 'ASSOCIATION','2021-01-08',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomdix'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('terreDesEnfants', '1111', 'ASSOCIATION','2021-01-09',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomonze'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('unEnfantDesSourires', '1111', 'ASSOCIATION','2021-01-10',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomdouze'));
+ 
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PARTICULIER','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtreize'));
+
  
  #ADMIN TABLE
  INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
@@ -40,8 +89,17 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  INSERT INTO Services(typeOfSub, priceOfSub) VALUES ('premium', 49);
  
  #ASSOCIATION TABLE
- INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('asso1', 'VALIDATED', 'logo1', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 4),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'association'));
- 
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('aapeec', 'VALIDATED', '../resources/logoAssociation/aapeec.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 111),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'aapeec'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('actionSolidairePartage', 'VALIDATED', '../resources/logoAssociation/actionSolidairePartage.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 122),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'actionSolidairePartage'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('AEJBM', 'VALIDATED', '../resources/logoAssociation/AEJBM.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 133),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'AEJBM'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('efa', 'VALIDATED', '../resources/logoAssociation/efa.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 144),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'efa'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('enfanceEtPartage', 'VALIDATED', '../resources/logoAssociation/enfanceEtPartage.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 155),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'enfanceEtPartage'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('laVoixDeLEnfant', 'VALIDATED', '../resources/logoAssociation/laVoixDeLEnfant.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 166),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'laVoixDeLEnfant'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('paroleDEnfant', 'VALIDATED', '../resources/logoAssociation/paroleDEnfant.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 177),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'paroleDEnfant'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('Reves', 'VALIDATED', '../resources/logoAssociation/Reves.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 188),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'Reves'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('terreDesEnfants', 'VALIDATED', '../resources/logoAssociation/terreDesEnfants.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 199),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'terreDesEnfants'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('unEnfantDesSourires', 'VALIDATED', '../resources/logoAssociation/unEnfantDesSourires.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 110),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'unEnfantDesSourires'));
+
  #PRIVATEPERSON TABLE
  INSERT INTO PrivatePerson(photoProfil, ACCOUNT_ID ) VALUES ('photo1',(SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
  

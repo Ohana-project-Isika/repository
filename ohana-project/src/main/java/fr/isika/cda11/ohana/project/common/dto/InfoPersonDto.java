@@ -2,6 +2,7 @@ package fr.isika.cda11.ohana.project.common.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,11 +25,11 @@ public class InfoPersonDto implements Serializable {
 	private Long idInfoPers;
 	private String lastName;
 	private String firstName;
-	private LocalDate dateOfBirth;
+	private Date dateOfBirth;
 
 	//RELATIONS
 	private ContactDto contact;
-	private List<AddressDto> address;
+	private AddressDto address;
 	
 	//CONSTRUCTOR
 	public InfoPersonDto( ) {}
@@ -57,11 +58,11 @@ public class InfoPersonDto implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public LocalDate getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -73,11 +74,11 @@ public class InfoPersonDto implements Serializable {
 		this.contact = contact;
 	}
 
-	public List<AddressDto> getAddress() {
+	public AddressDto getAddress() {
 		return address;
 	}
 
-	public void setAddress(List<AddressDto> address) {
+	public void setAddress(AddressDto address) {
 		this.address = address;
 	}
 
@@ -145,6 +146,7 @@ public class InfoPersonDto implements Serializable {
 		return "InfoPersonDto [idInfoPers=" + idInfoPers + ", lastName=" + lastName + ", firstName=" + firstName
 				+ ", dateOfBirth=" + dateOfBirth + ", contact=" + contact + ", address=" + address + "]";
 	}
+
 	
 	
 }

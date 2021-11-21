@@ -17,20 +17,14 @@ public class MemberShipManageFactory {
 		msm.setAssociation(AssociationFactory.fromAssociationDto(membershipManageDto.getAssociation()));
 		msm.setId(membershipManageDto.getId());
 		msm.setMemberships(new ArrayList<Membership>());
-		for(MembershipDto membershipsDto: membershipManageDto.getMemberships()) {
-			msm.getMemberships().add(MembershipFactory.fromMembershipDto(membershipsDto));
-		};
 		return msm;
 	}
 
 	public static MemberShipManageDto fromMembershipManage(MemberShipManage membershipManage) {
 		MemberShipManageDto msmDto = new MemberShipManageDto();
 		msmDto.setAssociation(AssociationFactory.fromAssociation(membershipManage.getAssociation()));
-		msmDto.setId(membershipManage.getId());
+		msmDto.setId(Long.valueOf(membershipManage.getId()));
 		msmDto.setMemberships(new ArrayList<MembershipDto>());
-		for(Membership memberships: membershipManage.getMemberships()) {
-			msmDto.getMemberships().add(MembershipFactory.fromMembership(memberships));
-		};
 		return msmDto;
 	}
 }

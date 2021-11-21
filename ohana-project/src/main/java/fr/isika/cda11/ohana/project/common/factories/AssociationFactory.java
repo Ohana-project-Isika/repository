@@ -34,7 +34,7 @@ public final class AssociationFactory {
 		associationDto.setAddressAsso(AddressFactory.fromAddress(association.getAddressAsso()));
 		associationDto.setServices(ServicesFactory.fromServices(association.getServices()));
 		associationDto.setAccount(AccountFactory.fromAccount(association.getAccount()));
-		associationDto.setIdAssos(associationDto.getIdAssos());
+		associationDto.setIdAssos(Long.valueOf(association.getIdAssos()));
 		return associationDto;
 	}
 	

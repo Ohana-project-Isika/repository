@@ -1,13 +1,21 @@
 package fr.isika.cda11.ohana.project.membership.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
+import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
+import fr.isika.cda11.ohana.project.common.dto.ContactDto;
+import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
+import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
@@ -42,7 +50,16 @@ public class MembershipController implements Serializable{
 	MembershipDto membership = new MembershipDto();
 	AssociationDto association = new AssociationDto();
 	MemberShipManageDto mbsm = new MemberShipManageDto();
+	List<MembershipDto> membershiplist = new ArrayList<MembershipDto>();
 
+
+	
+	
+	@PostConstruct
+	public void init() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	}
+	
 	//GETTER & SETTER--------------------------------------------------------------------------------------
 	public MemberShipManageDto getMbsm() {return mbsm;}
 	public void setMbsm(MemberShipManageDto mbsm) {this.mbsm = mbsm;}
@@ -52,41 +69,40 @@ public class MembershipController implements Serializable{
 	public void setMembership(MembershipDto membership) {this.membership = membership;}
 	public AssociationDto getAssociation() {return association;}
 	public void setAssociation(AssociationDto association) {this.association = association;}
-	public static long getSerialversionuid() {return serialVersionUID;}
+	public List<MembershipDto> getMembershiplist() {return membershiplist;}
+	public void setMembershiplist(List<MembershipDto> membershiplist) {this.membershiplist = membershiplist;}
+
 
 	//CRUD-------------------------------------------------------------------------------------------------
 
+
+
+
+
 	//Create
-	public String createMembershipManage(long id) {
+	public String createMembershipManage(Long id) {
 		association=associationService.findAssociationByIdService(id);
-		if (mbsm.getAssociation().getIdAssos()==id) {
-			return "createMembershipForm";
+		if (mbsm.getAssociation().getIdAssos()!=Long.valueOf(id)) {
+			mbsm=new MemberShipManageDto();
+		mbsm= membershipManageService.createMembershipManage(mbsm, association);
 		}
-		else {
-		mbsm=membershipManageService.createMembershipManage(mbsm, association);
+		membership = new MembershipDto();
 		return "createMembershipForm";
-		}
-	}
-
-
-	public String createMember(long id) {
-		membership=memberShipService.findMembershipByIdService(id);
-		member=memberService.createMember(member,membership);
-		return "showMember";
 	}
 
 	public String createMemberShip(Long id) {
 		mbsm = membershipManageService.findMembershipManageByIdService(id);
 		membership = memberShipService.createMembership(membership, mbsm);
+		membershiplist=mbsm.getMemberships();
 		return "showMembership";
 	}
-
+	
 	//Read
-	public MembershipDto findMembershipById(long id) {
+	public MembershipDto findMembershipById(Long id) {
 		membership= memberShipService.findMembershipByIdService(id);
 		return membership;
 	}
-	public String ShowMembership(long id) {
+	public String ShowMembership(Long id) {
 		membership=findMembershipById(id);
 		return "showMembership";
 	}
@@ -97,7 +113,7 @@ public class MembershipController implements Serializable{
 	//Update
 
 	public String updateMembershipForm(Long id) {
-		MembershipDto membershipToUpdate =findMembershipById(id);
+		membership =findMembershipById(id);
 		return "updateMembershipForm";
 	}
 
@@ -108,15 +124,18 @@ public class MembershipController implements Serializable{
 
 
 	//Delete
-	public String deleteMembership(long id) {
+	public String deleteMembership(Long id) {
 		membership= findMembershipById(id);
-		if(membership.getMembersDto().isEmpty()!= true) {
-			for(MemberDto memberdto : membership.getMembersDto()) {
-				memberService.deleteMemberService(memberdto.getId());
+		if(membership.getMembers().isEmpty()!= true) {
+			for(MemberDto memberdto : membership.getMembers()) {
+				memberService.deleteMemberService(memberdto.getIdMember());
 			}
 		};
 
 		memberShipService.deleteMembershipService(id);
+		mbsm.getMemberships().remove(membership);
+		membership=new MembershipDto();
+		
 		return "AssociationTable";
 	}
 
@@ -124,9 +143,13 @@ public class MembershipController implements Serializable{
 
 
 
-	public String createMemberForm(long id) {	
+	public String createMemberForm(Long id) {	
 		membership=memberShipService.findMembershipByIdService(id);
 		return "createMemberForm";
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 
 }
