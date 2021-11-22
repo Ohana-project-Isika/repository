@@ -1,35 +1,53 @@
-*{
-	padding: 0;
-	margin: 0;
-	text-decoration:none;
-	list-style:none;
-	box-sizing: border-box;
-}
 
 body{
 	font-family: montserrat;
 }
 nav{
-	background:#0082e6;
+	background:#000904;
 	height:80px;
 	width:100%;
 } 
 
-label.logo{
-	color:white;
-	font-size: 35px;
-	line-height: 80px;
-	padding: 0 100px;
-	font-weight: bold;
+.logoOhana {
+	padding: 0 20px;
+    height: 40px;
+    color: #ffffff;
+}
+.logoOhanaFooter {
+	padding: 0 20px;
+    height: 40px;
+    color: #000000;
+    align-content: center;
 }
 
-nav ul{
-	float:right;
+nav ul.nav-list{
+	float:left;
 	margin-right : 20px;
+	
+}
+nav ul.nav-item-connexion{
+	float:right;
+	padding: 0 20px;
+	
 }
 
-mav ul li{
+nav ul li{
+	padding:0 20px;
 	display: inline-block;
 	line-height : 80px;
 	margin : 0 5px;
+	color:white;
+}
+
+nav ul li a{
+	color:#FFFFFF;
+	font-size : 14px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+a.active,a:hover{
+	text-decoration:overline;
+	background:#6DB8C4;
+	transition: .5s;
 }

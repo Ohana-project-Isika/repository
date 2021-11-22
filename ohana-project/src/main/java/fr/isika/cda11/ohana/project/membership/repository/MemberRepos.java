@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
 import fr.isika.cda11.ohana.project.membership.factories.MemberFactory;
+import fr.isika.cda11.ohana.project.membership.factories.MembershipFactory;
 import fr.isika.cda11.ohana.project.membership.models.Member;
 import fr.isika.cda11.ohana.project.membership.models.Membership;
 
@@ -20,13 +21,14 @@ public class MemberRepos {
 	private EntityManager entityManager;
 	
 	//CREATE
-	public Member createMember(MemberDto memberDto, MembershipDto membershipDto) {
+	public Member createMember(MemberDto memberDto) {
 		//Long idMembsership en parametre
 		// find membership by id
-		Membership membership=entityManager.find(Membership.class, membershipDto.getIdMbs());
+		Membership membership=entityManager.find(Membership.class, memberDto.getMembershipDto().getIdMbs());
 		Member member = MemberFactory.fromMemberDto(memberDto);
 		entityManager.persist(member);
 		membership.getMembers().add(member);
+		member.setMembership(membership);
 		entityManager.merge(membership);
 		return member;
 		

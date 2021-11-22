@@ -41,7 +41,9 @@ public class LoginController implements Serializable {
             setLoggedUser();
             resetLoginData();
             return "logged";
-        } else {
+        } 
+        
+        else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
                     "Veuillez vérifier vos coordonnées", "Saisissez un identifiant ou un mot de passe correct"));
             return "login";
