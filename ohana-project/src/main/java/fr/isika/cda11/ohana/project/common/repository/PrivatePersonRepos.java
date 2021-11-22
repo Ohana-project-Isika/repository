@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
@@ -30,6 +31,13 @@ public class PrivatePersonRepos {
 
 		PrivatePersonDto privatePersonDto= PrivatePersonFactory.fromPrivatePerson(entityManager.find(PrivatePerson.class, id));	
 		return privatePersonDto;
+	}
+
+	public PrivatePersonDto findPrivatePersonByAccount(Account account) {
+
+		Query query = entityManager.createQuery("SELECT DISTINCT p FROM PrivatePerson p WHERE p.account = :account");
+		query.setParameter("account", account);
+		return PrivatePersonFactory.fromPrivatePerson((PrivatePerson) query.getSingleResult());
 	}
 
 	public List<PrivatePersonDto> listPrivatePersonRepos(){

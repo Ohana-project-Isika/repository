@@ -1,5 +1,9 @@
 package fr.isika.cda11.ohana.project.common.models;
 
+import fr.isika.cda11.ohana.project.event.models.Order;
+import fr.isika.cda11.ohana.project.event.models.Ticket;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,6 +31,13 @@ public class PrivatePerson {
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
 	@JoinColumn(name="ACCOUNT_ID", nullable=false)
 	private Account account;
+
+	@OneToMany(mappedBy = "privatePerson")
+	private List<Ticket> tickets  = new ArrayList<>();
+
+	public void addTicket(Ticket ticket) {
+		tickets.add(ticket);
+	}
 	
 	//GETTER AND SETTER
 	public Long getIdPrivatePerson() {return idPrivatePerson;}

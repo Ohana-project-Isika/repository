@@ -1,6 +1,8 @@
 /*   French map */
 .carte {
-    width: 100%;
+    width: 20%;
+    margin-top: 5em;
+    margin-left: 2em;
 }
 
 .carte path {
@@ -14,3 +16,34 @@
     fill: #363636;
 }
 
+#eventList {
+    margin-left: 28em;
+    margin-top: -38em;
+}
+
+/*  Event cards */
+.eventCard {
+    width: 50em;
+    margin-left: 20rem;
+}
+
+#search {
+    margin-top: 2em;
+    margin-left: 2em;
+}
+
+button{
+    border: none;
+    padding: 7px 20px;
+    border-radius: 20px;
+    background-color:#2A92A2;
+    color:white;
+}
+
+button a{
+    color:white;
+}
+
+h:commandLink{
+    color:white;
+}

@@ -28,10 +28,10 @@
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (12, 'rue de gometz', '91470', 'Les Molières', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (7, '11 rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (8, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'route de Verdun', '21200', 'BEAUNE', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (9, 'route de Verdun', '21200', 'BEAUNE', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue de gometz', '91470', 'Les Molières', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (11, 'rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (8, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (9, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (13, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
 
  
@@ -103,155 +103,27 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  #PRIVATEPERSON TABLE
  INSERT INTO PrivatePerson(photoProfil, ACCOUNT_ID ) VALUES ('photo1',(SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
  
- #MEMBERSHIPMANAGE TABLE
- INSERT INTO Membershipmanage(ASSOCIATION_ID) VALUES (1);
- 
- #MEMBERSHIP TABLE
- INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 20.00, 1);
- INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 30.00, 1);
- INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 40.00, 1);
- 
- #MEMBER TABLE
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact16@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact17@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact18@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact19@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact20@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact21@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact22@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact23@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777')
- 
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (14, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (15, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (17, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (18, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (19, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (20, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (21, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (22, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (23, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (24, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (25, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (26, 'rue Georges Member', '06600', 'Antibes', 'France');
- 
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-14', 'tato', 'ziti', 27, 14);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-15', 'teto', 'yiti', 28, 15);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-16', 'tito', 'titi', 29, 16);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-17', 'toto', 'siti', 30, 17);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-18', 'tuto', 'riti', 31, 18);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-19', 'boto', 'viti', 32, 19);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-20', 'bato', 'witi', 33, 20);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-21', 'beto', 'liti', 34, 21);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-22', 'bito', 'miti', 35, 22);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-23', 'buto', 'niti', 36, 23);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-24', 'coto', 'citi', 37, 24);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-25', 'cato', 'giti', 38, 25);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-26', 'cito', 'hiti', 39, 26);
- 
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'aa','0000', 'PRIVATEPERSON', 14);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'bb', '0000','PRIVATEPERSON', 15);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'cc', '0000','PRIVATEPERSON', 16);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'dd', '0000','PRIVATEPERSON', 17);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'ee', '0000','PRIVATEPERSON', 18);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'ff', '0000','PRIVATEPERSON', 19);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'gg', '0000','PRIVATEPERSON', 20);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'hh', '0000','PRIVATEPERSON', 21);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'ii', '0000','PRIVATEPERSON', 22);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'jj', '0000','PRIVATEPERSON', 23);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'kk', '0000','PRIVATEPERSON', 24);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'll', '0000','PRIVATEPERSON', 25);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'mm', '0000','PRIVATEPERSON', 26);
- 
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 13);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 14);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 15);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 16);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 17);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 18);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 19);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 20);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 21);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 22);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 23);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 24);
- INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 25);
-
- 
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 1, 2);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 1, 3);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 1, 4);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 1, 5);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 1, 6);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 2, 7);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 2, 8);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 2, 9);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 2, 10);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 11);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 12);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 13);
- INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 14);
- 
- 
  #PAIEMENT TABLE
  INSERT INTO Paiement(paymentRef, validated, paymentDate, ACCOUNT_ID) VALUES ('Ref1', 1, '2021-01-01', (SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
 
 #EVENT---------------------------------------------------------------------------------------------------------------------------
-# EVENT TABLE
-INSERT INTO event (event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('Bateau sur le dos', 'Centre créatif pour les plus défavorisés', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Rouen'));
-INSERT INTO event (event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('Enfance dabord', 'Association de lutte contre lautisme', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Paris'));
-INSERT INTO event (event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('La plume et le poisson', 'Aide aux cours du soir', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Marseille'));
-INSERT INTO event (event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('Mon chat est tout plat', 'Atelier decriture et de lecture de contes', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Quimper'));
-
-# TICKET TABLE
-INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Bateau sur le dos'), 'REDUCED1', 'METROPOLITAN', 20);
-INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Enfance dabord'), 'REDUCED1', 'METROPOLITAN', 10);
-INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'La plume et le poisson'), 'REDUCED1', 'METROPOLITAN', 10);
-INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Mon chat est tout plat'), 'REDUCED1', 'METROPOLITAN', 10);
-
-#  NB: DO NOT USE SQL COMMAND-LIKE NAMES FOR COLUMNS OR TABLES
-#      PREFER @GeneratedValue(strategy = GenerationType.IDENTITY) TO @GeneratedValue(strategy = GenerationType.AUTO)
-#      BECAUSE PRIMARY KEY DOES NOT HAVE A DEFAULT VALUE WITH THE LATTER WHILE IT DOES WITH THE FORMER
-
-USE `ohana-database`;
-
-# ADDRESS TABLE
-INSERT INTO address (numRue, rue, codePostal, ville, pays) VALUES (193, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
-INSERT INTO address (numRue, rue, codePostal, ville, pays) VALUES (20, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
-INSERT INTO address (numRue, rue, codePostal, ville, pays) VALUES (20, 'Alee Isika', '69000', 'Lyon', 'France');
-
-# PERSON INFO TABLE
-INSERT INTO personinfo (lastName, firstName) VALUES ('ViNaMaJaJo', 'Gaga');
-
-# INDIVIDUAL TABLE
-INSERT INTO individual (firstName) VALUES ('Manu');
-
-# CONTACT TABLE
-INSERT INTO contact (phoneNb, phoneNb2, email, personInfo_idPersInfo) VALUES ('fdsff', 'dfdds', 'qsdfsdffqsd', (SELECT id FROM individual WHERE firstName = 'Manu'));
-
-# ROLE TABLE
-INSERT INTO role (role) VALUES (1);
-
-# ASSOCIATION TABLE
-INSERT INTO association (nameAssos, addressAsso_idAddress, role_idRole) VALUES ('assoce', (SELECT idAddress FROM address WHERE ville = 'Lyon'), (SELECT idRole FROM role WHERE role = 1));
 
 # TICKETING TABLE
-INSERT INTO ticketing (ticketing_name, association_idAssos) VALUES ('ticketing', (SELECT idAssos FROM association WHERE role_idRole = 1));
+INSERT INTO ticketing (ticketing_name, association_idAssos) VALUES ('ticketing', (SELECT idAssos FROM association WHERE nameAssos = 'aapeec'));
 
 # EVENT TABLE
-INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Les Enfants d"abord', 'Contre la maltraitance des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Aubervilliers'), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
-INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('childhood.png', 'Ohana Kids', 'Gâtons nos enfants', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE ville = 'Limoges'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Les Enfants d\'abord', 'Contre la maltraitance des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 2), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childhood.png', 'Ohana Kids', 'Gâtons nos enfants', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 1), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Sauvons les enfants', 'Contre la guerre', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 7), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Une famille, un enfant', 'Mieux que l\'orphelinat', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 10), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Comment garder nos enfants près de nous', 'Actions des parents que les enfants adorent', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 8), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Bien éduquer ses enfants', 'Education', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 3), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Jeux, danse', 'Divertissements pour enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 13), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'A l\'école', 'Contre la violence à l\'école', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 8), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Enfants, mirroir de la société', 'Enfants et société', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 2), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('childbackground.jpg', 'Ne grandissons pas vite', 'Fait par des enfants pour des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 13), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
 
 # TICKET TABLE
-INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Les Enfants d"abord'), 'REDUCED1', 'METROPOLITAN', 20);
+INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Les Enfants d\'abord'), 'REDUCED1', 'METROPOLITAN', 20);
 INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);
 INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);
-
-# ACCOUNT TABLE
-INSERT INTO account (accountLogin, accountPassword) VALUES ('test', 'test');
-
