@@ -15,6 +15,7 @@ import fr.isika.cda11.ohana.project.enumclass.EnumRole;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
 import fr.isika.cda11.ohana.project.membership.factories.MemberFactory;
+import fr.isika.cda11.ohana.project.membership.factories.MembershipFactory;
 import fr.isika.cda11.ohana.project.membership.models.Member;
 import fr.isika.cda11.ohana.project.membership.repository.MemberRepos;
 
@@ -38,9 +39,9 @@ public class MemberService {
 		PrivatePersonDto privatepersonDto= new PrivatePersonDto();
 		privatepersonDto.setAccount(accounDto);
 		memberDto.setPrivatePerson(privatepersonDto);
-		Member member= memberRepos.createMember(memberDto, membershipDto);
+		memberDto.setMembershipDto(membershipDto);
+		Member member= memberRepos.createMember(memberDto);
 		MemberDto newMemberDto = MemberFactory.fromMember(member);
-		membershipDto.getMembers().add(newMemberDto);
 		return newMemberDto;
 	}
 

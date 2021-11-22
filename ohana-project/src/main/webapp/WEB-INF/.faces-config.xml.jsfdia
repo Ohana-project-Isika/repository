@@ -37,10 +37,10 @@
   <PROCESS-ITEM ID="rules:#membership#createMemberForm.xhtml:0"
    NAME="item" PATH="/membership/createMemberForm.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="showMember:#{membershipController.createMember(membershipController.membership.idMbs)}:#membership#showMember.xhtml"
+    ID="showMember:#{membershipControllercreateMember(membershipController.membership.idMbs)}:#membership#showMember.xhtml"
     NAME="output" PATH="/membership/showMember.xhtml"
     TARGET="rules:#membership#showMember.xhtml"
-    TITLE="#{membershipController.createMember(membershipController.membership.idMbs)}:showMember" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{membershipControllercreateMember(membershipController.membership.idMbs)}:showMember" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#bar.xhtml" PATH="/bar.xhtml"

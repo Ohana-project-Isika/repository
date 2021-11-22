@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/layout2.xhtml">
+	<ui:define name="head">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ohana - Plateforme Association aide enfance</title>
+		<link rel="stylesheet" href="resources/css/style.css" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js" />
+		<script src='https://kit.fontawesome.com/a076d05399.js'
+			crossorigin='anonymous' />
+	</ui:define>
+	<!-- HEADER -->
+	<ui:define name="content">
+		<section class="top-page">
+			<div class="landing-page">
+				<div class="big-title">Ces associations qui tendent la main aux enfants</div>
+			</div>
+		</section>
+		<!-- FIN HEADER -->
+
+ <!-- Services -->
+        <section class="services">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="service-item first-item">
+                            <div class="icon">
+                            </div>
+                
+                            <h4>Adhésion</h4>
+                            <p>Adhérez aux associations que vous soutenez et devenez membre.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-item second-item">
+                            <div class="icon"></div>
+                            <h4>Crowdfunding</h4>
+                            <p>Participez aux projets de crowdfunding et aidez les associations à atteindre leurs objectifs.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-item third-item">
+                            <div class="icon"></div>
+                            <h4>Evenement</h4>
+                            <p>Découvre les évements près de chez vous et achetez vos billets en ligne pour y participer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- QUI SOMMES NOUS -->
+ <!-- Left Image -->
+        <section class="left-image borderline">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="http://localhost:8080/ohana-project/resources/img/pngegg.png" alt=""/>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="right-content">
+                            <h2 class="section-title">Ohana - Qui sommes nous ?</h2>
+                            <p>Lorem ipsum dolor amet raclette chambray bitters,
+                                hammock celiac slow-carb flexitarian four dollar
+                                toast food truck health goth. Air plant brunch
+                                food truck vegan scenester organic crucifix
+                                irony pour-over pop-up austin hexagon kitsch swag. G
+                                odard literally humblebrag cloud bread vice master
+                                cleanse chambray typewriter put a bird on it brooklyn f
+                                orage.<br/><br/>Air plant brunch food truck
+                                vegan scenester organic crucifix irony
+                                pour-over pop-up austin hexagon kitsch swag.
+                                Godard literally humblebrag cloud bread vice
+                                master cleanse chambray typewriter put bird brooklyn</p>
+                            <div class="primary-button">
+                                <a href="#">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- FIN DE QUI SOMMES NOUS -->
+
+<!-- ASSOCIATIONS PARTENAIRES -->
+
+			<section class="bests-items borderline" id="bests-items">
+				<h2 class="section-title">Nos associations partenaires</h2>
+				
+				<div class="best-associations">
+				
+					<a class="associations-box no-grid">
+					<img src="resources/gfx/AssoLogo2.jpg"/>
+					</a> 
+					
+					<a class="associations-box no-grid">
+					<img src="resources/gfx/assoLogo4.jpg"/>
+					</a> 
+					<a class="associations-box no-grid">
+					<img src="resources/gfx/assoLogo3.jpg"/>
+					</a> 
+					<a class="associations-box no-grid">
+					<img src="resources/gfx/logoAsah.jpg"/>
+					</a>
+				</div>
+			</section>
+<!-- Top Image -->
+        <section class="top-image borderline bests-items">
+       
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="imgtoppage"><img src="http://localhost:8080/ohana-project/resources/gfx/buildschool.jpg" alt=""/></div>
+                        <div class="down-content">
+                             <h2 class="section-title">Le projet de crowdfunding à la Une</h2>
+                            <p>Lorem ipsum dolor amet raclette chambray bitters,
+                                hammock celiac slow-carb flexitarian four dollar
+                                toast food truck health goth. Air plant brunch food
+                                truck vegan scenester organic crucifix irony pour-over
+                                pop-up austin hexagon kitsch swag. Godard literally
+                                humblebrag cloud bread vice master cleanse chambray
+                                typewriter put a bird on it brooklyn forage.</p>
+                            <div class="primary-button">
+                                <a href="#">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+	</ui:define>
+</ui:composition>
