@@ -1,25 +1,24 @@
 package fr.isika.cda11.ohana.project.event.service;
 
+import static fr.isika.cda11.ohana.project.common.models.Constant.DATE_FORMAT;
 import static fr.isika.cda11.ohana.project.event.models.TVA.CORSE;
 import static fr.isika.cda11.ohana.project.event.models.TVA.DOM;
 import static fr.isika.cda11.ohana.project.event.models.TVA.METROPOLITAN;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.common.models.Address;
 import fr.isika.cda11.ohana.project.enumclass.Region;
-import fr.isika.cda11.ohana.project.event.models.Cart;
-import fr.isika.cda11.ohana.project.event.models.Event;
-import fr.isika.cda11.ohana.project.event.models.RATE_TYPE;
-import fr.isika.cda11.ohana.project.event.models.TVA;
-import fr.isika.cda11.ohana.project.event.models.Ticket;
+import fr.isika.cda11.ohana.project.event.models.*;
 import fr.isika.cda11.ohana.project.event.repository.EventRepository;
 
 @Stateless
@@ -38,10 +37,15 @@ public class EventService implements Serializable {
 		}
 	}
 
+	public void displayNoEventMsg(List<Event> events, UIComponent component) {
+		if (events.size() == 0) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(component.getClientId(), new FacesMessage("Il n'existe pas d'évènements pour le moment"));
+		}
+	}
+
 	public List<Event> findAllEvents() {
-		List<Event> events = eventRepository.findAllEvents();
-		manageEvents(events);
-		return events;
+		return manageEvents(eventRepository.findAllEvents());
 	}
 
 	public Event findById(Long id) {
@@ -53,48 +57,12 @@ public class EventService implements Serializable {
 		return findById(event.getId());
 	}
 
-	public BigDecimal computePreTaxTotal(List<Event> eventsCheckedOut) {
-		BigDecimal total = BigDecimal.ZERO;
-		for (Event event : eventsCheckedOut)
-			total.add(event.getTicket().getPreTaxPrice());
-
-		return total.setScale(2, BigDecimal.ROUND_HALF_UP);
-	}
-
-	public BigDecimal computePostTaxTotal(List<Event> eventsCheckedOut) {
-		BigDecimal total = BigDecimal.ZERO;
-		for (Event event : eventsCheckedOut)
-			total.add(event.getTicket().getPostTaxPrice());
-
-		return total.setScale(2, BigDecimal.ROUND_HALF_UP);
-	}
-
-	public BigDecimal computeCartSubTotal(Cart cart) {
-		BigDecimal sum = BigDecimal.ZERO;
-		for (Event event : cart.getEvents()) {
-			sum.add(event.getTicket().getPreTaxPrice());
+	public Map<Event, Integer> computeNumber(List<Event> events, Map numberMap) {
+		for (int i = 0; i < events.size(); i++) {
+			numberMap.put(events.get(i), i + 1);
 		}
 
-		return sum.setScale(2, BigDecimal.ROUND_HALF_UP);
-	}
-
-	public BigDecimal computeCartTotal(Cart cart) {
-		BigDecimal sum = BigDecimal.ZERO;
-		for (Event event : cart.getEvents()) {
-			sum.add(event.getTicket().getPostTaxPrice());
-		}
-
-		return sum.setScale(2, BigDecimal.ROUND_HALF_UP);
-	}
-
-	public Cart addEvents(Event event, Cart cart) {
-		if (!cart.getEvents().contains(event)) {
-			cart.addEvents(event);
-			cart.addSubTotal(event.getTicket().getPreTaxPrice());
-			cart.addTotal(event.getTicket().getPostTaxPrice());
-		}
-
-		return cart;
+		return numberMap;
 	}
 
 	public List<Event> findAllEventsByRegion(String region) {
@@ -176,20 +144,35 @@ public class EventService implements Serializable {
 		return regionalEvents;
 	}
 
-	private void manageEvents(List<Event> list) {
-		for (Event event : list) {
-			event.setTicketQuantity(event.getTickets().size());
-			event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
+	private List<Event> manageEvents(List<Event> list) {
+		List<Event> events = new ArrayList<>();
+		String pattern = DATE_FORMAT;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("fr", "FR"));
 
-			event.getTicket().setTvaRate(setTVAFor(event.getTicket().getRateType(), event.getTicket().getAppliedTVA())
-					.multiply(BigDecimal.valueOf(100)).setScale(2, BigDecimal.ROUND_UP));
+		if (list.size() != 0) {
+			for (Event event : list) {
+				event.setTicketQuantity(event.getTickets().size());
 
-			event.getTicket().setPostTaxPrice(event.getTicket().getPreTaxPrice()
-					.multiply(BigDecimal.valueOf(1).add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
-					.setScale(2, BigDecimal.ROUND_UP));
+				if (event.getTickets().size() != 0) {
+					event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
 
-			event.setFullAddress(setFullAddress(event.getAddress()));
+					event.getTicket().setTvaRate(setTVAFor(event.getTicket().getRateType(), event.getTicket().getAppliedTVA())
+							.multiply(BigDecimal.valueOf(100)).setScale(2, BigDecimal.ROUND_UP));
+
+					event.getTicket().setPostTaxPrice(event.getTicket().getPreTaxPrice()
+							.multiply(BigDecimal.valueOf(1).add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
+							.setScale(2, BigDecimal.ROUND_UP));
+				}
+
+				event.setFullAddress(setFullAddress(event.getAddress()));
+				event.setEndDateString(simpleDateFormat.format(event.getEndDate()));
+				event.setStartDateString(simpleDateFormat.format(event.getStartDate()));
+
+				events.add(event);
+			}
 		}
+
+		return events;
 	}
 
 	private String setFullAddress(Address address) {
