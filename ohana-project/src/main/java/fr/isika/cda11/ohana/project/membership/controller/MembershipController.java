@@ -148,6 +148,30 @@ public class MembershipController implements Serializable{
 		return "createMemberForm";
 	}
 	
+	public String subMemberForm(Long id) {
+		association=associationService.findAssociationByIdService(id);
+		List<MemberShipManageDto> mbsmsByAssos = membershipManageService.listMembershipManageService();
+		for(MemberShipManageDto mbmdto : mbsmsByAssos) {
+			if(mbmdto.getAssociation().getIdAssos() == Long.valueOf(id)) {
+				mbsm=mbmdto;
+			}
+			else {
+				mbsm=new MemberShipManageDto();
+			}
+		}
+		
+		List<MembershipDto> allMembershipAssos = new ArrayList<MembershipDto>();
+		allMembershipAssos = memberShipService.listMembershipsService();
+		for(MembershipDto membershdto: allMembershipAssos) {
+			if(membershdto.getMemberShipManage().getId()==mbsm.getId()) {
+				mbsm.getMemberships().add(membershdto);	
+			}
+		}
+		membershiplist=mbsm.getMemberships();
+
+		return "subMember";
+	}
+	
 	public static void main(String[] args) {
 		
 	}

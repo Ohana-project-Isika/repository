@@ -79,7 +79,7 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('terreDesEnfants', '1111', 'ASSOCIATION','2021-01-09',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomonze'));
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('unEnfantDesSourires', '1111', 'ASSOCIATION','2021-01-10',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomdouze'));
  
- INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PARTICULIER','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtreize'));
+ INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PRIVATEPERSON','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtreize'));
 
  
  #ADMIN TABLE
