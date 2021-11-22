@@ -31,7 +31,7 @@
 	<navigation-rule>
 		<from-view-id>/membership/createMemberForm.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{membershipController.createMember(membershipController.membership.idMbs)}</from-action>
+			<from-action>#{membershipControllercreateMember(membershipController.membership.idMbs)}</from-action>
 			<from-outcome>showMember</from-outcome>
 			<to-view-id>/membership/showMember.xhtml</to-view-id>
 		</navigation-case>

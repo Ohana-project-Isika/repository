@@ -6,6 +6,7 @@ import fr.isika.cda11.ohana.project.common.factories.PrivatePersonFactory;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.SubscriptionFeeDto;
 import fr.isika.cda11.ohana.project.membership.models.Member;
+import fr.isika.cda11.ohana.project.membership.models.Membership;
 import fr.isika.cda11.ohana.project.membership.models.SubscriptionFee;
 
 
@@ -16,6 +17,7 @@ public class MemberFactory {
 		member.setIdMember(memberDto.getIdMember());
 		member.setDateOfStart(memberDto.getDateOfStart());
 		member.setDateOfEnd(memberDto.getDateOfEnd());
+		member.setMembership(MembershipFactory.fromMembershipDto(memberDto.getMembershipDto()));
 		return member;
 	}
 	
@@ -25,6 +27,7 @@ public class MemberFactory {
 		memberDto.setIdMember(Long.valueOf(member.getIdMember()));
 		memberDto.setDateOfStart(member.getDateOfStart());
 		memberDto.setDateOfEnd(member.getDateOfEnd());
+		memberDto.setMembershipDto(MembershipFactory.fromMembership(member.getMembership()));
 		return memberDto;
 	}
 }
