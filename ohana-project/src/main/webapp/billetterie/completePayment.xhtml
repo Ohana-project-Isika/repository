@@ -7,11 +7,8 @@
                 xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
                 template="/WEB-INF/templates/layout.xhtml">
 
-   <ui:define name="head">
-      <h:outputStylesheet name="css/table.css" />
-   </ui:define>
-
    <ui:define name="content">
+      <h:outputStylesheet name="css/styles.css" />
 
       <div class="card">
          <h:form id="card"  prependId="false">
@@ -30,8 +27,9 @@
                <p:inputText id="cvc" placeholder="CVC" inputmode="numeric" value="#{paymentController.cvc}"/>
             </p:panelGrid>
 
-            <h:commandLink id="link" action="#{paymentController.validatePayment}"
-                           value="Valider le paiement"/>
+            <button>
+            <h:commandLink id="link" action="#{paymentController.validatePayment}" value="Valider le paiement"/>
+            </button>
          </h:form>
       </div>
    </ui:define>

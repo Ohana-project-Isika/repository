@@ -31,3 +31,19 @@
     margin-top: 2em;
     margin-left: 2em;
 }
+
+button{
+    border: none;
+    padding: 7px 20px;
+    border-radius: 20px;
+    background-color:#2A92A2;
+    color:white;
+}
+
+button a{
+    color:white;
+}
+
+h:commandLink{
+    color:white;
+}

@@ -9,19 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="Linked Tickets with Individual.">
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/telechargement.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/gfx/qr.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ohana_project_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ohana_project_war_exploded.xml" afterDir="false" />
+    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="Download Bought Tickets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/completePayment.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/completePayment.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/reservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/reservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/validatePayment.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/validatePayment.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/verificationPanier.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/verificationPanier.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +182,7 @@
       <workItem from="1637074734118" duration="747000" />
       <workItem from="1637075492376" duration="2367000" />
       <workItem from="1637083002339" duration="33286000" />
-      <workItem from="1637550000837" duration="11409000" />
+      <workItem from="1637550000837" duration="13224000" />
     </task>
     <task id="LOCAL-00001" summary="Not working...">
       <created>1637083272459</created>
@@ -213,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637550110748</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Download Bought Tickets">
+      <created>1637563319698</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637563319698</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +234,18 @@
     <MESSAGE value="Not working..." />
     <MESSAGE value="Test" />
     <MESSAGE value="Linked Tickets with Individual." />
-    <option name="LAST_COMMIT_MESSAGE" value="Linked Tickets with Individual." />
+    <MESSAGE value="Download Bought Tickets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Download Bought Tickets" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
