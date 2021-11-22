@@ -1,23 +1,14 @@
 package fr.isika.cda11.ohana.project.membership.service;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-
-import fr.isika.cda11.ohana.project.common.dto.AccountDto;
-import fr.isika.cda11.ohana.project.common.dto.AddressDto;
-import fr.isika.cda11.ohana.project.common.dto.ContactDto;
-import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
-import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
+import fr.isika.cda11.ohana.project.common.dto.*;
 import fr.isika.cda11.ohana.project.enumclass.EnumRole;
-import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
 import fr.isika.cda11.ohana.project.membership.factories.MemberFactory;
-import fr.isika.cda11.ohana.project.membership.factories.MembershipFactory;
 import fr.isika.cda11.ohana.project.membership.models.Member;
-import fr.isika.cda11.ohana.project.membership.repository.MemberRepos;
+import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import java.util.Date;
 
 @Stateless
 public class MemberService {
