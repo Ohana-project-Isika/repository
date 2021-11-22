@@ -77,5 +77,13 @@ public class MemberController implements Serializable {
 		membershipDto.getMembers().add(memberDto);
 		return "showMember";
 	}
+	
+	public String subMember(Long id) {
+		membershipDto=memberShipService.findMembershipByIdService(id);
+		memberDto.setDateOfStart(new Date());
+		memberDto=memberService.createMember(memberDto,membershipDto, contactDto, infopersonDto, accountDto, adressDto);
+		membershipDto.getMembers().add(memberDto);
+		return "showMember";
+	}
 
 }

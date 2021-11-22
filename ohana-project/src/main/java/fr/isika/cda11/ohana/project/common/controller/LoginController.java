@@ -1,7 +1,10 @@
 package fr.isika.cda11.ohana.project.common.controller;
 
+import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.models.Account;
+import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.LoginService;
+import fr.isika.cda11.ohana.project.enumclass.EnumRole;
 import lombok.*;
 
 import javax.annotation.PostConstruct;
@@ -13,8 +16,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 import java.util.logging.Logger;
 
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
@@ -28,9 +33,15 @@ public class LoginController implements Serializable {
 
     @Inject
     private LoginService loginService;
+    @Inject
+    private AccountService accountService;
 
     private String loggedUser;
     private Account account = new Account();
+    private AccountDto accountDto= new AccountDto();
+    private String log;
+    
+    
 
     public String validateLogin() {
         if (loginService.isLoginValid(account.getAccountLogin(), account.getAccountPassword())) {
@@ -39,6 +50,24 @@ public class LoginController implements Serializable {
             session.setAttribute(ACCOUNT_ATTRIBUTE, account.getAccountLogin());
             session.setAttribute(ACCOUNT_CONNECTED, true);
             setLoggedUser();
+            System.out.println("logeduser1="+loggedUser);
+            System.out.println(account.getAccountLogin());
+            System.out.println(account.getAccountLogin());
+            List<AccountDto> accounts = new ArrayList<AccountDto>();
+            AccountDto accountconnected=new AccountDto();
+            accounts = accountService.listAccountService();
+            for(AccountDto accountdto: accounts) {
+            	if(accountdto.getAccountLogin().equals(account.getAccountLogin()) && accountdto.getAccountPassword().equals(account.getAccountPassword())){
+                   accountconnected= accountdto;
+            	}
+            }
+            System.out.println(accountconnected.getIdAccount()+"/"+accountconnected.getRole());
+            if(accountconnected.getRole().equals(EnumRole.PRIVATEPERSON)) {
+            	 resetLoginData();
+            	 System.out.println("loogeduser2= "+loggedUser);
+            	 accountDto=accountconnected;
+            	return "indexOhana";
+            }
             resetLoginData();
             return "logged";
         } 
@@ -54,12 +83,35 @@ public class LoginController implements Serializable {
         this.loggedUser = account.getAccountLogin();
     }
 
+public String viewParamLogged() {
+	if(loggedUser!=null) {
+		return "Bienvenue "+loggedUser+ " | SE DECONNECTER";
+	}
+	
+	else 
+		log="/login.xhtml";
+		return "CONNECTEZ-VOUS";
+}
+
+public String outcomeLogged() {
+	if(loggedUser!=null) {
+		return "#{loginController.logout()}";
+	}
+	else {
+		return "#{loginController.openLogin()}";
+	}
+}
+
+public String openLogin() {
+	return "login?faces-redirect-true";
+}
+    
     public String logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.invalidate();
         resetLoginData();
         clearLoggedUser();
-        return "login?faces-redirect=true";
+        return "indexOhana?faces-redirect=true";
     }
 
     private void clearLoggedUser() {
