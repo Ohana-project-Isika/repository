@@ -170,13 +170,15 @@ public class PaymentController implements Serializable {
         }
 
         String imageFormat = "png";
-        String outputFileName = "http://localhost:8080/ohana-project/src/main/webapp/resources/gfx/qrCode." + imageFormat;
+//        String outputFileName = "http://localhost:8080/ohana-project/src/main/webapp/resources/gfx/qrCode." + imageFormat;
+        File dataDir = new File(System.getProperty("jboss.server.data.dir"));
+        File yourFile = new File(dataDir, "qrCode.png");
 
-        System.out.println("fffffffffffffffffffffff" + new FileOutputStream(outputFileName));
+//        System.out.println("fffffffffffffffffffffff" + new FileOutputStream(outputFileName));
 
         // write in a file
         try {
-            writeImage(outputFileName, imageFormat, bitMatrix);
+            writeImage(yourFile, imageFormat, bitMatrix);
         } catch (IOException ioException) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
@@ -200,7 +202,7 @@ public class PaymentController implements Serializable {
         return bitMatrix;
     }
 
-    private static void writeImage(String outputFileName, String imageFormat, BitMatrix bitMatrix) throws IOException {
+    private static void writeImage(File outputFileName, String imageFormat, BitMatrix bitMatrix) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(outputFileName);
         MatrixToImageWriter.writeToStream(bitMatrix, imageFormat, fileOutputStream);
         fileOutputStream.close();
