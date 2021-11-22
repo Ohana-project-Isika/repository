@@ -3,6 +3,7 @@ package fr.isika.cda11.ohana.project.crowdfunding.controller;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Period;
@@ -137,38 +138,6 @@ public class FundingController {
 			return "financeProject";
 
 		}
-
-
-		File file = new File("C://Users/Jasam/Desktop/extraction.xlsx");
-
-		if(!file.exists())
-		{
-			try {
-				file.createNewFile();
-			}catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-			else 
-			{
-				try {
-					BufferedReader fundindRd = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
-					String line = fundingRd.readLine();		
-
-					while(Funding != null)
-					{
-						System.out.println(Funding);
-						line = fundingRd.readLine();
-					}
-
-					fundingRd.close();
-
-				}catch (IOException e)
-				{
-					e.printStackTrace();
-				}
-			}	
-		}
 	}
-
+}
 
