@@ -170,9 +170,10 @@ public class PaymentController implements Serializable {
         }
 
         String imageFormat = "png";
-        String outputFileName = "src/main/webapp/resources/gfx/qrCode." + imageFormat;
+        String outputFileName = "http://localhost:8080/ohana-project/src/main/webapp/resources/gfx/qrCode." + imageFormat;
 
         System.out.println("fffffffffffffffffffffff" + new FileOutputStream(outputFileName));
+
         // write in a file
         try {
             writeImage(outputFileName, imageFormat, bitMatrix);
