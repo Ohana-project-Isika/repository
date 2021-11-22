@@ -6,10 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import fr.isika.cda11.ohana.project.common.dto.AccountDto;
-import fr.isika.cda11.ohana.project.common.dto.ContactDto;
-import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
-import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
+import fr.isika.cda11.ohana.project.common.dto.*;
 import fr.isika.cda11.ohana.project.enumclass.EnumRole;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
@@ -24,7 +21,7 @@ public class MemberService {
 	private MemberRepos memberRepos;
 
 	// CREATE
-	public MemberDto createMember(MemberDto memberDto, MembershipDto membershipDto, ContactDto contactDto, InfoPersonDto infopersonDto, AccountDto accounDto) {
+	public MemberDto createMember(MemberDto memberDto, MembershipDto membershipDto, ContactDto contactDto, InfoPersonDto infopersonDto, AccountDto accounDto, AddressDto addressDto) {
 		infopersonDto.setContact(contactDto);
 		//valeur par default du login = email
 		accounDto.setAccountLogin(contactDto.getEmail());
@@ -37,7 +34,8 @@ public class MemberService {
 		PrivatePersonDto privatepersonDto= new PrivatePersonDto();
 		privatepersonDto.setAccount(accounDto);
 		memberDto.setPrivatePerson(privatepersonDto);
-		Member member= memberRepos.createMember(memberDto, membershipDto);
+		memberDto.setMembershipDto(membershipDto);
+		Member member= memberRepos.createMember(memberDto);
 		MemberDto newMemberDto = MemberFactory.fromMember(member);
 		membershipDto.getMembers().add(newMemberDto);
 		return newMemberDto;
