@@ -30,10 +30,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
@@ -112,12 +109,12 @@ public class PaymentController implements Serializable {
         return "reservation";
     }
 
-    public String download(Ticket ticket) {
+    public String download(Ticket ticket) throws FileNotFoundException {
         this.ticket = ticket;
 
         //data that we want to store in the QR code
         String str = String.format("MON BILLET\n" +
-                "\n" +
+                "----------\n" +
                 "INFORMATIONS PERSONNELLES \n" +
                 "Prénom : %s\n" +
                 "Nom : %s\n" +
@@ -137,7 +134,7 @@ public class PaymentController implements Serializable {
                 "Prix HT : %s\n" +
                 "Taxe : %s\n" +
                 "Prix TTC : %s\n" +
-                "\n" +
+                "----------\n" +
                 "CE BILLET EST UNIQUEMENT VALABLE\n" +
                 "POUR L'EVENEMENT INDIQUE ET POUR SON DETENTEUR.\n" +
                 "UNE PIECE D'IDENTITE POURRA VOUS ETRE DEMANDE.\n" +
@@ -173,8 +170,9 @@ public class PaymentController implements Serializable {
         }
 
         String imageFormat = "png";
-        String outputFileName = "../resources/gfx/qrCode." + imageFormat;
+        String outputFileName = "src/main/webapp/resources/gfx/qrCode." + imageFormat;
 
+        System.out.println("fffffffffffffffffffffff" + new FileOutputStream(outputFileName));
         // write in a file
         try {
             writeImage(outputFileName, imageFormat, bitMatrix);
@@ -185,7 +183,7 @@ public class PaymentController implements Serializable {
         }
 
         System.out.println("Holaaaaaaaaaaaaaa");
-        return "telechargement";
+        return "telechargement?faces-redirect=true";
     }
 
     public Date setMinExpiry() {
@@ -202,7 +200,7 @@ public class PaymentController implements Serializable {
     }
 
     private static void writeImage(String outputFileName, String imageFormat, BitMatrix bitMatrix) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(new File(outputFileName));
+        FileOutputStream fileOutputStream = new FileOutputStream(outputFileName);
         MatrixToImageWriter.writeToStream(bitMatrix, imageFormat, fileOutputStream);
         fileOutputStream.close();
     }

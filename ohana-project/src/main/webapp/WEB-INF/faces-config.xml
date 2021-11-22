@@ -88,6 +88,7 @@
 	<navigation-rule>
 		<from-view-id>/billetterie/validatePayment.xhtml</from-view-id>
 		<navigation-case>
+			<from-action>#{paymentController.download}</from-action>
 			<from-outcome>telechargement</from-outcome>
 			<to-view-id>/billetterie/telechargement.xhtml</to-view-id>
 		</navigation-case>
