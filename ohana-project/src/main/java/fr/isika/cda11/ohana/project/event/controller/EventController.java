@@ -40,12 +40,14 @@ public class EventController implements Serializable {
     private String region;
     private UIComponent component;
     private Map<Event, Integer> numberMap = new HashMap<>();
+    private Map<Event, Integer> countMap = new HashMap<>();
 
     @PostConstruct
     public void init() {
         events = eventService.findAllEvents();
         eventService.displayNoEventMsg(events, component);
         numberMap = eventService.computeNumber(events, numberMap);
+        countMap = eventService.computeCount(events, countMap);
     }
 
     public String detail(Event event) {
@@ -70,12 +72,16 @@ public class EventController implements Serializable {
     }
 
     public String decrement(Ticket ticket) {
-        cart.decrement(ticket);
+        if (ticket.getQuantity() > 1 && ticket.getQuantity() <= ticket.getEvent().getTicketQuantity())
+            cart.decrement(ticket);
+
         return "";
     }
 
     public String increment(Ticket ticket) {
-        cart.increment(ticket);
+        if (ticket.getQuantity() >= 1 && ticket.getQuantity() < ticket.getEvent().getTicketQuantity())
+            cart.increment(ticket);
+
         return "";
     }
 

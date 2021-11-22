@@ -5,12 +5,8 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/templates/layout.xhtml">
 
-
-    <ui:define name="head">
-        <h:outputStylesheet name="css/table.css" />
-    </ui:define>
-
     <ui:define name="content">
+        <h:outputStylesheet name="css/table.css" />
 
         <div class="body_table">
             <div class="header_fixed">
@@ -82,7 +78,9 @@
 
                             <h:column>
                                 <f:facet name="header">Action</f:facet>
-                                <h:commandButton action="#{eventController.delete(ticket)}" value="Supprimer" />
+                                <button>
+                                    <h:commandLink action="#{eventController.delete(ticket)}" value="Supprimer" />
+                                </button>
                             </h:column>
                         </h:dataTable>
 
@@ -100,11 +98,11 @@
                             <h:message for="pmtMsg"/>
                             <br/><br/>
                             <button>
-                            <h:commandLink action="#{loginController.logIn}" value="Connectez-vous"/>
+                                <h:commandLink action="#{loginController.logIn}" value="Connectez-vous"/>
                             </button>
                         </h:panelGroup>
 
-                        <h:panelGroup rendered="#{!paymentController.paying}">
+                        <h:panelGroup rendered="#{!eventController.cart.ticketsByIds.isEmpty()}">
                             <br/><br/>
                             <button>
                                 <h:commandLink id="pay" action="#{paymentController.pay}" value="Valider le panier"/>

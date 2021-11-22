@@ -65,6 +65,14 @@ public class EventService implements Serializable {
 		return numberMap;
 	}
 
+	public Map<Event, Integer> computeCount(List<Event> events, Map<Event, Integer> countMap) {
+		for (Event event : events) {
+			countMap.put(event, 1);
+		}
+
+		return countMap;
+	}
+
 	public List<Event> findAllEventsByRegion(String region) {
 		List<Event> events = eventRepository.findAllEvents();
 		List<Event> regionalEvents = new ArrayList<>();

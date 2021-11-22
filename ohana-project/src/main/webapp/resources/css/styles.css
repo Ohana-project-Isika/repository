@@ -16,6 +16,11 @@
     fill: #363636;
 }
 
+#eventList {
+    margin-left: 28em;
+    margin-top: -38em;
+}
+
 /*  Event cards */
 .eventCard {
     width: 50em;

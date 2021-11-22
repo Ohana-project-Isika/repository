@@ -3,15 +3,71 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                template="/WEB-INF/templates/default.xhtml">
+                template="/WEB-INF/templates/layout.xhtml">
    <ui:define name="content">
-      <h1>Bravo!</h1>
+      <h:outputStylesheet name="css/table.css" />
 
       <div>
+         <h3>Votre payment a été effectué. Notre équipe vous remercie de votre achat.</h3>
+         <p>Vous venez d'acheter #{paymentController.tickets.size()} ticket(s).</p>
+         <br/>
 
-         <h3>Votre payment a été effectué. Merci de votre achat</h3>
-         <h:link outcome="ticketing" value="Aller sur la billetterie" />
-         <img src="resources/gfx/validation.jpg" />
+         <h:dataTable value="#{paymentController.tickets}" var="ticket">
+            <h:column>
+               <f:facet name="header">Nom</f:facet>
+               #{ticket.event.name}
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Tarif</f:facet>
+               #{ticket.rateType}
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Taux TVA</f:facet>
+               #{ticket.tvaRate} %
+            </h:column>+
+
+            <h:column>
+               <f:facet name="header">Prix HT</f:facet>
+               <p id="preTax_#{ticket.event.id}">
+                  #{ticket.preTaxPrice} €
+               </p>
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Prix TTC</f:facet>
+               <p id="postTax_#{ticket.event.id}">
+                  #{ticket.postTaxPrice} €
+               </p>
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Total HT</f:facet>
+               <p id="subTotal_#{ticket.event.id}">
+                  #{ticket.preTaxPricePerQuantity} €
+               </p>
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Total TTC</f:facet>
+               <p id="total_#{ticket.event.id}">
+                  #{ticket.postTaxPricePerQuantity} €
+               </p>
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Action</f:facet>
+               <button>
+                  <h:commandLink action="#{paymentController.download(ticket)}" value="Télécharger" />
+               </button>
+            </h:column>
+         </h:dataTable>
+
+         <h:outputText id="msg" value="" binding="#{eventController.component}"/>
+         <h:message for="msg"/>
+         <br/>
+         <h:commandLink id="list" action="#{eventController.back}" value="Retour à la liste des événements"/>
       </div>
 
    </ui:define>

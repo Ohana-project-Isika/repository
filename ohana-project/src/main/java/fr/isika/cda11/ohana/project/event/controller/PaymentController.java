@@ -1,12 +1,22 @@
 package fr.isika.cda11.ohana.project.event.controller;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import fr.isika.cda11.ohana.project.common.controller.LoginController;
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.factories.PrivatePersonFactory;
+import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.PrivatePersonService;
 import fr.isika.cda11.ohana.project.event.models.Order;
+import fr.isika.cda11.ohana.project.event.models.Ticket;
 import fr.isika.cda11.ohana.project.event.service.PaymentService;
 import fr.isika.cda11.ohana.project.event.service.TicketService;
 import lombok.Getter;
@@ -20,9 +30,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
 
@@ -47,6 +59,7 @@ public class PaymentController implements Serializable {
     private UIComponent component;
     private String url;
     private boolean isPaying;
+    private PrivatePerson privatePerson;
 
     @ManagedProperty(value="#{eventController}")
     private EventController eventController;
@@ -58,6 +71,8 @@ public class PaymentController implements Serializable {
     private Order order;
     private Date minExpiry = setMinExpiry();
     private Long loggedInUser;
+    private List<Ticket> tickets = new ArrayList<>();
+    private Ticket ticket;
 
     public String pay() {
         order = eventController.getCart();
@@ -79,16 +94,16 @@ public class PaymentController implements Serializable {
     }
 
     public String validatePayment() {
-
         AccountDto accountDto = accountService.findAccountByIdService(loggedInUser);
         PrivatePersonDto privatePersonDto = privatePersonService.findPrivatePersonByAccount(accountDto);
 
         order.getTicketsByIds().forEach((key, value) -> {
             value.setPrivatePerson(PrivatePersonFactory.fromPrivatePersonDto(privatePersonDto));
             ticketService.update(value);
+            tickets.add(value);
             privatePersonDto.addTicket(value);
         });
-        privatePersonService.updatePrivatePerson(privatePersonDto);
+        privatePerson = privatePersonService.updatePrivatePerson(privatePersonDto);
 
         return "validatePayment";
     }
@@ -97,11 +112,98 @@ public class PaymentController implements Serializable {
         return "reservation";
     }
 
+    public String download(Ticket ticket) {
+        this.ticket = ticket;
+
+        //data that we want to store in the QR code
+        String str = String.format("MON BILLET\n" +
+                "\n" +
+                "INFORMATIONS PERSONNELLES \n" +
+                "Prénom : %s\n" +
+                "Nom : %s\n" +
+                "\n" +
+                "INFORMATIONS EVENEMENT\n" +
+                "Organisateur : %s\n" +
+                "Nom : %s\n" +
+                "\n" +
+                "Date de début : %s\n" +
+                "Heure de début : %s\n" +
+                "\n" +
+                "Date de fin : %s\n" +
+                "Heure de fin : %s\n" +
+                "\n" +
+                "Lieu : %s\n" +
+                "\n" +
+                "Prix HT : %s\n" +
+                "Taxe : %s\n" +
+                "Prix TTC : %s\n" +
+                "\n" +
+                "CE BILLET EST UNIQUEMENT VALABLE\n" +
+                "POUR L'EVENEMENT INDIQUE ET POUR SON DETENTEUR.\n" +
+                "UNE PIECE D'IDENTITE POURRA VOUS ETRE DEMANDE.\n" +
+                "LE BILLET N'EST NI ECHANGEABLE NI NON REMBOURSABLE.\n" +
+                "POUR TOUTE INFORMATION, VEUILLEZ CONTACTER NOTRE SERVICE \n" +
+                "D'ASSISTANCE AU 01 48 55 88 41.\n" +
+                "\n" +
+                "L'EQUIPE OHANA VOUS REMERCIE DE VOTRE ACHAT. A TRES BIENTOT.",
+                privatePerson.getAccount().getInfoPerson().getFirstName(),
+                privatePerson.getAccount().getInfoPerson().getLastName(),
+                ticket.getEvent().getTicketing().getAssociation().getNameAssos(),
+                ticket.getEvent().getName(),
+                ticket.getEvent().getStartDateString(),
+                ticket.getEvent().getStartTime(),
+                ticket.getEvent().getEndDateString(),
+                ticket.getEvent().getEndTime(),
+                ticket.getEvent().getFullAddress(),
+                ticket.getPreTaxPrice(),
+                ticket.getTvaRate(),
+                ticket.getPostTaxPrice()
+        );
+
+        int size = 400;
+        BitMatrix bitMatrix = null;
+
+        // encode
+        try {
+            bitMatrix = generateMatrix(str, size);
+        } catch (WriterException e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
+            e.printStackTrace();
+        }
+
+        String imageFormat = "png";
+        String outputFileName = "../resources/gfx/qrCode." + imageFormat;
+
+        // write in a file
+        try {
+            writeImage(outputFileName, imageFormat, bitMatrix);
+        } catch (IOException ioException) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
+            ioException.printStackTrace();
+        }
+
+        System.out.println("Holaaaaaaaaaaaaaa");
+        return "telechargement";
+    }
+
     public Date setMinExpiry() {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DATE, 7);
         return calendar.getTime();
+    }
+
+    private static BitMatrix generateMatrix(String data, int size) throws WriterException {
+        BitMatrix bitMatrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, size, size);
+        return bitMatrix;
+    }
+
+    private static void writeImage(String outputFileName, String imageFormat, BitMatrix bitMatrix) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(new File(outputFileName));
+        MatrixToImageWriter.writeToStream(bitMatrix, imageFormat, fileOutputStream);
+        fileOutputStream.close();
     }
 }

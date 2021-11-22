@@ -9,62 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="ggggg">
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/service/PrivatePersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Ticketing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/repository/OrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/repository/PaymentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/repository/TicketRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/OrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/PaymentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/TicketService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/completePayment.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/details.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/validatePayment.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/verificationPanier.xhtml" afterDir="false" />
+    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="Linked Tickets with Individual.">
+      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/telechargement.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/gfx/qr.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/ohana_project_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ohana_project_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_paypal_sdk_rest_api_sdk_1_14_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_primefaces_primefaces_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_21.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/AuthorizePaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/dto/PrivatePersonDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/dto/PrivatePersonDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/PaymentServices.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/PrivatePerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/models/PrivatePerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/repository/LoginRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/repository/LoginRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/repository/PrivatePersonRepos.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/repository/PrivatePersonRepos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/service/AuthorizePaymentService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/enumclass/EnumRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/enumclass/EnumRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Cart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/OrderDetail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/membership/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/membership/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/servlet/AuthorizePaymentServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/servlet/ExecutePaymentServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/servlet/ReviewPaymentServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/templates/layout.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/WEB-INF/templates/layout.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billeterie/ticketing.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/error.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/receipt.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/reservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/reservation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/validatePayment.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/validatePayment.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/js/ticketing.js" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/js/ticketing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/review.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/ticketing/checkout.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/reservation.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,8 +34,8 @@
       <list>
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="jsf" />
         <option value="Class" />
+        <option value="jsf" />
       </list>
     </option>
   </component>
@@ -116,6 +74,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bolem\IdeaProjects\Ohana\ohana-project\src\main\webapp\resources\gfx" />
       <recent name="C:\Users\bolem\IdeaProjects\Ohana\ohana-project\src\main\webapp\billetterie" />
       <recent name="C:\Users\bolem\IdeaProjects\Ohana\ohana-project\src\main\webapp" />
     </key>
@@ -126,15 +85,13 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -207,27 +164,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="ohana-project" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="ohana-project" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration default="true" type="JBossConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
+      <server-settings>
+        <option name="SERVER" value="" />
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="" />
+        <option name="USERNAME" value="" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -244,6 +190,7 @@
       <workItem from="1637074734118" duration="747000" />
       <workItem from="1637075492376" duration="2367000" />
       <workItem from="1637083002339" duration="33286000" />
+      <workItem from="1637550000837" duration="11409000" />
     </task>
     <task id="LOCAL-00001" summary="Not working...">
       <created>1637083272459</created>
@@ -259,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637156056939</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Linked Tickets with Individual.">
+      <created>1637550110748</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637550110748</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,6 +234,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Not working..." />
     <MESSAGE value="Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test" />
+    <MESSAGE value="Linked Tickets with Individual." />
+    <option name="LAST_COMMIT_MESSAGE" value="Linked Tickets with Individual." />
   </component>
 </project>

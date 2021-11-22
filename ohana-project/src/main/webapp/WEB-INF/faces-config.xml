@@ -86,6 +86,23 @@
 	</navigation-rule>
 
 	<navigation-rule>
+		<from-view-id>/billetterie/validatePayment.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>telechargement</from-outcome>
+			<to-view-id>/billetterie/telechargement.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/billetterie/validatePayment.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{eventController.back}</from-action>
+			<from-outcome>billetterie</from-outcome>
+			<to-view-id>/billetterie.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
 		<from-view-id>/billetterie.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>reservation</from-outcome>
