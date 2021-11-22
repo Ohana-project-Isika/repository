@@ -1,6 +1,5 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-
 import fr.isika.cda11.ohana.project.common.models.Address;
 import lombok.*;
 import org.primefaces.PrimeFaces;
@@ -28,6 +27,7 @@ public class Event {
     // TODO Field Validation Errors
     // TODO Other Field Validation Controls if Any
 
+    //region Entity fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -44,10 +44,14 @@ public class Event {
     public Date getStartDate() {return startDate;}
     public void setStartDate(Date startDate) {this.startDate = startDate;}
 
+    @Column(name = "creation_date")
+    private Date creationDate;
+
+    @Column(name = "deletion_date")
+    private Date deletionDate;
 
     @Column(name = "start_time")
-    private Date startTime;
-
+    private LocalTime startTime;
 
     @Column(name = "end_date")
     private Date endDate;
@@ -57,6 +61,12 @@ public class Event {
     @Column(name = "end_time")
     private LocalTime endTime;
 
+    @Column(name = "image_file_name")
+    private String imageFileName;
+
+    @Column(name = "image_description")
+    private String imageDescription;
+
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
             mappedBy = "event",
             orphanRemoval = true
@@ -65,11 +75,18 @@ public class Event {
     @ToString.Exclude
     private List<Ticket> tickets = new ArrayList<>();
 
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Ticketing ticketing;
+
     @OneToOne
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Address address;
+    //endregion
 
+    //region Transient fields
     @Transient
     private int ticketQuantity;
 
@@ -77,11 +94,12 @@ public class Event {
     private Ticket ticket;
 
     @Transient
+    private String endDateString;
+
+    @Transient
+    private String startDateString;
+
+    @Transient
     private String fullAddress;
-
-    public void addTicket(Ticket ticket) {
-        ticket.setEvent(this);
-        tickets.add(ticket);
-    }
-
+    //endregion
 }

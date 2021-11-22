@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/layout.xhtml">
+
+   <ui:define name="content">
+      <h:outputStylesheet library="css" name="styles.css"  />
+      <script type="text/javascript" src="#{request.contextPath}/resources/js/ticketing.js"></script>
+
+      <h1>Vérifiez votre commande avant de payer</h1>
+
+      <div class="body_table">
+         <div class="header_fixed">
+            <f:view>
+               <h:form id="test">
+
+                  <h:dataTable value="#{paymentController.order.ticketsByIds.values()}" var="ticket">
+                     <h:column>
+                        <f:facet name="header">Nom</f:facet>
+                        #{ticket.id}
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name="header">Nombre de tickets sélectionnés</f:facet>
+                        #{ticket.quantity}
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name="header">Tarif</f:facet>
+                        #{ticket.rateType}
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name="header">Taux TVA</f:facet>
+                        #{ticket.tvaRate} %
+                     </h:column>+
+
+                     <h:column>
+                        <f:facet name="header">Prix HT</f:facet>
+                        #{ticket.preTaxPrice} €
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name="header">Prix TTC</f:facet>
+                        #{ticket.postTaxPrice} €
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name="header">Total HT</f:facet>
+                        #{ticket.preTaxPricePerQuantity} €
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name="header">Total TTC</f:facet>
+                        #{ticket.postTaxPricePerQuantity} €
+                     </h:column>
+                  </h:dataTable>
+
+                  <h:panelGroup>
+                     <h:outputLabel value="Total Panier HT : "/>
+                     #{paymentController.order.subTotal} €
+                     <br/>
+                     <h:outputLabel value="Total Panier TTC : "/>
+                     #{paymentController.order.total} €
+                     <br/>
+                  </h:panelGroup>
+                  <button>
+                     <h:commandLink action="#{paymentController.completePayment}" value="Valider le paiement"/>
+                  </button>
+                  <button>
+                  <h:commandLink action="#{paymentController.backToCart}" value="Retour au panier"/>
+                  </button>
+                  <button>
+                  <h:commandLink action="#{eventController.back}" value="Retour à la billetterie"/>
+                  </button>
+               </h:form>
+            </f:view>
+
+         </div>
+      </div>
+
+   </ui:define>
+</ui:composition>
+
