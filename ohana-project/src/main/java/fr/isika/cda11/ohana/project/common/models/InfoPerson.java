@@ -27,6 +27,7 @@ public class InfoPerson {
 	@OneToOne(cascade = CascadeType.ALL, optional=false)
 	@JoinColumn(name="CONTACT_ID", nullable=false)
 	private Contact contact;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ADDRESS_ID")
 	private Address address;

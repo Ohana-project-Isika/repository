@@ -17,12 +17,6 @@ public class MembershipFactory {
 		membership.setNameMbs(membershipDto.getNameMbs());
 		membership.setPriceOfFee(membershipDto.getPriceOfFee());
 		membership.setMemberShipManage(MemberShipManageFactory.fromMembershipManageDto(membershipDto.getMemberShipManage()));
-		membership.setMembers(new ArrayList<Member>());
-		if(membershipDto.getMembers().isEmpty() ==false) {
-			for(MemberDto member: membershipDto.getMembers()) {
-				membership.getMembers().add(MemberFactory.fromMemberDto(member));
-			}
-		}
 		membership.setIdMbs(membershipDto.getIdMbs());
 		return membership;
 	}
@@ -32,12 +26,6 @@ public class MembershipFactory {
 		membershipDto.setNameMbs(membership.getNameMbs());
 		membershipDto.setPriceOfFee(membership.getPriceOfFee());
 		membershipDto.setMemberShipManage(MemberShipManageFactory.fromMembershipManage(membership.getMemberShipManage()));
-		membershipDto.setMembers(new ArrayList<MemberDto>());
-		if(membership.getMembers().isEmpty() ==false) {
-			for(Member member: membership.getMembers()) {
-				membershipDto.getMembers().add(MemberFactory.fromMember(member));
-			}
-		}
 		membershipDto.setIdMbs(Long.valueOf(membership.getIdMbs()));
 		return membershipDto;
 	}
