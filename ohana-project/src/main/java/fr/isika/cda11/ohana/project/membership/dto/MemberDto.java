@@ -20,6 +20,7 @@ public class MemberDto implements Serializable{
 	private PrivatePersonDto privatePerson;
 	private Date dateOfStart;
 	private Date dateOfEnd;
+	private MembershipDto membershipDto;
 
 	
 	//constructeur
@@ -51,6 +52,14 @@ public class MemberDto implements Serializable{
 		return serialVersionUID;
 	}
 
+	public MembershipDto getMembershipDto() {
+		return membershipDto;
+	}
+
+	public void setMembershipDto(MembershipDto membershipDto) {
+		this.membershipDto = membershipDto;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,6 +67,7 @@ public class MemberDto implements Serializable{
 		result = prime * result + ((dateOfEnd == null) ? 0 : dateOfEnd.hashCode());
 		result = prime * result + ((dateOfStart == null) ? 0 : dateOfStart.hashCode());
 		result = prime * result + ((idMember == null) ? 0 : idMember.hashCode());
+		result = prime * result + ((membershipDto == null) ? 0 : membershipDto.hashCode());
 		result = prime * result + ((privatePerson == null) ? 0 : privatePerson.hashCode());
 		return result;
 	}
@@ -86,6 +96,11 @@ public class MemberDto implements Serializable{
 				return false;
 		} else if (!idMember.equals(other.idMember))
 			return false;
+		if (membershipDto == null) {
+			if (other.membershipDto != null)
+				return false;
+		} else if (!membershipDto.equals(other.membershipDto))
+			return false;
 		if (privatePerson == null) {
 			if (other.privatePerson != null)
 				return false;
@@ -97,8 +112,9 @@ public class MemberDto implements Serializable{
 	@Override
 	public String toString() {
 		return "MemberDto [idMember=" + idMember + ", privatePerson=" + privatePerson + ", dateOfStart=" + dateOfStart
-				+ ", dateOfEnd=" + dateOfEnd + "]";
+				+ ", dateOfEnd=" + dateOfEnd + ", membershipDto=" + membershipDto + "]";
 	}
+
 
 	
 	

@@ -12,9 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-@Entity
+@Entity 
+@NamedQueries({
+	@NamedQuery(name = "membership.findAll", query = "SELECT c FROM Membership c")})
 public class Membership {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +32,7 @@ public class Membership {
 	@JoinColumn(name="MEMBERSHIPMANAGE_ID")
 	private MemberShipManage memberShipManage;
 	
-	@OneToMany
-	@JoinColumn(name="MEMBERSHIP_ID")
+	@OneToMany(mappedBy = "membership")
 	private List<Member> members = new ArrayList<Member>();
 
 	//constructeur

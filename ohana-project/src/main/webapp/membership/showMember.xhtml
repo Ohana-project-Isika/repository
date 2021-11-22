@@ -38,14 +38,14 @@
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Supprimer"
-										action="#{membershipController.deleteMembership(o.idMbs)}" />
+										action="#{membershipController.deleteMembership(o.idMember)}" />
 								</button>
 							</h:column>
 							<h:column>
 								<f:facet name="header"></f:facet>
 								<button>
 									<h:commandLink value="Ajouter un membre"
-										action="#{membershipController.createMemberForm(o.idMbs)}" />
+										action="#{membershipController.createMemberForm(membershipController.membership.idMbs)}" />
 								</button>
 							</h:column>
 						</h:dataTable>
