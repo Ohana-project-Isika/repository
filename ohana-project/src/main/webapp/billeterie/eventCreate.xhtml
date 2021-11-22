@@ -27,32 +27,27 @@
             </div>
         </div>
         <!-- Forms -->
-        <section class="forms create-form">
+        <section class="forms create-form create-event-block">
             <div class="container-fluid">
                 <h:form method="post" styleClass="row" id="createEvent">
-                    <h:panelGrid styleClass="col-md-9">
-                        <h:inputText id="Name" a:placeholder="Nom de l'évènement" styleClass="form-control"
-                                     value="#{eventControllerCreate.event.name}"/>
+                    <h:inputText id="Name" a:placeholder="Nom de l'évènement" styleClass="form-control"
+                                 value="#{eventControllerCreate.event.name}"/>
 
-                        <h:inputText id="description" a:placeholder="Description de l'évènement" styleClass="form-control"
-                                     value="#{eventControllerCreate.event.description}"/>
+                    <h:inputText id="description" a:placeholder="Description de l'évènement" styleClass="form-control"
+                                 value="#{eventControllerCreate.event.description}"/>
 
-                        <p:calendar id="startDate" a:placeholder="Date de début de l'évènement"
-                                    value="#{eventControllerCreate.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
+                    <p:calendar id="startDate" a:placeholder="Date de début de l'évènement"
+                                value="#{eventControllerCreate.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
 
+                    <p:calendar id="endDate" a:placeholder="Date de fin de l'évènement"
+                                value="#{eventControllerCreate.event.endDate}" pattern="dd-MM-yyyy" mask="true" />
 
-                        <p:calendar id="endDate" a:placeholder="Date de fin de l'évènement"
-                                    value="#{eventControllerCreate.event.endDate}"
-                                pattern="dd-MM-yyyy" mask="true" />
+                    <h:inputText
+                            styleClass="form-control" a:placeholder="Quantité de billet disponible" id="ticketQty"
+                            value="#{eventControllerCreate.event.ticketQuantity}"/>
 
-
-                        <h:inputText
-                                styleClass="form-control" a:placeholder="Quantité de billet disponible" id="ticketQty"
-                                value="#{eventControllerCreate.event.ticketQuantity}"/>
-
-                        <h:commandButton styleClass="border-radius-button" action="#{eventControllerCreate.addEvent}"
-                                value="Création de l'évènement"/>
-                    </h:panelGrid>
+                    <h:commandButton styleClass="border-radius-button" action="#{eventControllerCreate.addEvent}"
+                            value="Création de l'évènement"/>
                 </h:form>
             </div>
         </section>
