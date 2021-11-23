@@ -45,4 +45,35 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#bar.xhtml" PATH="/bar.xhtml"
   SHAPE="256,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#association#listAssociation.xhtml"
+  PATH="/association/listAssociation.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#association#listAssociation.xhtml:0"
+   NAME="item" PATH="/association/listAssociation.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showAssociation:#{associationController.ShowAssociation(o.idAssos)}:#association#showAssociation.xhtml"
+    NAME="output" PATH="/association/showAssociation.xhtml"
+    TARGET="rules:#association#showAssociation.xhtml"
+    TITLE="#{associationController.ShowAssociation(o.idAssos)}:showAssociation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="subMember:#{membershipController.subMemberForm(o.idAssos)}:#membership#subMember.xhtml"
+    NAME="output1" PATH="/membership/subMember.xhtml"
+    TARGET="rules:#membership#subMember.xhtml"
+    TITLE="#{membershipController.subMemberForm(o.idAssos)}:subMember" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#indexOhana.xhtml" PATH="/indexOhana.xhtml"
+  SHAPE="32,529,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#indexOhana.xhtml:0" NAME="item"
+   PATH="/indexOhana.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="indexOhana:#{loginController.logout()}:#indexOhana.xhtml"
+    NAME="output" PATH="/indexOhana.xhtml"
+    TARGET="rules:#indexOhana.xhtml"
+    TITLE="#{loginController.logout()}:indexOhana" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#membership#subMember.xhtml"
+  PATH="/membership/subMember.xhtml" SHAPE="256,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#association#showAssociation.xhtml"
+  PATH="/association/showAssociation.xhtml" SHAPE="240,513,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
