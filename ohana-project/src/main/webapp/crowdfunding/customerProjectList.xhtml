@@ -6,9 +6,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/layout.xhtml">
-	<ui:define name="head">
+	<!-- <ui:define name="head">
 		<h:outputStylesheet name="css/table.css" />
-	</ui:define>
+	</ui:define> -->
 	<ui:define name="content">
 
 		<div class="body_table">
@@ -23,65 +23,67 @@
 							</div>
 						</div>
 
-						<div class="row">
-							<div class="col-12">
-								<h:form>
-									<h:dataTable value="#{projectMB.projects}" var="o">
+						<div class="default-table">
+							<div class="row">
+								<div class="col-12">
+									<h:form>
+										<h:dataTable value="#{projectMB.projects}" var="o">
 
-										<h:column>
-											<f:facet name="header">Nom</f:facet>
-											<h:outputText value="#{o.name}" />
-										</h:column>
+											<h:column>
+												<f:facet name="header">Nom</f:facet>
+												<h:outputText value="#{o.name}" />
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Objectif financier</f:facet>
-											<h:outputText value="#{o.financialGoal} €" />
-										</h:column>
+											<h:column>
+												<f:facet name="header">Objectif financier</f:facet>
+												<h:outputText value="#{o.financialGoal} €" />
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Date de début</f:facet>
-											<h:outputText value="#{o.startDate}">
-												<f:convertDateTime pattern="dd-MM-yyyy" />
-											</h:outputText>
-										</h:column>
+											<h:column>
+												<f:facet name="header">Date de début</f:facet>
+												<h:outputText value="#{o.startDate}">
+													<f:convertDateTime pattern="dd-MM-yyyy" />
+												</h:outputText>
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Date de fin</f:facet>
-											<h:outputText value="#{o.endDate}">
-												<f:convertDateTime pattern="dd-MM-yyyy" />
-											</h:outputText>
-										</h:column>
+											<h:column>
+												<f:facet name="header">Date de fin</f:facet>
+												<h:outputText value="#{o.endDate}">
+													<f:convertDateTime pattern="dd-MM-yyyy" />
+												</h:outputText>
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Durée de la campagne</f:facet>
-											<h:outputText value="#{projectMB.duration(o.id)} jours" />
-										</h:column>
+											<h:column>
+												<f:facet name="header">Durée de la campagne</f:facet>
+												<h:outputText value="#{projectMB.duration(o.id)} jours" />
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Nombre de financeurs</f:facet>
-											<h:outputText value="#{fundingMB.countFundings(o.id)}" />
-										</h:column>
+											<h:column>
+												<f:facet name="header">Nombre de financeurs</f:facet>
+												<h:outputText value="#{fundingMB.countFundings(o.id)}" />
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Argent Récolté</f:facet>
-											<h:outputText
-												value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
-										</h:column>
+											<h:column>
+												<f:facet name="header">Argent Récolté</f:facet>
+												<h:outputText
+													value="#{fundingMB.getActualsFundingsProject(o.id)} €" />
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Description</f:facet>
-											<h:outputText value="#{o.description}" />
-										</h:column>
+											<h:column>
+												<f:facet name="header">Description</f:facet>
+												<h:outputText value="#{o.description}" />
+											</h:column>
 
-										<h:column>
-											<f:facet name="header">Action</f:facet>
-											<button>
-												<h:commandLink value="Financer" id="Financer"
-													action="#{fundingMB.finance(o.id)}" />
-											</button>
-										</h:column>
-									</h:dataTable>
-								</h:form>
+											<h:column>
+												<f:facet name="header">Action</f:facet>
+												<button>
+													<h:commandLink value="Financer" id="Financer"
+														action="#{fundingMB.finance(o.id)}" />
+												</button>
+											</h:column>
+										</h:dataTable>
+									</h:form>
+								</div>
 							</div>
 						</div>
 					</div>

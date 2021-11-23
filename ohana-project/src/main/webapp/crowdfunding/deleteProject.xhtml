@@ -37,6 +37,7 @@
 								<h:outputText
 									value="Date de fin : #{projectMB.theProject.endDate}" />
 
+								<!-- contrôle de sûreté pour la suppression -->
 								<p:growl id="message" showDetail="true" />
 								<p:commandButton value="Supprimer"
 									action="#{projectMB.deleteProject()}" update="message">
