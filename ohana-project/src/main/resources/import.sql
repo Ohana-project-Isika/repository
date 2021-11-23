@@ -8,8 +8,8 @@
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (1, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (2, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'Allée Isika', '87000', 'Limoges', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (4, 'Rue de la mairie', '94400', 'Vitry-sur-seine', 'France', 1);
- INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (5, 'Avenue Jean Jaures', '92100', 'Boulogne-Billancourt', 'France', 2);
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (4, 'Rue de la Mairie', '94400', 'Vitry-sur-Seine', 'France', 1);
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (5, 'Avenue Jean Jaurès', '92100', 'Boulogne-Billancourt', 'France', 2);
  INSERT INTO Address (numRue, rue, codePostal, ville, pays, INFOPERSON_ID) VALUES (6, 'Boulevard Rosa Luxembourg', '75017', 'Paris', 'France', 3);
  
 #CONTACT TABLE
