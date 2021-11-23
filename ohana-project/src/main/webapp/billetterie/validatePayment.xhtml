@@ -10,7 +10,7 @@
 
       <div>
          <h3>Votre payment a été effectué. Notre équipe vous remercie de votre achat.</h3>
-         <p>Vous venez d'acheter #{paymentController.tickets.size()} ticket(s).</p>
+         <p>Vous venez d'acheter #{paymentController.tickets.size()} ticket(s). Veuillez télécharger le QR Code de votre ticket</p>
          <br/>
 
          <h:form>
@@ -60,10 +60,9 @@
 
                <h:column>
                   <f:facet name="header">Action</f:facet>
-                  <p:commandButton value="Télécharger" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
-                                   icon="pi pi-arrow-down" styleClass="p-mr-2">
-                     <p:fileDownload value="#{ticket.file}"/>
-                  </p:commandButton>
+                  <button>
+                     <h:commandLink action="#{paymentController.downloadTicket(ticket)}" value="Télécharger"/>
+                  </button>
                </h:column>
             </h:dataTable>
 

@@ -12,14 +12,15 @@ import fr.isika.cda11.ohana.project.common.models.MeansOfPayment;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.PrivatePersonService;
+import fr.isika.cda11.ohana.project.event.models.Event;
 import fr.isika.cda11.ohana.project.event.models.Order;
 import fr.isika.cda11.ohana.project.event.models.Ticket;
+import fr.isika.cda11.ohana.project.event.service.EventService;
 import fr.isika.cda11.ohana.project.event.service.PaymentService;
 import fr.isika.cda11.ohana.project.event.service.TicketService;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
+import org.omnifaces.util.Faces;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -46,6 +47,9 @@ public class PaymentController implements Serializable {
 
     @Inject
     private AccountService accountService;
+
+    @Inject
+    private EventService eventService;
 
     @Inject
     private PrivatePersonService privatePersonService;
@@ -75,8 +79,8 @@ public class PaymentController implements Serializable {
     private String means;
     private boolean payCard;
     private boolean registerCard;
+    private String ticketFile;
     private File file;
-    private StreamedContent fileToDownload;
 
     @PostConstruct
     public void init() {
@@ -131,22 +135,25 @@ public class PaymentController implements Serializable {
                 e.printStackTrace();
             }
 
-            fileDownloadView(value);
-
-            value.setFile(fileToDownload);
+            value.setFile(file);
             tickets.add(value);
+
+            for (Event event : eventController.getEvents()) {
+                for (Ticket ticket : event.getTickets()) {
+                    if (ticket.getId().equals(value.getId())) {
+                        event.getTickets().remove(value);
+                        eventService.update(event);
+                    }
+                }
+            }
         });
 
 
         return "validatePayment";
     }
 
-    public void fileDownloadView(Ticket ticket) {
-        fileToDownload = DefaultStreamedContent.builder()
-                .name("qrCode" + ticket.getId() + ".png")
-                .contentType("image/png")
-                .stream(() -> FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(file.getAbsolutePath()))
-                .build();
+    public void downloadTicket(Ticket ticket) throws IOException {
+        Faces.sendFile(ticket.getFile(), true);
     }
 
     public String backToCart() {
@@ -175,14 +182,14 @@ public class PaymentController implements Serializable {
                 "\n" +
                 "Lieu : %s\n" +
                 "\n" +
-                "Prix HT : %s\n" +
-                "Taxe : %s\n" +
-                "Prix TTC : %s\n" +
+                "Prix HT : %s€\n" +
+                "Taxe : %s%\n" +
+                "Prix TTC : %s€\n" +
                 "----------\n" +
                 "CE BILLET EST UNIQUEMENT VALABLE\n" +
-                "POUR L'EVENEMENT INDIQUE ET POUR SON DETENTEUR.\n" +
-                "UNE PIECE D'IDENTITE POURRA VOUS ETRE DEMANDE.\n" +
-                "LE BILLET N'EST NI ECHANGEABLE NI NON REMBOURSABLE.\n" +
+                "POUR L'EVENEMENT INDIQUE ET POUR VOUS, SON DETENTEUR.\n" +
+                "UNE PIECE D'IDENTITE POURRA VOUS ETRE DEMANDEE.\n" +
+                "LE BILLET N'EST NI ECHANGEABLE NI REMBOURSABLE.\n" +
                 "POUR TOUTE INFORMATION, VEUILLEZ CONTACTER NOTRE SERVICE \n" +
                 "D'ASSISTANCE AU 01 48 55 88 41.\n" +
                 "\n" +
@@ -215,12 +222,13 @@ public class PaymentController implements Serializable {
 
         String imageFormat = "png";
         File dataDir = new File(System.getProperty("jboss.server.data.dir"));
-        File yourFile = new File(dataDir, "qrCode" + ticket.getId() + ".png");
-        file = yourFile;
+        File file = new File(dataDir, "qrCode" + ticket.getId() + ".png");
+        this.file = file;
+        ticketFile = file.getAbsolutePath();
 
         // write in a file
         try {
-            writeImage(yourFile, imageFormat, bitMatrix);
+            writeImage(file, imageFormat, bitMatrix);
         } catch (IOException ioException) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));

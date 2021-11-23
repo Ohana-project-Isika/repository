@@ -5,6 +5,7 @@ import lombok.*;
 import org.primefaces.model.StreamedContent;
 
 import javax.persistence.*;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,5 +67,5 @@ public class Ticket {
     private String type;
 
     @Transient
-    private StreamedContent file;
+    private File file;
 }
