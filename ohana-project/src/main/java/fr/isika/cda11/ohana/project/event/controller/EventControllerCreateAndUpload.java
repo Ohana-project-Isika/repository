@@ -26,7 +26,7 @@ public class EventControllerCreateAndUpload implements Serializable {
 
     // Utilisé pour le formulaire de création d'évènement
     private List<Event> events;
-    private String folder = "C:\\Github\\Ohana\\ohana-project\\src\\main\\webapp\\resources\\eventBackground\\";
+    private String folder = "C:\\Users\\leann\\Desktop\\GitHub\\Ohana\\ohana-project\\src\\main\\webapp\\resources\\eventBackground\\";
     private Part uploadedFile;
 
     private Event event = new Event();
@@ -52,7 +52,7 @@ public class EventControllerCreateAndUpload implements Serializable {
     private void init() {
         events = eventService.findAll();
     }
-
+    // Méthode add event
     public String addEvent() {
         eventService.create(event);
         saveFile();
