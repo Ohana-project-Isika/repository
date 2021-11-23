@@ -18,7 +18,6 @@
                                value="click"/>
             </h:form>
         </div>
-
         <div>
             <div class="carte">
                 <h3>Recherche par région</h3>
@@ -136,57 +135,63 @@
         </div>
 
         <div id="eventList">
-            <h3>Liste des évènements</h3>
-            <div class="body_table">
-                <div class="header_fixed">
-                    <h:form>
-                        <h:dataTable value="#{eventController.events}" var="event">
+            <div class="default-table">
+                <div class="container">
+                    <div class="row">
+                        <h3>Liste des évènements</h3>
+                        <br/><br/>
+                        <h:outputText id="msg" value="" binding="#{eventController.component}"/>
+                        <h:message for="msg"/>
+                        <br/><br/>
+                        <h:form>
+                            <h:dataTable value="#{eventController.events}" var="event" rendered="#{(eventController.events.size() != 0)}">
 
-                            <h:column>
-                                <f:facet name="header"></f:facet>
-                                <h:outputText value="#{eventController.numberMap.get(event)}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"></f:facet>
-                                <h:graphicImage library="gfx" name="#{event.imageFileName}" alt="#{event.imageDescription}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Organisateur</f:facet>
-                                <h:outputText value="#{event.ticketing.association.nameAssos}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Nom</f:facet>
-                                <h:outputText value="#{event.name}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Description</f:facet>
-                                <h:outputText value="#{event.description}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Date de début</f:facet>
-                                <h:outputText value="#{event.startDateString}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Prix TTC</f:facet>
-                                <h:outputText value="#{event.ticket.postTaxPrice} €" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Lieu</f:facet>
-                                <h:outputText value="#{event.fullAddress}" />
-                            </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
+                                    <h:outputText value="#{eventController.numberMap.get(event)}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
+                                    <h:graphicImage library="gfx" name="#{event.imageFileName}" alt="#{event.imageDescription}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Organisateur</f:facet>
+                                    <h:outputText value="#{event.ticketing.association.nameAssos}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Nom</f:facet>
+                                    <h:outputText value="#{event.name}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Description</f:facet>
+                                    <h:outputText value="#{event.description}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Date de début</f:facet>
+                                    <h:outputText value="#{event.startDateString}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Prix TTC</f:facet>
+                                    <h:outputText value="#{event.ticket.postTaxPrice} €" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Lieu</f:facet>
+                                    <h:outputText value="#{event.fullAddress}" />
+                                </h:column>
 
-                            <h:column>
-                                <f:facet name="header">Actions</f:facet>
-                                <button>
-                                    <h:commandLink action="#{eventController.detail(event)}" value="Détails" />
-                                </button>
-                                <br/><br/>
-                                <button>
-                                    <h:commandLink action="#{eventController.checkout(event)}" value="Réserver" />
-                                </button>
-                            </h:column>
-                        </h:dataTable>
-                    </h:form>
+                                <h:column>
+                                    <f:facet name="header">Actions</f:facet>
+                                    <button>
+                                        <h:commandLink action="#{eventController.detail(event)}" value="Détails" />
+                                    </button>
+                                    <br/><br/>
+                                    <button>
+                                        <h:commandLink action="#{eventController.checkout(event)}" value="Réserver" />
+                                    </button>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                    </div>
                 </div>
             </div>
         </div>

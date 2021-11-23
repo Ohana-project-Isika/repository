@@ -1,8 +1,6 @@
 package fr.isika.cda11.ohana.project.membership.controller;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -26,9 +24,6 @@ import fr.isika.cda11.ohana.project.membership.service.MembershipService;
 @SessionScoped
 public class MemberController implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4078082924745348068L;
 
 	@Inject
@@ -36,9 +31,6 @@ public class MemberController implements Serializable {
 
 	@Inject
 	private MembershipService memberShipService;
-
-
-
 
 	@PostConstruct
 	public void init() {
@@ -52,9 +44,6 @@ public class MemberController implements Serializable {
 	MemberDto memberDto = new MemberDto();
 	MembershipDto membershipDto=new MembershipDto();
 	AddressDto adressDto= new AddressDto();
-
-
-
 
 	public ContactDto getContactDto() {return contactDto;}
 	public void setContactDto(ContactDto contactDto) {this.contactDto = contactDto;}
@@ -77,5 +66,4 @@ public class MemberController implements Serializable {
 		membershipDto.getMembers().add(memberDto);
 		return "showMember";
 	}
-
 }

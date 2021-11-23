@@ -170,6 +170,19 @@ public class EventService implements Serializable {
 					event.getTicket().setPostTaxPrice(event.getTicket().getPreTaxPrice()
 							.multiply(BigDecimal.valueOf(1).add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
 							.setScale(2, BigDecimal.ROUND_UP));
+
+
+					switch (event.getTicket().getRateType()) {
+						case REGULAR:
+							event.getTicket().setType("NORMAL");
+							break;
+						case SUPER_REDUCED:
+							event.getTicket().setType("TRES REDUIT");
+							break;
+						default:
+							event.getTicket().setType("REDUIT");
+							break;
+					}
 				}
 
 				event.setFullAddress(setFullAddress(event.getAddress()));

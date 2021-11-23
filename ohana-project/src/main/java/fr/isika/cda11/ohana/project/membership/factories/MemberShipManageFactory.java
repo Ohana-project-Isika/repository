@@ -3,10 +3,8 @@ package fr.isika.cda11.ohana.project.membership.factories;
 import java.util.ArrayList;
 
 import fr.isika.cda11.ohana.project.common.factories.AssociationFactory;
-import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
-import fr.isika.cda11.ohana.project.membership.models.Member;
 import fr.isika.cda11.ohana.project.membership.models.MemberShipManage;
 import fr.isika.cda11.ohana.project.membership.models.Membership;
 

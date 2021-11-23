@@ -3,6 +3,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/layout.xhtml">
    <ui:define name="content">
       <h:outputStylesheet name="css/table.css" />
@@ -21,7 +22,7 @@
 
                <h:column>
                   <f:facet name="header">Tarif</f:facet>
-                  #{ticket.rateType}
+                  #{ticket.type}
                </h:column>
 
                <h:column>
@@ -59,9 +60,10 @@
 
                <h:column>
                   <f:facet name="header">Action</f:facet>
-                  <button>
-                     <h:commandLink action="#{paymentController.download(ticket)}" value="Télécharger" />
-                  </button>
+                  <p:commandButton value="Télécharger" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
+                                   icon="pi pi-arrow-down" styleClass="p-mr-2">
+                     <p:fileDownload value="#{ticket.file}"/>
+                  </p:commandButton>
                </h:column>
             </h:dataTable>
 

@@ -1,17 +1,14 @@
 package fr.isika.cda11.ohana.project.event.controller;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import fr.isika.cda11.ohana.project.common.controller.LoginController;
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.factories.PrivatePersonFactory;
+import fr.isika.cda11.ohana.project.common.models.MeansOfPayment;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.PrivatePersonService;
@@ -21,7 +18,10 @@ import fr.isika.cda11.ohana.project.event.service.PaymentService;
 import fr.isika.cda11.ohana.project.event.service.TicketService;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -71,6 +71,20 @@ public class PaymentController implements Serializable {
     private List<Ticket> tickets = new ArrayList<>();
     private Ticket ticket;
 
+    private Map<String, String> meansMap;
+    private String means;
+    private boolean payCard;
+    private boolean registerCard;
+    private File file;
+    private StreamedContent fileToDownload;
+
+    @PostConstruct
+    public void init() {
+        meansMap = new HashMap<>();
+        meansMap.put("PAYPAL", "PAYPAL");
+        meansMap.put("CB", "CB");
+    }
+
     public String pay() {
         order = eventController.getCart();
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
@@ -93,16 +107,46 @@ public class PaymentController implements Serializable {
     public String validatePayment() {
         AccountDto accountDto = accountService.findAccountByIdService(loggedInUser);
         PrivatePersonDto privatePersonDto = privatePersonService.findPrivatePersonByAccount(accountDto);
+        MeansOfPayment meansOfPayment = new MeansOfPayment();
 
         order.getTicketsByIds().forEach((key, value) -> {
             value.setPrivatePerson(PrivatePersonFactory.fromPrivatePersonDto(privatePersonDto));
+
+            if (registerCard) {
+                meansOfPayment.setPrivatePerson(PrivatePersonFactory.fromPrivatePersonDto(privatePersonDto));
+                meansOfPayment.setFullName(fullName);
+                meansOfPayment.setCardNumber(cardNumber);
+                meansOfPayment.setCvc(cvc);
+                meansOfPayment.setExpiry(expiry);
+                privatePersonDto.addMeans(meansOfPayment);
+            }
+
             ticketService.update(value);
-            tickets.add(value);
             privatePersonDto.addTicket(value);
+            privatePerson = privatePersonService.updatePrivatePerson(privatePersonDto);
+
+            try {
+                download(value);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            fileDownloadView(value);
+
+            value.setFile(fileToDownload);
+            tickets.add(value);
         });
-        privatePerson = privatePersonService.updatePrivatePerson(privatePersonDto);
+
 
         return "validatePayment";
+    }
+
+    public void fileDownloadView(Ticket ticket) {
+        fileToDownload = DefaultStreamedContent.builder()
+                .name("qrCode" + ticket.getId() + ".png")
+                .contentType("image/png")
+                .stream(() -> FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(file.getAbsolutePath()))
+                .build();
     }
 
     public String backToCart() {
@@ -170,11 +214,9 @@ public class PaymentController implements Serializable {
         }
 
         String imageFormat = "png";
-//        String outputFileName = "http://localhost:8080/ohana-project/src/main/webapp/resources/gfx/qrCode." + imageFormat;
         File dataDir = new File(System.getProperty("jboss.server.data.dir"));
-        File yourFile = new File(dataDir, "qrCode.png");
-
-//        System.out.println("fffffffffffffffffffffff" + new FileOutputStream(outputFileName));
+        File yourFile = new File(dataDir, "qrCode" + ticket.getId() + ".png");
+        file = yourFile;
 
         // write in a file
         try {
@@ -185,7 +227,6 @@ public class PaymentController implements Serializable {
             ioException.printStackTrace();
         }
 
-        System.out.println("Holaaaaaaaaaaaaaa");
         return "telechargement?faces-redirect=true";
     }
 

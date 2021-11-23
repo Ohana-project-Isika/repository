@@ -35,10 +35,16 @@ public class PrivatePerson {
 	@OneToMany(mappedBy = "privatePerson")
 	private List<Ticket> tickets  = new ArrayList<>();
 
+	@OneToMany(mappedBy = "privatePerson")
+	private List<MeansOfPayment> meansOfPayments  = new ArrayList<>();
+
 	public void addTicket(Ticket ticket) {
 		tickets.add(ticket);
 	}
-	
+	public void addMeans(MeansOfPayment meansOfPayment) {
+		meansOfPayments.add(meansOfPayment);
+	}
+
 	//GETTER AND SETTER
 	public Long getIdPrivatePerson() {return idPrivatePerson;}
 	public void setIdPrivatePerson(Long idPrivatePerson) {this.idPrivatePerson = idPrivatePerson;}

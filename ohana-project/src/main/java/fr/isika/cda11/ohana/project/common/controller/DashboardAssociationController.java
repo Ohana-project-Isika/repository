@@ -1,7 +1,6 @@
 package fr.isika.cda11.ohana.project.common.controller;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -11,6 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
+import fr.isika.cda11.ohana.project.membership.service.MemberService;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
@@ -31,10 +33,8 @@ import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
-import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
-import fr.isika.cda11.ohana.project.membership.service.MemberService;
 import fr.isika.cda11.ohana.project.membership.service.MemberShipManageService;
 import fr.isika.cda11.ohana.project.membership.service.MembershipService;
 

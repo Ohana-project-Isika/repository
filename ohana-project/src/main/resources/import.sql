@@ -3,6 +3,7 @@
 #      BECAUSE PRIMARY KEY DOES NOT HAVE A DEFAULT VALUE WITH THE LATTER WHILE IT DOES WITH THE FORMER
 
  USE `ohana-database`;
+ALTER DATABASE `ohana-database` CHARACTER SET utf8 COLLATE utf8_general_ci;
 #COMMON----------------------------------------------------------------------------------------------------
 #ADDRESS TABLE
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (1, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
@@ -112,19 +113,19 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 40.00, 1);
  
  #MEMBER TABLE
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact16@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact17@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact18@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact19@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact20@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact21@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact22@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact23@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact16@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact17@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact18@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact19@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact20@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact21@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact22@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact23@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777');
  
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (14, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (15, 'rue Georges Member', '06600', 'Antibes', 'France');

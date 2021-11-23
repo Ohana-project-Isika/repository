@@ -2,6 +2,7 @@ package fr.isika.cda11.ohana.project.event.models;
 
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import lombok.*;
+import org.primefaces.model.StreamedContent;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -60,4 +61,10 @@ public class Ticket {
 
     @Transient
     private BigDecimal postTaxPricePerQuantity = BigDecimal.ZERO;
+
+    @Transient
+    private String type;
+
+    @Transient
+    private StreamedContent file;
 }
