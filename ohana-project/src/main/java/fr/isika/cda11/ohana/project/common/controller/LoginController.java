@@ -17,10 +17,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
-import java.util.logging.Logger;
 
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_CONNECTED;

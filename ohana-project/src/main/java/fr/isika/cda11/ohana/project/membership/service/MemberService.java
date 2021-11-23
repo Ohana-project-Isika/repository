@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import fr.isika.cda11.ohana.project.common.dto.*;
+
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AddressDto;
 import fr.isika.cda11.ohana.project.common.dto.ContactDto;
@@ -37,7 +37,7 @@ public class MemberService {
 		//valeur par default lors de l'ajout d'un membre par une association
 		accounDto.setAccountPassword("0000");
 		accounDto.setAccountCreationDate(new Date());
-		accounDto.setRole(EnumRole.PARTICULIER);
+		accounDto.setRole(EnumRole.PRIVATEPERSON);
 
 		accounDto.setInfoPerson(infopersonDto);
 		PrivatePersonDto privatepersonDto= new PrivatePersonDto();
