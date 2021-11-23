@@ -39,7 +39,7 @@ public class LoginController implements Serializable {
     private String loggedUser;
     private Account account = new Account();
     private AccountDto accountDto= new AccountDto();
-    private String log;
+ private Boolean isConnected = false;
     
     
 
@@ -56,6 +56,7 @@ public class LoginController implements Serializable {
             List<AccountDto> accounts = new ArrayList<AccountDto>();
             AccountDto accountconnected=new AccountDto();
             accounts = accountService.listAccountService();
+            isConnected();
             for(AccountDto accountdto: accounts) {
             	if(accountdto.getAccountLogin().equals(account.getAccountLogin()) && accountdto.getAccountPassword().equals(account.getAccountPassword())){
                    accountconnected= accountdto;
@@ -85,14 +86,12 @@ public class LoginController implements Serializable {
 
 public String viewParamLogged() {
 	if(loggedUser!=null) {
-		return "Bienvenue "+loggedUser+ " | SE DECONNECTER";
+		return "Bienvenue "+loggedUser;
 	}
 	
 	else 
-		log="/login.xhtml";
 		return "CONNECTEZ-VOUS";
 }
-
 public String outcomeLogged() {
 	if(loggedUser!=null) {
 		return "#{loginController.logout()}";
@@ -100,6 +99,12 @@ public String outcomeLogged() {
 	else {
 		return "#{loginController.openLogin()}";
 	}
+}
+
+public Boolean isConnected() {
+	isConnected=true;
+	
+	return isConnected;
 }
 
 public String openLogin() {
@@ -111,7 +116,9 @@ public String openLogin() {
         session.invalidate();
         resetLoginData();
         clearLoggedUser();
-        return "indexOhana?faces-redirect=true";
+        isConnected=false;
+        loggedUser=null;
+        return "indexOhana";
     }
 
     private void clearLoggedUser() {

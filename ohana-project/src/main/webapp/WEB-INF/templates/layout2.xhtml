@@ -40,6 +40,9 @@
 		<li class="nav-item">
 		<h:link outcome="/login.xhtml" value="#{loginController.viewParamLogged()}" />
 		</li>
+		<li>
+		<h:commandLink action="#{loginController.logout()}" value="DECONEXION" rendered="#{loginController.isConnected}"/>
+		</li>
 	</ul>
 	</nav> </header>
 	<!--//END HEADER -->

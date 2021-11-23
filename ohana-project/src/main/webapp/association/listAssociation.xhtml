@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/layout2.xhtml">
+	template="/WEB-INF/templates/layout2.xhtml"
+                          xmlns:p="http://primefaces.org/ui">
 	<ui:define name="head">
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,6 +16,19 @@
 			rel="stylesheet" />
 	</ui:define>
 	<ui:define name="content">
+
+
+		<section class="left-image borderline">
+			<div class="container-fluid">
+				<div class="row">
+					<h2 class="section-title">Decouvrez nos associations
+						partenaires</h2>
+				</div>
+			</div>
+		</section>
+
+
+
 		<section class="main-block">
 			<div class="container-fluid">
 
@@ -24,18 +38,18 @@
 						<div class="col-md-6 col-lg-3 article-first">
 							<div class="news-block">
 								<h:form>
-								<div class="box">
-									<img src="#{o.logoAsso}" alt="#" class="img-fluid" />
+									<div class="box">
+										<img src="#{o.logoAsso}" alt="#" class="img-fluid" />
 									</div>
 									<div class="news-title">
-										<p>#{o.idAssos}</p>
 										<h5>#{o.nameAssos}</h5>
 										<h:commandLink value="Voir"
 											action="#{associationController.ShowAssociation(o.idAssos)}" />
+										|
 										<h:commandLink value="Adhérer"
 											action="#{membershipController.subMemberForm(o.idAssos)}" />
 									</div>
-									</h:form>
+								</h:form>
 							</div>
 						</div>
 					</ui:repeat>

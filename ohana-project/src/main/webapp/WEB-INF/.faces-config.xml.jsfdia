@@ -65,4 +65,15 @@
   PATH="/association/showAssociation.xhtml" SHAPE="240,513,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#membership#subMember.xhtml"
   PATH="/membership/subMember.xhtml" SHAPE="256,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#indexOhana.xhtml" PATH="/indexOhana.xhtml"
+  SHAPE="32,529,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#indexOhana.xhtml:0" NAME="item"
+   PATH="/indexOhana.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="indexOhana:#{loginController.logout()}:#indexOhana.xhtml"
+    NAME="output" PATH="/indexOhana.xhtml"
+    TARGET="rules:#indexOhana.xhtml"
+    TITLE="#{loginController.logout()}:indexOhana" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
