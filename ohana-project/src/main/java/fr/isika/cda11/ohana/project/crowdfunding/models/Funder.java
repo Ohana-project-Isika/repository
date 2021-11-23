@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 
 @Entity
 public class Funder {
@@ -19,12 +22,8 @@ public class Funder {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String lastName;
-	private String firstName;
-	private Date dateOfBirth;
-	private String address;
-	private String email;
-	private String phoneNumber;
+	@OneToOne
+	private PrivatePerson privateperson;
 	
 	@OneToMany(mappedBy = "funder", fetch = FetchType.EAGER)
 	private List<Funding> fundings = new ArrayList<Funding>();
@@ -33,83 +32,79 @@ public class Funder {
 		this.fundings.add(funding);
 	}
 	
+	public Funder() {
+		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public PrivatePerson getPrivateperson() {
+		return privateperson;
+	}
+
+	public void setPrivateperson(PrivatePerson privateperson) {
+		this.privateperson = privateperson;
+	}
+
 	public List<Funding> getFundings() {
 		return fundings;
 	}
-
 
 	public void setFundings(List<Funding> fundings) {
 		this.fundings = fundings;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((fundings == null) ? 0 : fundings.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((privateperson == null) ? 0 : privateperson.hashCode());
+		return result;
+	}
 
-	public Funder() {
-		
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funder other = (Funder) obj;
+		if (fundings == null) {
+			if (other.fundings != null)
+				return false;
+		} else if (!fundings.equals(other.fundings))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (privateperson == null) {
+			if (other.privateperson != null)
+				return false;
+		} else if (!privateperson.equals(other.privateperson))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Funder [id=" + id + ", privateperson=" + privateperson + ", fundings=" + fundings + "]";
 	}
 
 
-	public String getLastName() {
-		return lastName;
-	}
 
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-
-	public String getAddress() {
-		return address;
-	}
-
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-
-	public Long getId() {
-		return id;
-	}
 	
 }

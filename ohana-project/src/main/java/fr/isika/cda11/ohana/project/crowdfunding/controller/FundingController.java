@@ -1,6 +1,12 @@
 package fr.isika.cda11.ohana.project.crowdfunding.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -12,6 +18,14 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import fr.isika.cda11.ohana.project.common.dto.AccountDto;
+import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
+import fr.isika.cda11.ohana.project.common.factories.AccountFactory;
+import fr.isika.cda11.ohana.project.common.factories.PrivatePersonFactory;
+import fr.isika.cda11.ohana.project.common.models.Account;
+import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
+import fr.isika.cda11.ohana.project.common.repository.PrivatePersonRepos;
+import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funder;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
@@ -28,7 +42,12 @@ public class FundingController {
 
 	@Inject
 	ProjectService projectService;
-
+	
+	@Inject
+	AccountService accountService;
+	
+	@Inject
+	PrivatePersonRepos privatePersonRepos;
 
 
 	Funding theFunding = new Funding();
@@ -95,20 +114,42 @@ public class FundingController {
 		return false;
 	}
 
-	public String payer() {		
+	
+	public String payer(Long id) {		
 
 		// vérifier que le mt de theFunding ne dépasse pas ce qu'on a récolté
-
+		Account account = new Account();
+		AccountDto accountDto = new AccountDto();
+		accountDto = accountService.findAccountByIdService(id); 
+		account = AccountFactory.fromAccountDto(accountDto);
 		Long idProject = theFunding.getProject().getId();
 		double financialGoal = theFunding.getProject().getFinancialGoal();
 		System.out.println("récolte :  " + financialGoal);
 
-		if(theFunding.getFundingAmount() <= getFundingAmountMax(idProject, financialGoal) && Agemin(theFunder.getDateOfBirth())) {
+		if(theFunding.getFundingAmount() <= getFundingAmountMax(idProject, financialGoal) && Agemin(account.getInfoPerson().getDateOfBirth())) {
 
+			Funder funder2= new Funder();
+			PrivatePersonDto privatePersDto = new PrivatePersonDto();
+			PrivatePerson privatePerson = new PrivatePerson();
+			List<PrivatePersonDto> list = new ArrayList<PrivatePersonDto> ();
+			list = privatePersonRepos.listPrivatePersonRepos();
+			
+			for(PrivatePersonDto p : list)
+			{
+				if(p.getAccount().getIdAccount() == accountDto.getIdAccount())
+				{
+					privatePersDto = p;
+				}
+			}
+			
+			privatePerson = PrivatePersonFactory.fromPrivatePersonDto(privatePersDto);
+			theFunder.setPrivateperson(privatePerson);
+			
+			funder2=fundingService.updateFunderService(theFunder, theFunding);
+			theFunder=funder2;
 			fundingService.updateFundingService(theFunding);
-			theFunding = new Funding();
-			fundingService.updateFunderService(theFunder);
 			theFunder = new Funder();
+			theFunding = new Funding();
 			return "customerProjectList";
 
 		} else if (theFunding.getFundingAmount() > getFundingAmountMax(idProject, financialGoal))
@@ -132,7 +173,6 @@ public class FundingController {
 			return "financeProject";
 
 		}
-
 	}
-
 }
+
