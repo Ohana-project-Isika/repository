@@ -18,10 +18,10 @@ import fr.isika.cda11.ohana.project.membership.models.Membership;
 
 @Stateless
 public class MemberRepos {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	//CREATE
 	public Member createMember(MemberDto memberDto) {
 		//Long idMembsership en parametre
@@ -33,14 +33,14 @@ public class MemberRepos {
 		member.setMembership(membership);
 		entityManager.merge(membership);
 		return member;
-		
+
 		// add member entity to membership list
-		
-		
+
+
 		//TODO Faut-il merge le membership ?
 		// je ne crois pas, peut être que oui mais à tester !!
 	}
-	
+
 	public Member subMember(MemberDto memberDto, PrivatePersonDto privatepersonDto) {
 		Membership membership=entityManager.find(Membership.class, memberDto.getMembershipDto().getIdMbs());
 		PrivatePerson privateperson= entityManager.find(PrivatePerson.class, privatepersonDto.getIdPrivatePerson());
@@ -52,11 +52,11 @@ public class MemberRepos {
 		entityManager.merge(membership);
 		return member;
 	}
-	
+
 	//READ
-	
+
 	public MemberDto findMemberRepos(long id) {
-		return MemberFactory.fromMember(entityManager.find(Member.class, id));	
+		return MemberFactory.fromMember(entityManager.find(Member.class, id));
 	}
 
 	public List<MemberDto> listMemberRepos(){
@@ -66,24 +66,24 @@ public class MemberRepos {
 				.map(member -> MemberFactory.fromMember(member))
 				.collect(Collectors.toList());
 	}
-	
+
 	//UPDATE
-	
+
 	public Member updateMemberRepos(MemberDto memberDto) {
-		
+
 		Member member= MemberFactory.fromMemberDto(memberDto);
 		return entityManager.merge(member);
 	}
-	
+
 	//DELETE
-	
+
 	public void deleteMemberRepos(Long id) {
 		Member member = entityManager.find(Member.class, id);
 		if(member !=null) {
 			entityManager.remove(member);
-		
+
 		}
 	}
-	
+
 
 }

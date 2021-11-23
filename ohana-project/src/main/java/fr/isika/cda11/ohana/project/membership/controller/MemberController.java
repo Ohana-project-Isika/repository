@@ -56,9 +56,6 @@ public class MemberController implements Serializable {
 	MembershipDto membershipDto=new MembershipDto();
 	AddressDto adressDto= new AddressDto();
 
-
-
-
 	public ContactDto getContactDto() {return contactDto;}
 	public void setContactDto(ContactDto contactDto) {this.contactDto = contactDto;}
 	public InfoPersonDto getInfopersonDto() {return infopersonDto;}
@@ -80,7 +77,7 @@ public class MemberController implements Serializable {
 		membershipDto.getMembers().add(memberDto);
 		return "showMember";
 	}
-	
+
 	public String subMember(Long idMbsh, Long idAccount) {
 		membershipDto=memberShipService.findMembershipByIdService(idMbsh);
 		accountDto=accountService.findAccountByIdService(idAccount);

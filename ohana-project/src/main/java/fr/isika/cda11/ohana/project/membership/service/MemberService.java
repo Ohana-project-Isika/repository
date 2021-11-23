@@ -25,7 +25,7 @@ public class MemberService {
 
 	@Inject
 	private MemberRepos memberRepos;
-	
+
 	@Inject
 	private PrivatePersonRepos privatePersonRepos;
 
@@ -38,7 +38,7 @@ public class MemberService {
 		accounDto.setAccountPassword("0000");
 		accounDto.setAccountCreationDate(new Date());
 		accounDto.setRole(EnumRole.PARTICULIER);
-		
+
 		accounDto.setInfoPerson(infopersonDto);
 		PrivatePersonDto privatepersonDto= new PrivatePersonDto();
 		privatepersonDto.setAccount(accounDto);
@@ -49,7 +49,7 @@ public class MemberService {
 		membershipDto.getMembers().add(newMemberDto);
 		return newMemberDto;
 	}
-	
+
 	public MemberDto subMember(MembershipDto mbsDto, AccountDto accountDto) {
 		PrivatePersonDto privatepersonDto= new PrivatePersonDto();
 		List<PrivatePersonDto> allPrivatePersonDto = new ArrayList<PrivatePersonDto>();
@@ -67,7 +67,7 @@ public class MemberService {
 		Member member=memberRepos.subMember(memberDto, privatepersonDto);
 		MemberDto newMemberDto = MemberFactory.fromMember(member);
 		return newMemberDto;
-		
+
 	}
 
 	// READ

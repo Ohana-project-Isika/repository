@@ -9,8 +9,9 @@
         <h:outputStylesheet name="css/table.css" />
         <h:outputStylesheet name="css/styles.css" />
 
-        <div class="body_table">
-            <div class="header_fixed">
+        <div class="default-table">
+        <div class="container">
+            <div class="row">
                 <f:view>
                     <h:form id="panier">
 
@@ -27,13 +28,13 @@
                             </h:column>
 
                             <h:column>
-                                <f:facet name="header">Nombre de tickets Max</f:facet>
+                                <f:facet name="header">Quantité Max</f:facet>
                                 #{ticket.event.ticketQuantity}
                             </h:column>
 
                             <h:column>
                                 <f:facet name="header">Tarif</f:facet>
-                                #{ticket.rateType}
+                                #{ticket.type}
                             </h:column>
 
                             <h:column>
@@ -56,6 +57,7 @@
                             </h:column>
 
                             <h:column >
+                                <f:facet name="header">Quantité</f:facet>
                                 <h:commandButton action="#{eventController.decrement(ticket)}" value="-"/>
                                 <h:inputText class="dynamicAmount" type="number"
                                              value="#{ticket.quantity}" min="1" max="#{ticket.event.ticketQuantity}"
@@ -87,10 +89,10 @@
 
                         <h:panelGroup rendered="#{!eventController.cart.ticketsByIds.isEmpty()}">
                             <h:outputLabel value="Total Panier HT :  "/>
-                            <h:outputText value="#{eventController.cart.subTotal} €"/>
+                            <h:outputText value=" #{eventController.cart.subTotal} €"/>
                             <br/>
                             <h:outputLabel value="Total Panier TTC :  "/>
-                            <h:outputText value="#{eventController.cart.total} €"/>
+                            <h:outputText value=" #{eventController.cart.total} €"/>
                         </h:panelGroup>
 
                         <h:panelGroup rendered="#{paymentController.paying}">
@@ -116,6 +118,7 @@
                     </h:form>
                 </f:view>
             </div>
+        </div>
         </div>
     </ui:define>
 </ui:composition>

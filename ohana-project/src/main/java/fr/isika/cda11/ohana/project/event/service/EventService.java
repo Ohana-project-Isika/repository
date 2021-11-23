@@ -159,9 +159,8 @@ public class EventService implements Serializable {
 
 		if (list.size() != 0) {
 			for (Event event : list) {
-				event.setTicketQuantity(event.getTickets().size());
-
 				if (event.getTickets().size() != 0) {
+					event.setTicketQuantity(event.getTickets().size());
 					event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
 
 					event.getTicket().setTvaRate(setTVAFor(event.getTicket().getRateType(), event.getTicket().getAppliedTVA())
@@ -170,13 +169,27 @@ public class EventService implements Serializable {
 					event.getTicket().setPostTaxPrice(event.getTicket().getPreTaxPrice()
 							.multiply(BigDecimal.valueOf(1).add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
 							.setScale(2, BigDecimal.ROUND_UP));
+
+
+					switch (event.getTicket().getRateType()) {
+						case REGULAR:
+							event.getTicket().setType("NORMAL");
+							break;
+						case SUPER_REDUCED:
+							event.getTicket().setType("TRES REDUIT");
+							break;
+						default:
+							event.getTicket().setType("REDUIT");
+							break;
+					}
+
+
+					event.setFullAddress(setFullAddress(event.getAddress()));
+					event.setEndDateString(simpleDateFormat.format(event.getEndDate()));
+					event.setStartDateString(simpleDateFormat.format(event.getStartDate()));
+
+					events.add(event);
 				}
-
-				event.setFullAddress(setFullAddress(event.getAddress()));
-				event.setEndDateString(simpleDateFormat.format(event.getEndDate()));
-				event.setStartDateString(simpleDateFormat.format(event.getStartDate()));
-
-				events.add(event);
 			}
 		}
 

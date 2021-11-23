@@ -11,11 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
-import fr.isika.cda11.ohana.project.common.dto.ContactDto;
-import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
-import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
@@ -28,9 +24,6 @@ import fr.isika.cda11.ohana.project.membership.service.MembershipService;
 @SessionScoped
 public class MembershipController implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -47700755510349010L;
 
 	@Inject
@@ -52,9 +45,6 @@ public class MembershipController implements Serializable{
 	MemberShipManageDto mbsm = new MemberShipManageDto();
 	List<MembershipDto> membershiplist = new ArrayList<MembershipDto>();
 
-
-	
-	
 	@PostConstruct
 	public void init() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
