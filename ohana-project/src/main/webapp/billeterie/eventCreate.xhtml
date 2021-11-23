@@ -5,42 +5,56 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/templates/layout.xhtml"
                 xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xsi:schemaLocation="http://primefaces.org/ui ">
     <ui:define name="content">
-        <h1>ASSOCIATIONS : Créer un évènement</h1>
-        <p:separator />
-        <br />
-        <h2>Formulaire de création d'un évènement</h2>
-        <h:form method="post">
-            <h:panelGrid columns="3">
-                <h:outputText value="Nom de l'évènement :"/>
-                <h:inputText id="Name" value="#{eventControllerCreate.event.name}"/>
-                <h:message style="color:red" for="Name"/>
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Créer votre évènement</h1>
+                        <p>Lorem ipsum dolore sit amet. You can feel free to use it.
+                            Donec mattis tincidunt ipsum vel efficitur.
+                            Aliquam aliquam interdum rhoncus.
+                            Nam nec condimentum dolor, et pharetra nisi.
+                            In feugiat felis nec erat eleifend condimentum.
+                            Aliquam egestas convallis eros sed gravida.
+                            Curabitur consequat sit amet neque ac ornare.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Forms -->
+        <section class="forms create-form create-event-block">
+            <div class="container-fluid">
+                <h:form method="post" styleClass="row" id="createEvent" enctype="multipart/form-data" prependId="false">
+                    <h:inputFile id="file-id"
+                                 value="#{eventControllerCreateAndUpload.uploadedFile}" required="true"
+                                 requiredMessage="Please upload a file" alt="upload file"
+                                 style="font-size: 30px;">
+                    </h:inputFile>
+                    <h:inputText id="Name" a:placeholder="Nom de l'évènement" styleClass="form-control"
+                                 value="#{eventControllerCreateAndUpload.event.name}"/>
 
-                <h:outputText value="Description de l'évènement :"/>
-                <h:inputText id="description" value="#{eventControllerCreate.event.description}"/>
-                <h:message style="color:red" for="description"/>
+                    <h:inputText id="description" a:placeholder="Description de l'évènement" styleClass="form-control"
+                                 value="#{eventControllerCreateAndUpload.event.description}"/>
 
-                <p:outputLabel for="startDate" value="Date de début de l'évènement :" />
-                <p:calendar id="startDate" value="#{eventControllerCreate.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
-                <h:outputText value="Date de début de l'évènement :" />
-                <h:outputText value="#{eventControllerCreate.event.startDate}">
-                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                </h:outputText>
+                    <p:calendar id="startDate" a:placeholder="Date de début de l'évènement"
+                                value="#{eventControllerCreateAndUpload.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
 
-                <p:outputLabel for="endDate" value="Date de fin de l'évènement:" />
-                <p:calendar id="endDate" value="#{eventControllerCreate.event.endDate}" pattern="dd-MM-yyyy" mask="true" />
-                <h:outputText value="Date de fin de l'évènement:" />
-                <h:outputText value="#{eventControllerCreate.event.endDate}">
-                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                </h:outputText>
+                    <p:calendar id="endDate" a:placeholder="Date de fin de l'évènement"
+                                value="#{eventControllerCreateAndUpload.event.endDate}" pattern="dd-MM-yyyy" mask="true" />
 
-                <h:outputText value="Quantité de billet disponible :"/>
-                <h:inputText id="ticketQty" value="#{eventControllerCreate.event.ticketQuantity}"/>
-                <h:message style="color:red" for="ticketQty"/>
+                    <h:inputText
+                            styleClass="form-control" a:placeholder="Quantité de billet disponible" id="ticketQty"
+                            value="#{eventControllerCreateAndUpload.event.ticketQuantity}"/>
 
-                <h:commandButton action="#{eventControllerCreate.addEvent}" value="Création de l'évènement"/>
-            </h:panelGrid>
-        </h:form>
+                    <h:commandButton styleClass="border-radius-button" action="#{eventControllerCreateAndUpload.addEvent}"
+                            value="Création de l'évènement"/>
+                </h:form>
+            </div>
+        </section>
     </ui:define>
 </ui:composition>

@@ -6,6 +6,19 @@
 /*
  *  Owl Carousel - Core
  */
+.form-create .form-span span{
+  display: contents !important;
+}
+
+table {
+  border-collapse: inherit;
+}
+
+.ui-float-label {
+  display: block;
+  position: relative;
+}
+
 .owl-carousel {
   display: none;
   width: 100%;

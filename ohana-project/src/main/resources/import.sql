@@ -28,10 +28,10 @@
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (12, 'rue de gometz', '91470', 'Les Molières', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (7, '11 rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (8, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'route de Verdun', '21200', 'BEAUNE', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (9, 'route de Verdun', '21200', 'BEAUNE', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue de gometz', '91470', 'Les Molières', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (11, 'rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (8, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (9, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (13, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
 
  
@@ -197,18 +197,27 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 13);
  INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 14);
  
- 
  #PAIEMENT TABLE
  INSERT INTO Paiement(paymentRef, validated, paymentDate, ACCOUNT_ID) VALUES ('Ref1', 1, '2021-01-01', (SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
 
 #EVENT---------------------------------------------------------------------------------------------------------------------------
+
+# TICKETING TABLE
+INSERT INTO ticketing (ticketing_name, association_idAssos) VALUES ('ticketing', (SELECT idAssos FROM association WHERE nameAssos = 'aapeec'));
+
 # EVENT TABLE
-INSERT INTO Event (event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('nnnnnn', 'ffffffffffffffffffff', curdate(), '2022-01-01', curtime(), '05:00:00', (SELECT idAddress FROM Address WHERE numRue = 1));
-INSERT INTO Event (event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress) VALUES ('gggggg', 'rrrrrrrrrrrrrrrrrrrr', curdate(), '2022-01-01', curtime(), '05:00:00', (SELECT idAddress FROM Address WHERE numRue = 2));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Les Enfants d\'abord', 'Contre la maltraitance des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 2), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Ohana Kids', 'Gâtons nos enfants', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 1), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Sauvons les enfants', 'Contre la guerre', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 7), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Une famille, un enfant', 'Mieux que l\'orphelinat', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 10), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Comment garder nos enfants près de nous', 'Actions des parents que les enfants adorent', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 8), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Bien éduquer ses enfants', 'Education', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 3), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Jeux, danse', 'Divertissements pour enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 13), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'A l\'école', 'Contre la violence à l\'école', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 8), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Enfants, mirroir de la société', 'Enfants et société', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 2), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
+INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Ne grandissons pas vite', 'Fait par des enfants pour des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 13), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
 
 # TICKET TABLE
-INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'gggggg'), 'REDUCED1', 'METROPOLITAN', 20);
-INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'nnnnnn'), 'REDUCED1', 'METROPOLITAN', 10);
-INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'nnnnnn'), 'REDUCED1', 'METROPOLITAN', 10);
-
-
+INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Les Enfants d\'abord'), 'REDUCED1', 'METROPOLITAN', 20);
+INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);
+INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);

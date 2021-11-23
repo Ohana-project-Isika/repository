@@ -1,18 +1,10 @@
 package fr.isika.cda11.ohana.project.common.dto;
 
+import fr.isika.cda11.ohana.project.event.models.Ticket;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import fr.isika.cda11.ohana.project.common.models.Account;
-import fr.isika.cda11.ohana.project.common.models.Paiement;
 
 public class PrivatePersonDto implements Serializable {
 
@@ -29,9 +21,14 @@ public class PrivatePersonDto implements Serializable {
 	//RELATIONS 
 	private List<PaiementDto> paiement;
 	private AccountDto account;
+	private List<Ticket> tickets = new ArrayList<>();
 	
 	//CONSTRUCTOR
 	public PrivatePersonDto() {}
+
+	public void addTicket(Ticket ticket) {
+		tickets.add(ticket);
+	}
 
 	public Long getIdPrivatePerson() {
 		return idPrivatePerson;

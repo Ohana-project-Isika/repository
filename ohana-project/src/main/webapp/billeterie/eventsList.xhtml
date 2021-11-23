@@ -7,70 +7,73 @@
                 xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://primefaces.org/ui ">
     <ui:define name="content">
-        <div class="container-fluid bandeauEvenement">
-            <div class="row">
-                <div class="col-12">
-                    <div class="container">
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Tous les évènements</h1>
+                        <p>Lorem ipsum dolore sit amet. You can feel free to use it.
+                            Donec mattis tincidunt ipsum vel efficitur.
+                            Aliquam aliquam interdum rhoncus.
+                            Nam nec condimentum dolor, et pharetra nisi.
+                            In feugiat felis nec erat eleifend condimentum.
+                            Aliquam egestas convallis eros sed gravida.
+                            Curabitur consequat sit amet neque ac ornare.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="buttons">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
                         <div class="row">
-                            <div class="col-12">
-                                <h1>ASSOCIATIONS : Tout les évènements</h1>
+                            <div class="col-md-6">
+                                <div class="border-radius-button">
+                                    <h:link outcome="eventCreate" value="Créer un évènement" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <button>
-                        <h:link outcome="eventCreate" value="Créer un évènement" />
-                    </button>
-                </div>
-                <div class="col-9">
-                    <h2>Liste de tous les évènements</h2>
-                    <div>
-                        <h:form>
-                            <h:dataTable value="#{eventsListController.events}"
-                                         var="event"
-                                         headerClass="eventTableHeader"
-                                         rowClasses="eventTableOddRow,eventTableEvenRow">
-                                <h:column>
-                                    <f:facet name="header">Nom</f:facet>#{event.name}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Description </f:facet>#{event.description}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Date de début</f:facet>#{event.startDate}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Tarif</f:facet>#{event.ticket.rateType}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Actions</f:facet>
-                                    <h:commandLink
-                                            value="Détails"
-                                            action="#{eventsControllerDetails.afficherDetails(event.id)}" />
-                                    <h:commandLink
-                                            value="Modifier"
-                                            action="#{eventsControllerUpdate.afficherModifier(event.id)}" />
-                                    <h:commandLink
-                                            value="Supprimer"
-                                            action="#{eventsControllerDelete.supprimer(event.id)}" />
-                                </h:column>
-                            </h:dataTable>
-                        </h:form>
-                        <h:form id="form">
-                        <p:dataList value="#{eventsListController.events}" var="event">
-                            <f:facet name="header">header</f:facet>
-                            #{event.name}
-                            #{event.description}
-                        </p:dataList>
-                        </h:form>
+        </section>
+        <section class="tables">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="default-table">
+                            <h:form>
+                                <h:dataTable value="#{eventsListController.events}"
+                                             var="event"
+                                             headerClass="eventTableHeader"
+                                             rowClasses="eventTableOddRow,eventTableEvenRow">
+                                    <h:column>
+                                        <f:facet name="header">Nom</f:facet>#{event.name}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Description </f:facet>#{event.description}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Actions</f:facet>
+                                        <h:commandLink
+                                                value="Détails "
+                                                action="#{eventsControllerDetails.afficherDetails(event.id)}" />
+                                        <h:commandLink
+                                                value="Modifier "
+                                                action="#{eventsControllerUpdate.afficherModifier(event.id)}" />
+                                        <h:commandLink
+                                                value="Supprimer"
+                                                action="#{eventsControllerDelete.supprimer(event.id)}" />
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </ui:define>
 </ui:composition>
