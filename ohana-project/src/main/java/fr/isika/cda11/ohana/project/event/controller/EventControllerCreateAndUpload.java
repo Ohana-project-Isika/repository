@@ -14,6 +14,7 @@ import javax.inject.Named;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -54,9 +55,10 @@ public class EventControllerCreateAndUpload implements Serializable {
     }
     // Méthode add event
     public String addEvent() {
-        eventService.create(event);
         saveFile();
         event.setImageFileName("../resources/eventBackground/"+getFilename(uploadedFile));
+        event.setCreationDate(new Date());
+        eventService.create(event);
         this.events = eventService.findAll();
         this.event = new Event();
         return "eventsList";
