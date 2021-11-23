@@ -1,5 +1,6 @@
 package fr.isika.cda11.ohana.project.event.models;
 
+import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,9 @@ public class Ticket {
 
     @Column(name = "pre_tax_price")
     private BigDecimal preTaxPrice = BigDecimal.ZERO;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private PrivatePerson privatePerson;
 
     @ManyToOne
     @EqualsAndHashCode.Exclude
