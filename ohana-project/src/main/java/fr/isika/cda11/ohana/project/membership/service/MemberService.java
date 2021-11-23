@@ -37,7 +37,7 @@ public class MemberService {
 		//valeur par default lors de l'ajout d'un membre par une association
 		accounDto.setAccountPassword("0000");
 		accounDto.setAccountCreationDate(new Date());
-		accounDto.setRole(EnumRole.PARTICULIER);
+		accounDto.setRole(EnumRole.PRIVATEPERSON);
 		
 		accounDto.setInfoPerson(infopersonDto);
 		PrivatePersonDto privatepersonDto= new PrivatePersonDto();
