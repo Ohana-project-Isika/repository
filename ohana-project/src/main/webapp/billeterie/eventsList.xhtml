@@ -46,6 +46,8 @@
                     <div class="col-md-12">
                         <div class="default-table">
                             <h:form>
+                                <h:outputText id="msg" value="" binding="#{eventsListController.component}"/>
+                                <h:message for="msg"/>
                                 <h:dataTable value="#{eventsListController.events}"
                                              var="event"
                                              headerClass="eventTableHeader"

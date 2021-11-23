@@ -17,11 +17,15 @@ import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.event.models.Event;
 import fr.isika.cda11.ohana.project.event.service.EventService;
+import lombok.Getter;
+import lombok.Setter;
 
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
 
 @Named
 @ViewScoped
+@Getter
+@Setter
 public class EventsListController implements Serializable {
 
     private static final long serialVersionUID = -1606040173965309710L;
@@ -63,4 +67,5 @@ public class EventsListController implements Serializable {
 
     private void foreach() {
     }
+
 }
