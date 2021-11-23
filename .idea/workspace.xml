@@ -9,18 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="QR CODE SUCCESSFUL.">
-      <change afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/gfx/photo-clown.jfif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ohana_project_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ohana_project_war_exploded.xml" afterDir="false" />
+    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="fgdgdfgfdg">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2021_18_12__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2021_18_12__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/validatePayment.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/validatePayment.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/completePayment.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/billetterie/completePayment.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/webapp/resources/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

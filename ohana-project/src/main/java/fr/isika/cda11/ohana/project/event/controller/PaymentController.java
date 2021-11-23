@@ -32,6 +32,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
@@ -109,6 +110,7 @@ public class PaymentController implements Serializable {
     }
 
     public String validatePayment() {
+        tickets.clear();
         AccountDto accountDto = accountService.findAccountByIdService(loggedInUser);
         PrivatePersonDto privatePersonDto = privatePersonService.findPrivatePersonByAccount(accountDto);
         MeansOfPayment meansOfPayment = new MeansOfPayment();
@@ -137,17 +139,7 @@ public class PaymentController implements Serializable {
 
             value.setFile(file);
             tickets.add(value);
-
-            for (Event event : eventController.getEvents()) {
-                for (Ticket ticket : event.getTickets()) {
-                    if (ticket.getId().equals(value.getId())) {
-                        event.getTickets().remove(value);
-                        eventService.update(event);
-                    }
-                }
-            }
         });
-
 
         return "validatePayment";
     }
@@ -164,7 +156,7 @@ public class PaymentController implements Serializable {
         this.ticket = ticket;
 
         //data that we want to store in the QR code
-        String str = String.format("MON BILLET\n" +
+        byte[] bytes = String.format("MON BILLET\n" +
                 "----------\n" +
                 "INFORMATIONS PERSONNELLES \n" +
                 "Prénom : %s\n" +
@@ -183,7 +175,7 @@ public class PaymentController implements Serializable {
                 "Lieu : %s\n" +
                 "\n" +
                 "Prix HT : %s€\n" +
-                "Taxe : %s%\n" +
+                "Taxe : %s%%\n" +
                 "Prix TTC : %s€\n" +
                 "----------\n" +
                 "CE BILLET EST UNIQUEMENT VALABLE\n" +
@@ -206,14 +198,16 @@ public class PaymentController implements Serializable {
                 ticket.getPreTaxPrice(),
                 ticket.getTvaRate(),
                 ticket.getPostTaxPrice()
-        );
+        ).getBytes(StandardCharsets.UTF_8);
+
+        String utf8EncodedString = new String(bytes, StandardCharsets.UTF_8);
 
         int size = 400;
         BitMatrix bitMatrix = null;
 
         // encode
         try {
-            bitMatrix = generateMatrix(str, size);
+            bitMatrix = generateMatrix(utf8EncodedString, size);
         } catch (WriterException e) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
@@ -221,8 +215,9 @@ public class PaymentController implements Serializable {
         }
 
         String imageFormat = "png";
-        File dataDir = new File(System.getProperty("jboss.server.data.dir"));
-        File file = new File(dataDir, "qrCode" + ticket.getId() + ".png");
+        File imagesDir = new File(System.getProperty("jboss.server.data.dir"), "images");
+        imagesDir.mkdir();
+        File file = new File(imagesDir, "qrCode" + ticket.getId() + ".png");
         this.file = file;
         ticketFile = file.getAbsolutePath();
 
