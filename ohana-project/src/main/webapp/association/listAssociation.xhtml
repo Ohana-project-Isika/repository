@@ -3,42 +3,61 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/layout2.xhtml">
+	template="/WEB-INF/templates/layout2.xhtml"
+                          xmlns:p="http://primefaces.org/ui">
 	<ui:define name="head">
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js" />
-		<script src="https://kit.fontawesome.com/a076d05399.js"
-			crossorigin="anonymous" />
+
 		<title>Ohana - Plateforme Association aide enfance</title>
 		<link rel="stylesheet" href="../resources/css/style.css" />
-		<link rel="stylesheet" href="../resources/css/card.css" />
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		<link rel="stylesheet" href="../resources/css/card2.css" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet" />
 	</ui:define>
 	<ui:define name="content">
-		<!-- test -->
-		<div class="cards">
-			<ui:repeat var="o" value="#{associationController.associations}">
-				<div class="card">
-					<img class="card__image" src="#{o.logoAsso}" alt=""/>
-					<div class="card__content">
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Eos ducimus id ab tenetur delectus reiciendis fugit autem qui at.</p>
-						<p>Alias itaque praesentium eum, pariatur consequatur ducimus
-							asperiores accusantium velit minima?</p>
-					</div>
-					<div class="card__info">
-						<div>
-							<i class="material-icons">thumb_up</i>310
-						</div>
-						<div>
-							<a href="./" class="card__link">Adhérer</a>
-						</div>
-					</div>
+
+
+		<section class="left-image borderline">
+			<div class="container-fluid">
+				<div class="row">
+					<h2 class="section-title">Decouvrez nos associations
+						partenaires</h2>
 				</div>
-			</ui:repeat>
-		</div>
+			</div>
+		</section>
+
+
+
+		<section class="main-block">
+			<div class="container-fluid">
+
+
+				<div class="row">
+					<ui:repeat var="o" value="#{associationController.associations}">
+						<div class="col-md-6 col-lg-3 article-first">
+							<div class="news-block">
+								<h:form>
+									<div class="box">
+										<img src="#{o.logoAsso}" alt="#" class="img-fluid" />
+									</div>
+									<div class="news-title">
+										<h5>#{o.nameAssos}</h5>
+										<h:commandLink value="Voir"
+											action="#{associationController.ShowAssociation(o.idAssos)}" />
+										|
+										<h:commandLink value="Adhérer"
+											action="#{membershipController.subMemberForm(o.idAssos)}" />
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+
+			</div>
+		</section>
+		<!--//END BLOG -->
 
 	</ui:define>
 </ui:composition>
