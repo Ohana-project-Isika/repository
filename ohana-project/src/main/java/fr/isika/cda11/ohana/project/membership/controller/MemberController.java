@@ -17,6 +17,7 @@ import fr.isika.cda11.ohana.project.common.dto.AddressDto;
 import fr.isika.cda11.ohana.project.common.dto.ContactDto;
 import fr.isika.cda11.ohana.project.common.dto.InfoPersonDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
+import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
 import fr.isika.cda11.ohana.project.membership.service.MemberService;
@@ -36,6 +37,8 @@ public class MemberController implements Serializable {
 
 	@Inject
 	private MembershipService memberShipService;
+	@Inject
+	private AccountService accountService;
 
 
 
@@ -74,6 +77,14 @@ public class MemberController implements Serializable {
 		membershipDto=memberShipService.findMembershipByIdService(id);
 		memberDto.setDateOfStart(new Date());
 		memberDto=memberService.createMember(memberDto,membershipDto, contactDto, infopersonDto, accountDto, adressDto);
+		membershipDto.getMembers().add(memberDto);
+		return "showMember";
+	}
+	
+	public String subMember(Long idMbsh, Long idAccount) {
+		membershipDto=memberShipService.findMembershipByIdService(idMbsh);
+		accountDto=accountService.findAccountByIdService(idAccount);
+		memberDto=memberService.subMember(membershipDto, accountDto);
 		membershipDto.getMembers().add(memberDto);
 		return "showMember";
 	}

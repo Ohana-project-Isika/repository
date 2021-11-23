@@ -229,6 +229,9 @@ public class DashboardAssociationController implements Serializable {
 		return "bar";
 
 	}
+	
+	
+
 	@PostConstruct
 	public void init() {
 		createDonutModel();

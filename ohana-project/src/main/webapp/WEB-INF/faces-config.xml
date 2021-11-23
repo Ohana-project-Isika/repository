@@ -29,11 +29,34 @@
 	</navigation-rule>
 
 	<navigation-rule>
+		<from-view-id>/association/listAssociation.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{associationController.ShowAssociation(o.idAssos)}</from-action>
+			<from-outcome>showAssociation</from-outcome>
+			<to-view-id>/association/showAssociation.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{membershipController.subMemberForm(o.idAssos)}</from-action>
+			<from-outcome>subMember</from-outcome>
+			<to-view-id>/membership/subMember.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
 		<from-view-id>/membership/createMemberForm.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{membershipControllercreateMember(membershipController.membership.idMbs)}</from-action>
 			<from-outcome>showMember</from-outcome>
 			<to-view-id>/membership/showMember.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>/indexOhana.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{loginController.logout()}</from-action>
+			<from-outcome>indexOhana</from-outcome>
+			<to-view-id>/indexOhana.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
