@@ -47,8 +47,8 @@ public class Event {
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @Column(name = "deletion_date")
-    private Date deletionDate;
+    @Column(name = "modification_date")
+    private Date modificationDate;
 
     @Column(name = "start_time")
     private LocalTime startTime;

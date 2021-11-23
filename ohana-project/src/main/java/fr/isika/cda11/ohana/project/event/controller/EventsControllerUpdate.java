@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.event.controller;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -26,6 +27,7 @@ public class EventsControllerUpdate implements Serializable {
     }
     
     public String modifier() {
+        event.setModificationDate(new Date());
     	eventService.update(event);
     	return "eventsList?faces-redirect=true";
     }
