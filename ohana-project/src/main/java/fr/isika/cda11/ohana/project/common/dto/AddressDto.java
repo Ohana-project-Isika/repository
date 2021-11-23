@@ -107,8 +107,8 @@ public class AddressDto implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Address [idAddress=" + idAddress + ", numRue=" + numRue + ", rue=" + rue + ", codePostal=" + codePostal
-				+ ", ville=" + ville + ", pays=" + pays + "]";
+		return  numRue + ", " + rue + ", " + codePostal
+				+ " " + ville + " - " + pays ;
 	}
 
 	

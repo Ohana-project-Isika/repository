@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.common.controller;
 
 import java.io.Serializable;
+import java.util.EnumSet;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -34,6 +35,7 @@ public class AccountController implements Serializable{
 	InfoPersonService infoPersonService;
 
 	//ATTRIBUTS
+	EnumSet<EnumRole> rolesSet = EnumSet.of(EnumRole.PRIVATEPERSON, EnumRole.ASSOCIATION);
 	private AccountDto newAccountDto = new AccountDto();
 	private InfoPersonDto newInfoPersonDto = new InfoPersonDto();
 	private ContactDto newContactDto = new ContactDto();
@@ -53,7 +55,10 @@ public class AccountController implements Serializable{
 	public AddressDto getNewAddressDto() {return newAddressDto;}
 	public void setNewAddressDto(AddressDto newAddressDto) {this.newAddressDto = newAddressDto;}
 	public static long getSerialversionuid() {return serialVersionUID;}
-	public EnumRole[] getRole() {return EnumRole.values();}
+	public EnumRole[] getRole() {
+		EnumRole[] roles = new EnumRole[2];
+		return rolesSet.toArray(roles);
+	}
 	public AccountDto getAccountnew() {
 		return accountnew;
 	}

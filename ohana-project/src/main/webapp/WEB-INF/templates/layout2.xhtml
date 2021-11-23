@@ -28,7 +28,7 @@
 			alt="" /></li>
 		<li class="nav-item"><h:link outcome="/index" value="Accueil"></h:link>:</li>
 		<li class="nav-item"><h:link
-				outcome="/association/associationTable" value="Associations" /></li>
+				outcome="/association/listAssociation" value="Associations" /></li>
 		<li class="nav-item"><h:link outcome="/crowdfunding/projects"
 				value="Crowdfundings" /></li>
 		<li class="nav-item"><h:link outcome="/billeterie/eventsList"
@@ -37,8 +37,12 @@
 				value="Adhésion" /></li>
 	</ul>
 	<ul class="nav-item-connexion">
-		<li class="nav-item"><h:link outcome="/membership/showMembership"
-				value="Connectez-vous" /></li>
+		<li class="nav-item">
+		<h:link outcome="/login.xhtml" value="#{loginController.viewParamLogged()}" />
+		</li>
+		<li>
+		<h:commandLink action="#{loginController.logout()}" value="DECONEXION" rendered="#{loginController.isConnected}"/>
+		</li>
 	</ul>
 	</nav> </header>
 	<!--//END HEADER -->

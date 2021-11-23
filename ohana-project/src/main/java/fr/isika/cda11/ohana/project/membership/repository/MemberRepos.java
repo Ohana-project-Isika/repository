@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
+import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
 import fr.isika.cda11.ohana.project.membership.factories.MemberFactory;
@@ -37,6 +39,18 @@ public class MemberRepos {
 		
 		//TODO Faut-il merge le membership ?
 		// je ne crois pas, peut être que oui mais à tester !!
+	}
+	
+	public Member subMember(MemberDto memberDto, PrivatePersonDto privatepersonDto) {
+		Membership membership=entityManager.find(Membership.class, memberDto.getMembershipDto().getIdMbs());
+		PrivatePerson privateperson= entityManager.find(PrivatePerson.class, privatepersonDto.getIdPrivatePerson());
+		Member member = MemberFactory.fromMemberDto(memberDto);
+		member.setPrivatePerson(privateperson);
+		entityManager.persist(member);
+		membership.getMembers().add(member);
+		member.setMembership(membership);
+		entityManager.merge(membership);
+		return member;
 	}
 	
 	//READ

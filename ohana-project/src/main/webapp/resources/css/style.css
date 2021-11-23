@@ -297,3 +297,39 @@ footer a.cgv {
 nav.nav li {
 	color: white;
 }
+
+/* Page Heading */
+
+.page-heading{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.page-heading h1 {
+    margin-top: 50px;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.page-heading p {
+    font-size: 15px;
+    color: #4a4a4a;
+    
+}
+
+/* Section Heading */
+
+.section-heading {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top:100px;
+    margin-top: 70px;
+}
+
+.section-heading h2 {
+    margin-top: 70px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}

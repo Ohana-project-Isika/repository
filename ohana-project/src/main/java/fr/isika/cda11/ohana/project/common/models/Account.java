@@ -11,11 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda11.ohana.project.enumclass.EnumRole;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "account.findAll", query = "SELECT c FROM Account c")})
 public class Account {
 
 	//ATTRIBUTS
