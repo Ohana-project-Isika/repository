@@ -9,12 +9,13 @@
                 xsi:schemaLocation="http://primefaces.org/ui ">
     <ui:define name="content">
         <!-- Simple Post -->
-        <h:form>
+        <h:form >
             <section class="simple-post">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="http://localhost:8080/ohana-project/resources/img//simple-post.jpg" alt=""/>
+                            <img src="#{eventsControllerDetails.event.imageFileName}" alt=""/>
+                            <h:graphicImage value="#{eventsControllerDetails.event.imageFileName}" />
                             <div class="down-content">
                                 <h1><h:outputText value="#{eventsControllerDetails.event.name}" /></h1>
                                 <p><strong><h:outputText value="#{eventsControllerDetails.event.description}" /></strong>

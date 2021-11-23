@@ -64,8 +64,13 @@ public class Event {
     @Column(name = "image_file_name")
     private String imageFileName;
 
+    public String getImageFileName() {return imageFileName;}
+    public void setImageFileName(String imageFileName) {this.imageFileName = imageFileName;}
+
     @Column(name = "image_description")
     private String imageDescription;
+    public String getImageDescription() {return imageDescription;}
+    public void setImageDescription(String imageDescription) {this.imageDescription = imageDescription;}
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
             mappedBy = "event",
