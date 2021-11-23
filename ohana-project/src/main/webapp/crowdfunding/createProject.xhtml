@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h1>Créer une campagne de Crowdfunding</h1>
+			<h:form id="test">
+				<h:panelGrid columns="3">
+
+					<h:outputText value="Nom :" />
+					<p:inputText id="name" value="#{projectMB.newProject.name}"
+						required="true" requiredMessage="Le nom est obligatoire">
+						<f:validateLength minimum="2" />
+					</p:inputText>
+					<h:message style="color:red" for="name" />
+
+
+					<h:outputText value="Objectif financier :" />
+					<p:inputText id="financialGoal"
+						value="#{projectMB.newProject.financialGoal}" required="true"
+						requiredMessage="L'objectif financier est obligatoire">
+					</p:inputText>
+					<h:message style="color:red" for="financialGoal" />
+
+					<h:outputText for="startDate" value="Date de début :" />
+					<p:calendar id="startDate"
+						value="#{projectMB.newProject.startDate}" pattern="dd-MM-yyyy"
+						mask="true" />
+					<h:outputText value="#{projectMB.newProject.startDate}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
+
+					<h:outputText for="endDate" value="Date de fin :" />
+					<p:calendar id="endDate" value="#{projectMB.newProject.endDate}"
+						pattern="dd-MM-yyyy" mask="true" />
+					<h:outputText value="#{projectMB.newProject.endDate}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
+
+					<h:outputText value="Descritption :" />
+					<p:inputTextarea id="description" rows="2" cols="21"
+						value="#{projectMB.newProject.description}"/>
+
+					<h:message style="color:red" for="description" />
+
+					<h:commandButton action="#{projectMB.createProject()}"
+						value="Créer" />
+					<h:link outcome="projects" value="Liste des projets" />
+
+				</h:panelGrid>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/layout.xhtml"
+                xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xsi:schemaLocation="http://primefaces.org/ui ">
+    <ui:define name="content">
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Créer votre évènement</h1>
+                        <p>Lorem ipsum dolore sit amet. You can feel free to use it.
+                            Donec mattis tincidunt ipsum vel efficitur.
+                            Aliquam aliquam interdum rhoncus.
+                            Nam nec condimentum dolor, et pharetra nisi.
+                            In feugiat felis nec erat eleifend condimentum.
+                            Aliquam egestas convallis eros sed gravida.
+                            Curabitur consequat sit amet neque ac ornare.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Forms -->
+        <section class="forms create-form create-event-block">
+            <div class="container-fluid">
+                <h:form method="post" styleClass="row" id="createEvent" enctype="multipart/form-data" prependId="false">
+                    <h:inputFile id="file-id"
+                                 value="#{eventControllerCreateAndUpload.uploadedFile}" required="true"
+                                 requiredMessage="Please upload a file" alt="upload file"
+                                 style="font-size: 30px;">
+                    </h:inputFile>
+                    <h:inputText id="Name" a:placeholder="Nom de l'évènement" styleClass="form-control"
+                                 value="#{eventControllerCreateAndUpload.event.name}"/>
+
+                    <h:inputText id="description" a:placeholder="Description de l'évènement" styleClass="form-control"
+                                 value="#{eventControllerCreateAndUpload.event.description}"/>
+
+                    <p:calendar id="startDate" a:placeholder="Date de début de l'évènement"
+                                value="#{eventControllerCreateAndUpload.event.startDate}" pattern="dd-MM-yyyy" mask="true" />
+
+                    <p:calendar id="endDate" a:placeholder="Date de fin de l'évènement"
+                                value="#{eventControllerCreateAndUpload.event.endDate}" pattern="dd-MM-yyyy" mask="true" />
+
+                    <h:inputText
+                            styleClass="form-control" a:placeholder="Quantité de billet disponible" id="ticketQty"
+                            value="#{eventControllerCreateAndUpload.event.ticketQuantity}"/>
+
+                    <h:commandButton styleClass="border-radius-button" action="#{eventControllerCreateAndUpload.addEvent}"
+                            value="Création de l'évènement"/>
+                </h:form>
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/layout.xhtml"
+                xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xsi:schemaLocation="http://primefaces.org/ui ">
+    <ui:define name="content">
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Créer votre évènement</h1>
+                        <p>Lorem ipsum dolore sit amet. You can feel free to use it.
+                            Donec mattis tincidunt ipsum vel efficitur.
+                            Aliquam aliquam interdum rhoncus.
+                            Nam nec condimentum dolor, et pharetra nisi.
+                            In feugiat felis nec erat eleifend condimentum.
+                            Aliquam egestas convallis eros sed gravida.
+                            Curabitur consequat sit amet neque ac ornare.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Forms -->
+        <section class="forms create-form">
+            <div class="container-fluid">
+                <h:form styleClass="row">
+                    <p:outputLabel>Nom de l'évènement : </p:outputLabel>
+                    <p:inputText styleClass="form-control" value="#{eventsControllerUpdate.event.name}"/>
+
+                    <p:outputLabel>Description de l'évènement : </p:outputLabel>
+                    <p:inputText styleClass="form-control" value="#{eventsControllerUpdate.event.description}"/>
+
+                    <p:outputLabel>Date de début de l'évènement : </p:outputLabel>
+                    <p:calendar id="startDate" a:placeholder="jj-mm-aaaa" value="#{eventsControllerUpdate.event.startDate}" pattern="dd-MM-yyyy" mask="true"/>
+
+                    <p:outputLabel>Date de fin de l'évènement : </p:outputLabel>
+                    <p:calendar id="endDate" a:placeholder="jj-mm-aaaa" value="#{eventsControllerUpdate.event.endDate}" pattern="dd-MM-yyyy" mask="true"/>
+
+                    <p:outputLabel>DQuantité de billet disponible : </p:outputLabel>
+                    <p:inputText id="ticketQty" styleClass="form-control" value="#{eventsControllerUpdate.event.ticketQuantity}"/>
+
+                    <div class="col-md-6">
+                        <div class="border-radius-button">
+                            <h:commandLink action="#{eventsControllerUpdate.modifier()}" value="Modifier" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

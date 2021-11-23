@@ -1,2 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#ticketing.xhtml" PATH="/ticketing.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#membership#createMembershipForm.xhtml"
+  PATH="/membership/createMembershipForm.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#membership#showMember.xhtml"
+  PATH="/membership/showMember.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ticketing#checkout.xhtml"
+  PATH="/ticketing/checkout.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ticketing#checkout.xhtml:0" NAME="item"
+   PATH="/ticketing/checkout.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ticketing:#{eventController.back()}:#ticketing.xhtml"
+    NAME="output" PATH="/ticketing.xhtml"
+    TARGET="rules:#ticketing.xhtml"
+    TITLE="#{eventController.back()}:ticketing" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#association#associationTable.xhtml"
+  PATH="/association/associationTable.xhtml" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#association#associationTable.xhtml:0"
+   NAME="item" PATH="/association/associationTable.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createMembershipForm:#{membershipController.createMembershipManage(o.idAssos)}:#membership#createMembershipForm.xhtml"
+    NAME="output" PATH="/membership/createMembershipForm.xhtml"
+    TARGET="rules:#membership#createMembershipForm.xhtml"
+    TITLE="#{membershipController.createMembershipManage(o.idAssos)}:createMembershipForm" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="bar:#{dashboardAssociationController.ReadListMemberByAssociation(o.idAssos)}:#bar.xhtml"
+    NAME="output1" PATH="/bar.xhtml" TARGET="rules:#bar.xhtml"
+    TITLE="#{dashboardAssociationController.ReadListMemberByAssociation(o.idAssos)}:bar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#membership#createMemberForm.xhtml"
+  PATH="/membership/createMemberForm.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#membership#createMemberForm.xhtml:0"
+   NAME="item" PATH="/membership/createMemberForm.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showMember:#{membershipControllercreateMember(membershipController.membership.idMbs)}:#membership#showMember.xhtml"
+    NAME="output" PATH="/membership/showMember.xhtml"
+    TARGET="rules:#membership#showMember.xhtml"
+    TITLE="#{membershipControllercreateMember(membershipController.membership.idMbs)}:showMember" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#bar.xhtml" PATH="/bar.xhtml"
+  SHAPE="256,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#association#listAssociation.xhtml"
+  PATH="/association/listAssociation.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#association#listAssociation.xhtml:0"
+   NAME="item" PATH="/association/listAssociation.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showAssociation:#{associationController.ShowAssociation(o.idAssos)}:#association#showAssociation.xhtml"
+    NAME="output" PATH="/association/showAssociation.xhtml"
+    TARGET="rules:#association#showAssociation.xhtml"
+    TITLE="#{associationController.ShowAssociation(o.idAssos)}:showAssociation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="subMember:#{membershipController.subMemberForm(o.idAssos)}:#membership#subMember.xhtml"
+    NAME="output1" PATH="/membership/subMember.xhtml"
+    TARGET="rules:#membership#subMember.xhtml"
+    TITLE="#{membershipController.subMemberForm(o.idAssos)}:subMember" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#association#showAssociation.xhtml"
+  PATH="/association/showAssociation.xhtml" SHAPE="240,513,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#membership#subMember.xhtml"
+  PATH="/membership/subMember.xhtml" SHAPE="256,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#indexOhana.xhtml" PATH="/indexOhana.xhtml"
+  SHAPE="32,529,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#indexOhana.xhtml:0" NAME="item"
+   PATH="/indexOhana.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="indexOhana:#{loginController.logout()}:#indexOhana.xhtml"
+    NAME="output" PATH="/indexOhana.xhtml"
+    TARGET="rules:#indexOhana.xhtml"
+    TITLE="#{loginController.logout()}:indexOhana" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

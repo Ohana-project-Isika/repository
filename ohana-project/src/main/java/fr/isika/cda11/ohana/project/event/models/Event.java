@@ -1,87 +1,110 @@
 package fr.isika.cda11.ohana.project.event.models;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import fr.isika.cda11.ohana.project.common.models.Address;
+import lombok.*;
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.*;
 
 @Entity
-public class Event implements Serializable {
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NamedQueries({
+        @NamedQuery(name = "Events.findAll", query = "SELECT DISTINCT e FROM Event e")
+})
+public class Event {
 
-    private static final long serialVersionUID = 8845474287191812919L;
+    // TODO Field Validation Errors
+    // TODO Other Field Validation Controls if Any
+
+    //region Entity fields
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
-    private String name;
-    private String description;
-    private LocalDate dateOfStart;
-    private LocalDate dateOfEnd;
-    private Integer numberOfTicket;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "event_ticket_id")
+    @Column(name = "event_name")
+    private String name;
+
+    @Column(name = "event_description")
+    private String description;
+
+    @Column(name = "start_date")
+    private Date startDate;
+    public Date getStartDate() {return startDate;}
+    public void setStartDate(Date startDate) {this.startDate = startDate;}
+
+    @Column(name = "creation_date")
+    private Date creationDate;
+
+    @Column(name = "modification_date")
+    private Date modificationDate;
+
+    @Column(name = "start_time")
+    private LocalTime startTime;
+
+    @Column(name = "end_date")
+    private Date endDate;
+    public Date getEndDate() {return endDate;}
+    public void setEndDate(Date endDate) {this.endDate = endDate;}
+
+    @Column(name = "end_time")
+    private LocalTime endTime;
+
+    @Column(name = "image_file_name")
+    private String imageFileName;
+
+    public String getImageFileName() {return imageFileName;}
+    public void setImageFileName(String imageFileName) {this.imageFileName = imageFileName;}
+
+    @Column(name = "image_description")
+    private String imageDescription;
+    public String getImageDescription() {return imageDescription;}
+    public void setImageDescription(String imageDescription) {this.imageDescription = imageDescription;}
+
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
+            mappedBy = "event",
+            orphanRemoval = true
+    )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Ticket> tickets = new ArrayList<>();
 
-    public Long getId() {return id;}
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Ticketing ticketing;
 
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    @OneToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Address address;
+    //endregion
 
-    public String getDescription() {return description;}
-    public void setDescription(String description) {this.description = description;}
+    //region Transient fields
+    @Transient
+    private int ticketQuantity;
 
-    public LocalDate getDateOfStart() {return dateOfStart;}
-    public void setDateOfStart(LocalDate dateOfStart) {this.dateOfStart = dateOfStart;}
+    @Transient
+    private Ticket ticket;
 
-    public LocalDate getDateOfEnd() {return dateOfEnd;}
-    public void setDateOfEnd(LocalDate dateOfEnd) {this.dateOfEnd = dateOfEnd;}
+    @Transient
+    private String endDateString;
 
-    public Integer getNumberOfTicket() {return numberOfTicket;}
-    public void setNumberOfTicket(Integer numberOfTicket) {this.numberOfTicket = numberOfTicket;}
+    @Transient
+    private String startDateString;
 
-    public List<Ticket> getTickets() {return tickets;}
-    public void setTickets(List<Ticket> tickets) {this.tickets = tickets;}
-
-    public Event() {}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return Objects.equals(id, event.id)
-                && Objects.equals(name, event.name)
-                && Objects.equals(description, event.description)
-                && Objects.equals(dateOfStart, event.dateOfStart)
-                && Objects.equals(dateOfEnd, event.dateOfEnd)
-                && Objects.equals(numberOfTicket, event.numberOfTicket)
-                && Objects.equals(tickets, event.tickets);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, dateOfStart, dateOfEnd, numberOfTicket, tickets);
-    }
-
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", dateOfStart=" + dateOfStart +
-                ", dateOfEnd=" + dateOfEnd +
-                ", numberOfTicket=" + numberOfTicket +
-                ", tickets=" + tickets +
-                '}';
-    }
+    @Transient
+    private String fullAddress;
+    //endregion
 }

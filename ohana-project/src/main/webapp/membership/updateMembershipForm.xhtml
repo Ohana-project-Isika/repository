@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="head">
+		<h:outputStylesheet name="css/table.css" />
+	</ui:define>
+	<ui:define name="content">
+		<div id="container">
+			<div id="content">
+
+
+
+				<h1>Modifier une adhesion</h1>
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputText value="Nom : " />
+						<h:inputText id="Name"
+							value="#{membershipController.membership.nameMbs}" />
+
+						<h:commandButton
+							action="#{membershipController.updateMembership(membershipController.membership)}"
+							value="Save" />
+					</h:panelGrid>
+				</h:form>
+
+
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

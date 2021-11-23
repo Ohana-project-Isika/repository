@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/layoutDashboardAssociation.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://primefaces.org/ui ">
+	<ui:define name="content">
+		<h1>DASHBOARD ASSOCIATION</h1>
+
+		<p:barChart model="#{dashboardAssociationController.barModel}"
+			style="width: 100%; height: 500px;" />
+
+		<h3>Repartition des ressources</h3>
+		<p:donutChart model="#{dashboardAssociationController.donutModel}"
+			style="width: 100%; height: 500px;" />
+		
+		<h3>Liste de vos adhérents</h3>
+
+
+		<div class="body_table">
+			<div class="header_fixed">
+				<f:view>
+					<h:form>
+
+						<h:dataTable value="#{dashboardAssociationController.members}"
+							var="o">
+							<h:column>
+								<f:facet name="header">Id</f:facet>
+								<h:outputText value="#{o.idMember}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Nom</f:facet>
+								<h:outputText value="#{o.privatePerson.account.infoPerson.lastName}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Prenom</f:facet>
+								<h:outputText value="#{o.privatePerson.account.infoPerson.lastName}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Email</f:facet>
+								<h:outputText value="#{o.privatePerson.account.infoPerson.contact.email}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Telephone</f:facet>
+								<h:outputText value="#{o.privatePerson.account.infoPerson.contact.phoneNb}" />
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+
+
+	</ui:define>
+</ui:composition>
