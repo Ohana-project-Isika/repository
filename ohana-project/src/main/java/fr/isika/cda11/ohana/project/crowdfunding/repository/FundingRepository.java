@@ -42,17 +42,21 @@ public class FundingRepository {
 		return f;
 	}
 	
-	public Funder updateFunderRepos(Funder f) {
+	public Funder updateFunderRepos(Funder f, Funding funding) {
+		Funder newfunder=new Funder();
 		if (f.getId() == null) 
 		{
 			em.persist(f);
+			newfunder=f;
+			funding.setFunder(newfunder);
+			createFundingRepos(funding);
 		} 
 		else 
 		{
 			f = em.merge(f);
 		}
 		
-		return f;
+		return newfunder;
 	}
 	
 	public void deleteFundingRepos(Funding f) {

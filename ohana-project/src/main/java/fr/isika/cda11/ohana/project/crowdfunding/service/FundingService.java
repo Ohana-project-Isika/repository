@@ -28,9 +28,9 @@ public class FundingService {
 		fundingRepos.updateFundingRepos(funding);
 		
 	}
-	public void updateFunderService(Funder funding) {
+	public Funder updateFunderService(Funder funder, Funding funding) {
 		
-		fundingRepos.updateFunderRepos(funding);
+		return fundingRepos.updateFunderRepos(funder, funding);
 		
 	}
 	
