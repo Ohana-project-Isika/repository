@@ -47,7 +47,6 @@ public class LoginController implements Serializable {
 					.getSession(false);
 			
 			AccountDto accountconnected = optional.get();
-
 			session.setAttribute(ACCOUNT_ATTRIBUTE, accountconnected.getAccountLogin());
 			session.setAttribute(ACCOUNT_CONNECTED, true);
 			
@@ -104,4 +103,6 @@ public class LoginController implements Serializable {
 	private void resetLoginData() {
 		accountDto = new AccountDto();
 	}
+
 }
+
