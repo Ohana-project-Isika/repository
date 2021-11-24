@@ -74,6 +74,9 @@
     NAME="output" PATH="/indexOhana.xhtml"
     TARGET="rules:#indexOhana.xhtml"
     TITLE="#{loginController.logout()}:indexOhana" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="indexOhana::#createAccount.xhtml"
+    NAME="output1" PATH="/createAccount.xhtml"
+    TARGET="rules:#createAccount.xhtml" TITLE="indexOhana" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#membership#subMemberForm.xhtml"
@@ -85,6 +88,17 @@
     NAME="output" PATH="/membership/showMember.xhtml"
     TARGET="rules:#membership#showMember.xhtml"
     TITLE="#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}:showMember" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#createAccount.xhtml"
+  PATH="/createAccount.xhtml" SHAPE="256,801,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,897,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="createAccount::#createAccount.xhtml"
+    NAME="output" PATH="/createAccount.xhtml"
+    TARGET="rules:#createAccount.xhtml" TITLE="createAccount" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

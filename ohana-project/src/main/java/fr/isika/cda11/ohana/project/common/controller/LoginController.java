@@ -39,7 +39,7 @@ public class LoginController implements Serializable {
     private String loggedUser;
     private Account account = new Account();
     private AccountDto accountDto= new AccountDto();
- private Boolean isConnected = false;
+	private Boolean isConnected = false;
     
     
 
@@ -56,7 +56,7 @@ public class LoginController implements Serializable {
             List<AccountDto> accounts = new ArrayList<AccountDto>();
             AccountDto accountconnected=new AccountDto();
             accounts = accountService.listAccountService();
-            setConnected();
+            isConnected();
             for(AccountDto accountdto: accounts) {
             	if(accountdto.getAccountLogin().equals(account.getAccountLogin()) && accountdto.getAccountPassword().equals(account.getAccountPassword())){
                    accountconnected= accountdto;
@@ -101,12 +101,12 @@ public String outcomeLogged() {
 	}
 }
 
-private void setConnected() {
+/*private void setConnected() {
 	isConnected = true;
-}
+}*/
 
 public Boolean isConnected() {
-	//isConnected=true;
+	isConnected=true;
 	
 	return isConnected;
 }
