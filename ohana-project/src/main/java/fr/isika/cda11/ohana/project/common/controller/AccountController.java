@@ -3,17 +3,9 @@ package fr.isika.cda11.ohana.project.common.controller;
 import java.io.Serializable;
 import java.util.EnumSet;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.servlet.http.HttpSession;
-
-import org.primefaces.event.FlowEvent;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AddressDto;
@@ -66,10 +58,8 @@ public class AccountController implements Serializable{
 		this.accountnew = accountnew;
 	}
 
-		
 	//CREATE AN ACCOUNT
 	public String createnewAccount() {
-		
 		accountnew= accountService.createAccountervice(newAccountDto, newInfoPersonDto, newContactDto, newAddressDto);
 		newAccountDto = new AccountDto();
 		newInfoPersonDto = new InfoPersonDto();
@@ -77,8 +67,7 @@ public class AccountController implements Serializable{
 		if(accountnew.getRole().equals(EnumRole.ASSOCIATION)) {
 			return "/association/createAssociationForm";
 		}
-		return "accountvalidate";
+		return "login";
 	}
 
 }
-
