@@ -36,16 +36,16 @@
 		<li class="nav-item"><h:link outcome="/membership/showMembership"
 				value="Adhésion" /></li>
 	</ul>
-	<ul class="nav-item-connexion">
-		<li class="nav-item">
-		<h:link outcome="/login.xhtml" value="#{loginController.viewParamLogged()}" />
-		</li>
-		<li>
-		<h:form>
-		<h:commandLink action="#{loginController.logout()}" value="DECONNEXION" rendered="#{loginController.isConnected}"/>
-		</h:form>
-		</li>
-	</ul>
+	<h:form>
+		<ul class="nav-item-connexion">
+			<li class="nav-item">
+				<h:commandLink action="#{loginController.connexion()}" value="#{loginController.viewParamLogged()}" />
+			</li>
+			<li class="nav-item">
+				<h:commandLink action="#{loginController.logout()}" value="Déconnexion" rendered="#{loginController.isConnected()}" />
+			</li>
+		</ul>
+	</h:form>
 	</nav> </header>
 	<!--//END HEADER -->
 

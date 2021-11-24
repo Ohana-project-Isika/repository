@@ -25,36 +25,43 @@
 							alt="" />
 					</div>
 					<div class="col-md-6 loginform">
-					<br></br><br></br><br></br>
-							<h:form>
-								<h2 class="section-title">Se Connecter</h2>
-								<br></br><br></br>
-								<h:panelGrid columns="3" cellpadding="5"
-									style="position: relative; right: 0;">
-									<p:outputLabel id="userNameLbl" for="userNameTxt"
-										value="Identifiant :" />
-									<p:inputText id="userNameTxt"
-										value="#{loginController.account.accountLogin}"></p:inputText>
-									<p:message for="userNameTxt" severity=""></p:message>
+						<br></br>
+						<br></br>
+						<br></br>
+						<h:form>
+							<h2 class="section-title">Se Connecter</h2>
+							<br></br>
+							<br></br>
+							<h:panelGrid columns="3" cellpadding="5"
+								style="position: relative; right: 0;">
+								<p:outputLabel id="userNameLbl" for="userNameTxt"
+									value="Identifiant :" />
+								<p:inputText id="userNameTxt"
+									value="#{loginController.accountDto.accountLogin}"></p:inputText>
+								<p:message for="userNameTxt" severity=""></p:message>
 
 
-									<p:outputLabel id="passwordLbl" for="passwordTxt"
-										value="Mot de passe :" />
-									<p:password id="passwordTxt"
-										value="#{loginController.account.accountPassword}"></p:password>
-									<p:message for="passwordTxt"></p:message>
-<div><br></br><br></br>
+								<p:outputLabel id="passwordLbl" for="passwordTxt"
+									value="Mot de passe :" />
+								<p:password id="passwordTxt"
+									value="#{loginController.accountDto.accountPassword}"></p:password>
+								<p:message for="passwordTxt"></p:message>
+								<div>
+									<br></br>
+									<br></br>
 									<p:commandButton class="submitBtn" id="loginBtn"
 										action="#{loginController.validateLogin}" value="Se connecter"></p:commandButton>
-										</div>
-								</h:panelGrid>
-<br></br><br></br>
-									<h:link outcome="createAccount" value="Nouvel utilisateur ? Créez un compte." />
+								</div>
+							</h:panelGrid>
+							<br></br>
+							<br></br>
+							<h:link outcome="createAccount"
+								value="Nouvel utilisateur ? Créez un compte." />
 
-							</h:form>
-						</div>
+						</h:form>
 					</div>
 				</div>
+			</div>
 		</section>
 	</ui:define>
 </ui:composition>
