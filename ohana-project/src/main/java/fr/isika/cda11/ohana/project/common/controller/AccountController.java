@@ -19,6 +19,7 @@ import fr.isika.cda11.ohana.project.enumclass.EnumRole;
 @SessionScoped
 public class AccountController implements Serializable{
 
+	//push test
 	private static final long serialVersionUID = -1373993544070458079L;
 
 	@Inject 
