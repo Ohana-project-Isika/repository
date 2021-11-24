@@ -12,7 +12,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h1>Créer une campagne de Crowdfunding</h1>
+						<h1>Créer une campagne de crowdfunding</h1>
 					</div>
 				</div>
 			</div>
@@ -52,13 +52,13 @@
 							<f:convertDateTime pattern="MM/dd/yyyy" />
 						</h:outputText>
 
-						<h:outputText value="Descritption :" />
+						<h:outputText value="Description :" />
 						<p:inputTextarea id="description" rows="2" cols="21"
 							value="#{projectMB.newProject.description}" />
 
 						<h:message style="color:red" for="description" />
 
-						<p:commandButton action="#{projectMB.createProject()}"
+						<p:commandButton action="#{projectMB.createProject(projectMB.associationDto.idAssos)}"
 							value="Créer" />
 						<h:link outcome="projects" value="Liste des projets" />
 

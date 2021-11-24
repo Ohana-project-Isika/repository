@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
+import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.factories.AccountFactory;
 import fr.isika.cda11.ohana.project.common.factories.PrivatePersonFactory;
@@ -26,6 +27,7 @@ import fr.isika.cda11.ohana.project.common.models.Account;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.common.repository.PrivatePersonRepos;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
+import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funder;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
@@ -48,10 +50,20 @@ public class FundingController {
 	
 	@Inject
 	PrivatePersonRepos privatePersonRepos;
+	
 
 
 	Funding theFunding = new Funding();
 	Funder theFunder = new Funder();
+	AssociationDto associationDto = new AssociationDto();
+
+	public AssociationDto getAssociationDto() {
+		return associationDto;
+	}
+
+	public void setAssociationDto(AssociationDto associationDto) {
+		this.associationDto = associationDto;
+	}
 
 	public Funding getTheFunding() {
 		return theFunding;

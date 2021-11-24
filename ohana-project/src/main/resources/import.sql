@@ -222,3 +222,7 @@ INSERT INTO event (image_file_name, event_name, event_description, start_date, e
 INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Les Enfants d\'abord'), 'REDUCED1', 'METROPOLITAN', 20);
 INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);
 INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);
+
+
+# PROJECT TABLE
+INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID) VALUES ('Architecture JEE', 500000,'2022-01-01', '2022-01-01', 'gros projet', 1);
