@@ -1,36 +1,67 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/layout2.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="head">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ohana - Plateforme Association aide enfance</title>
+		<link rel="stylesheet" href="resources/css/style.css" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js" />
+		<script src='https://kit.fontawesome.com/a076d05399.js'
+			crossorigin='anonymous' />
+	</ui:define>
+	<ui:define name="content">
+		<section class="left-image borderline">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<img
+							src="http://localhost:8080/ohana-project/resources/gfx/OhanaYellow.png"
+							alt="" />
+					</div>
+					<div class="col-md-6 loginform">
+						<br></br>
+						<br></br>
+						<br></br>
+						<h:form>
+							<h2 class="section-title">Se Connecter</h2>
+							<br></br>
+							<br></br>
+							<h:panelGrid columns="3" cellpadding="5"
+								style="position: relative; right: 0;">
+								<p:outputLabel id="userNameLbl" for="userNameTxt"
+									value="Identifiant :" />
+								<p:inputText id="userNameTxt"
+									value="#{loginController.accountDto.accountLogin}"></p:inputText>
+								<p:message for="userNameTxt" severity=""></p:message>
 
-<h:head>
-    <title>Connexion</title>
-    <link rel="stylesheet" href="/resources/css/login.css"/>
-</h:head>
-<h:body style="background: no-repeat url('resources/gfx/kidds.png');">
-    <h:form style="margin-left: 35em;
-    margin-top: 15em;">
-        <h2>Se Connecter</h2>
-        <br></br>
-        <h:panelGrid columns="3" cellpadding="5" style="position: relative; right: 0;">
-            <p:outputLabel id="userNameLbl" for="userNameTxt" value="Identifiant :" />
-            <p:inputText id="userNameTxt" value="#{loginController.account.accountLogin}"></p:inputText>
-            <p:message for="userNameTxt" severity=""></p:message>
 
-            <p:outputLabel id="passwordLbl" for="passwordTxt" value="Mot de passe :" />
-            <p:password id="passwordTxt" value="#{loginController.account.accountPassword}"></p:password>
-            <p:message for="passwordTxt"></p:message>
+								<p:outputLabel id="passwordLbl" for="passwordTxt"
+									value="Mot de passe :" />
+								<p:password id="passwordTxt"
+									value="#{loginController.accountDto.accountPassword}"></p:password>
+								<p:message for="passwordTxt"></p:message>
+								<div>
+									<br></br>
+									<br></br>
+									<p:commandButton class="submitBtn" id="loginBtn"
+										action="#{loginController.validateLogin}" value="Se connecter"></p:commandButton>
+								</div>
+							</h:panelGrid>
+							<br></br>
+							<br></br>
+							<h:link outcome="createAccount"
+								value="Nouvel utilisateur ? Créez un compte." />
 
-            <br></br>
-            <p:commandButton id="loginBtn" action="#{loginController.validateLogin}" value="Login"></p:commandButton>
-            <br></br>
-        </h:panelGrid>
-        <h4>
-            <h:link outcome="index" value="Retour vers l'accueil" />
-            <span>   </span>
-            <h:link outcome="createAccount" value="Créer un compte" />
-        </h4>
-    </h:form>
-</h:body>
-</html>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</ui:define>
+</ui:composition>

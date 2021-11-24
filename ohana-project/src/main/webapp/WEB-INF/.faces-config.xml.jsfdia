@@ -68,12 +68,30 @@
     TITLE="#{loginController.logout()}:indexOhana" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#membership#subMember.xhtml"
-  PATH="/membership/subMember.xhtml" SHAPE="256,657,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#association#showAssociation.xhtml"
-  PATH="/association/showAssociation.xhtml" SHAPE="240,513,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#membership#subMemberForm.xhtml"
+  PATH="/membership/subMemberForm.xhtml" SHAPE="32,641,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#membership#subMemberForm.xhtml:0" NAME="item"
+   PATH="/membership/subMemberForm.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showMember:#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}:#membership#showMember.xhtml"
+    NAME="output" PATH="/membership/showMember.xhtml"
+    TARGET="rules:#membership#showMember.xhtml"
+    TITLE="#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}:showMember" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,897,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="reservation:#{loginController.validateLogin}:#billetterie#reservation.xhtml"
+    NAME="output" PATH="/billetterie/reservation.xhtml"
+    TARGET="rules:#billetterie#reservation.xhtml"
+    TITLE="#{loginController.validateLogin}:reservation" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#billetterie#details.xhtml"
-  PATH="/billetterie/details.xhtml" SHAPE="272,769,0,0" model-entity="JSFProcessGroup">
+  PATH="/billetterie/details.xhtml" SHAPE="240,1201,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#billetterie#details.xhtml:0" NAME="item"
    PATH="/billetterie/details.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -84,7 +102,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#billetterie#reservation.xhtml"
-  PATH="/billetterie/reservation.xhtml" SHAPE="272,881,0,0" model-entity="JSFProcessGroup">
+  PATH="/billetterie/reservation.xhtml" SHAPE="496,1009,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#billetterie#reservation.xhtml:0" NAME="item"
    PATH="/billetterie/reservation.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -108,19 +126,8 @@
     TITLE="#{paymentController.pay}:verificationPanier" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
-  SHAPE="32,865,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
-   PATH="/login.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="reservation:#{loginController.validateLogin}:#billetterie#reservation.xhtml"
-    NAME="output" PATH="/billetterie/reservation.xhtml"
-    TARGET="rules:#billetterie#reservation.xhtml"
-    TITLE="#{loginController.validateLogin}:reservation" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#billetterie#verificationPanier.xhtml"
-  PATH="/billetterie/verificationPanier.xhtml" SHAPE="32,1041,0,0" model-entity="JSFProcessGroup">
+  PATH="/billetterie/verificationPanier.xhtml" SHAPE="240,1025,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#billetterie#verificationPanier.xhtml:0"
    NAME="item" PATH="/billetterie/verificationPanier.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -147,7 +154,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#billetterie#completePayment.xhtml"
-  PATH="/billetterie/completePayment.xhtml" SHAPE="272,1057,0,0" model-entity="JSFProcessGroup">
+  PATH="/billetterie/completePayment.xhtml" SHAPE="32,1297,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#billetterie#completePayment.xhtml:0"
    NAME="item" PATH="/billetterie/completePayment.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -158,7 +165,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#billetterie#validatePayment.xhtml"
-  PATH="/billetterie/validatePayment.xhtml" SHAPE="528,1041,0,0" model-entity="JSFProcessGroup">
+  PATH="/billetterie/validatePayment.xhtml" SHAPE="240,1313,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#billetterie#validatePayment.xhtml:0"
    NAME="item" PATH="/billetterie/validatePayment.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -177,7 +184,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#billetterie.xhtml" PATH="/billetterie.xhtml"
-  SHAPE="528,753,0,0" model-entity="JSFProcessGroup">
+  SHAPE="496,1185,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#billetterie.xhtml:0" NAME="item"
    PATH="/billetterie.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="reservation::#billetterie#reservation.xhtml"
@@ -185,8 +192,8 @@
     TARGET="rules:#billetterie#reservation.xhtml" TITLE="reservation" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#billetterie#telechargement.xhtml"
-  PATH="/billetterie/telechargement.xhtml" SHAPE="752,1057,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#crowdfunding#projects.xhtml"
   PATH="/crowdfunding/projects.xhtml" SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#billetterie#telechargement.xhtml"
+  PATH="/billetterie/telechargement.xhtml" SHAPE="496,1297,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

@@ -11,6 +11,7 @@
 			<from-outcome>billetterie</from-outcome>
 			<to-view-id>/billetterie.xhtml</to-view-id>
 		</navigation-case>
+
 	</navigation-rule>
 
 	<navigation-rule>
@@ -110,6 +111,7 @@
 			<to-view-id>/billetterie/reservation.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
+
 	</navigation-rule>
 
 	<navigation-rule>
@@ -153,8 +155,15 @@
 			<to-view-id>/membership/showMember.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-		<navigation-rule>
+	<navigation-rule>
+		<from-view-id>/membership/subMemberForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}</from-action>
+			<from-outcome>showMember</from-outcome>
+			<to-view-id>/membership/showMember.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<from-view-id>/indexOhana.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{loginController.logout()}</from-action>
@@ -162,7 +171,5 @@
 			<to-view-id>/indexOhana.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-
 
 </faces-config>

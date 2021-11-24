@@ -1,7 +1,7 @@
 package fr.isika.cda11.ohana.project.common.repository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
@@ -9,15 +9,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
-import fr.isika.cda11.ohana.project.common.dto.AddressDto;
 import fr.isika.cda11.ohana.project.common.factories.AccountFactory;
-import fr.isika.cda11.ohana.project.common.factories.AddressFactory;
 import fr.isika.cda11.ohana.project.common.models.Account;
-import fr.isika.cda11.ohana.project.common.models.Address;
 
 
 @Stateless
 public class AccountRepos {
+	private static final String SELECT_ACCOUNT_BY_LOGIN_AND_PASSWORD = "SELECT a FROM Account a WHERE a.accountLogin =: loginParam AND a.accountPassword =: pwdParam";
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -53,4 +51,16 @@ public class AccountRepos {
 			entityManager.remove(account);
 		}
 	}
+
+	public Optional<AccountDto> findByLoginAndPassword(String login, String password) {
+		Account account = this.entityManager.createQuery(SELECT_ACCOUNT_BY_LOGIN_AND_PASSWORD, Account.class)
+				.setParameter("loginParam", login)
+				.setParameter("pwdParam", password)
+				.getSingleResult();
+		if(account != null) {
+			return Optional.of(AccountFactory.fromAccount(account));
+		}
+		return Optional.empty();
+	}
 }
+

@@ -58,10 +58,8 @@ public class AccountController implements Serializable{
 		this.accountnew = accountnew;
 	}
 
-		
 	//CREATE AN ACCOUNT
 	public String createnewAccount() {
-		
 		accountnew= accountService.createAccountervice(newAccountDto, newInfoPersonDto, newContactDto, newAddressDto);
 		newAccountDto = new AccountDto();
 		newInfoPersonDto = new InfoPersonDto();
@@ -69,8 +67,7 @@ public class AccountController implements Serializable{
 		if(accountnew.getRole().equals(EnumRole.ASSOCIATION)) {
 			return "/association/createAssociationForm";
 		}
-		return "accountvalidate";
+		return "login";
 	}
 
 }
-

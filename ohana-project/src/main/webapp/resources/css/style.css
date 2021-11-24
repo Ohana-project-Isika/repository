@@ -298,6 +298,9 @@ nav.nav li {
 	color: white;
 }
 
+.news-title a.item-li{
+	color: black;
+}
 /* Page Heading */
 
 .page-heading{
@@ -310,6 +313,15 @@ nav.nav li {
 	font-size: 38px;
 	font-weight: 700;
 	margin-bottom: 20px;
+}
+
+
+h2.subscribe{
+	font-size: 30px;
+	font-weight: bold;
+	color:#ffc40c;
+
+	
 }
 
 .page-heading p {
@@ -328,6 +340,7 @@ nav.nav li {
 }
 
 .section-heading h2 {
+<<<<<<< HEAD
 	margin-top: 70px;
 	font-size: 24px;
 	font-weight: 700;
@@ -341,3 +354,59 @@ nav.nav li {
 	flex-direction: column;
 	align-items: center;
 }
+=======
+    margin-top: 70px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+input[type=submit]{
+    padding:5px 15px; 
+    background:#ffc40c; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    width:800px;
+    font-weight: bold;
+    color:white;
+}
+/* pretty radio */
+label > input[type="radio"] {
+  display: none;
+}
+label > input[type="radio"] + *::before {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: gray;
+}
+label > input[type="radio"]:checked + * {
+  color: teal;
+}
+label > input[type="radio"]:checked + *::before {
+  background: radial-gradient(teal 0%, teal 40%, transparent 50%, transparent);
+  border-color: teal;
+}
+
+/* basic layout */
+fieldset {
+  margin: 20px;
+  max-width: 400px;
+}
+label > input[type="radio"] + * {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+}
+
+.loginform{
+	margin-top:100px;
+}
+>>>>>>> fbf4430 (partie login)

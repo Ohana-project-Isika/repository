@@ -16,7 +16,11 @@ import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_CONNEC
 @Stateless
 public class LoginService implements Serializable {
 
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6899453663359613359L;
+	@Inject
     private LoginRepository loginRepository;
 
     public void isLoggedIn(Account account) {
@@ -26,7 +30,13 @@ public class LoginService implements Serializable {
         session.setAttribute(ACCOUNT_CONNECTED, true);
     }
 
-    public Account validateLogin(String username, String password) {
-        return loginRepository.validateLogin(username, password);
+    public boolean isLoginValid(String username, String password) {
+        for (Account a : loginRepository.validateAccount(username, password)) {
+            if (username.equals(a.getAccountLogin()) && password.equals(a.getAccountPassword())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

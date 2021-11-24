@@ -3,9 +3,12 @@ package fr.isika.cda11.ohana.project.common.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
+import com.google.protobuf.Option;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.AddressDto;
@@ -50,6 +53,10 @@ public class AccountService {
 
 		public List<AccountDto> listAccountService() {
 			return accountRepos.listAccountRepos();
+		}
+		
+		public Optional<AccountDto> findByLoginAndPassword(String login, String password) {
+			return accountRepos.findByLoginAndPassword(login, password);
 		}
 		
 		//UPDATE
