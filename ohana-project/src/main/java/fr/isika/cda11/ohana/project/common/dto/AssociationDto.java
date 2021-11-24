@@ -17,7 +17,16 @@ import fr.isika.cda11.ohana.project.common.models.Account;
 import fr.isika.cda11.ohana.project.common.models.Address;
 import fr.isika.cda11.ohana.project.common.models.Services;
 import fr.isika.cda11.ohana.project.enumclass.ValidateStatusAsso;
+import fr.isika.cda11.ohana.project.event.models.Ticketing;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 public class AssociationDto  implements Serializable{
 
 	/**
@@ -32,6 +41,7 @@ public class AssociationDto  implements Serializable{
 	private String logoAsso;
 	private String justifAsso;
 	private String numSiret;
+	private Ticketing ticketing;
 	
 	//RELATIONS
 	private AddressDto addressAsso;
@@ -117,6 +127,14 @@ public class AssociationDto  implements Serializable{
 		return serialVersionUID;
 	}
 
+	public Ticketing getTicketing() {
+		return ticketing;
+	}
+
+	public void setTicketing(Ticketing ticketing) {
+		this.ticketing = ticketing;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -130,6 +148,7 @@ public class AssociationDto  implements Serializable{
 		result = prime * result + ((numSiret == null) ? 0 : numSiret.hashCode());
 		result = prime * result + ((services == null) ? 0 : services.hashCode());
 		result = prime * result + ((validateStatusAsso == null) ? 0 : validateStatusAsso.hashCode());
+		result = prime * result + ((ticketing == null) ? 0 : ticketing.hashCode());
 		return result;
 	}
 

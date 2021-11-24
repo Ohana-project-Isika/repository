@@ -14,17 +14,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="#{eventsControllerDetails.event.imageFileName}" alt=""/>
+                            <img src="http://localhost:8080/ohana-project/resources/img/#{eventsControllerDetails.event.imageFileName}" alt=""/>
                             <div class="down-content">
                                 <h1><h:outputText value="#{eventsControllerDetails.event.name}" /></h1>
+                                <h2><h:outputText value="#{eventsControllerDetails.event.ticketing.association.nameAssos}" /></h2>
                                 <p><strong><h:outputText value="#{eventsControllerDetails.event.description}" /></strong>
-                                    <br/>
-                                    Phasellus dictum nisl id augue ornare, vel
-                                    interdum nibh mollis. Vestibulum ante ipsum
-                                    primis in faucibus orci luctus et ultrices posuere
-                                    cubilia Curae; Class aptent taciti sociosqu ad
-                                    litora torquent per conubia nostra, per inceptos himenaeos.
-                                    <br/>
                                     <strong>du </strong> <h:outputText value="#{eventsControllerDetails.event.startDate}" />
                                     <strong>au </strong> <h:outputText value="#{eventsControllerDetails.event.endDate}" />
                                     <br/>

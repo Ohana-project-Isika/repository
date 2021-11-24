@@ -5,8 +5,4 @@
 .tern-project
 .metadata/
 /ohana-project/ohana-project.iml
-<<<<<<< HEAD
 .idea/
-=======
-.idea/
->>>>>>> 33a9876 (gitignore)

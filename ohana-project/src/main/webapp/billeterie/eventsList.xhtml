@@ -46,7 +46,10 @@
                     <div class="col-md-12">
                         <div class="default-table">
                             <h:form>
-                                <h:dataTable value="#{eventsListController.events}"
+                                <h:outputText id="msg" value="" binding="#{eventsListController.component}"/>
+                                <h:message for="msg"/>
+                                <h:dataTable value="#{eventsListController.listEventByAsso()}"
+                                             rendered="#{(eventsListController.events.size() != 0)}"
                                              var="event"
                                              headerClass="eventTableHeader"
                                              rowClasses="eventTableOddRow,eventTableEvenRow">

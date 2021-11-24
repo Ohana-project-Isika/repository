@@ -15,8 +15,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda11.ohana.project.enumclass.ValidateStatusAsso;
+import fr.isika.cda11.ohana.project.event.models.Ticketing;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @NamedQueries({
 	@NamedQuery(name = "association.findAll", query = "SELECT c FROM Association c")})
 public class Association {
@@ -33,6 +42,8 @@ public class Association {
 	private String justifAsso;
 	@Column(nullable=false)
 	private String numSiret;
+	@OneToOne
+	private Ticketing ticketing;
 	
 	//RELATIONS
 	@OneToOne(cascade = CascadeType.ALL)
