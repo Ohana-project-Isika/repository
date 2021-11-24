@@ -5,6 +5,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.factories.PrivatePersonFactory;
@@ -34,6 +36,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.List;
 
 import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIBUTE;
 
@@ -43,7 +46,12 @@ import static fr.isika.cda11.ohana.project.common.models.Constant.ACCOUNT_ATTRIB
 @Setter
 public class PaymentController implements Serializable {
 
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1265155192412891891L;
+
+	@Inject
     private PaymentService paymentService;
 
     @Inject
@@ -101,7 +109,7 @@ public class PaymentController implements Serializable {
                     "poursuivre le paiement"));
             return "";
         } else {
-            return "verificationPanier";
+            return "verificationPanier?faces-redirect=true";
         }
     }
 
@@ -156,7 +164,7 @@ public class PaymentController implements Serializable {
         this.ticket = ticket;
 
         //data that we want to store in the QR code
-        byte[] bytes = String.format("MON BILLET\n" +
+        String string = String.format("MON BILLET\n" +
                 "----------\n" +
                 "INFORMATIONS PERSONNELLES \n" +
                 "Prénom : %s\n" +
@@ -198,8 +206,9 @@ public class PaymentController implements Serializable {
                 ticket.getPreTaxPrice(),
                 ticket.getTvaRate(),
                 ticket.getPostTaxPrice()
-        ).getBytes(StandardCharsets.UTF_8);
+        );
 
+        byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
         String utf8EncodedString = new String(bytes, StandardCharsets.UTF_8);
 
         int size = 400;
@@ -214,12 +223,19 @@ public class PaymentController implements Serializable {
             e.printStackTrace();
         }
 
-        String imageFormat = "png";
+        String imageFormat = "pdf";
         File imagesDir = new File(System.getProperty("jboss.server.data.dir"), "images");
         imagesDir.mkdir();
-        File file = new File(imagesDir, "qrCode" + ticket.getId() + ".png");
+        File file = new File(imagesDir, "qrCode" + ticket.getId() + ".pdf");
         this.file = file;
         ticketFile = file.getAbsolutePath();
+        try {
+            pdfMaker(file, string);
+        } catch (DocumentException e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
+            e.printStackTrace();
+        }
 
         // write in a file
         try {
@@ -231,6 +247,27 @@ public class PaymentController implements Serializable {
         }
 
         return "telechargement?faces-redirect=true";
+    }
+
+    public void pdfMaker(File file, String text) throws FileNotFoundException, DocumentException {
+        // Create a new document.
+        Document document = new Document();
+        // Get an instance of PdfWriter and create a HelloWorld.pdf
+        // file as an output.
+        PdfWriter.getInstance(document, new FileOutputStream("HelloWorld.pdf"));
+        document.open();
+
+        // Create our first paragraph for the pdf document to be
+        // created. We also set the alignment and the font of the
+        // paragraph.
+        Paragraph paragraph = new Paragraph(text);
+        paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
+        paragraph.setFont(new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL));
+
+        document.add(paragraph);
+        document.close();
+
+        System.out.println("Fin de la méthode");
     }
 
     public Date setMinExpiry() {
@@ -247,7 +284,7 @@ public class PaymentController implements Serializable {
     }
 
     private static void writeImage(File outputFileName, String imageFormat, BitMatrix bitMatrix) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(outputFileName);
+        FileOutputStream fileOutputStream = new FileOutputStream(outputFileName, true);
         MatrixToImageWriter.writeToStream(bitMatrix, imageFormat, fileOutputStream);
         fileOutputStream.close();
     }

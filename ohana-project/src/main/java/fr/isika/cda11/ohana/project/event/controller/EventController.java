@@ -26,7 +26,12 @@ import java.util.Map;
 @Setter
 public class EventController implements Serializable {
 
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4803214940640532897L;
+
+	@Inject
     private EventService eventService;
 
     private List<Event> events;
