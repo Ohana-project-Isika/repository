@@ -5,10 +5,12 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Tp Gestion</title>
+    <title>Connexion</title>
+    <link rel="stylesheet" href="/resources/css/login.css"/>
 </h:head>
-<h:body>
-    <h:form>
+<h:body style="background: no-repeat url('resources/gfx/kidds.png');">
+    <h:form style="margin-left: 35em;
+    margin-top: 15em;">
         <h2>Se Connecter</h2>
         <br></br>
         <h:panelGrid columns="3" cellpadding="5" style="position: relative; right: 0;">
@@ -26,6 +28,8 @@
         </h:panelGrid>
         <h4>
             <h:link outcome="index" value="Retour vers l'accueil" />
+            <span>   </span>
+            <h:link outcome="createAccount" value="Créer un compte" />
         </h4>
     </h:form>
 </h:body>
