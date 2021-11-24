@@ -21,6 +21,7 @@ public final class AssociationFactory {
 		association.setServices(ServicesFactory.fromServicesDto(associationDto.getServices()));
 		association.setAccount(AccountFactory.fromAccountDto(associationDto.getAccount()));
 		association.setIdAssos(associationDto.getIdAssos());
+		association.setTicketing(associationDto.getTicketing());
 		return association;
 	}
 	
@@ -35,6 +36,7 @@ public final class AssociationFactory {
 		associationDto.setServices(ServicesFactory.fromServices(association.getServices()));
 		associationDto.setAccount(AccountFactory.fromAccount(association.getAccount()));
 		associationDto.setIdAssos(Long.valueOf(association.getIdAssos()));
+		associationDto.setTicketing(association.getTicketing());
 		return associationDto;
 	}
 	

@@ -49,20 +49,24 @@ public class EventsListController implements Serializable {
 		this.events = events;
 	}
 
-    public String listEventByAsso(){
+    public List<Event> listEventByAsso(){
         events.clear();
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
                 .getSession(false);
         if (session.getAttribute(ACCOUNT_ATTRIBUTE) != null) {
             AssociationDto associationDto = associationService.findAssociationByIdService((Long)session.getAttribute(ACCOUNT_ATTRIBUTE));
             events.addAll(associationDto.getTicketing().getEvents());
-            FacesContext context = FacesContext.getCurrentInstance();
-
-            context.addMessage(component.getClientId(), new FacesMessage("Vous n'avez aucun évènement actuellement"));
-            return "";
+            if (!events.isEmpty())
+                return events;
+            else {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(component.getClientId(), new FacesMessage("Vous n'avez aucun évènement actuellement"));
+            }
         } else {
-            return "verificationPanier";
+            return eventService.findAll();
         }
+
+        return null;
     }
 
     private void foreach() {

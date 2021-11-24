@@ -48,7 +48,8 @@
                             <h:form>
                                 <h:outputText id="msg" value="" binding="#{eventsListController.component}"/>
                                 <h:message for="msg"/>
-                                <h:dataTable value="#{eventsListController.events}"
+                                <h:dataTable value="#{eventsListController.listEventByAsso()}"
+                                             rendered="#{(eventsListController.events.size() != 0)}"
                                              var="event"
                                              headerClass="eventTableHeader"
                                              rowClasses="eventTableOddRow,eventTableEvenRow">
