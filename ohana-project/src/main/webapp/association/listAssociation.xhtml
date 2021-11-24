@@ -42,11 +42,15 @@
 										<img src="#{o.logoAsso}" alt="#" class="img-fluid" />
 									</div>
 									<div class="news-title">
+									<br></br>
 										<h5>#{o.nameAssos}</h5>
-										<h:commandLink value="Voir"
+										<p>________________________________</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+										<br></br>
+										<h:commandLink class="item-li" value="Voir"
 											action="#{associationController.ShowAssociation(o.idAssos)}" />
 										|
-										<h:commandLink value="Adhérer"
+										<h:commandLink class="item-li" value="Adhérer"
 											action="#{membershipController.subMemberForm(o.idAssos)}" />
 									</div>
 								</h:form>

@@ -26,7 +26,7 @@
 		<li class="nav-item"><img class="logoOhana"
 			src="http://localhost:8080/ohana-project/resources/img/logo_ohana.svg"
 			alt="" /></li>
-		<li class="nav-item"><h:link outcome="/index" value="Accueil"></h:link>:</li>
+		<li class="nav-item"><h:link outcome="/index" value="Accueil"></h:link></li>
 		<li class="nav-item"><h:link
 				outcome="/association/listAssociation" value="Associations" /></li>
 		<li class="nav-item"><h:link outcome="/crowdfunding/projects"
@@ -41,7 +41,9 @@
 		<h:link outcome="/login.xhtml" value="#{loginController.viewParamLogged()}" />
 		</li>
 		<li>
-		<h:commandLink action="#{loginController.logout()}" value="DECONEXION" rendered="#{loginController.isConnected}"/>
+		<h:form>
+		<h:commandLink action="#{loginController.logout()}" value="DECONNEXION" rendered="#{loginController.isConnected}"/>
+		</h:form>
 		</li>
 	</ul>
 	</nav> </header>

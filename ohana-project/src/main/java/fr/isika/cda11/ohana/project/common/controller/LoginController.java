@@ -56,7 +56,7 @@ public class LoginController implements Serializable {
             List<AccountDto> accounts = new ArrayList<AccountDto>();
             AccountDto accountconnected=new AccountDto();
             accounts = accountService.listAccountService();
-            isConnected();
+            setConnected();
             for(AccountDto accountdto: accounts) {
             	if(accountdto.getAccountLogin().equals(account.getAccountLogin()) && accountdto.getAccountPassword().equals(account.getAccountPassword())){
                    accountconnected= accountdto;
@@ -101,14 +101,18 @@ public String outcomeLogged() {
 	}
 }
 
+private void setConnected() {
+	isConnected = true;
+}
+
 public Boolean isConnected() {
-	isConnected=true;
+	//isConnected=true;
 	
 	return isConnected;
 }
 
 public String openLogin() {
-	return "login?faces-redirect-true";
+	return "login?faces-redirect=true";
 }
     
     public String logout() {
@@ -118,7 +122,7 @@ public String openLogin() {
         clearLoggedUser();
         isConnected=false;
         loggedUser=null;
-        return "indexOhana";
+        return "indexOhana?faces-redirect=true";
     }
 
     private void clearLoggedUser() {

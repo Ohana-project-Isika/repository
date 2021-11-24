@@ -76,4 +76,15 @@
     TITLE="#{loginController.logout()}:indexOhana" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#membership#subMemberForm.xhtml"
+  PATH="/membership/subMemberForm.xhtml" SHAPE="32,641,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#membership#subMemberForm.xhtml:0" NAME="item"
+   PATH="/membership/subMemberForm.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showMember:#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}:#membership#showMember.xhtml"
+    NAME="output" PATH="/membership/showMember.xhtml"
+    TARGET="rules:#membership#showMember.xhtml"
+    TITLE="#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}:showMember" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

@@ -4,12 +4,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	template="/WEB-INF/templates/layout.xhtml"
+	template="/WEB-INF/templates/layout2.xhtml"
 	xmlns:p="http://primefaces.org/ui">
-
-
 	<ui:define name="head">
-		<h:outputStylesheet name="css/table.css" />
+		<h:outputStylesheet name="css/style.css" />
+		<h:outputStylesheet name="css/SimplePage.css" />
 	</ui:define>
 	<ui:define name="content">
 		<div id="container">
@@ -17,8 +16,7 @@
 				<f:view>
 					<h1>Creation d'un compte</h1>
 					<h:form method="post">
-						<h:panelGrid columns="2">
-
+						<h:panelGrid columns="1">
 							<h:outputText value="Prénom :" />
 							<h:inputText id="prenom"
 								value="#{accountController.newInfoPersonDto.firstName}" />
@@ -43,7 +41,6 @@
 							<h:outputText value="Numéro de téléphone principal :" />
 							<h:inputText id="number1"
 								value="#{accountController.newContactDto.phoneNb}" />
-
 
 							<h:outputText value="Numéro de téléphone secondaire :" />
 							<h:inputText id="number2"
