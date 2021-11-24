@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,8 +31,19 @@ public class Project {
 	
 	private Date endDate;
 	
+	@Lob
 	private String description;
 	
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
 	private List<Funding> fundings = new ArrayList<Funding>();
 	
