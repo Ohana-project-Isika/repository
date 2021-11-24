@@ -37,13 +37,6 @@ public class EventService implements Serializable {
 		}
 	}
 
-	public void displayNoEventMsg(List<Event> events, UIComponent component) {
-		if (events.size() == 0) {
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(component.getClientId(), new FacesMessage("Il n'existe pas d'évènements pour le moment"));
-		}
-	}
-
 	public List<Event> findAllEvents() {
 		return manageEvents(eventRepository.findAllEvents());
 	}

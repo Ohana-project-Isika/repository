@@ -9,7 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="FRONT SUCCESSFUL." />
+    <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="FRONT SUCCESSFUL.">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fe07073e-5104-4169-99e0-baa4cf4ab3fc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="preprod" />
+        <entry key="$PROJECT_DIR$" value="preprod3.2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -226,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637758796023</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="FRONT SUCCESSFUL.">
+      <created>1637768494305</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1637768494305</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

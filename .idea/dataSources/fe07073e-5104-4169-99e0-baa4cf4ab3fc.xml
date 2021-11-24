@@ -1209,653 +1209,660 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>9</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="348" parent="296" name="FK3um1wdr57rq77pooiw4q8awai">
+    <column id="348" parent="296" name="ticketing_id">
+      <Position>10</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="349" parent="296" name="FK3um1wdr57rq77pooiw4q8awai">
       <ColNames>ACCOUNT_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="349" parent="296" name="FK9tok7vp1350auh55w5409kx5c">
+    <index id="350" parent="296" name="FK9tok7vp1350auh55w5409kx5c">
       <ColNames>ADDRESS_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="350" parent="296" name="FKi4usulek422o9438s7e35l4yo">
+    <index id="351" parent="296" name="FKi4usulek422o9438s7e35l4yo">
       <ColNames>SERVICES_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="351" parent="296" name="PRIMARY">
+    <index id="352" parent="296" name="FK74bhohgh33j40wfi1sj7bciva">
+      <ColNames>ticketing_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="353" parent="296" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idAssos</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="352" parent="297" name="idContact">
+    <column id="354" parent="297" name="idContact">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="353" parent="297" name="email">
+    <column id="355" parent="297" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="354" parent="297" name="phoneNb">
+    <column id="356" parent="297" name="phoneNb">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="355" parent="297" name="phoneNb2">
+    <column id="357" parent="297" name="phoneNb2">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="356" parent="297" name="PRIMARY">
+    <key id="358" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idContact</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="357" parent="298" name="id">
+    <column id="359" parent="298" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="358" parent="298" name="creation_date">
+    <column id="360" parent="298" name="creation_date">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="359" parent="298" name="deletion_date">
+    <column id="361" parent="298" name="event_description">
       <Position>3</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="360" parent="298" name="event_description">
-      <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="361" parent="298" name="end_date">
-      <Position>5</Position>
+    <column id="362" parent="298" name="end_date">
+      <Position>4</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="362" parent="298" name="end_time">
-      <Position>6</Position>
+    <column id="363" parent="298" name="end_time">
+      <Position>5</Position>
       <DataType>time|0s</DataType>
     </column>
-    <column id="363" parent="298" name="image_description">
+    <column id="364" parent="298" name="image_description">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="365" parent="298" name="image_file_name">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="364" parent="298" name="image_file_name">
+    <column id="366" parent="298" name="modification_date">
       <Position>8</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>datetime|0s</DataType>
     </column>
-    <column id="365" parent="298" name="event_name">
+    <column id="367" parent="298" name="event_name">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="366" parent="298" name="start_date">
+    <column id="368" parent="298" name="start_date">
       <Position>10</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="367" parent="298" name="start_time">
+    <column id="369" parent="298" name="start_time">
       <Position>11</Position>
       <DataType>time|0s</DataType>
     </column>
-    <column id="368" parent="298" name="address_idAddress">
+    <column id="370" parent="298" name="address_idAddress">
       <Position>12</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="369" parent="298" name="ticketing_id">
+    <column id="371" parent="298" name="ticketing_id">
       <Position>13</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="370" parent="298" name="FKsrbqyd9msrs8ni880n144u6pb">
+    <index id="372" parent="298" name="FKsrbqyd9msrs8ni880n144u6pb">
       <ColNames>address_idAddress</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="371" parent="298" name="FKp51lvyjqnm5hqu0pvblik8j17">
+    <index id="373" parent="298" name="FKp51lvyjqnm5hqu0pvblik8j17">
       <ColNames>ticketing_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="372" parent="298" name="PRIMARY">
+    <key id="374" parent="298" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="373" parent="299" name="id">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="374" parent="299" name="address">
-      <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="375" parent="299" name="dateOfBirth">
-      <Position>3</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="376" parent="299" name="email">
-      <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="377" parent="299" name="firstName">
-      <Position>5</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="378" parent="299" name="lastName">
-      <Position>6</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="379" parent="299" name="phoneNumber">
-      <Position>7</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <key id="380" parent="299" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="381" parent="300" name="id">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="382" parent="300" name="fundingAmount">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="383" parent="300" name="funder_id">
-      <Position>3</Position>
-      <DataType>bigint|0s</DataType>
-    </column>
-    <column id="384" parent="300" name="project_id">
-      <Position>4</Position>
-      <DataType>bigint|0s</DataType>
-    </column>
-    <index id="385" parent="300" name="FKf3rifmqpvypr5f27bg3e8ej2o">
-      <ColNames>funder_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="386" parent="300" name="FKt7ux9yxblvsykke0fnp1x0tt2">
-      <ColNames>project_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="387" parent="300" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="388" parent="301" name="next_val">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-    </column>
-    <column id="389" parent="302" name="id">
+    <column id="375" parent="299" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <key id="390" parent="302" name="PRIMARY">
+    <column id="376" parent="299" name="privateperson_idPrivatePerson">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="377" parent="299" name="FKnulo2fb80yc2j2p40hxhj3i68">
+      <ColNames>privateperson_idPrivatePerson</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="378" parent="299" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="391" parent="303" name="ticket_id">
+    <column id="379" parent="300" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="380" parent="300" name="fundingAmount">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="381" parent="300" name="funder_id">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <column id="382" parent="300" name="project_id">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="383" parent="300" name="FKf3rifmqpvypr5f27bg3e8ej2o">
+      <ColNames>funder_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="384" parent="300" name="FKt7ux9yxblvsykke0fnp1x0tt2">
+      <ColNames>project_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="385" parent="300" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="386" parent="301" name="next_val">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <column id="387" parent="302" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <key id="388" parent="302" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="389" parent="303" name="ticket_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="392" parent="303" name="ticket_amount">
+    <column id="390" parent="303" name="ticket_amount">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="393" parent="303" name="individual_id">
+    <column id="391" parent="303" name="individual_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="394" parent="303" name="FK1vdc8hnb2knc7egwbixoqrsab">
+    <index id="392" parent="303" name="FK1vdc8hnb2knc7egwbixoqrsab">
       <ColNames>individual_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="395" parent="303" name="PRIMARY">
+    <key id="393" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ticket_id
 individual_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="396" parent="304" name="idInfoPers">
+    <column id="394" parent="304" name="idInfoPers">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="397" parent="304" name="dateOfBirth">
+    <column id="395" parent="304" name="dateOfBirth">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="398" parent="304" name="firstName">
+    <column id="396" parent="304" name="firstName">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="399" parent="304" name="lastName">
+    <column id="397" parent="304" name="lastName">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="400" parent="304" name="ADDRESS_ID">
+    <column id="398" parent="304" name="ADDRESS_ID">
       <Position>5</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="401" parent="304" name="CONTACT_ID">
+    <column id="399" parent="304" name="CONTACT_ID">
       <Position>6</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="402" parent="304" name="UK_aadxkaxg3k25n6htql71m66ue">
+    <index id="400" parent="304" name="UK_aadxkaxg3k25n6htql71m66ue">
       <ColNames>CONTACT_ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="403" parent="304" name="FKakqyvbvrr7otms0k6a1qfhd1d">
+    <index id="401" parent="304" name="FKakqyvbvrr7otms0k6a1qfhd1d">
       <ColNames>ADDRESS_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="404" parent="304" name="PRIMARY">
+    <key id="402" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idInfoPers</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="405" parent="304" name="UK_aadxkaxg3k25n6htql71m66ue">
+    <key id="403" parent="304" name="UK_aadxkaxg3k25n6htql71m66ue">
       <ColNames>CONTACT_ID</ColNames>
       <UnderlyingIndexName>UK_aadxkaxg3k25n6htql71m66ue</UnderlyingIndexName>
     </key>
-    <column id="406" parent="305" name="id">
+    <column id="404" parent="305" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="407" parent="305" name="cardNumber">
+    <column id="405" parent="305" name="cardNumber">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="408" parent="305" name="cvc">
+    <column id="406" parent="305" name="cvc">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="409" parent="305" name="expiry">
+    <column id="407" parent="305" name="expiry">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="410" parent="305" name="fullName">
+    <column id="408" parent="305" name="fullName">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="411" parent="305" name="privatePerson_idPrivatePerson">
+    <column id="409" parent="305" name="privatePerson_idPrivatePerson">
       <Position>6</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="412" parent="305" name="FK3asfn85n0hfqoyt9eodad5sqp">
+    <index id="410" parent="305" name="FK3asfn85n0hfqoyt9eodad5sqp">
       <ColNames>privatePerson_idPrivatePerson</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="413" parent="305" name="PRIMARY">
+    <key id="411" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="414" parent="306" name="idMember">
+    <column id="412" parent="306" name="idMember">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="415" parent="306" name="dateOfEnd">
+    <column id="413" parent="306" name="dateOfEnd">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="416" parent="306" name="dateOfStart">
+    <column id="414" parent="306" name="dateOfStart">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="417" parent="306" name="MEMBERSHIP_ID">
+    <column id="415" parent="306" name="MEMBERSHIP_ID">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="418" parent="306" name="PRIVATEPERSON_ID">
+    <column id="416" parent="306" name="PRIVATEPERSON_ID">
       <Position>5</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="419" parent="306" name="FKspc0q3jbcl7kyhmcglnf4sium">
+    <index id="417" parent="306" name="FKspc0q3jbcl7kyhmcglnf4sium">
       <ColNames>MEMBERSHIP_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="420" parent="306" name="FKpiftc7jpik8hxpa6hpb6khlgu">
+    <index id="418" parent="306" name="FKpiftc7jpik8hxpa6hpb6khlgu">
       <ColNames>PRIVATEPERSON_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="421" parent="306" name="PRIMARY">
+    <key id="419" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idMember</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="422" parent="307" name="idMbs">
+    <column id="420" parent="307" name="idMbs">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="423" parent="307" name="nameMbs">
+    <column id="421" parent="307" name="nameMbs">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="424" parent="307" name="priceOfFee">
+    <column id="422" parent="307" name="priceOfFee">
       <Position>3</Position>
       <DataType>decimal(19,2 digit)|0s</DataType>
     </column>
-    <column id="425" parent="307" name="MEMBERSHIPMANAGE_ID">
+    <column id="423" parent="307" name="MEMBERSHIPMANAGE_ID">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="426" parent="307" name="FKij68ahvnvlvv2i5rwe9hdantk">
+    <index id="424" parent="307" name="FKij68ahvnvlvv2i5rwe9hdantk">
       <ColNames>MEMBERSHIPMANAGE_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="427" parent="307" name="PRIMARY">
+    <key id="425" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idMbs</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="428" parent="308" name="id">
+    <column id="426" parent="308" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="429" parent="308" name="ASSOCIATION_ID">
+    <column id="427" parent="308" name="ASSOCIATION_ID">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="430" parent="308" name="FKfjkd7wgbk1d85lerdu432fg5d">
+    <index id="428" parent="308" name="FKfjkd7wgbk1d85lerdu432fg5d">
       <ColNames>ASSOCIATION_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="431" parent="308" name="PRIMARY">
+    <key id="429" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="432" parent="309" name="Order_id">
+    <column id="430" parent="309" name="Order_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="433" parent="309" name="events_id">
+    <column id="431" parent="309" name="events_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="434" parent="309" name="UK_ctyk4su5xecpie9lt1yy3vdm">
+    <index id="432" parent="309" name="UK_ctyk4su5xecpie9lt1yy3vdm">
       <ColNames>events_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="435" parent="309" name="UK_ctyk4su5xecpie9lt1yy3vdm">
+    <key id="433" parent="309" name="UK_ctyk4su5xecpie9lt1yy3vdm">
       <ColNames>events_id</ColNames>
       <UnderlyingIndexName>UK_ctyk4su5xecpie9lt1yy3vdm</UnderlyingIndexName>
     </key>
-    <column id="436" parent="310" name="idPayment">
+    <column id="434" parent="310" name="idPayment">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="437" parent="310" name="paymentDate">
+    <column id="435" parent="310" name="paymentDate">
       <Position>2</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="438" parent="310" name="paymentRef">
+    <column id="436" parent="310" name="paymentRef">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="439" parent="310" name="validated">
+    <column id="437" parent="310" name="validated">
       <Position>4</Position>
       <DataType>bit(1)|0s</DataType>
     </column>
-    <column id="440" parent="310" name="ACCOUNT_ID">
+    <column id="438" parent="310" name="ACCOUNT_ID">
       <Position>5</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="441" parent="310" name="PRIVATEPERSON_ID">
+    <column id="439" parent="310" name="PRIVATEPERSON_ID">
       <Position>6</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="442" parent="310" name="FK4vlsx39p8vsoshx66ygosmnpc">
+    <index id="440" parent="310" name="FK4vlsx39p8vsoshx66ygosmnpc">
       <ColNames>ACCOUNT_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="443" parent="310" name="FKqu5604mlbsjv4rt829j3kg9hl">
+    <index id="441" parent="310" name="FKqu5604mlbsjv4rt829j3kg9hl">
       <ColNames>PRIVATEPERSON_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="444" parent="310" name="PRIMARY">
+    <key id="442" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idPayment</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="445" parent="311" name="id">
+    <column id="443" parent="311" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="446" parent="311" name="privatePerson_idPrivatePerson">
+    <column id="444" parent="311" name="privatePerson_idPrivatePerson">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="447" parent="311" name="FK6sluxpx8fapancox5y6cjr0lr">
+    <index id="445" parent="311" name="FK6sluxpx8fapancox5y6cjr0lr">
       <ColNames>privatePerson_idPrivatePerson</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="448" parent="311" name="PRIMARY">
+    <key id="446" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="449" parent="312" name="idPrivatePerson">
+    <column id="447" parent="312" name="idPrivatePerson">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="450" parent="312" name="photoProfil">
+    <column id="448" parent="312" name="photoProfil">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="451" parent="312" name="ACCOUNT_ID">
+    <column id="449" parent="312" name="ACCOUNT_ID">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="452" parent="312" name="UK_kw30hk7gr5qrs8wwq0mr0w7m9">
+    <index id="450" parent="312" name="UK_kw30hk7gr5qrs8wwq0mr0w7m9">
       <ColNames>ACCOUNT_ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="453" parent="312" name="PRIMARY">
+    <key id="451" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idPrivatePerson</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="454" parent="312" name="UK_kw30hk7gr5qrs8wwq0mr0w7m9">
+    <key id="452" parent="312" name="UK_kw30hk7gr5qrs8wwq0mr0w7m9">
       <ColNames>ACCOUNT_ID</ColNames>
       <UnderlyingIndexName>UK_kw30hk7gr5qrs8wwq0mr0w7m9</UnderlyingIndexName>
     </key>
-    <column id="455" parent="313" name="id">
+    <column id="453" parent="313" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="456" parent="313" name="description">
+    <column id="454" parent="313" name="description">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>longtext|0s</DataType>
     </column>
-    <column id="457" parent="313" name="endDate">
+    <column id="455" parent="313" name="endDate">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="458" parent="313" name="financialGoal">
+    <column id="456" parent="313" name="financialGoal">
       <Position>4</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="459" parent="313" name="name">
+    <column id="457" parent="313" name="image">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="460" parent="313" name="startDate">
+    <column id="458" parent="313" name="name">
       <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="459" parent="313" name="startDate">
+      <Position>7</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <key id="461" parent="313" name="PRIMARY">
+    <column id="460" parent="313" name="ASSOCIATION_ID">
+      <Position>8</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="461" parent="313" name="FKrisjck28xepxa9v7de07dlf24">
+      <ColNames>ASSOCIATION_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="462" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="462" parent="314" name="idServices">
+    <column id="463" parent="314" name="idServices">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="463" parent="314" name="priceOfSub">
+    <column id="464" parent="314" name="priceOfSub">
       <Position>2</Position>
       <DataType>decimal(19,2 digit)|0s</DataType>
     </column>
-    <column id="464" parent="314" name="typeOfSub">
+    <column id="465" parent="314" name="typeOfSub">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="465" parent="314" name="PRIMARY">
+    <key id="466" parent="314" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idServices</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="466" parent="315" name="idSubFee">
+    <column id="467" parent="315" name="idSubFee">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="467" parent="315" name="dateOfEnd">
+    <column id="468" parent="315" name="dateOfEnd">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="468" parent="315" name="dateOfStart">
+    <column id="469" parent="315" name="dateOfStart">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="469" parent="315" name="feeAmount">
+    <column id="470" parent="315" name="feeAmount">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="470" parent="315" name="MEMBERSHIP_ID">
+    <column id="471" parent="315" name="MEMBERSHIP_ID">
       <Position>5</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="471" parent="315" name="UK_i7qkjl1salrs8iu8gkm2jplup">
+    <index id="472" parent="315" name="UK_i7qkjl1salrs8iu8gkm2jplup">
       <ColNames>MEMBERSHIP_ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="472" parent="315" name="PRIMARY">
+    <key id="473" parent="315" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idSubFee</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="473" parent="315" name="UK_i7qkjl1salrs8iu8gkm2jplup">
+    <key id="474" parent="315" name="UK_i7qkjl1salrs8iu8gkm2jplup">
       <ColNames>MEMBERSHIP_ID</ColNames>
       <UnderlyingIndexName>UK_i7qkjl1salrs8iu8gkm2jplup</UnderlyingIndexName>
     </key>
-    <column id="474" parent="316" name="id">
+    <column id="475" parent="316" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="475" parent="316" name="applied_TVA">
+    <column id="476" parent="316" name="applied_TVA">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="476" parent="316" name="pre_tax_price">
+    <column id="477" parent="316" name="pre_tax_price">
       <Position>3</Position>
       <DataType>decimal(19,2 digit)|0s</DataType>
     </column>
-    <column id="477" parent="316" name="rate_type">
+    <column id="478" parent="316" name="rate_type">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="478" parent="316" name="event_id">
+    <column id="479" parent="316" name="event_id">
       <Position>5</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="479" parent="316" name="privatePerson_idPrivatePerson">
+    <column id="480" parent="316" name="privatePerson_idPrivatePerson">
       <Position>6</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="480" parent="316" name="event_ticket_id">
+    <column id="481" parent="316" name="event_ticket_id">
       <Position>7</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="481" parent="316" name="FKsotv3qctce5ggaewd002dd71s">
+    <index id="482" parent="316" name="FKsotv3qctce5ggaewd002dd71s">
       <ColNames>event_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="482" parent="316" name="FKj4cqgd0frmosy4trk6kpcgqwx">
+    <index id="483" parent="316" name="FKj4cqgd0frmosy4trk6kpcgqwx">
       <ColNames>privatePerson_idPrivatePerson</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="483" parent="316" name="FKp9k7teqpcjeic8tq9we5y87ff">
+    <index id="484" parent="316" name="FKp9k7teqpcjeic8tq9we5y87ff">
       <ColNames>event_ticket_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="484" parent="316" name="PRIMARY">
+    <key id="485" parent="316" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="485" parent="317" name="id">
+    <column id="486" parent="317" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="486" parent="317" name="applied_TVA">
+    <column id="487" parent="317" name="applied_TVA">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="487" parent="317" name="ticketing_name">
+    <column id="488" parent="317" name="ticketing_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="488" parent="317" name="oldPostTaxPrice">
+    <column id="489" parent="317" name="oldPostTaxPrice">
       <Position>4</Position>
       <DataType>decimal(19,2 digit)|0s</DataType>
     </column>
-    <column id="489" parent="317" name="pre_tax_price">
+    <column id="490" parent="317" name="pre_tax_price">
       <Position>5</Position>
       <DataType>decimal(19,2 digit)|0s</DataType>
     </column>
-    <column id="490" parent="317" name="rate_type">
+    <column id="491" parent="317" name="rate_type">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="491" parent="317" name="association_idAssos">
+    <column id="492" parent="317" name="association_idAssos">
       <Position>7</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="492" parent="317" name="FKmy4b8uvhml1ciniheeiwrroq8">
+    <index id="493" parent="317" name="FKmy4b8uvhml1ciniheeiwrroq8">
       <ColNames>association_idAssos</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="493" parent="317" name="PRIMARY">
+    <key id="494" parent="317" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
