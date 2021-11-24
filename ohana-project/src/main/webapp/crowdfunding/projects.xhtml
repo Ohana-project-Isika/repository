@@ -30,7 +30,7 @@
 							<div class="row">
 								<div class="col-12">
 									<h:form>
-										<h:dataTable value="#{projectMB.projects}" var="o">
+										<h:dataTable value="#{projectMB.projectsByAssos}" var="o">
 
 											<h:column>
 												<h:selectBooleanCheckbox />
@@ -67,7 +67,7 @@
 
 
 											<h:column>
-												<f:facet name="header">Nombre de financeurs</f:facet>
+												<f:facet name="header">Nombre de contributeurs</f:facet>
 												<h:outputText value="#{fundingMB.countFundings(o.id)}" />
 											</h:column>
 

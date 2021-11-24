@@ -9,13 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import fr.isika.cda11.ohana.project.common.models.Association;
 
 @Entity
 public class Project {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;
@@ -26,11 +31,38 @@ public class Project {
 	
 	private Date endDate;
 	
+	@Lob
 	private String description;
 	
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
 	private List<Funding> fundings = new ArrayList<Funding>();
 	
+	@ManyToOne
+	@JoinColumn(name="ASSOCIATION_ID")
+	private Association association;
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Association getAssociation() {
+		return association;
+	}
+
+	public void setAssociation(Association association) {
+		this.association = association;
+	}
+
 	public void addFunding(Funding funding) {
 		this.fundings.add(funding);
 	}

@@ -124,6 +124,11 @@
 			<from-outcome>bar</from-outcome>
 			<to-view-id>/bar.xhtml</to-view-id>
 		</navigation-case>
+				<navigation-case>
+			<from-action>#{projectMB.listProjectByAssos(o.idAssos)}</from-action>
+			<from-outcome>projects</from-outcome>
+			<to-view-id>/crowdfunding/projects.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
@@ -157,5 +162,7 @@
 			<to-view-id>/indexOhana.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+
 
 </faces-config>

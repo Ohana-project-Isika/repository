@@ -2,14 +2,12 @@
 #      PREFER @GeneratedValue(strategy = GenerationType.IDENTITY) TO @GeneratedValue(strategy = GenerationType.AUTO)
 #      BECAUSE PRIMARY KEY DOES NOT HAVE A DEFAULT VALUE WITH THE LATTER WHILE IT DOES WITH THE FORMER
 
-USE `ohana-database`;
-ALTER DATABASE `ohana-database` CHARACTER SET utf8 COLLATE utf8_general_ci;
+ USE `ohana-database`;
 #COMMON----------------------------------------------------------------------------------------------------
 #ADDRESS TABLE
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (1, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (2, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'Allée Isika', '87000', 'Limoges', 'France');
-
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (111, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (122, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (133, 'Allée Isika', '87000', 'Limoges', 'France');
@@ -20,7 +18,6 @@ ALTER DATABASE `ohana-database` CHARACTER SET utf8 COLLATE utf8_general_ci;
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (188, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (199, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (110, 'Allée Isika', '87000', 'Limoges', 'France');
-
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (4, 'Rue de la mairie', '94400', 'Vitry-sur-seine', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (5, 'Avenue Jean Jaures', '92100', 'Boulogne-Billancourt', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (6, 'Boulevard Rosa Luxembourg', '75017', 'Paris', 'France');
@@ -29,13 +26,13 @@ ALTER DATABASE `ohana-database` CHARACTER SET utf8 COLLATE utf8_general_ci;
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (12, 'rue de gometz', '91470', 'Les Molières', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (7, '11 rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (8, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'route de Verdun', '21200', 'BEAUNE', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue de gometz', '91470', 'Les Molières', 'France');
+ INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (11, 'rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (9, 'route de Verdun', '21200', 'BEAUNE', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue de gometz', '91470', 'Les Molières', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (11, 'rue Jean-Jacques Henner', '68130', 'Altkirch', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (9, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (13, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
-
-
+ 
 #CONTACT TABLE
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0111111111','0611111111','contact01@gmail.com');
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0122222222','0622222222','contact02@gmail.com');
@@ -82,17 +79,33 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PRIVATEPERSON','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtreize'));
 
-
+ 
  #ADMIN TABLE
  INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
-INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID) VALUES ('Mon cahier pour en parler', 10000,'2021-08-15', '2022-01-01', 'Bien souvent l\'entourage est démuni : que dire aux enfants ? Comment parler de la mort avec eux et les accompagner au mieux ? Dans le contexte actuel qui nous confronte sans cesse à la mort, ce cahier proposé gratuitement est d\'autant plus utile et nécessaire.', 3);
-
-
-#ADMIN TABLE
-INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
 
  #SERVICE TABLE
  INSERT INTO Services(typeOfSub, priceOfSub) VALUES ('premium', 49);
+ 
+ #ASSOCIATION TABLE
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('aapeec', 'VALIDATED', '../resources/logoAssociation/aapeec.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 111),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'aapeec'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('actionSolidairePartage', 'VALIDATED', '../resources/logoAssociation/actionSolidairePartage.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 122),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'actionSolidairePartage'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('AEJBM', 'VALIDATED', '../resources/logoAssociation/AEJBM.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 133),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'AEJBM'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('efa', 'VALIDATED', '../resources/logoAssociation/efa.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 144),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'efa'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('enfanceEtPartage', 'VALIDATED', '../resources/logoAssociation/enfanceEtPartage.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 155),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'enfanceEtPartage'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('laVoixDeLEnfant', 'VALIDATED', '../resources/logoAssociation/laVoixDeLEnfant.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 166),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'laVoixDeLEnfant'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('paroleDEnfant', 'VALIDATED', '../resources/logoAssociation/paroleDEnfant.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 177),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'paroleDEnfant'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('Reves', 'VALIDATED', '../resources/logoAssociation/Reves.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 188),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'Reves'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('terreDesEnfants', 'VALIDATED', '../resources/logoAssociation/terreDesEnfants.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 199),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'terreDesEnfants'));
+ INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID) VALUES ('unEnfantDesSourires', 'VALIDATED', '../resources/logoAssociation/unEnfantDesSourires.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 110),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'unEnfantDesSourires'));
+
+ #PRIVATEPERSON TABLE
+ INSERT INTO PrivatePerson(photoProfil, ACCOUNT_ID ) VALUES ('photo1',(SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
+ 
+ #MEMBERSHIPMANAGE TABLE
+ INSERT INTO Membershipmanage(ASSOCIATION_ID) VALUES (1);
+ 
+ #ADMIN TABLE
+ INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
 
 # TICKETING TABLE
 INSERT INTO ticketing (ticketing_name) VALUES ('billeterie');
@@ -130,20 +143,20 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 40.00, 1);
 
  #MEMBER TABLE
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact16@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact17@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact18@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact19@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact20@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact21@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact22@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact23@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777');
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777');
-
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact16@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact17@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact18@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact19@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact20@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact21@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact22@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact23@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777')
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777')
+ 
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (14, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (15, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue Georges Member', '06600', 'Antibes', 'France');
@@ -158,7 +171,7 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (25, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (26, 'rue Georges Member', '06600', 'Antibes', 'France');
 
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-14', 'tato', 'ziti', 27, 14);
+INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-14', 'tato', 'ziti', 27, 14);
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-15', 'teto', 'yiti', 28, 15);
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-16', 'tito', 'titi', 29, 16);
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-17', 'toto', 'siti', 30, 17);
@@ -185,7 +198,6 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'kk', '0000','PRIVATEPERSON', 24);
  INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'll', '0000','PRIVATEPERSON', 25);
  INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'mm', '0000','PRIVATEPERSON', 26);
-
 
  INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 13);
  INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 14);
@@ -216,14 +228,11 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 13);
  INSERT INTO Member(dateOfEnd, dateOfStart, MEMBERSHIP_ID, PRIVATEPERSON_ID) VALUE ('2022-11-21', '2021-11-21', 3, 14);
  
+ 
  #PAIEMENT TABLE
  INSERT INTO Paiement(paymentRef, validated, paymentDate, ACCOUNT_ID) VALUES ('Ref1', 1, '2021-01-01', (SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
 
 #EVENT---------------------------------------------------------------------------------------------------------------------------
-
-# TICKETING TABLE
-INSERT INTO ticketing (ticketing_name, association_idAssos) VALUES ('ticketing', (SELECT idAssos FROM association WHERE nameAssos = 'aapeec'));
-
 # EVENT TABLE
 INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Les Enfants d\'abord', 'Contre la maltraitance des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 2), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
 INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Ohana Kids', 'Gâtons nos enfants', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 1), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
@@ -237,6 +246,12 @@ INSERT INTO event (image_file_name, event_name, event_description, start_date, e
 INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Ne grandissons pas vite', 'Fait par des enfants pour des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 13), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
 
 # TICKET TABLE
-INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Les Enfants d\'abord'), 'REDUCED1', 'METROPOLITAN', 20);
-INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);
-INSERT INTO ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'Ohana Kids'), 'REDUCED1', 'METROPOLITAN', 10);
+INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'gggggg'), 'REDUCED1', 'METROPOLITAN', 20);
+INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'nnnnnn'), 'REDUCED1', 'METROPOLITAN', 10);
+INSERT INTO Ticket (event_id, rate_type, applied_TVA, pre_tax_price) VALUES ((SELECT id FROM Event WHERE event_name = 'nnnnnn'), 'REDUCED1', 'METROPOLITAN', 10);
+
+#PROJECT TABLE
+INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID, image) VALUES ('Architecture JEE', 500000,'2022-12-05', '2022-03-05', 'Il fut un temps, nous étions en avance. Aujourd’hui, l’informatique facilite beaucoup plus la gestion d’une association ainsi que sa visibilité. Seulement voilà, nous sommes une association et nous avons consacré tous nos fonds à nos actions sur le terrain et nos fonds dépendent grandement de la générosité de chacun pour pouvoir préserver au mieux notre autonomie et notre innovation en termes d’actions auprès des adolescents.', 1, 'asp.jpg');
+INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID, image) VALUES ('Un clown dans ma chambre', 70000,'2021-12-01', '2022-03-03', 'À côté des psychologues et des psychiatres qui tentent de soigner par la parole et l’écoute, les clowns agissent, par le jeu, en véritable contre-pied à cette forme de souffrance.', 2, 'reves.jpg');
+INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID, image) VALUES ('Mon cahier pour en parler', 10000,'2021-08-15', '2022-01-01', 'Bien souvent l entourage est démuni : que dire aux enfants ? Comment parler de la mort avec eux et les accompagner au mieux ? Dans le contexte actuel qui nous confronte sans cesse à la mort, ce cahier proposé gratuitement est d autant plus utile et nécessaire.', 3, 'pde.jpg');
+INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID, image) VALUES ('Le lieu-dit', 150000,'2021-11-26', '2021-12-26', 'La France est multiculturelle. La gastronomie française est étendue. Mais de quelle cuisine parlons-nous exactement ? Quoi de mieux qu’initier les enfants aux cuisines françaises venues du monde entier en créant un lieu unique d’ateliers de cuisine et de restauration pour petits … et grands', 4, 'aapeec.jpg');

@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/layout.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="head">
 		<h:outputStylesheet name="css/table.css" />
 	</ui:define>
@@ -86,6 +86,13 @@
 								<button>
 									<h:commandLink value="DASHBOARD"
 										action="#{dashboardAssociationController.ReadListMemberByAssociation(o.idAssos)}" />
+								</button>
+							</h:column>
+							<h:column>
+								<f:facet name="header"></f:facet>
+								<button>
+									<h:commandLink value="DASHBOARD"
+										action="#{projectMB.listProjectByAssos(o.idAssos)}" />
 								</button>
 							</h:column>
 						</h:dataTable>

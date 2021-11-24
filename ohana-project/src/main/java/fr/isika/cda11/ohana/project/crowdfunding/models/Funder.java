@@ -19,7 +19,7 @@ import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 public class Funder {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@OneToOne
