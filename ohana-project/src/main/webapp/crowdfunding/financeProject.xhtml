@@ -5,80 +5,77 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	template="/WEB-INF/templates/layout.xhtml">
+	template="/WEB-INF/templates/layout2.xhtml">
 	<ui:define name="head">
-		<h:outputStylesheet name="css/table.css" />
+		<h:outputStylesheet name="css/SimplePage.css" />
+		<h:outputStylesheet name="css/style.css" />
 	</ui:define>
 	<ui:define name="content">
 		<f:view>
-			<h1>Financer une campagne</h1>
-			<p:tooltip />
-			<h:form id="test">
-				<h:panelGrid columns="3">
 
-					<h:outputText value="Nom :" />
-					<p:inputText id="name" value="#{fundingMB.theFunder.lastName}"
-						required="true" requiredMessage="Le nom est obligatoire">
-						<f:validateLength minimum="2" />
-					</p:inputText>
-					<h:message style="color:red" for="name" />
+			<section class="left-image borderline">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="section-title">Financer une campagne</h2>
+						</div>
+					</div>
+				</div>
+			</section>
 
+			<section class="simple-post borderline">
+				<div class="container-fluid">
+					<p:tooltip />
+					<h:form id="test">
 
-					<h:outputText value="Prénom :" />
-					<p:inputText id="firstname"
-						value="#{fundingMB.theFunder.firstName}" required="true"
-						requiredMessage="Le nom est obligatoire">
-						<f:validateLength minimum="2" />
-					</p:inputText>
-					<h:message style="color:red" for="firstname" />
-
-					<h:outputText for="dateOfBirth" value="Date de naissance :" />
-					<p:calendar id="dateOfBirth"
-						value="#{fundingMB.theFunder.dateOfBirth}" pattern="dd-MM-yyyy"
-						mask="true" />
-					<h:outputText value="#{fundingMB.theFunder.dateOfBirth}">
-						<f:convertDateTime pattern="dd-MM-yyyy" />
-					</h:outputText>
-
-					<h:outputText value="Adresse :" />
-					<p:inputText id="address" value="#{fundingMB.theFunder.address}"
-						required="true" requiredMessage="L'adresse est obligatoire">
-					</p:inputText>
-					<h:message style="color:red" for="address" />
-
-
-					<h:outputText value="Email :" />
-					<p:inputText id="email" value="#{fundingMB.theFunder.email}"
-						required="true" requiredMessage="L'email est obligatoire">
-					</p:inputText>
-					<h:message style="color:red" for="email" />
-
-
-					<h:outputText value="Téléphone :" />
-					<p:inputText id="phoneNumber"
-						value="#{fundingMB.theFunder.phoneNumber}" required="true"
-						requiredMessage="Le téléphone est obligatoire">
-					</p:inputText>
-					<h:message style="color:red" for="phoneNumber" />
-
-
-					<h:outputText value="Montant :" />
-					<p:inputText id="fundingAmount"
-						value="#{fundingMB.theFunding.fundingAmount}" required="true"
-						requiredMessage="Le montant est obligatoire">
-						<f:validateLength minimum="1" />
-					</p:inputText>
-					<h:message style="color:red" for="fundingAmount" />
-
-					<p:messages id="messages" showDetail="true" closable="true">
-						<p:autoUpdate />
-					</p:messages>
-					<p:commandButton action="#{fundingMB.payer()}" value="Payer"
-						update="messages" />
-
-
-				</h:panelGrid>
-			</h:form>
+						<div class="row">
+							<div class="col-md-6">
+								<h2>Vos informations personnelles :</h2>
+								<p>
+									<b>Prénom:</b>
+									#{loginController.accountDto.infoPerson.firstName}
+								</p>
+								<p>
+									<b>Nom:</b> #{loginController.accountDto.infoPerson.lastName}
+								</p>
+								<p>
+									<b>Date de naissance</b> :
+									#{loginController.accountDto.infoPerson.dateOfBirth}
+								</p>
+								<p>
+									<b>Address:</b>
+									#{loginController.accountDto.infoPerson.address.toString()}
+								</p>
+								<p>
+									<b>Email:</b>
+									#{loginController.accountDto.infoPerson.contact.email}
+								</p>
+								<p>
+									<b>Numéro de téléphone:</b>
+									#{loginController.accountDto.infoPerson.contact.phoneNb}
+								</p>
+								<br /> <br />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<h:outputText value="Montant : " />
+							<p:inputText id="fundingAmount"
+								value="#{fundingMB.theFunding.fundingAmount}" required="true"
+								requiredMessage="Le montant est obligatoire">
+								<f:validateLength minimum="1" />
+							</p:inputText>
+							<h:message style="color:red" for="fundingAmount" />
+							<br /> <br />
+							<p:messages id="messages" showDetail="true" closable="true">
+								<p:autoUpdate />
+							</p:messages>
+							<p:commandButton
+								action="#{fundingMB.payer(loginController.accountDto.idAccount)}"
+								value="Payer" update="messages" />
+						</div>
+					</h:form>
+				</div>
+			</section>
 		</f:view>
 	</ui:define>
 </ui:composition>

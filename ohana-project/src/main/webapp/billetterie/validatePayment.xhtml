@@ -3,13 +3,14 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/layout.xhtml">
    <ui:define name="content">
       <h:outputStylesheet name="css/table.css" />
 
       <div>
          <h3>Votre payment a été effectué. Notre équipe vous remercie de votre achat.</h3>
-         <p>Vous venez d'acheter #{paymentController.tickets.size()} ticket(s).</p>
+         <p>Vous venez d'acheter #{paymentController.tickets.size()} ticket(s). Veuillez télécharger le QR Code de votre ticket</p>
          <br/>
 
          <h:form>
@@ -21,7 +22,7 @@
 
                <h:column>
                   <f:facet name="header">Tarif</f:facet>
-                  #{ticket.rateType}
+                  #{ticket.type}
                </h:column>
 
                <h:column>
@@ -60,7 +61,7 @@
                <h:column>
                   <f:facet name="header">Action</f:facet>
                   <button>
-                     <h:commandLink action="#{paymentController.download(ticket)}" value="Télécharger" />
+                     <h:commandLink action="#{paymentController.downloadTicket(ticket)}" value="Télécharger"/>
                   </button>
                </h:column>
             </h:dataTable>

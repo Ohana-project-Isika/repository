@@ -89,25 +89,27 @@ public class Order implements Serializable {
         Integer oldQte = ticketsByQuantity.get(ticket.getId());
         Integer newQty = oldQte + 1;
 
-        ticket.setQuantity(newQty);
-        ticketsByQuantity.put(ticket.getId(), newQty);
-        ticketsByIds.put(ticket.getId(), ticket);
+        if (newQty < ticket.getEvent().getTicketQuantity()) {
+            ticket.setQuantity(newQty);
+            ticketsByQuantity.put(ticket.getId(), newQty);
+            ticketsByIds.put(ticket.getId(), ticket);
 
-        computeCart();
+            computeCart();
+        }
     }
 
     public void decrement(Ticket ticket) {
         Integer oldQty = ticketsByQuantity.get(ticket.getId());
         Integer newQty = 0;
-        if(oldQty > 1) {
+        if(oldQty > 2) {
             newQty = oldQty - 1;
             ticket.setQuantity(newQty);
             ticketsByQuantity.put(ticket.getId(), newQty);
             ticketsByIds.put(ticket.getId(), ticket);
-        } else {
+            computeCart();
+        } /*else {
             removeTicket(ticket);
-        }
-        computeCart();
+        }*/
     }
 
     public void removeTicket(Ticket ticket) {

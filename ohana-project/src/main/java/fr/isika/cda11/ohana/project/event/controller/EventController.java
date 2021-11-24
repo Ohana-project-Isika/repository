@@ -68,6 +68,8 @@ public class EventController implements Serializable {
     public String update() {
         events = eventService.findAllEventsByRegion(region);
         numberMap = eventService.computeNumber(events, numberMap);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(component.getClientId(), new FacesMessage("Il n'y a pas d'évènements dans cette région"));
         return "";
     }
 

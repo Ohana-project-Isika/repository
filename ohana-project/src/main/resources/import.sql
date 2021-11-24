@@ -99,7 +99,7 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Félicitations Jordan !');
 INSERT INTO ticketing (ticketing_name) VALUES ('La billeterie du mardi soir');
 INSERT INTO ticketing (ticketing_name) VALUES ('Je veux dormir');
 INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
- 
+
  #ASSOCIATION TABLE
  INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID, ticketing_id) VALUES ('aapeec', 'VALIDATED', '../resources/logoAssociation/aapeec.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 111),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'aapeec'),(SELECT ticketing_id FROM ticketing WHERE ticketing_name = 'billeterie'));
  INSERT INTO Association(nameAssos, validateStatusAsso, logoAsso, justifAsso, numSiret, ADDRESS_ID, SERVICES_ID, ACCOUNT_ID, ticketing_id) VALUES ('actionSolidairePartage', 'VALIDATED', '../resources/logoAssociation/actionSolidairePartage.jpg', 'justif1', '111111111111111',(SELECT idAddress FROM address WHERE numRue = 122),(SELECT idServices FROM services WHERE typeOfSub = 'premium'),(SELECT idAccount FROM account WHERE accountLogin = 'actionSolidairePartage'), (SELECT ticketing_id FROM ticketing WHERE ticketing_name = 'Je sais pas'));
@@ -124,62 +124,21 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 40.00, 1);
  
  #MEMBER TABLE
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact16@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact17@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact18@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact19@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact20@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact21@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact22@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact23@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777')
- INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777')
- 
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (14, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (15, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (17, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (18, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (19, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (20, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (21, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (22, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (23, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (24, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (25, 'rue Georges Member', '06600', 'Antibes', 'France');
- INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (26, 'rue Georges Member', '06600', 'Antibes', 'France');
- 
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-14', 'tato', 'ziti', 27, 14);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-15', 'teto', 'yiti', 28, 15);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-16', 'tito', 'titi', 29, 16);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-17', 'toto', 'siti', 30, 17);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-18', 'tuto', 'riti', 31, 18);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-19', 'boto', 'viti', 32, 19);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-20', 'bato', 'witi', 33, 20);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-21', 'beto', 'liti', 34, 21);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-22', 'bito', 'miti', 35, 22);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-23', 'buto', 'niti', 36, 23);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-24', 'coto', 'citi', 37, 24);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-25', 'cato', 'giti', 38, 25);
- INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-26', 'cito', 'hiti', 39, 26);
- 
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'aa','0000', 'PRIVATEPERSON', 14);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'bb', '0000','PRIVATEPERSON', 15);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'cc', '0000','PRIVATEPERSON', 16);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'dd', '0000','PRIVATEPERSON', 17);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'ee', '0000','PRIVATEPERSON', 18);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'ff', '0000','PRIVATEPERSON', 19);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'gg', '0000','PRIVATEPERSON', 20);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'hh', '0000','PRIVATEPERSON', 21);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'ii', '0000','PRIVATEPERSON', 22);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'jj', '0000','PRIVATEPERSON', 23);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'kk', '0000','PRIVATEPERSON', 24);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'll', '0000','PRIVATEPERSON', 25);
- INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'mm', '0000','PRIVATEPERSON', 26);
- 
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact16@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact17@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact18@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact19@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact20@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact21@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact22@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact23@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777');
+ INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777');
+
+
  INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 13);
  INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 14);
  INSERT INTO Privateperson(photoProfil, ACCOUNT_ID) VALUE ('photo', 15);

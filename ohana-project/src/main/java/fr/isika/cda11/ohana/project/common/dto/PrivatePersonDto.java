@@ -1,7 +1,9 @@
 package fr.isika.cda11.ohana.project.common.dto;
 
+import fr.isika.cda11.ohana.project.common.models.MeansOfPayment;
 import fr.isika.cda11.ohana.project.event.models.Ticket;
 
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +24,17 @@ public class PrivatePersonDto implements Serializable {
 	private List<PaiementDto> paiement;
 	private AccountDto account;
 	private List<Ticket> tickets = new ArrayList<>();
-	
+	private List<MeansOfPayment> meansOfPayments  = new ArrayList<>();
+
 	//CONSTRUCTOR
 	public PrivatePersonDto() {}
 
 	public void addTicket(Ticket ticket) {
 		tickets.add(ticket);
+	}
+
+	public void addMeans(MeansOfPayment meansOfPayment) {
+		meansOfPayments.add(meansOfPayment);
 	}
 
 	public Long getIdPrivatePerson() {
