@@ -39,9 +39,7 @@ public class LoginController implements Serializable {
     private Long loggedUser;
     private Account account = new Account();
     private AccountDto accountDto= new AccountDto();
- private Boolean isConnected = false;
-    
-    
+    private Boolean isConnected = false;
 
     public String validateLogin() {
         account = loginService.validateLogin(account.getAccountLogin(), account.getAccountPassword());
@@ -58,16 +56,16 @@ public class LoginController implements Serializable {
             accounts = accountService.listAccountService();
             isConnected();
             for(AccountDto accountdto: accounts) {
-            	if(accountdto.getAccountLogin().equals(account.getAccountLogin()) && accountdto.getAccountPassword().equals(account.getAccountPassword())){
-                   accountconnected= accountdto;
-            	}
+                if(accountdto.getAccountLogin().equals(account.getAccountLogin()) && accountdto.getAccountPassword().equals(account.getAccountPassword())){
+                    accountconnected= accountdto;
+                }
             }
             System.out.println(accountconnected.getIdAccount()+"/"+accountconnected.getRole());
             if(accountconnected.getRole().equals(EnumRole.PRIVATEPERSON)) {
-            	 resetLoginData();
-            	 System.out.println("loogeduser2= "+loggedUser);
-            	 accountDto=accountconnected;
-            	return "indexOhana";
+                resetLoginData();
+                System.out.println("loogeduser2= "+loggedUser);
+                accountDto=accountconnected;
+                return "indexOhana";
             }
             resetLoginData();
 
@@ -90,33 +88,33 @@ public class LoginController implements Serializable {
         paymentController.setLoggedInUser(loggedUser);
     }
 
-public String viewParamLogged() {
-	if(loggedUser!=null) {
-		return "Bienvenue "+loggedUser;
-	}
-	
-	else 
-		return "CONNECTEZ-VOUS";
-}
-public String outcomeLogged() {
-	if(loggedUser!=null) {
-		return "#{loginController.logout()}";
-	}
-	else {
-		return "#{loginController.openLogin()}";
-	}
-}
+    public String viewParamLogged() {
+        if(loggedUser!=null) {
+            return "Bienvenue "+loggedUser;
+        }
 
-public Boolean isConnected() {
-	isConnected=true;
-	
-	return isConnected;
-}
+        else
+            return "CONNECTEZ-VOUS";
+    }
+    public String outcomeLogged() {
+        if(loggedUser!=null) {
+            return "#{loginController.logout()}";
+        }
+        else {
+            return "#{loginController.openLogin()}";
+        }
+    }
 
-public String openLogin() {
-	return "login?faces-redirect-true";
-}
-    
+    public Boolean isConnected() {
+        isConnected=true;
+
+        return isConnected;
+    }
+
+    public String openLogin() {
+        return "login?faces-redirect-true";
+    }
+
     public String logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.invalidate();

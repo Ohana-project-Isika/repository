@@ -2,13 +2,14 @@
 #      PREFER @GeneratedValue(strategy = GenerationType.IDENTITY) TO @GeneratedValue(strategy = GenerationType.AUTO)
 #      BECAUSE PRIMARY KEY DOES NOT HAVE A DEFAULT VALUE WITH THE LATTER WHILE IT DOES WITH THE FORMER
 
- USE `ohana-database`;
+USE `ohana-database`;
+ALTER DATABASE `ohana-database` CHARACTER SET utf8 COLLATE utf8_general_ci;
 #COMMON----------------------------------------------------------------------------------------------------
 #ADDRESS TABLE
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (1, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (2, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (3, 'Allée Isika', '87000', 'Limoges', 'France');
- 
+
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (111, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (122, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (133, 'Allée Isika', '87000', 'Limoges', 'France');
@@ -19,7 +20,7 @@
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (188, 'Avenue Jean Jaurès', '93300', 'Aubervilliers', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (199, 'Allée de Vanteaux', '87000', 'Limoges', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (110, 'Allée Isika', '87000', 'Limoges', 'France');
- 
+
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (4, 'Rue de la mairie', '94400', 'Vitry-sur-seine', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (5, 'Avenue Jean Jaures', '92100', 'Boulogne-Billancourt', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (6, 'Boulevard Rosa Luxembourg', '75017', 'Paris', 'France');
@@ -34,7 +35,7 @@
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (9, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (13, 'rue Georges Clémenceau', '06600', 'Antibes', 'France');
 
- 
+
 #CONTACT TABLE
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0111111111','0611111111','contact01@gmail.com');
 INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0122222222','0622222222','contact02@gmail.com');
@@ -81,9 +82,14 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PRIVATEPERSON','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtreize'));
 
- 
+
  #ADMIN TABLE
  INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
+INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID) VALUES ('Mon cahier pour en parler', 10000,'2021-08-15', '2022-01-01', 'Bien souvent l\'entourage est démuni : que dire aux enfants ? Comment parler de la mort avec eux et les accompagner au mieux ? Dans le contexte actuel qui nous confronte sans cesse à la mort, ce cahier proposé gratuitement est d\'autant plus utile et nécessaire.', 3);
+
+
+#ADMIN TABLE
+INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
 
  #SERVICE TABLE
  INSERT INTO Services(typeOfSub, priceOfSub) VALUES ('premium', 49);
@@ -114,15 +120,15 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
 
  #PRIVATEPERSON TABLE
  INSERT INTO PrivatePerson(photoProfil, ACCOUNT_ID ) VALUES ('photo1',(SELECT idAccount FROM account WHERE accountLogin = 'particulier'));
- 
+
  #MEMBERSHIPMANAGE TABLE
  INSERT INTO Membershipmanage(ASSOCIATION_ID) VALUES (1);
- 
+
  #MEMBERSHIP TABLE
  INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 20.00, 1);
  INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 30.00, 1);
  INSERT INTO Membership(nameMbs, priceOfFee, MEMBERSHIPMANAGE_ID) VALUES ('adhesion1', 40.00, 1);
- 
+
  #MEMBER TABLE
  INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact14@gmail.com','0177777777', '0277777777');
  INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact15@gmail.com','0177777777', '0277777777');
@@ -137,7 +143,7 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact24@gmail.com','0177777777', '0277777777');
  INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact25@gmail.com','0177777777', '0277777777');
  INSERT INTO Contact(email, phoneNb, phoneNb2) VALUES ('contact26@gmail.com','0177777777', '0277777777');
- 
+
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (14, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (15, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (16, 'rue Georges Member', '06600', 'Antibes', 'France');
@@ -151,7 +157,7 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (24, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (25, 'rue Georges Member', '06600', 'Antibes', 'France');
  INSERT INTO Address (numRue, rue, codePostal, ville, pays) VALUES (26, 'rue Georges Member', '06600', 'Antibes', 'France');
- 
+
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-14', 'tato', 'ziti', 27, 14);
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-15', 'teto', 'yiti', 28, 15);
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-16', 'tito', 'titi', 29, 16);
@@ -165,7 +171,7 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-24', 'coto', 'citi', 37, 24);
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-25', 'cato', 'giti', 38, 25);
  INSERT INTO Infoperson(dateOfBirth, firstName, lastName, ADDRESS_ID, CONTACT_ID) VALUES ('2001-01-26', 'cito', 'hiti', 39, 26);
- 
+
  INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'aa','0000', 'PRIVATEPERSON', 14);
  INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'bb', '0000','PRIVATEPERSON', 15);
  INSERT INTO Account(accountCreationDate, accountLogin, accountPassword, role, INFOPERSON_ID) VALUE ('2021-11-21', 'cc', '0000','PRIVATEPERSON', 16);
