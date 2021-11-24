@@ -82,6 +82,8 @@ INSERT INTO Contact(phoneNb, phoneNb2, email) VALUES ('0166666666','0666666666',
  
  INSERT INTO Account (accountLogin, accountPassword, role, accountCreationDate, INFOPERSON_ID) VALUES ('particulier', '1111', 'PRIVATEPERSON','2021-01-01',(SELECT idInfoPers FROM infoperson WHERE lastName = 'nomtreize'));
 
+INSERT INTO project (name, financialGoal, startDate, endDate, description, ASSOCIATION_ID) VALUES ('Mon cahier pour en parler', 10000,'2021-08-15', '2022-01-01', 'Bien souvent l\'entourage est démuni : que dire aux enfants ? Comment parler de la mort avec eux et les accompagner au mieux ? Dans le contexte actuel qui nous confronte sans cesse à la mort, ce cahier proposé gratuitement est d\'autant plus utile et nécessaire.', 3);
+
 
 #ADMIN TABLE
 INSERT INTO Admin (ACCOUNT_ID) VALUES ((SELECT idAccount FROM account WHERE accountLogin = 'admin'));
