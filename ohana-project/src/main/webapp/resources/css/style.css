@@ -409,4 +409,13 @@ label > input[type="radio"] + * {
 .loginform{
 	margin-top:100px;
 }
+<<<<<<< HEAD
 >>>>>>> fbf4430 (partie login)
+=======
+
+
+.subform{
+	align-content: center;
+	margin-left:300px;
+}
+>>>>>>> 7f0de9e (adhesion2)

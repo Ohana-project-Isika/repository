@@ -66,6 +66,9 @@
     NAME="output" PATH="/indexOhana.xhtml"
     TARGET="rules:#indexOhana.xhtml"
     TITLE="#{loginController.logout()}:indexOhana" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="indexOhana::#createAccount.xhtml"
+    NAME="output1" PATH="/createAccount.xhtml"
+    TARGET="rules:#createAccount.xhtml" TITLE="indexOhana" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#membership#subMemberForm.xhtml"
@@ -79,10 +82,16 @@
     TITLE="#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}:showMember" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+<<<<<<< HEAD
+=======
+ <PROCESS-ITEM NAME="rules:#createAccount.xhtml"
+  PATH="/createAccount.xhtml" SHAPE="256,801,0,0" model-entity="JSFProcessGroup"/>
+>>>>>>> 7f0de9e (adhesion2)
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
   SHAPE="32,897,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
    PATH="/login.xhtml" model-entity="JSFProcessItem">
+<<<<<<< HEAD
    <PROCESS-ITEM-OUTPUT
     ID="reservation:#{loginController.validateLogin}:#billetterie#reservation.xhtml"
     NAME="output" PATH="/billetterie/reservation.xhtml"
@@ -196,4 +205,11 @@
   PATH="/crowdfunding/projects.xhtml" SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#billetterie#telechargement.xhtml"
   PATH="/billetterie/telechargement.xhtml" SHAPE="496,1297,0,0" model-entity="JSFProcessGroup"/>
+=======
+   <PROCESS-ITEM-OUTPUT ID="createAccount::#createAccount.xhtml"
+    NAME="output" PATH="/createAccount.xhtml"
+    TARGET="rules:#createAccount.xhtml" TITLE="createAccount" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+>>>>>>> 7f0de9e (adhesion2)
 </PROCESS>
