@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/layout2.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="head">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Ohana - Plateforme Association aide enfance</title>
+		<link rel="stylesheet" href="../resources/css/style.css" />
+		<link rel="stylesheet" href="../resources/css/card2.css" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet" />
+	</ui:define>
+	<ui:define name="content">
+
+
+		<section class="left-image borderline">
+			<div class="container-fluid">
+				<div class="row">
+					<h2 class="section-title">Participez à nos projets</h2>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section class="main-block">
+			<div class="container-fluid">
+
+
+				<div class="row">
+					<ui:repeat var="o" value="#{projectMB.allProject}">
+						<div class="col-md-6 col-lg-3 article-first">
+							<div class="news-block">
+								<h:form>
+									<div class="box">
+										<img src="http://localhost:8080/ohana-project/resources/img/asp.png"
+											alt="#" class="img-fluid" />
+									</div>
+
+									<div class="box">
+										<img src="http://localhost:8080/ohana-project/resources/img/reves.png"
+											alt="#" class="img-fluid" />
+									</div>
+
+									<div class="box">
+										<img src="http://localhost:8080/ohana-project/resources/img/pde.png"
+											alt="#" class="img-fluid" />
+									</div>
+
+									<div class="box">
+										<img src="http://localhost:8080/ohana-project/resources/img/aapeec.png"
+											alt="#" class="img-fluid" />
+									</div>
+
+									<div class="news-title">
+										<h5>#{o.name}</h5>
+										<h:commandLink value="Financer"
+											action="#{fundingMB.finance(o.id)}" />
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+
+			</div>
+		</section>
+		<!--//END BLOG -->
+
+	</ui:define>
+</ui:composition>

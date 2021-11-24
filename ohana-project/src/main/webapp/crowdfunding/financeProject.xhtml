@@ -29,6 +29,19 @@
 					<h:form id="test">
 
 						<div class="row">
+							<div class="col-md 6">
+								<c:set var="c" value="#{projectMB.theProject}" />
+								<h1>Projet : #{c.name}</h1>
+								<p><b>Nom : </b> #{c.name}</p>
+								<p><b>Objectif financier : </b> #{c.financialGoal} €</p>
+								<p><b>Description : </b> #{c.description}</p>
+								<p><b>Nombre de contributeurs : </b> #{fundingMB.countFundings(c.id)}</p>
+								<p><b>Argent récolté : </b>
+									#{fundingMB.getActualsFundingsProject(c.id)} €</p>
+								<p>
+									<h:link outcome="projects">Liste des projets</h:link>
+								</p>
+							</div>
 							<div class="col-md-6">
 								<h2>Vos informations personnelles :</h2>
 								<p>

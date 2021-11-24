@@ -34,6 +34,16 @@ public class ProjectController {
 	
 	List<Project> projectsByAssos = new ArrayList<Project>();
 	
+	List<Project> allProject = new ArrayList<Project>();
+	
+	public List<Project> getAllProject() {
+		return allProject;
+	}
+
+	public void setAllProject(List<Project> allProject) {
+		this.allProject = allProject;
+	}
+
 	public List<Project> getProjectsByAssos() {
 		return projectsByAssos;
 	}
@@ -56,6 +66,7 @@ public class ProjectController {
 	
 	@PostConstruct
 	public void init() {
+		allProject = projectService.findListProjectsService();
 		/*System.out.println("Create " + this);
 		if (projectService.findListProjectsService().size() == 0) {
 			
