@@ -71,4 +71,3 @@ public class AccountController implements Serializable{
 	}
 
 }
-

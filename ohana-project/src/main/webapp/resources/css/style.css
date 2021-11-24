@@ -394,3 +394,9 @@ label > input[type="radio"] + * {
 .loginform{
 	margin-top:100px;
 }
+
+
+.subform{
+	align-content: center;
+	margin-left:300px;
+}
