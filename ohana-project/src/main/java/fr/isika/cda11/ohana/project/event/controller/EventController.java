@@ -81,7 +81,7 @@ public class EventController implements Serializable {
     }
 
     public String increment(Ticket ticket) {
-        if (ticket.getQuantity() >= 1 && ticket.getQuantity() < ticket.getEvent().getTicketQuantity())
+        if (ticket.getQuantity() >= 1 && ticket.getQuantity() <= ticket.getEvent().getTicketQuantity())
             cart.increment(ticket);
 
         return "";

@@ -43,7 +43,7 @@
 	<navigation-rule>
 		<from-view-id>/billetterie/reservation.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{paymentController.pay}</from-action>
+			<from-action>#{paymentController.pay()}</from-action>
 			<from-outcome>verificationPanier</from-outcome>
 			<to-view-id>/billetterie/verificationPanier.xhtml</to-view-id>
 		</navigation-case>
