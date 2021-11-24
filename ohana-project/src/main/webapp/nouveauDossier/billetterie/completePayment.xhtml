@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/WEB-INF/templates/layout2.xhtml">
+   <ui:define name="head">
+      <h:outputStylesheet name="css/style.css" />
+   </ui:define>
+
+   <ui:define name="content">
+
+      <section class="left-image borderline">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-12">
+                  <h3 class="section-title">Moyens de paiement</h3>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--      <h3 class="p-mb-4">Moyens de paiement</h3>-->
+
+      <section class="left-image borderline">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-12">
+                  <h5 class="p-mb-8">Paiement par carte bancaire uniquement  <i class="pi pi-credit-card"></i></h5>
+                  <div class="card p-mb-8">
+                     <p>Veuillez saisir les informations de votre carte</p>
+
+                     <section class="left-image borderline p-mb-4">
+                        <h:form class="lorraine" id="card"  prependId="false" rendered="#{!paymentController.payCard}">
+                           <p:panelGrid id="pnlCreditCard" columns="4">
+                              <f:facet name="header">
+                                 <pe:creditCard id="creditCard" labelMonthYear="MM/YY" placeholderExpiry="**/**" placeholderName="OHANA PLATFORM SA"/>
+                              </f:facet>
+                              <p:inputText id="number" placeholder="Numéro de carte" inputmode="numeric" value="#{paymentController.cardNumber}"/>
+                              <p:inputText id="name" placeholder="Nom complet" value="#{paymentController.fullName}"/>
+                              <p:outputPanel id="expiration">
+                                 <p:datePicker id="month" widgetVar="monthPicker" view="month" pattern="MM/yy" yearNavigator="true" yearRange="2021:2050" mindate="#{paymentController.minExpiry}"
+                                               onchange="$('#expiry').val(PF('monthPicker').input.val()); $('#expiry')[0].dispatchEvent(new Event('change'));"/>
+                                 <!-- Hide Expiration field so we can use PF MonthPicker -->
+                                 <p:inputText id="expiry" placeholder="MM/YY" inputmode="numeric" style="display:none" value="#{paymentController.expiry}"/>
+                              </p:outputPanel>
+                              <p:inputText id="cvc" placeholder="CVC" inputmode="numeric" value="#{paymentController.cvc}"/>
+                           </p:panelGrid>
+
+                           <p:selectBooleanCheckbox value="#{paymentController.registerCard}" itemLabel="Enregistrer cette carte"/>
+                           <button>
+                              <h:commandLink id="link" action="#{paymentController.validatePayment}" value="Valider le paiement"/>
+                           </button>
+                        </h:form>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </ui:define>
+</ui:composition>
