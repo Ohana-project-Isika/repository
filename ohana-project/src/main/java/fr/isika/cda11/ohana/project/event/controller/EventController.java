@@ -27,11 +27,11 @@ import java.util.Map;
 public class EventController implements Serializable {
 
     /**
-    * 
-    */
-   private static final long serialVersionUID = -4803214940640532897L;
+	 * 
+	 */
+	private static final long serialVersionUID = -4803214940640532897L;
 
-   @Inject
+	@Inject
     private EventService eventService;
 
     private List<Event> events;
@@ -40,7 +40,7 @@ public class EventController implements Serializable {
     private BigDecimal subTotal;
     private BigDecimal total;
     private Map<Ticket, Integer> ticketQuantity = new HashMap<>();
-    private int quantity;
+    private int count;
     private double hiddenTotal;
     private String region;
     private UIComponent component;
@@ -74,16 +74,23 @@ public class EventController implements Serializable {
         return "billetterie";
     }
 
+
+
     public void addEvent() {
         eventService.save(event);
     }
 
     public String update() {
         events = eventService.findAllEventsByRegion(region);
-        numberMap = eventService.computeNumber(events, numberMap);
-        FacesContext context = FacesContext.getCurrentInstance();
-        component = UIComponent.getCurrentComponent(context);
-        context.addMessage(component.getClientId(), new FacesMessage("Il n'y a pas d'évènements dans cette région"));
+
+        if (events.size() != 0)
+            numberMap = eventService.computeNumber(events, numberMap);
+        else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            component = UIComponent.getCurrentComponent(context);
+            context.addMessage(component.getClientId(), new FacesMessage("Il n'y a pas d'évènements dans cette région"));
+        }
+
         return "";
     }
 
