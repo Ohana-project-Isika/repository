@@ -23,6 +23,7 @@ import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.common.service.LoginService;
 import fr.isika.cda11.ohana.project.enumclass.EnumRole;
+import fr.isika.cda11.ohana.project.event.controller.PaymentController;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +46,9 @@ public class LoginController implements Serializable {
 	@Inject
 	private DashboardAssociationController dashboardAssociationController;
 
+	@ManagedProperty(value="#{paymentController}")
+	private PaymentController paymentController;
+
 	private String loggedUser;
 	private Boolean isConnected = false;
 	private AccountDto accountDto = new AccountDto();
@@ -63,6 +67,12 @@ public class LoginController implements Serializable {
 			
 			setLoggedUser();
 			setConnected();
+
+			// Pour un acheteur particulier non connecté
+			if (paymentController.isPaying()) {
+				paymentController.setPaying(false);
+				return "reservation";
+			}
 			
 			if (accountDto.getRole().equals(EnumRole.PRIVATEPERSON)) {
 
@@ -124,6 +134,8 @@ public class LoginController implements Serializable {
 	private void resetLoginData() {
 		accountDto = new AccountDto();
 	}
+
+	public String logIn() { return "login"; }
 
 }
 

@@ -10,6 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e7dae6c-e45d-4920-a744-c28986f1a340" name="Default Changelist" comment="FRONT SUCCESSFUL.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/common/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/controller/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/models/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/repository/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/repository/TicketRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project/event/service/EventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ohana-project/src/main/resources/import.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +58,7 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ohana-project/src/main/java/fr/isika/cda11/ohana/project" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -60,6 +67,9 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bolem\IdeaProjects\Ohana\ohana-project\src\main\java\fr\isika\cda11\ohana\project" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\bolem\IdeaProjects\Ohana\ohana-project\src\main\webapp\resources\gfx" />
       <recent name="C:\Users\bolem\IdeaProjects\Ohana\ohana-project\src\main\webapp" />

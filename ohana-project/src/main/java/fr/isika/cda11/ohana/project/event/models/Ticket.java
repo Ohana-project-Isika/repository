@@ -15,6 +15,9 @@ import java.util.Map;
 @Setter
 @EqualsAndHashCode
 @ToString
+@NamedQueries({
+        @NamedQuery(name = "Tickets.findAll", query = "SELECT DISTINCT t FROM Ticket t")
+})
 public class Ticket {
 
     @Id
