@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.crowdfunding.controller;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +22,31 @@ import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 
 @ManagedBean(name = "projectMB")
 @SessionScoped
-public class ProjectController {
+public class ProjectController implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3215220252137288317L;
+
 	@Inject
 	ProjectService projectService;
 	
 	@Inject
 	AssociationService associationService;
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setTheProject(Project theProject) {
+		this.theProject = theProject;
+	}
+
+	public void setNewProject(Project newProject) {
+		this.newProject = newProject;
+	}
+
 	Project theProject = new Project();
 	Project newProject = new Project();
 	

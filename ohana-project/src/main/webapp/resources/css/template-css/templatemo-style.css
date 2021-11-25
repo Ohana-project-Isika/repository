@@ -942,7 +942,7 @@ section.buttons .container-fluid {
 }
 
 #sidebar > .inner > #search  {
-    background-color: #2d2e39;
+    background-color: rgb(36, 37, 45);
     height: 100px;
     width: 420px;
     display: inline-block;
@@ -957,22 +957,6 @@ section.buttons .container-fluid {
 	color: #fff;
 }
 
-#search form:before {
-    font-family: 'FontAwesome', sans-serif;
-    -moz-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    -ms-transform: scaleX(-1);
-    transform: scaleX(-1);
-    color: #fff;
-    content: '\f002';
-    cursor: default;
-    display: block;
-    position: absolute;
-    right: 50px;
-    text-align: center;
-    top: 35px;
-    font-size: 18px;
-}
 
 #sidebar .toggle {
     text-decoration: none;
@@ -1205,7 +1189,7 @@ section.buttons .container-fluid {
     display: -ms-flex;
     display: flex;
     position: relative;
-    background-color: #535ba0;
+    background-color: #ffc40c;
     margin: -100px -100px 100px -100px;
 }
 
@@ -1357,4 +1341,24 @@ section.buttons .container-fluid {
     border-top: 0;
     margin-top: 0;
     padding-top: 0;
+}
+
+
+h3.dash{
+	align-items: center;
+	align-content: center;
+	margin-left: 150px;
+	}
+	
+h1.dash {
+    margin-left: 400px;
+    margin-bottom: 200px;
+}
+
+h2.dash {
+    margin-bottom: 50px;
+}
+
+.graph {
+    margin-bottom: 150px;
 }

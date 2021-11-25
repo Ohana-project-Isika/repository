@@ -108,7 +108,7 @@ public class AssociationController implements Serializable{
 		associations=listAssociations();
 		nouvelAddresse = new AddressDto();
 		nouvelAssociation= new AssociationDto();
-		return "associationTable";
+		return "ValidateSubscription";
 	}
 	
 	public AccountDto createAccount(InfoPersonDto infoPerson, ContactDto contact, AddressDto address) {

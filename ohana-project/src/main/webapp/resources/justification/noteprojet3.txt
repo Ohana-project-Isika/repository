@@ -1,0 +1,25 @@
+à chaque modif, faire un merge sur la branche concerné
+
+** Association
+
+//git rebase main
+
+
+
+recuperer le main :
+
+- git checkout main
+- git pull
+- git checkout sur la branche
+- git rebase main
+- et refresh
+
+--------------------------------------
+1) formulaire association - ok (create)
+2) afficher liste association -ok (read)
+	afficher une association -ok (read)
+3) modifier association dans la liste -ok(update)
+4) supprimer association dans la liste -ok (update)
+
+----------------------------------------------
+1) créer un formulaire d'adhesion à partir d'une association

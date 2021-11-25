@@ -22,7 +22,10 @@ public class ProjectRepository {
 	}
 
 	public Project findProjectRepos(Long id) {
-		return em.find(Project.class,id);
+		System.out.println("REPOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrepos id:"+id);
+		
+		Project project= em.find(Project.class,id);
+		return project;
 	}
 	
 	public void createProjectRepos(Project project) {

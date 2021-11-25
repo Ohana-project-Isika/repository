@@ -1,9 +1,12 @@
 package fr.isika.cda11.ohana.project.membership.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.Query;
+
 import fr.isika.cda11.ohana.project.common.models.Association;
 import fr.isika.cda11.ohana.project.membership.dto.MemberShipManageDto;
 import fr.isika.cda11.ohana.project.membership.dto.MembershipDto;
@@ -35,11 +38,22 @@ public class MembershipService {
 
 	// READ
 	public MembershipDto findMembershipByIdService(Long id) {
+		System.out.println("membershipservice id="+id);
 		return membershiprepos.findMembershipRepos(id);
 	}
 
 	public List<MembershipDto> listMembershipsService() {
 		return membershiprepos.listMembershipRepos();
+	}
+
+	public List<MembershipDto> listMembershiByManage(Long id) {
+		List<Membership> memberships= membershiprepos.listMembershiByManage(id);
+		List<MembershipDto> membershipsDto= new ArrayList<MembershipDto>();
+		for(Membership membership: memberships) {
+			MembershipDto membershipDto=MembershipFactory.fromMembership(membership);
+			membershipsDto.add(membershipDto);
+		}
+		return membershipsDto;
 	}
 
 	// UPDATE

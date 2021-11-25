@@ -21,13 +21,13 @@
 					</div>
 
 					<div class="col-md-6 subform">
+					<h2 class="section-title">Creation d'un compte</h2>
 						<f:view>
 							<h:form method="post">
-								<h2 class="section-title">Creation d'un compte</h2>
 								<br></br>
 								<br></br>
 								<h:panelGrid columns="2">
-									<h:outputText value="Prénom :" />
+									<h:outputText size="50" value="Prénom :" />
 									<h:inputText id="prenom" size="50"
 										value="#{accountController.newInfoPersonDto.firstName}" />
 
@@ -94,7 +94,7 @@
 								</h:panelGrid>
 
 								<h:commandButton
-									action="#{accountController.createnewAccount()}" value="Save" />
+									action="#{accountController.createnewAccount()}" value="Enregistrer" />
 							</h:form>
 						</f:view>
 					</div>
