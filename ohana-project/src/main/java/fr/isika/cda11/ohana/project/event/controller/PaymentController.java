@@ -226,14 +226,14 @@ public class PaymentController implements Serializable {
         int size = 400;
         BitMatrix bitMatrix = null;
 
-        // encode
-        try {
-            bitMatrix = generateMatrix(utf8EncodedString, size);
-        } catch (WriterException e) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
-            e.printStackTrace();
-        }
+//        // encode
+//        try {
+//            bitMatrix = generateMatrix(utf8EncodedString, size);
+//        } catch (WriterException e) {
+//            FacesContext context = FacesContext.getCurrentInstance();
+//            context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
+//            e.printStackTrace();
+//        }
 
         String imageFormat = "pdf";
         File imagesDir = new File(System.getProperty("jboss.server.data.dir"), "images");
@@ -249,14 +249,14 @@ public class PaymentController implements Serializable {
             e.printStackTrace();
         }
 
-        // write in a file
-        try {
-            writeImage(file, imageFormat, bitMatrix);
-        } catch (IOException ioException) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
-            ioException.printStackTrace();
-        }
+//        // write in a file
+//        try {
+//            writeImage(file, imageFormat, bitMatrix);
+//        } catch (IOException ioException) {
+//            FacesContext context = FacesContext.getCurrentInstance();
+//            context.addMessage(component.getClientId(), new FacesMessage("Erreur de téléchargement. Veuillez nous contacter"));
+//            ioException.printStackTrace();
+//        }
 
         return "telechargement?faces-redirect=true";
     }
