@@ -234,9 +234,6 @@ INSERT INTO ticketing (ticketing_name) VALUES ('Je veux dormir');
 INSERT INTO ticketing (ticketing_name) VALUES ('Besoin de vacances');
 INSERT INTO ticketing (ticketing_name) VALUES ('ticketing');
 
-
-
-
 # EVENT TABLE
 INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Les Enfants d abord', 'Contre la maltraitance des enfants', '2022-01-01', '2022-01-01', '12:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 2), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
 INSERT INTO event (image_file_name, event_name, event_description, start_date, end_date, start_time, end_time, address_idAddress, ticketing_id) VALUES ('background_childhood_event.jpg', 'Ohana Kids', 'Gâtons nos enfants', '2021-12-01', '2021-12-01', '11:00', '05:00', (SELECT idAddress FROM Address WHERE numRue = 1), (SELECT id FROM ticketing WHERE ticketing_name = 'ticketing'));
