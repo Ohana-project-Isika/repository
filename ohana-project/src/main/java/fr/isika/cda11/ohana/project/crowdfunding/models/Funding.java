@@ -106,11 +106,11 @@ public class Funding implements Serializable{
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Funding [id=" + id + ", fundingAmount=" + fundingAmount + ", project=" + project + ", funder=" + funder
-				+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Funding [id=" + id + ", fundingAmount=" + fundingAmount + ", project=" + project.getId() + ", funder=" + funder.getId()
+//				+ "]";
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

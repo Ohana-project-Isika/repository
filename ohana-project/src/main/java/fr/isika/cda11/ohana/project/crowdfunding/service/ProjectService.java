@@ -35,10 +35,10 @@ public class ProjectService {
 	}
 	
 	public Project findProjectService(Long id) {
-		System.out.println("service id:" +id);
-		Project project = new Project();
-		project=projectRepos.findProjectRepos(id);
-		System.out.println(project.toString());
+//		System.out.println("service id:" +id);
+//		Project project = new Project();
+		Project project=projectRepos.findProjectRepos(id);
+//		System.out.println(project.toString());
 		return project;
 		
 	}

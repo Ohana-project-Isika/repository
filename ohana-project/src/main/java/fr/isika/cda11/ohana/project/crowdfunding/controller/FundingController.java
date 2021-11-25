@@ -10,6 +10,7 @@ import java.util.Date;
 
 import java.util.List;
 
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -53,7 +54,7 @@ public class FundingController implements Serializable {
 	@Inject
 	PrivatePersonRepos privatePersonRepos;
 	
-
+	private Project selectedProject;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -111,7 +112,8 @@ public class FundingController implements Serializable {
 
 		for (Funding funding : res)
 		{
-			amount += funding.getFundingAmount();
+			if(funding.getFundingAmount() != null)
+				amount += funding.getFundingAmount();
 		}
 		return amount;
 	}
@@ -122,15 +124,14 @@ public class FundingController implements Serializable {
 		return financialGoal - amount;
 	}
 
-
 	public String finance(Long id) {
-		System.out.println("test id:"+id);
-		Project p = projectService.findProjectService(id);
-		System.out.println("test id:"+id);
-		System.out.println("test projet : "+p.toString());
-		theFunding.setProject(p);
-		p.addFunding(theFunding);
-		return "financeProject?faces-redirect=true";
+//		System.out.println("test id:"+id);
+		selectedProject = projectService.findProjectService(id);
+//		System.out.println("test id:"+id);
+//		System.out.println("test projet : "+p.toString());
+		theFunding.setProject(selectedProject);
+		selectedProject.addFunding(theFunding);
+		return "financeProject";
 	}
 
 	public boolean Agemin (Date dob) {
@@ -151,6 +152,7 @@ public class FundingController implements Serializable {
 		AccountDto accountDto = new AccountDto();
 		accountDto = accountService.findAccountByIdService(id); 
 		account = AccountFactory.fromAccountDto(accountDto);
+		System.out.println(selectedProject);
 		Long idProject = theFunding.getProject().getId();
 		double financialGoal = theFunding.getProject().getFinancialGoal();
 		System.out.println("récolte :  " + financialGoal);
@@ -202,6 +204,13 @@ public class FundingController implements Serializable {
 			return "financeProject";
 
 		}
+	}
+	
+	public Project getSelectedProject() {
+		return selectedProject;
+	}
+	public void setSelectedProject(Project selectedProject) {
+		this.selectedProject = selectedProject;
 	}
 }
 
