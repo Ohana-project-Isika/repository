@@ -1,20 +1,13 @@
 package fr.isika.cda11.ohana.project.crowdfunding.controller;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.Period;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -27,7 +20,6 @@ import fr.isika.cda11.ohana.project.common.models.Account;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.common.repository.PrivatePersonRepos;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
-import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funder;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
@@ -36,8 +28,13 @@ import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 
 @ManagedBean(name = "fundingMB")
 @SessionScoped
-public class FundingController {
+public class FundingController implements Serializable {
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7127618206225742574L;
 
 	@Inject
 	FundingService fundingService;

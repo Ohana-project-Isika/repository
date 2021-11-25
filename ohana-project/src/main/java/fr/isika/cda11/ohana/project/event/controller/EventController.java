@@ -45,7 +45,7 @@ public class EventController implements Serializable {
     @PostConstruct
     public void init() {
         events = eventService.findAllEvents();
-        eventService.displayNoEventMsg(events, component);
+        //eventService.displayNoEventMsg(events, component);
         numberMap = eventService.computeNumber(events, numberMap);
         countMap = eventService.computeCount(events, countMap);
     }
