@@ -8,16 +8,20 @@ import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
+import fr.isika.cda11.ohana.project.common.factories.AccountFactory;
 import fr.isika.cda11.ohana.project.common.models.Account;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
 import fr.isika.cda11.ohana.project.common.service.LoginService;
 import fr.isika.cda11.ohana.project.enumclass.EnumRole;
+import fr.isika.cda11.ohana.project.event.controller.EventController;
+import fr.isika.cda11.ohana.project.event.controller.PaymentController;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +40,9 @@ public class LoginController implements Serializable {
 	@Inject
 	private AccountService accountService;
 
+	@ManagedProperty(value="#{paymentController}")
+	private PaymentController paymentController;
+
 	private String loggedUser;
 	private Boolean isConnected = false;
 	private AccountDto accountDto = new AccountDto();
@@ -46,18 +53,22 @@ public class LoginController implements Serializable {
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
 					.getSession(false);
 			
-			AccountDto accountconnected = optional.get();
-			session.setAttribute(ACCOUNT_ATTRIBUTE, accountconnected.getAccountLogin());
+			accountDto = optional.get();
+			session.setAttribute(ACCOUNT_ATTRIBUTE, accountDto.getIdAccount());
 			session.setAttribute(ACCOUNT_CONNECTED, true);
 			
 			setLoggedUser();
 			setConnected();
-			
-			if (accountconnected.getRole().equals(EnumRole.PRIVATEPERSON)) {
-				resetLoginData();
+
+			// Pour un acheteur particulier non connecté
+			if (paymentController.isPaying()) {
+				paymentController.setPaying(false);
+				return "reservation";
+			}
+
+			if (accountDto.getRole().equals(EnumRole.PRIVATEPERSON)) {
 				return "indexOhana";
 			}
-			resetLoginData();
 			return "logged";
 		}
 		else {
@@ -97,6 +108,7 @@ public class LoginController implements Serializable {
 	}
 	
 	private void clearLoggedUser() {
+		accountDto = new AccountDto();
 		this.loggedUser = "";
 	}
 
@@ -104,5 +116,6 @@ public class LoginController implements Serializable {
 		accountDto = new AccountDto();
 	}
 
+	public String logIn() { return "login"; }
 }
 

@@ -17,9 +17,11 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import fr.isika.cda11.ohana.project.common.models.Address;
+import fr.isika.cda11.ohana.project.common.models.Association;
 import fr.isika.cda11.ohana.project.enumclass.Region;
 import fr.isika.cda11.ohana.project.event.models.*;
 import fr.isika.cda11.ohana.project.event.repository.EventRepository;
+import fr.isika.cda11.ohana.project.event.repository.TicketRepository;
 
 @Stateless
 public class EventService implements Serializable {
@@ -27,6 +29,8 @@ public class EventService implements Serializable {
 	private static final long serialVersionUID = -2395116975169375108L;
 	@Inject
 	private EventRepository eventRepository;
+	@Inject
+	private TicketRepository ticketRepository;
 
 	public void save(Event event) {
 		for (int i = 0; i < event.getTicketQuantity(); i++) {
@@ -71,60 +75,60 @@ public class EventService implements Serializable {
 		List<Event> regionalEvents = new ArrayList<>();
 
 		switch (Enum.valueOf(Region.class, region)) {
-		case CORSE:
-			regionalEvents = getRegionalEvents(events, Region.CORSE);
-			break;
-		case CVDL:
-			regionalEvents = getRegionalEvents(events, Region.CVDL);
-			break;
-		case BRETAGNE:
-			regionalEvents = getRegionalEvents(events, Region.BRETAGNE);
-			break;
-		case BFC:
-			regionalEvents = getRegionalEvents(events, Region.BFC);
-			break;
-		case GE:
-			regionalEvents = getRegionalEvents(events, Region.GE);
-			break;
-		case OCCITANIE:
-			regionalEvents = getRegionalEvents(events, Region.OCCITANIE);
-			break;
-		case HDF:
-			regionalEvents = getRegionalEvents(events, Region.HDF);
-			break;
-		case ARA:
-			regionalEvents = getRegionalEvents(events, Region.ARA);
-			break;
-		case NORMANDIE:
-			regionalEvents = getRegionalEvents(events, Region.NORMANDIE);
-			break;
-		case PDLL:
-			regionalEvents = getRegionalEvents(events, Region.PDLL);
-			break;
-		case PACA:
-			regionalEvents = getRegionalEvents(events, Region.PACA);
-			break;
-		case NA:
-			regionalEvents = getRegionalEvents(events, Region.NA);
-			break;
-		case GUYANE:
-			regionalEvents = getRegionalEvents(events, Region.GUYANE);
-			break;
-		case MARTINIQUE:
-			regionalEvents = getRegionalEvents(events, Region.MARTINIQUE);
-			break;
-		case MAYOTTE:
-			regionalEvents = getRegionalEvents(events, Region.MAYOTTE);
-			break;
-		case GUADELOUPE:
-			regionalEvents = getRegionalEvents(events, Region.GUADELOUPE);
-			break;
-		case REUNION:
-			regionalEvents = getRegionalEvents(events, Region.REUNION);
-			break;
-		default:
-			regionalEvents = getRegionalEvents(events, Region.IDF);
-			break;
+			case CORSE:
+				regionalEvents = getRegionalEvents(events, Region.CORSE);
+				break;
+			case CVDL:
+				regionalEvents = getRegionalEvents(events, Region.CVDL);
+				break;
+			case BRETAGNE:
+				regionalEvents = getRegionalEvents(events, Region.BRETAGNE);
+				break;
+			case BFC:
+				regionalEvents = getRegionalEvents(events, Region.BFC);
+				break;
+			case GE:
+				regionalEvents = getRegionalEvents(events, Region.GE);
+				break;
+			case OCCITANIE:
+				regionalEvents = getRegionalEvents(events, Region.OCCITANIE);
+				break;
+			case HDF:
+				regionalEvents = getRegionalEvents(events, Region.HDF);
+				break;
+			case ARA:
+				regionalEvents = getRegionalEvents(events, Region.ARA);
+				break;
+			case NORMANDIE:
+				regionalEvents = getRegionalEvents(events, Region.NORMANDIE);
+				break;
+			case PDLL:
+				regionalEvents = getRegionalEvents(events, Region.PDLL);
+				break;
+			case PACA:
+				regionalEvents = getRegionalEvents(events, Region.PACA);
+				break;
+			case NA:
+				regionalEvents = getRegionalEvents(events, Region.NA);
+				break;
+			case GUYANE:
+				regionalEvents = getRegionalEvents(events, Region.GUYANE);
+				break;
+			case MARTINIQUE:
+				regionalEvents = getRegionalEvents(events, Region.MARTINIQUE);
+				break;
+			case MAYOTTE:
+				regionalEvents = getRegionalEvents(events, Region.MAYOTTE);
+				break;
+			case GUADELOUPE:
+				regionalEvents = getRegionalEvents(events, Region.GUADELOUPE);
+				break;
+			case REUNION:
+				regionalEvents = getRegionalEvents(events, Region.REUNION);
+				break;
+			default:
+				regionalEvents = getRegionalEvents(events, Region.IDF);
+				break;
 		}
 
 		manageEvents(regionalEvents);
@@ -134,15 +138,35 @@ public class EventService implements Serializable {
 	private List<Event> getRegionalEvents(List<Event> events, Region region) {
 		List<Event> regionalEvents = new ArrayList<>();
 
-		for (Event event : events) {
-			for (String department : region.getDepartments()) {
-				if (event.getAddress().getCodePostal().substring(0, 2).equals(department)
-						|| event.getAddress().getCodePostal().substring(0, 3).equals(department))
-					regionalEvents.add(event);
+		if (events.size() != 0) {
+			for (Event event : events) {
+				for (String department : region.getDepartments()) {
+					if(event.getAddress() != null) {
+						if (event.getAddress().getCodePostal().substring(0, 2).equals(department)
+								|| event.getAddress().getCodePostal().substring(0, 3).equals(department))
+							regionalEvents.add(event);
+					}
+				}
+			}
+
+			return regionalEvents;
+		}
+		return regionalEvents;
+	}
+
+	public double findTotalPriceTTC(Long id) {
+		List<Ticket> tickets = ticketRepository.findAllTickets();
+		BigDecimal sum = BigDecimal.ZERO;
+
+		for (Ticket ticket : tickets) {
+			if (ticket.getEvent().getTicketing().getAssociation().getIdAssos().equals(id) && ticket.getPrivatePerson() != null) {
+
+				sum = sum.add(ticket.getPreTaxPrice()
+						.multiply(BigDecimal.valueOf(1).add(ticket.getTvaRate().divide(BigDecimal.valueOf(100))))
+						.setScale(2, BigDecimal.ROUND_UP));
 			}
 		}
-
-		return regionalEvents;
+		return sum.doubleValue();
 	}
 
 	private List<Event> manageEvents(List<Event> list) {
@@ -153,7 +177,15 @@ public class EventService implements Serializable {
 		if (list.size() != 0) {
 			for (Event event : list) {
 				if (event.getTickets().size() != 0) {
-					event.setTicketQuantity(event.getTickets().size());
+
+					List<Ticket> tickets = new ArrayList<>();
+					for (Ticket ticket : event.getTickets()) {
+						if (ticket.getPrivatePerson() != null) {
+							tickets.add(ticket);
+						}
+					}
+
+					event.setTicketQuantity(event.getTickets().size() - tickets.size());
 					event.setTicket(event.getTickets().get(event.getTickets().size() - 1));
 
 					event.getTicket().setTvaRate(setTVAFor(event.getTicket().getRateType(), event.getTicket().getAppliedTVA())
@@ -162,7 +194,6 @@ public class EventService implements Serializable {
 					event.getTicket().setPostTaxPrice(event.getTicket().getPreTaxPrice()
 							.multiply(BigDecimal.valueOf(1).add(event.getTicket().getTvaRate().divide(BigDecimal.valueOf(100))))
 							.setScale(2, BigDecimal.ROUND_UP));
-
 
 					switch (event.getTicket().getRateType()) {
 						case REGULAR:
@@ -175,7 +206,6 @@ public class EventService implements Serializable {
 							event.getTicket().setType("REDUIT");
 							break;
 					}
-
 
 					event.setFullAddress(setFullAddress(event.getAddress()));
 					event.setEndDateString(simpleDateFormat.format(event.getEndDate()));
@@ -197,42 +227,42 @@ public class EventService implements Serializable {
 
 	private BigDecimal setTVAFor(RATE_TYPE rateType, TVA tva) {
 		switch (rateType) {
-		case REDUCED1:
-			switch (tva) {
-			case CORSE:
-				return CORSE.getReducedRate1();
-			case DOM:
-				return DOM.getReducedRate1();
+			case REDUCED1:
+				switch (tva) {
+					case CORSE:
+						return CORSE.getReducedRate1();
+					case DOM:
+						return DOM.getReducedRate1();
+					default:
+						return METROPOLITAN.getReducedRate1();
+				}
+			case REDUCED2:
+				switch (tva) {
+					case CORSE:
+						return CORSE.getReducedRate2();
+					case DOM:
+						return DOM.getReducedRate2();
+					default:
+						return METROPOLITAN.getReducedRate2();
+				}
+			case REGULAR:
+				switch (tva) {
+					case CORSE:
+						return CORSE.getRegularRate();
+					case DOM:
+						return DOM.getRegularRate();
+					default:
+						return METROPOLITAN.getRegularRate();
+				}
 			default:
-				return METROPOLITAN.getReducedRate1();
-			}
-		case REDUCED2:
-			switch (tva) {
-			case CORSE:
-				return CORSE.getReducedRate2();
-			case DOM:
-				return DOM.getReducedRate2();
-			default:
-				return METROPOLITAN.getReducedRate2();
-			}
-		case REGULAR:
-			switch (tva) {
-			case CORSE:
-				return CORSE.getRegularRate();
-			case DOM:
-				return DOM.getRegularRate();
-			default:
-				return METROPOLITAN.getRegularRate();
-			}
-		default:
-			switch (tva) {
-			case CORSE:
-				return CORSE.getSuperReducedRate();
-			case DOM:
-				return DOM.getSuperReducedRate();
-			default:
-				return METROPOLITAN.getSuperReducedRate();
-			}
+				switch (tva) {
+					case CORSE:
+						return CORSE.getSuperReducedRate();
+					case DOM:
+						return DOM.getSuperReducedRate();
+					default:
+						return METROPOLITAN.getSuperReducedRate();
+				}
 		}
 	}
 
