@@ -7,6 +7,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import fr.isika.cda11.ohana.project.common.controller.LoginController;
 import fr.isika.cda11.ohana.project.common.dto.AccountDto;
 import fr.isika.cda11.ohana.project.common.dto.PrivatePersonDto;
 import fr.isika.cda11.ohana.project.common.factories.PrivatePersonFactory;
@@ -118,14 +119,18 @@ public class PaymentController implements Serializable {
     }
 
     public String validatePayment() {
+        List<Ticket> ticketList = new ArrayList<>();
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+                .getSession(false);
         tickets.clear();
-        AccountDto accountDto = accountService.findAccountByIdService(loggedInUser);
+        AccountDto accountDto = accountService.findAccountByIdService((Long) session.getAttribute(ACCOUNT_ATTRIBUTE));
         PrivatePersonDto privatePersonDto = privatePersonService.findPrivatePersonByAccount(accountDto);
         MeansOfPayment meansOfPayment = new MeansOfPayment();
 
         order.getTicketsByIds().forEach((key, value) -> {
             value.setPrivatePerson(PrivatePersonFactory.fromPrivatePersonDto(privatePersonDto));
 
+            ticketList.add(value);
             if (registerCard) {
                 meansOfPayment.setPrivatePerson(PrivatePersonFactory.fromPrivatePersonDto(privatePersonDto));
                 meansOfPayment.setFullName(fullName);
@@ -148,6 +153,13 @@ public class PaymentController implements Serializable {
             value.setFile(file);
             tickets.add(value);
         });
+
+//        for (Event event : order.getEvents()) {
+//            Iterator<Ticket> ticketsIterator = event.getTickets().iterator();
+//            while(ticketsIterator.hasNext()) {
+//                ticketsIterator.remove();
+//            }
+//        }
 
         return "validatePayment";
     }
@@ -226,7 +238,7 @@ public class PaymentController implements Serializable {
         String imageFormat = "pdf";
         File imagesDir = new File(System.getProperty("jboss.server.data.dir"), "images");
         imagesDir.mkdir();
-        File file = new File(imagesDir, "qrCode" + ticket.getId() + ".pdf");
+        File file = new File(imagesDir, "ticketOHANA" + ticket.getId() + ".pdf");
         this.file = file;
         ticketFile = file.getAbsolutePath();
         try {
@@ -254,7 +266,7 @@ public class PaymentController implements Serializable {
         Document document = new Document();
         // Get an instance of PdfWriter and create a HelloWorld.pdf
         // file as an output.
-        PdfWriter.getInstance(document, new FileOutputStream("HelloWorld.pdf"));
+        PdfWriter.getInstance(document, new FileOutputStream(file, true));
         document.open();
 
         // Create our first paragraph for the pdf document to be
@@ -271,11 +283,7 @@ public class PaymentController implements Serializable {
     }
 
     public Date setMinExpiry() {
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.DATE, 7);
-        return calendar.getTime();
+        return new Date();
     }
 
     private static BitMatrix generateMatrix(String data, int size) throws WriterException {
