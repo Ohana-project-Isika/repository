@@ -150,7 +150,7 @@
 			<to-view-id>/membership/showMember.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/membership/subMemberForm.xhtml</from-view-id>
 		<navigation-case>
@@ -197,5 +197,14 @@
 		</navigation-case>
 
 	</navigation-rule>
-	
+	<navigation-rule>
+		<from-view-id>/crowdfunding/financeProject.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{fundingMB.payer(loginController.accountDto.idAccount)}</from-action>
+			<from-outcome>FundingValidate</from-outcome>
+			<to-view-id>/FundingValidate.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
 </faces-config>

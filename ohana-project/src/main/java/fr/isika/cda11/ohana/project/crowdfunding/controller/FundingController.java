@@ -181,7 +181,7 @@ public class FundingController implements Serializable {
 			fundingService.updateFundingService(theFunding);
 			theFunder = new Funder();
 			theFunding = new Funding();
-			return "customerProjectList";
+			return "FundingValidate";
 
 		} else if (theFunding.getFundingAmount() > getFundingAmountMax(idProject, financialGoal))
 		{

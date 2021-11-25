@@ -104,6 +104,9 @@ public class LoginController implements Serializable {
 		loggedUser = null;
 		return "indexOhana?faces-redirect=true";
 	}
+	
+	
+	public String logIn() { return "login"; }
 
 	public Boolean isConnected() {
 		return isConnected;
