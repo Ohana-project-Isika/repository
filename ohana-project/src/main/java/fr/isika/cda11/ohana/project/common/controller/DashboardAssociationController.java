@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -63,8 +64,18 @@ public class DashboardAssociationController implements Serializable {
 	private MembershipDto memberShipDto = new MembershipDto();
 	private AssociationDto associationDto = new AssociationDto();
 	private MemberShipManageDto mbsmDto = new MemberShipManageDto();
-	List<MemberDto> members = new ArrayList<MemberDto>();
+	private List<MemberDto> members = new ArrayList<MemberDto>();
+	private List<MembershipDto> allMembershipByAsso = new ArrayList<MembershipDto>();
+	private Double total=0.00;
+	
 
+
+	public Double getTotal() {
+		return total;
+	}
+	public void setTotal(Double total) {
+		this.total = total;
+	}
 	public BarChartModel getBarModel() {return barModel;}
 	public void setBarModel(BarChartModel barModel) {this.barModel = barModel;}
 	public DonutChartModel getDonutModel() {return donutModel;}
@@ -83,9 +94,18 @@ public class DashboardAssociationController implements Serializable {
 	public void setMembers(List<MemberDto> members) {this.members = members;}	
 	public MemberShipManageDto getMbsmDto() {return mbsmDto;}
 	public void setMbsmDto(MemberShipManageDto mbsmDto) {this.mbsmDto = mbsmDto;}
-
-
+	public List<MembershipDto> getAllMembershipByAsso() {
+		return allMembershipByAsso;
+	}
+	public void setAllMembershipByAsso(List<MembershipDto> allMembershipByAsso) {
+		this.allMembershipByAsso = allMembershipByAsso;
+	}
+	
+	
+	
 	public String ReadListMemberByAssociation(Long id) {
+		
+		
 		//je cherche l'association 
 		associationDto = assosService.findAssociationByIdService(id);
 		System.out.println("association dont l'id ="+id+"trouve:" +associationDto.toString());
@@ -102,8 +122,8 @@ public class DashboardAssociationController implements Serializable {
 				mbsmDto=new MemberShipManageDto();
 			}
 		}
+		
 		List<MembershipDto> allMembership = new ArrayList<MembershipDto>();
-		allMembership = membershipService.listMembershipsService();
 		List<MemberDto>memberdtos = memberService.listMembersService();
 		for(MembershipDto membershdto: allMembership) {
 			if(membershdto.getMemberShipManage().getId()==mbsmDto.getId()) {
@@ -114,7 +134,7 @@ public class DashboardAssociationController implements Serializable {
 				System.out.println("liste des membership est null");
 			}
 		}
-		Double total=0.00;
+		
 		for(MembershipDto memberships : mbsmDto.getMemberships()) {
 			for(MemberDto memberdto : memberdtos) {
 				if(memberdto.getMembershipDto().getIdMbs()==memberships.getIdMbs()) {
@@ -125,107 +145,8 @@ public class DashboardAssociationController implements Serializable {
 			}
 		}
 
-		//--------------------------------------------------------------------------
-
-		barModel = new BarChartModel();
-		ChartData data = new ChartData();
-
-		BarChartDataSet barDataSet = new BarChartDataSet();
-		barDataSet.setLabel("Total des ressources perçues");
-
-		List<Number> values = new ArrayList<>();
-
-
-		values.add(59);
-		values.add(80);
-		values.add(81);
-		values.add(56);
-		values.add(55);
-		values.add(40);
-		values.add(59);
-		values.add(80);
-		values.add(81);
-		values.add(56);
-		values.add(total.doubleValue());
-		values.add(55);
-		barDataSet.setData(values);
-
-		List<String> bgColor = new ArrayList<>();
-		bgColor.add("rgba(255, 99, 132, 0.2)");
-		bgColor.add("rgba(255, 159, 64, 0.2)");
-		bgColor.add("rgba(255, 205, 86, 0.2)");
-		bgColor.add("rgba(75, 192, 192, 0.2)");
-		bgColor.add("rgba(54, 162, 235, 0.2)");
-		bgColor.add("rgba(153, 102, 255, 0.2)");
-		bgColor.add("rgba(201, 203, 207, 0.2)");
-		bgColor.add("rgba(255, 99, 132, 0.2)");
-		bgColor.add("rgba(255, 159, 64, 0.2)");
-		bgColor.add("rgba(255, 205, 86, 0.2)");
-		bgColor.add("rgba(75, 192, 192, 0.2)");
-		bgColor.add("rgba(54, 162, 235, 0.2)");
-		barDataSet.setBackgroundColor(bgColor);
-
-		List<String> borderColor = new ArrayList<>();
-		borderColor.add("rgb(255, 99, 132)");
-		borderColor.add("rgb(255, 159, 64)");
-		borderColor.add("rgb(255, 205, 86)");
-		borderColor.add("rgb(75, 192, 192)");
-		borderColor.add("rgb(54, 162, 235)");
-		borderColor.add("rgb(153, 102, 255)");
-		borderColor.add("rgb(201, 203, 207)");
-		borderColor.add("rgb(255, 99, 132)");
-		borderColor.add("rgb(255, 159, 64)");
-		borderColor.add("rgb(255, 205, 86)");
-		borderColor.add("rgb(75, 192, 192)");
-		borderColor.add("rgb(54, 162, 235)");
-		barDataSet.setBorderColor(borderColor);
-		barDataSet.setBorderWidth(1);
-
-		data.addChartDataSet(barDataSet);
-
-		List<String> labels = new ArrayList<>();
-		labels.add("Janvier");
-		labels.add("Fevrier");
-		labels.add("Mars");
-		labels.add("Avril");
-		labels.add("Mai");
-		labels.add("Juin");
-		labels.add("Juillet");
-		labels.add("Aout");
-		labels.add("Septembre");
-		labels.add("Octobre");
-		labels.add("Novembre");
-		labels.add("Decembre");
-		data.setLabels(labels);
-		barModel.setData(data);
-
-		//Options
-		BarChartOptions options = new BarChartOptions();
-		CartesianScales cScales = new CartesianScales();
-		CartesianLinearAxes linearAxes = new CartesianLinearAxes();
-		CartesianLinearTicks ticks = new CartesianLinearTicks();
-		ticks.setBeginAtZero(true);
-		linearAxes.setTicks(ticks);
-		cScales.addYAxesData(linearAxes);
-		options.setScales(cScales);
-
-		Title title = new Title();
-		title.setDisplay(true);
-		title.setText("");
-		options.setTitle(title);
-
-		Legend legend = new Legend();
-		legend.setDisplay(true);
-		legend.setPosition("top");
-		LegendLabel legendLabels = new LegendLabel();
-		legendLabels.setFontStyle("bold");
-		legendLabels.setFontColor("#2980B9");
-		legendLabels.setFontSize(24);
-		legend.setLabels(legendLabels);
-		options.setLegend(legend);
-
-		barModel.setOptions(options);
-
+		createBarModel();
+		createDonutModel();
 		return "bar";
 
 	}
@@ -238,93 +159,112 @@ public class DashboardAssociationController implements Serializable {
 
 	}
 
-	/*public void createBarModel() {
-		barModel = new BarChartModel();
-		ChartData data = new ChartData();
+	
+	public void createBarModel() {
+		//--------------------------------------------------------------------------
 
-		BarChartDataSet barDataSet = new BarChartDataSet();
-		barDataSet.setLabel("Total des ressources perçues sur 6 mois");
+				barModel = new BarChartModel();
+				ChartData data = new ChartData();
 
-		List<Number> values = new ArrayList<>();
+				BarChartDataSet barDataSet = new BarChartDataSet();
+				barDataSet.setLabel("Total des ressources perçues");
+
+				List<Number> values = new ArrayList<>();
 
 
-		Double total= Double.valueOf(0);
+				values.add(59);
+				values.add(80);
+				values.add(81);
+				values.add(56);
+				values.add(55);
+				values.add(40);
+				values.add(59);
+				values.add(80);
+				values.add(81);
+				values.add(56);
+				values.add(total.doubleValue());
+				values.add(55);
+				barDataSet.setData(values);
 
-		for(int i=1; i==members.size(); i++) {
-			System.out.println(members.get(i).getMembershipDto().getPriceOfFee());
-		}
-		System.out.println(total);
+				List<String> bgColor = new ArrayList<>();
+				bgColor.add("rgba(255, 99, 132, 0.2)");
+				bgColor.add("rgba(255, 159, 64, 0.2)");
+				bgColor.add("rgba(255, 205, 86, 0.2)");
+				bgColor.add("rgba(75, 192, 192, 0.2)");
+				bgColor.add("rgba(54, 162, 235, 0.2)");
+				bgColor.add("rgba(153, 102, 255, 0.2)");
+				bgColor.add("rgba(201, 203, 207, 0.2)");
+				bgColor.add("rgba(255, 99, 132, 0.2)");
+				bgColor.add("rgba(255, 159, 64, 0.2)");
+				bgColor.add("rgba(255, 205, 86, 0.2)");
+				bgColor.add("rgba(75, 192, 192, 0.2)");
+				bgColor.add("rgba(54, 162, 235, 0.2)");
+				barDataSet.setBackgroundColor(bgColor);
 
-		values.add(total);
-		values.add(59);
-		values.add(80);
-		values.add(81);
-		values.add(56);
-		values.add(55);
-		values.add(40);
-		barDataSet.setData(values);
+				List<String> borderColor = new ArrayList<>();
+				borderColor.add("rgb(255, 99, 132)");
+				borderColor.add("rgb(255, 159, 64)");
+				borderColor.add("rgb(255, 205, 86)");
+				borderColor.add("rgb(75, 192, 192)");
+				borderColor.add("rgb(54, 162, 235)");
+				borderColor.add("rgb(153, 102, 255)");
+				borderColor.add("rgb(201, 203, 207)");
+				borderColor.add("rgb(255, 99, 132)");
+				borderColor.add("rgb(255, 159, 64)");
+				borderColor.add("rgb(255, 205, 86)");
+				borderColor.add("rgb(75, 192, 192)");
+				borderColor.add("rgb(54, 162, 235)");
+				barDataSet.setBorderColor(borderColor);
+				barDataSet.setBorderWidth(1);
 
-		List<String> bgColor = new ArrayList<>();
-		bgColor.add("rgba(255, 99, 132, 0.2)");
-		bgColor.add("rgba(255, 159, 64, 0.2)");
-		bgColor.add("rgba(255, 205, 86, 0.2)");
-		bgColor.add("rgba(75, 192, 192, 0.2)");
-		bgColor.add("rgba(54, 162, 235, 0.2)");
-		bgColor.add("rgba(153, 102, 255, 0.2)");
-		bgColor.add("rgba(201, 203, 207, 0.2)");
-		barDataSet.setBackgroundColor(bgColor);
+				data.addChartDataSet(barDataSet);
 
-		List<String> borderColor = new ArrayList<>();
-		borderColor.add("rgb(255, 99, 132)");
-		borderColor.add("rgb(255, 159, 64)");
-		borderColor.add("rgb(255, 205, 86)");
-		borderColor.add("rgb(75, 192, 192)");
-		borderColor.add("rgb(54, 162, 235)");
-		borderColor.add("rgb(153, 102, 255)");
-		borderColor.add("rgb(201, 203, 207)");
-		barDataSet.setBorderColor(borderColor);
-		barDataSet.setBorderWidth(1);
+				List<String> labels = new ArrayList<>();
+				labels.add("Janvier");
+				labels.add("Fevrier");
+				labels.add("Mars");
+				labels.add("Avril");
+				labels.add("Mai");
+				labels.add("Juin");
+				labels.add("Juillet");
+				labels.add("Aout");
+				labels.add("Septembre");
+				labels.add("Octobre");
+				labels.add("Novembre");
+				labels.add("Decembre");
+				data.setLabels(labels);
+				barModel.setData(data);
 
-		data.addChartDataSet(barDataSet);
+				//Options
+				BarChartOptions options = new BarChartOptions();
+				CartesianScales cScales = new CartesianScales();
+				CartesianLinearAxes linearAxes = new CartesianLinearAxes();
+				CartesianLinearTicks ticks = new CartesianLinearTicks();
+				ticks.setBeginAtZero(true);
+				linearAxes.setTicks(ticks);
+				cScales.addYAxesData(linearAxes);
+				options.setScales(cScales);
 
-		List<String> labels = new ArrayList<>();
-		labels.add("January");
-		labels.add("February");
-		labels.add("March");
-		labels.add("April");
-		labels.add("May");
-		labels.add("June");
-		labels.add("July");
-		data.setLabels(labels);
-		barModel.setData(data);
+				Title title = new Title();
+				title.setDisplay(true);
+				title.setText("");
+				options.setTitle(title);
 
-		//Options
-		BarChartOptions options = new BarChartOptions();
-		CartesianScales cScales = new CartesianScales();
-		CartesianLinearAxes linearAxes = new CartesianLinearAxes();
-		CartesianLinearTicks ticks = new CartesianLinearTicks();
-		ticks.setBeginAtZero(true);
-		linearAxes.setTicks(ticks);
-		cScales.addYAxesData(linearAxes);
-		options.setScales(cScales);
+				Legend legend = new Legend();
+				legend.setDisplay(true);
+				legend.setPosition("top");
+				LegendLabel legendLabels = new LegendLabel();
+				legendLabels.setFontStyle("bold");
+				legendLabels.setFontColor("#2980B9");
+				legendLabels.setFontSize(24);
+				legend.setLabels(legendLabels);
+				options.setLegend(legend);
 
-		Title title = new Title();
-		title.setDisplay(true);
-		title.setText("");
-		options.setTitle(title);
+				barModel.setOptions(options);
 
-		Legend legend = new Legend();
-		legend.setDisplay(true);
-		legend.setPosition("top");
-		LegendLabel legendLabels = new LegendLabel();
-		legendLabels.setFontStyle("bold");
-		legendLabels.setFontColor("#2980B9");
-		legendLabels.setFontSize(24);
-		legend.setLabels(legendLabels);
-		options.setLegend(legend);
-
-		barModel.setOptions(options);
-	}*/
+	}
+	
+	
 
 	public void createDonutModel() {
 		donutModel = new DonutChartModel();
@@ -334,7 +274,7 @@ public class DashboardAssociationController implements Serializable {
 		List<Number> values = new ArrayList<>();
 		values.add(300);
 		values.add(50);
-		values.add(100);
+		values.add(total.doubleValue());
 		dataSet.setData(values);
 
 		List<String> bgColors = new ArrayList<>();

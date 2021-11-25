@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/layout.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://primefaces.org/ui ">
+	<ui:define name="content">
+
+		<h3>Liste de vos adhesion</h3>
+
+
+		<div class="body_table">
+			<div class="header_fixed">
+				<f:view>
+					<h:form>
+
+						<h:dataTable value="#{dashboardAssociationController.allMembershipByAsso}"
+							var="m">
+							<h:column>
+								<f:facet name="header">Id</f:facet>
+								<h:outputText value="#{m.nameMbs}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Nom</f:facet>
+								<h:outputText
+									value="#{m.priceOfFee}" />
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+		
+		
+		
+
+
+	</ui:define>
+</ui:composition>

@@ -11,6 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import com.itextpdf.text.log.SysoCounter;
+
 import fr.isika.cda11.ohana.project.common.dto.AssociationDto;
 import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.membership.dto.MemberDto;
@@ -64,10 +66,6 @@ public class MembershipController implements Serializable{
 
 
 	//CRUD-------------------------------------------------------------------------------------------------
-
-
-
-
 
 	//Create
 	public String createMembershipManage(Long id) {
@@ -140,9 +138,12 @@ public class MembershipController implements Serializable{
 	
 	public String subMemberForm(Long id) {
 		association=associationService.findAssociationByIdService(id);
+		System.out.println("L'IDE DE LASSOCIATION EST:"+id);
 		List<MemberShipManageDto> mbsmsByAssos = membershipManageService.listMembershipManageService();
 		for(MemberShipManageDto mbmdto : mbsmsByAssos) {
+			System.out.println("TOUS LES MANAGESHIPS"+mbmdto.toString());
 			if(mbmdto.getAssociation().getIdAssos() == Long.valueOf(id)) {
+				System.out.println("LE MANAGESHIP TROUVE:"+mbmdto.toString());
 				mbsm=mbmdto;
 			}
 			else {
@@ -153,12 +154,16 @@ public class MembershipController implements Serializable{
 		List<MembershipDto> allMembershipAssos = new ArrayList<MembershipDto>();
 		allMembershipAssos = memberShipService.listMembershipsService();
 		for(MembershipDto membershdto: allMembershipAssos) {
+			System.out.println("TOUS LES MEMBERSHIP DE L'ASSO="+membershdto.toString());
 			if(membershdto.getMemberShipManage().getId()==mbsm.getId()) {
+				System.out.println("AFFICHER MEMBERSHIP:"+membershdto.toString());
 				mbsm.getMemberships().add(membershdto);	
 			}
 		}
 		membershiplist=mbsm.getMemberships();
-
+		for(MembershipDto memberdto : membershiplist) {
+			System.out.println("LA LISTE DES MEMBERSHIPS"+memberdto.toString());
+		}
 		return "subMember";
 	}
 	

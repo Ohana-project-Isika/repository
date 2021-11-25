@@ -64,15 +64,17 @@
 										<br /> <br />
 
 										<h2 class="subscribe">Choisir votre adhésion</h2>
+										<div>
 										<p>
-											<h:selectOneRadio id="mbs"
+											<h:selectOneRadio
 												value="#{membershipController.membership.idMbs}">
 												<f:selectItems
 													value="#{membershipController.membershiplist}" var="mbs"
 													itemValue="#{mbs.idMbs}"
-													itemLabel=" #{mbs.nameMbs}   |   #{mbs.priceOfFee} euros par an" />
+													itemLabel=" #{mbs.nameMbs}" />
 											</h:selectOneRadio>
 										</p>
+										</div>
 										<i> L'association vous rappelle que la cotisation est
 											déductible de l'impôt sur le revenu si vous êtes imposé au
 											réel ou sous forme de crédit d’impôt si vous êtes au forfait.

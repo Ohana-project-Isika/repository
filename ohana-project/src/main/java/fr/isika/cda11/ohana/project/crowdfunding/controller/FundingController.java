@@ -1,15 +1,13 @@
 package fr.isika.cda11.ohana.project.crowdfunding.controller;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.Period;
+
+
+import java.io.Serializable;
+
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -27,7 +25,6 @@ import fr.isika.cda11.ohana.project.common.models.Account;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 import fr.isika.cda11.ohana.project.common.repository.PrivatePersonRepos;
 import fr.isika.cda11.ohana.project.common.service.AccountService;
-import fr.isika.cda11.ohana.project.common.service.AssociationService;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funder;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Funding;
 import fr.isika.cda11.ohana.project.crowdfunding.models.Project;
@@ -36,8 +33,13 @@ import fr.isika.cda11.ohana.project.crowdfunding.service.ProjectService;
 
 @ManagedBean(name = "fundingMB")
 @SessionScoped
-public class FundingController {
+public class FundingController implements Serializable {
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7127618206225742574L;
 
 	@Inject
 	FundingService fundingService;
@@ -51,6 +53,19 @@ public class FundingController {
 	@Inject
 	PrivatePersonRepos privatePersonRepos;
 	
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setTheFunding(Funding theFunding) {
+		this.theFunding = theFunding;
+	}
+
+	public void setTheFunder(Funder theFunder) {
+		this.theFunder = theFunder;
+	}
 
 
 	Funding theFunding = new Funding();
@@ -109,8 +124,10 @@ public class FundingController {
 
 
 	public String finance(Long id) {
-
+		System.out.println("test id:"+id);
 		Project p = projectService.findProjectService(id);
+		System.out.println("test id:"+id);
+		System.out.println("test projet : "+p.toString());
 		theFunding.setProject(p);
 		p.addFunding(theFunding);
 		return "financeProject?faces-redirect=true";

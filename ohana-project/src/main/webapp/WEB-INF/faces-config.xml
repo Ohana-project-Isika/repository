@@ -109,7 +109,7 @@
 		<navigation-case>
 			<from-outcome>reservation</from-outcome>
 			<to-view-id>/billetterie/reservation.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 
 	</navigation-rule>
@@ -125,11 +125,6 @@
 			<from-action>#{dashboardAssociationController.ReadListMemberByAssociation(o.idAssos)}</from-action>
 			<from-outcome>bar</from-outcome>
 			<to-view-id>/bar.xhtml</to-view-id>
-		</navigation-case>
-				<navigation-case>
-			<from-action>#{projectMB.listProjectByAssos(o.idAssos)}</from-action>
-			<from-outcome>projects</from-outcome>
-			<to-view-id>/crowdfunding/projects.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
@@ -155,6 +150,7 @@
 			<to-view-id>/membership/showMember.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/membership/subMemberForm.xhtml</from-view-id>
 		<navigation-case>
@@ -175,11 +171,31 @@
 			<to-view-id>/createAccount.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-		<navigation-rule>
+	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>createAccount</from-outcome>
 			<to-view-id>/createAccount.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/crowdfunding/listProjectAssos.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{fundingMB.finance(o.id)}</from-action>
+			<from-outcome>financeProject</from-outcome>
+			<to-view-id>/crowdfunding/financeProject.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/association/createAssociationForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{associationController.subscription(accountController.accountnew.idAccount)}</from-action>
+			<from-outcome>ValidateSubscription</from-outcome>
+			<to-view-id>/ValidateSubscription.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+	
 </faces-config>

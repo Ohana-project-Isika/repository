@@ -1,6 +1,7 @@
 package fr.isika.cda11.ohana.project.crowdfunding.models;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,8 +17,13 @@ import javax.persistence.OneToOne;
 import fr.isika.cda11.ohana.project.common.models.PrivatePerson;
 
 @Entity
-public class Funder {
+public class Funder implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 535567564307782064L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -100,6 +106,10 @@ public class Funder {
 	@Override
 	public String toString() {
 		return "Funder [id=" + id + ", privateperson=" + privateperson + ", fundings=" + fundings + "]";
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 

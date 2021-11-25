@@ -7,354 +7,352 @@ url(https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap)
 ;
 
 * {
-	font-family: 'Montserrat';
+   font-family: 'Montserrat';
 }
 
 html {
-	scroll-behavior: smooth;
+   scroll-behavior: smooth;
 }
 
 body {
-	margin: 0 auto;
+   margin: 0 auto;
 }
 
 /* tete de page */
 header.header {
-	background: black;
-	height: 80px;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-items: flex-end;
+   background: black;
+   height: 80px;
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   align-items: flex-end;
 }
 
 header.header i {
-	width: 150px;
+   width: 150px;
 }
 
 section.top-page {
-	background: url('../gfx/childhandpainted.jpg');
-	background-size: cover;
-	height: 80vh;
-	padding-bottom: 25px;
+   background: url('../gfx/childhandpainted.jpg');
+   background-size: cover;
+   height: 80vh;
+   padding-bottom: 25px;
 }
 
 /* page de bienvenue (landing page) */
 .landing-page {
-	position: relative;
-	padding: 20px 50px;
+   position: relative;
+   padding: 20px 50px;
 }
 
 .big-title {
-	margin-top:100px;
-	color: white;
-	font-size: 60px;
-	font-family: 'Abril FatFace', cursive;
-	font-weight: 70;
-	width: 40%;
+   margin-top:100px;
+   color: white;
+   font-size: 60px;
+   font-family: 'Abril FatFace', cursive;
+   font-weight: 70;
+   width: 40%;
 }
 
 /*section*/
 section {
-	padding-bottom: 100px;
+   padding-bottom: 100px;
 }
 
 section.borderline {
-	border-bottom: 3px solid #eee;
-	padding-bottom: 100px;
+   border-bottom: 3px solid #eee;
+   padding-bottom: 100px;
 }
 
 /* Services */
 
 .services {
-	margin-top: 100px;
+   margin-top: 100px;
 }
 
 .services .container-fluid {
-	padding-left: 13px;
-	padding-right: 13px;
+   padding-left: 13px;
+   padding-right: 13px;
 }
 
 .services .col-md-4 {
-	padding-left: 2px;
-	padding-right: 2px;
+   padding-left: 2px;
+   padding-right: 2px;
 }
 
 .services .service-item {
-	margin-bottom: 3px;
-	background-color: #ffc40c;
-	padding: 50px;
-	text-align: center;
-	color:white;
-	transition: all 0.5s;
+   margin-bottom: 3px;
+   background-color: #ffc40c;
+   padding: 50px;
+   text-align: center;
+   color:white;
+   transition: all 0.5s;
 }
 
 .services .service-item .icon {
-	width: 50px;
-	height: 50px;
-	display: inline-block;
-	margin-bottom: 30px;
-	background-size: cover;
-	background-repeat: no-repeat;
-	transition: all 0.5s;
+   width: 50px;
+   height: 50px;
+   display: inline-block;
+   margin-bottom: 30px;
+   background-size: cover;
+   background-repeat: no-repeat;
+   transition: all 0.5s;
 }
 
 .services .first-item .icon {
-	background-image: url(http://localhost:8080/ohana-project/resources/img/membershipicone.png);
+   background-image: url(http://localhost:8080/ohana-project/resources/img/membershipicone.png);
 }
 .services .first-item:hover .icon {
-	background-image: url(http://localhost:8080/ohana-project/resources/img/membershipicone.png);
+   background-image: url(http://localhost:8080/ohana-project/resources/img/membershipicone.png);
 }
 
 .services .second-item .icon {
-	background-image: url(http://localhost:8080/ohana-project/resources/img/corwdfundingicon.png);
+   background-image: url(http://localhost:8080/ohana-project/resources/img/corwdfundingicon.png);
 }
 .services .second-item:hover .icon {
-	background-image: url(http://localhost:8080/ohana-project/resources/img/corwdfundingicon.png);
+   background-image: url(http://localhost:8080/ohana-project/resources/img/corwdfundingicon.png);
 }
 
 .services .third-item .icon {
-	background-image: url(http://localhost:8080/ohana-project/resources/img/eventicone.png);
+   background-image: url(http://localhost:8080/ohana-project/resources/img/eventicone.png);
 }
 .services .third-item:hover .icon {
-	background-image: url(http://localhost:8080/ohana-project/resources/img/eventicone.png);
+   background-image: url(http://localhost:8080/ohana-project/resources/img/eventicone.png);
 }
 
 
 .services .service-item:hover {
-	background-color: #000000;
+   background-color: #000000;
 }
 .services .service-item:hover h4,
 .services .service-item:hover p {
-	color: #ffffff;
+   color: #ffffff;
 }
 
 .services .service-item h4 {
-	margin-bottom: 20px;
-	transition: all 0.5s;
+   margin-bottom: 20px;
+   transition: all 0.5s;
 }
 
 .services .service-item  p {
-	margin-bottom: 0;
-	transition: all 0.5s;
+   margin-bottom: 0;
+   transition: all 0.5s;
 }
 
 /* best sells */
 .section-title {
-	font-size: 50px;
-	font-family: 'Abril FatFace', cursive;
-	font-weight: 100;
-	position: relative;
+   font-size: 50px;
+   font-family: 'Abril FatFace', cursive;
+   font-weight: 100;
+   position: relative;
 }
 
 .section-title::before {
-	content: "";
-	position: absolute;
-	background-color: #ffc40c;
-	width: 50px;
-	height: 7px;
-	bottom: 0;
+   content: "";
+   position: absolute;
+   background-color: #ffc40c;
+   width: 50px;
+   height: 7px;
+   bottom: 0;
 }
 
 .bests-items {
-	margin: 100px;
+   margin: 100px;
 }
 
 .best-associations {
-	margin-top:80px;
-	min-height: 250px;
-	display: block;
-	flex-wrap: wrap;
+   margin-top:80px;
+   min-height: 250px;
+   display: block;
+   flex-wrap: wrap;
 }
 
 .associations-box {
-	position: relative;
-	background-size: cover;
-	background-position: center;
+   position: relative;
+   background-size: cover;
+   background-position: center;
 }
 
 .no-grid  img {
-	min-width: 250px;
-	height: 250px;
-	flex: 1;
-	position: relative;
-	background-size: cover;
-	background-position: center;
+   min-width: 250px;
+   height: 250px;
+   flex: 1;
+   position: relative;
+   background-size: cover;
+   background-position: center;
 }
 
 .no-grid {
-	min-width: 350px;
-	height: 500px;
-	flex: 1;
+   min-width: 350px;
+   height: 500px;
+   flex: 1;
 }
 
 .association-details {
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	background-color: #FFFFFFDF;
-	padding: 5px 20px;
+   position: absolute;
+   width: 100%;
+   bottom: 0;
+   background-color: #FFFFFFDF;
+   padding: 5px 20px;
 }
 
 .association-name {
-	font-size: 22px;
-	font-weight: 600;
-	line-height: 3px;
+   font-size: 22px;
+   font-weight: 600;
+   line-height: 3px;
 }
 
 .association-link {
-	color: #ffc40c;
-	line-height: 3px;
-	font-size: 14px;
-	font-weight: 800;
+   color: #ffc40c;
+   line-height: 3px;
+   font-size: 14px;
+   font-weight: 800;
 }
 
 /* Left Image */
 .left-image {
-	margin-top: 100px;
-	margin-right:100px;
-	margin-left:100px;
+   margin-top: 100px;
+   margin-right:100px;
+   margin-left:100px;
 }
 
 .left-image .container-fluid {
 
-	padding-left: 0;
-	padding-right: 0;
+   padding-left: 0;
+   padding-right: 0;
 }
 
 .left-image .right-content {
-	margin-left: 15px;
+   margin-left: 15px;
 }
 
 .left-image h4 {
-	margin: 0 0 20px 0;
+   margin: 0 0 20px 0;
 }
 
 .left-image .primary-button {
-	margin-top: 30px;
+   margin-top: 30px;
 }
 
 /* Top Image */
 
 .top-image {
-	margin-top: 100px;
+   margin-top: 100px;
 }
 
 .top-image .container-fluid {
-	padding-left: 0;
-	padding-right: 0;
+   padding-left: 0;
+   padding-right: 0;
 }
 
 .top-image h4 {
-	margin: 30px 0 20px 0;
+   margin: 30px 0 20px 0;
 }
 
 .top-image .primary-button {
-	margin-top: 30px;
+   margin-top: 30px;
 }
 
 .top-image img{
-	margin-bottom:50px;
+   margin-bottom:50px;
 }
 
 /* Left Image */
 .left-image {
-	margin-top: 100px;
+   margin-top: 100px;
 }
 
 .left-image .container-fluid {
-	padding-left: 0;
-	padding-right: 0;
+   padding-left: 0;
+   padding-right: 0;
 }
 
 .left-image .right-content {
-	margin-left: 15px;
+   margin-left: 15px;
 }
 
 .left-image h4 {
-	margin: 0 0 20px 0;
+   margin: 0 0 20px 0;
 }
 
 .left-image .primary-button {
-	margin-top: 30px;
+   margin-top: 30px;
 }
 
 /* pied de page */
 footer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 20px 100px;
-	font-weight: 600;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 100px;
+   font-weight: 600;
 }
 
 footer a.cgv {
-	text-decoration: none;
-	color: black;
+   text-decoration: none;
+   color: black;
 }
 
 nav.nav li {
-	color: white;
+   color: white;
 }
 
 .news-title a.item-li{
-	color: black;
+   color: black;
 }
 /* Page Heading */
 
 .page-heading{
-	padding-left: 50px;
-	padding-right: 50px;
+   padding-left: 50px;
+   padding-right: 50px;
 }
 
 .page-heading h1 {
-	margin-top: 50px;
-	font-size: 38px;
-	font-weight: 700;
-	margin-bottom: 20px;
+   margin-top: 50px;
+   font-size: 38px;
+   font-weight: 700;
+   margin-bottom: 20px;
 }
 
 
 h2.subscribe{
-	font-size: 30px;
-	font-weight: bold;
-	color:#ffc40c;
+   font-size: 30px;
+   font-weight: bold;
+   color:#ffc40c;
 
-	
+   
 }
 
 .page-heading p {
-	font-size: 15px;
-	color: #4a4a4a;
+   font-size: 15px;
+   color: #4a4a4a;
 
 }
 
 /* Section Heading */
 
 .section-heading {
-	padding-left: 50px;
-	padding-right: 50px;
-	padding-top:100px;
-	margin-top: 70px;
+   padding-left: 50px;
+   padding-right: 50px;
+   padding-top:100px;
+   margin-top: 70px;
 }
 
 .section-heading h2 {
-<<<<<<< HEAD
-	margin-top: 70px;
-	font-size: 24px;
-	font-weight: 700;
-	margin-bottom: 50px;
+
+   margin-top: 70px;
+   font-size: 24px;
+   font-weight: 700;
+   margin-bottom: 50px;
 }
 
 
 /*-----------LORRAINE---------------*/
 .lorraine {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-=======
+   display: flex;
+   flex-direction: column;
+   align-items: center;
     margin-top: 70px;
     font-size: 24px;
     font-weight: 700;
@@ -407,15 +405,10 @@ label > input[type="radio"] + * {
 }
 
 .loginform{
-	margin-top:100px;
+   margin-top:100px;
 }
-<<<<<<< HEAD
->>>>>>> fbf4430 (partie login)
-=======
-
 
 .subform{
-	align-content: center;
-	margin-left:300px;
+   align-content: center;
+
 }
->>>>>>> 7f0de9e (adhesion2)
