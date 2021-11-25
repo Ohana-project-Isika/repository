@@ -370,6 +370,28 @@ input[type=submit]{
     font-weight: bold;
     color:white;
 }
+input[type=submit].petit{
+    padding:5px 15px; 
+    background:#ffc40c; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    width:30px;
+    font-weight: bold;
+    color:white;
+}
+input[type=text].petit{
+    padding:5px 15px; 
+    background:white; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    width:50px;
+    font-weight: bold;
+    color:black;
+}
 /* pretty radio */
 label > input[type="radio"] {
   display: none;
@@ -412,3 +434,4 @@ label > input[type="radio"] + * {
    align-content: center;
 
 }
+
