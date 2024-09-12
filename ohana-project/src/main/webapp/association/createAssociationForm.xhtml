@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/templates/layout2.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+		<h:outputStylesheet name="css/style.css" />
+		<h:outputStylesheet name="css/SimplePage.css" />
+	</ui:define>
+	<ui:define name="content">
+		<section class="left-image borderline">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<img
+							src="http://localhost:8080/ohana-project/resources/gfx/OhanaYellow.png"
+							alt="" />
+					</div>
+					<div class="col-md-6 subform">
+						<h2 class="section-title">Formulaire d'inscription d'une
+							association</h2>
+						<f:view>
+							<h:form method="post" enctype="multipart/form-data"
+								prependId="false" id="upload-form">
+								<br></br>
+								<br></br>
+								<h:panelGrid columns="2">
+									<h:outputText value="nameAssos :" />
+									<h:inputText size="50" id="nameAssos"
+										value="#{associationController.nouvelAssociation.nameAssos}" />
+
+									<h:outputText value="logoAsso :" />
+									<h:inputFile size="50" id="file-id"
+										value="#{associationController.uploadedFile}" required="true"
+										requiredMessage="Please upload a file" alt="upload file"
+										style="font-size: 30px;">
+									</h:inputFile>
+
+									<h:outputText value="justifAsso :" />
+									<h:inputFile size="50" id="file-id2"
+										value="#{associationController.uploadedFile2}" required="true"
+										requiredMessage="Please upload a file" alt="upload file"
+										style="font-size: 30px;">
+									</h:inputFile>
+
+									<h:outputText value="numSiret :" />
+									<h:inputText size="50" id="numSiret"
+										value="#{associationController.nouvelAssociation.numSiret}" />
+
+
+									<h:outputText value="numRue :" />
+									<h:inputText size="50" id="numRue"
+										value="#{associationController.nouvelAddresse.numRue}" />
+
+									<h:outputText value="rue :" />
+									<h:inputText size="50" id="rue"
+										value="#{associationController.nouvelAddresse.rue}" />
+
+									<h:outputText value="codePostal :" />
+									<h:inputText size="50" id="codePostal"
+										value="#{associationController.nouvelAddresse.codePostal}" />
+
+									<h:outputText value="ville :" />
+									<h:inputText size="50" id="ville"
+										value="#{associationController.nouvelAddresse.ville}" />
+
+									<h:outputText value="pays :" />
+									<h:inputText size="50" id="pays"
+										value="#{associationController.nouvelAddresse.pays}" />
+								</h:panelGrid>
+								<br></br>
+								<br></br>
+									<h:commandButton
+										action="#{associationController.subscription(accountController.accountnew.idAccount)}"
+										value="Save"/>
+							</h:form>
+						</f:view>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</ui:define>
+</ui:composition>

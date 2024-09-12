@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/layout.xhtml">
+
+    <ui:define name="content">
+        <h:outputStylesheet name="css/table.css" />
+        <h:outputStylesheet name="css/styles.css" />
+
+        <div class="default-table">
+        <div class="container">
+            <div class="row">
+                <f:view>
+                    <h:form id="panier">
+
+                        <h2>Mon panier</h2>
+                        <br/><br/>
+                        <h:outputText id="msg" value="" binding="#{eventController.component}"/>
+                        <h:message for="msg"/>
+                        <br/><br/>
+
+                        <h:dataTable value="#{eventController.cart.ticketsByIds.values()}" var="ticket" rendered="#{!eventController.cart.ticketsByIds.isEmpty()}">
+                            <h:column>
+                                <f:facet name="header">Nom</f:facet>
+                                #{ticket.event.name}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Quantité Max</f:facet>
+                                #{ticket.event.ticketQuantity}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Tarif</f:facet>
+                                #{ticket.type}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Taux TVA</f:facet>
+                                #{ticket.tvaRate} %
+                            </h:column>+
+
+                            <h:column>
+                                <f:facet name="header">Prix HT</f:facet>
+                                <p id="preTax_#{ticket.event.id}">
+                                    #{ticket.preTaxPrice} €
+                                </p>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Prix TTC</f:facet>
+                                <p id="postTax_#{ticket.event.id}">
+                                    #{ticket.postTaxPrice} €
+                                </p>
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">Quantité</f:facet>
+                                <h:commandButton action="#{eventController.decrement(ticket)}" value="-"/>
+                                <h:inputText class="dynamicAmount" type="number"
+                                             value="#{ticket.quantity}" min="1" max="#{ticket.event.ticketQuantity}"
+                                             size="1"/>
+                                <h:commandButton action="#{eventController.increment(ticket)}" value="+"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Total HT</f:facet>
+                                <p id="subTotal_#{ticket.event.id}">
+                                    #{ticket.preTaxPricePerQuantity} €
+                                </p>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Total TTC</f:facet>
+                                <p id="total_#{ticket.event.id}">
+                                    #{ticket.postTaxPricePerQuantity} €
+                                </p>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Action</f:facet>
+                                <button>
+                                    <h:commandLink action="#{eventController.delete(ticket)}" value="Supprimer" />
+                                </button>
+                            </h:column>
+                        </h:dataTable>
+
+                        <h:panelGroup rendered="#{!eventController.cart.ticketsByIds.isEmpty()}">
+                            <h:outputLabel value="Total Panier HT :  "/>
+                            <h:outputText value=" #{eventController.cart.subTotal} €"/>
+                            <br/>
+                            <h:outputLabel value="Total Panier TTC :  "/>
+                            <h:outputText value=" #{eventController.cart.total} €"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{paymentController.paying}">
+                            <br/><br/>
+                            <h:outputText id="pmtMsg" value="" binding="#{paymentController.component}"/>
+                            <h:message for="pmtMsg"/>
+                            <br/><br/>
+                            <button>
+                                <h:commandLink action="#{loginController.logIn}" value="Connectez-vous"/>
+                            </button>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{!eventController.cart.ticketsByIds.isEmpty()}">
+                            <br/><br/>
+                            <button>
+                                <h:commandLink id="pay" action="#{paymentController.pay}" value="Valider le panier"/>
+                            </button>
+                        </h:panelGroup>
+                        <br/><br/>
+                        <button>
+                            <h:commandLink id="list" action="#{eventController.back}" value="Retour à la liste des événements"/>
+                        </button>
+                    </h:form>
+                </f:view>
+            </div>
+        </div>
+        </div>
+    </ui:define>
+</ui:composition>

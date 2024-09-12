@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/templates/layout2.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+		<h:outputStylesheet name="css/table.css" />
+		<link rel="stylesheet" href="../resources/css/SimplePage.css" />
+		<link rel="stylesheet" href="../resources/css/style.css" />
+	</ui:define>
+	<ui:define name="content">
+		<div id="container">
+			<div id="content">
+				<f:view>
+					<h:form method="post">
+						<c:set var="c" value="#{membershipController.association}" />
+
+						<section class="left-image borderline">
+							<div class="container-fluid">
+								<div class="row">
+									<h2 class="section-title">Adhérer à l'association
+										#{c.nameAssos}</h2>
+								</div>
+							</div>
+						</section>
+
+						<section class="simple-post borderline">
+							<div class="container-fluid">
+								<div class="row">
+								<!-- Premiere colone -->
+									<div class="col-md-2">
+										<img src="http://localhost:8080/ohana-project/resources/gfx/pngegg.png" />
+									</div>
+
+									<div class="col-md-6">
+										<h2 class="subscribe">Vos informations personnelles :</h2>
+										<p>
+											<b>Prénom :</b> #{loginController.accountDto.infoPerson.firstName}
+										</p>
+										<p>
+											<b>Nom :</b> #{loginController.accountDto.infoPerson.lastName}
+										</p>
+										<p>
+											<b>Date de naissance :</b> 
+											<h:outputText
+												value="#{loginController.accountDto.infoPerson.dateOfBirth}">
+												<f:convertDateTime pattern="MM/dd/yyyy" />
+											</h:outputText>
+										</p>
+										
+										<p>
+											<b>Adresse :</b> #{loginController.accountDto.infoPerson.address.toString()}
+										</p>
+										<p>
+											<b>Email :</b> #{loginController.accountDto.infoPerson.contact.email}
+										</p>
+										<p>
+											<b>Numéro de téléphone : </b> #{loginController.accountDto.infoPerson.contact.phoneNb}
+										</p>
+										<br /> <br />
+
+										<h2 class="subscribe">Choisir votre adhésion</h2>
+										<div>
+										<p>
+											<h:selectOneRadio
+												value="#{membershipController.membership.idMbs}">
+												<f:selectItems
+													value="#{membershipController.membershiplist}" var="mbs"
+													itemValue="#{mbs.idMbs}"
+													itemLabel=" #{mbs.nameMbs}" />
+											</h:selectOneRadio>
+										</p>
+										</div>
+										<i> L'association vous rappelle que la cotisation est
+											déductible de l'impôt sur le revenu si vous êtes imposé au
+											réel ou sous forme de crédit d’impôt si vous êtes au forfait.
+										</i>
+										<p>
+											<h:selectBooleanCheckbox value="false" />
+											Je certifie vouloir adhérer à l'association pour une durée
+											d'une année à compter de la date d'adhésion. <br />
+											<h:selectBooleanCheckbox value="false" />
+											Oui, j'adhère aux <a
+												href="http://localhost:5000/Home/CGUUser">conditions
+												générales d'utilisation du site.*</a> <br />
+											<h:selectBooleanCheckbox value="false" />
+											J'ai bien pris connaissance de <a
+												href="http://localhost:5000/Home/Confidentiality">la
+												politique de protection des données à caractère personnel du
+												site.*</a> <br /> <br />
+										</p>
+
+										<br /> <br />
+								
+										<p:growl>
+											<p:autoUpdate />
+										</p:growl>
+
+										<p:signature style="width:400px;height:200px" widgetVar="sig"
+											value="#{signatureView.value}" required="true"
+											guideline="true" />
+										<!-- submit -->
+										<div style="margin: 20px 0">
+											<p:commandButton value="Effacer" icon="pi pi-times"
+												type="button" onclick="PF('sig').clear()" />
+												<br></br>
+
+										</div>
+							
+										<p:outputPanel id="output">
+											<h:outputText rendered="#{not empty signatureView.value}"
+												style="font-size:24px;display:block" value="Your Signature" />
+											<p:signature style="width:400px;height:200px;"
+												value="#{signatureView.value}" readonly="true"
+												rendered="#{not empty signatureView.value}"
+												backgroundColor="#eaeaea" color="#03a9f4" />
+										</p:outputPanel>
+										<br></br>
+										<br></br>
+										<div>
+	<h:commandButton class="submitBtn" action="#{memberController.subMember(membershipController.membership.idMbs, loginController.accountDto.idAccount)}" value="Valider">
+	
+											</h:commandButton>
+											</div>
+									</div>
+								
+								<div class="col-md-4"></div>
+								
+								</div>
+							</div>
+						</section>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,9 +1,9 @@
+/*   French map */
 .carte {
-    width: 10%;
 }
 
 .carte path {
-    fill: #3883ce;
+    fill: #ffc107;
     stroke: #d5d5d5;
     stroke-width: 4px;
     transition: fill 0.3s;
@@ -11,4 +11,50 @@
 
 .carte :hover {
     fill: #363636;
+}
+
+#eventList {
+    margin-left: 28em;
+    margin-top: -38em;
+}
+
+/*  Event cards */
+.eventCard {
+    width: 50em;
+    margin-left: 20rem;
+}
+
+#search {
+    margin-top: 2em;
+    margin-left: 2em;
+}
+
+button{
+    border: none;
+    padding: 7px 20px;
+    border-radius: 20px;
+    background-color:#2A92A2;
+    color:white;
+}
+
+button a{
+    color:white;
+}
+
+h:commandLink{
+    color:white;
+}
+
+.fatigue {
+    width: 65em;
+    margin-top: 6em;
+}
+
+.carte2 {
+    color: black;
+}
+
+.login {
+    margin-left: 35em;
+    margin-top: 15em;
 }

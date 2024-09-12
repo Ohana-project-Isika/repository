@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h1>Modifier une campagne de crowdfunding</h1>
+					</div>
+				</div>
+			</div>
+
+			<section class="forms create-form">
+				<div class="container-fluid">
+					<h:form id="test" styleClass="row">
+
+						<h:outputText value="Nom :" />
+						<p:inputText id="name" value="#{projectMB.theProject.name}"
+							required="true" requiredMessage="Le nom est obligatoire">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<h:message style="color:red" for="name" />
+
+						<h:outputText value="Objectif financier :" />
+						<p:inputText id="financialGoal"
+							value="#{projectMB.theProject.financialGoal}" required="true"
+							requiredMessage="L'objectif financier est obligatoire">
+						</p:inputText>
+						<h:message style="color:red" for="financialGoal" />
+
+						<h:outputText for="startDate" value="Date de début:" />
+						<p:calendar id="startDate"
+							value="#{projectMB.theProject.startDate}" pattern="dd-MM-yyyy"
+							mask="true" />
+						<h:outputText value="#{projectMB.newProject.startDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+
+						<h:outputText for="endDate" value="Date de fin:" />
+						<p:calendar id="endDate" value="#{projectMB.theProject.endDate}"
+							pattern="dd-MM-yyyy" mask="true" />
+						<h:outputText value="#{projectMB.newProject.endDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+
+						<h:outputText value="Description :" />
+						<p:inputTextarea id="description" rows="2" cols="21"
+							value="#{projectMB.theProject.description}" />
+						<h:message style="color:red" for="description" />
+
+						<p:commandButton action="#{projectMB.updateProject()}"
+							value="Sauvegarder" />
+						<h:link outcome="projects" value="Liste des projets" />
+					</h:form>
+				</div>
+			</section>
+		</f:view>
+	</ui:define>
+</ui:composition>

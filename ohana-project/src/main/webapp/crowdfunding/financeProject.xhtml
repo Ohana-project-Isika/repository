@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout2.xhtml">
+	<ui:define name="head">
+		<h:outputStylesheet name="css/SimplePage.css" />
+		<h:outputStylesheet name="css/style.css" />
+	</ui:define>
+	<ui:define name="content">
+		<f:view>
+
+			<section class="left-image borderline">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="section-title">Financer une campagne</h2>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="simple-post borderline">
+				<div class="container-fluid">
+					<p:tooltip />
+					<h:form id="test">
+
+						<div class="row">
+							<div class="col-md 6">
+								<c:set var="c" value="#{projectMB.theProject}" />
+								<h1>Projet : #{c.name}</h1>
+								<p><b>Nom : </b> #{c.name}</p>
+								<p><b>Objectif financier : </b> #{c.financialGoal} €</p>
+								<p><b>Description : </b> #{c.description}</p>
+								<p><b>Nombre de contributeurs : </b> #{fundingMB.countFundings(c.id)}</p>
+								<p><b>Argent récolté : </b>
+									#{fundingMB.getActualsFundingsProject(c.id)} €</p>
+								<p>
+									<h:link outcome="projects">Liste des projets</h:link>
+								</p>
+							</div>
+							<div class="col-md-6">
+								<h2>Vos informations personnelles :</h2>
+								<p>
+									<b>Prénom:</b>
+									#{loginController.accountDto.infoPerson.firstName}
+								</p>
+								<p>
+									<b>Nom:</b> #{loginController.accountDto.infoPerson.lastName}
+								</p>
+								<p>
+									<b>Date de naissance</b> :
+									#{loginController.accountDto.infoPerson.dateOfBirth}
+								</p>
+								<p>
+									<b>Address:</b>
+									#{loginController.accountDto.infoPerson.address.toString()}
+								</p>
+								<p>
+									<b>Email:</b>
+									#{loginController.accountDto.infoPerson.contact.email}
+								</p>
+								<p>
+									<b>Numéro de téléphone:</b>
+									#{loginController.accountDto.infoPerson.contact.phoneNb}
+								</p>
+								<br /> <br />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<h:outputText value="Montant : " />
+							<p:inputText id="fundingAmount"
+								value="#{fundingMB.theFunding.fundingAmount}" required="true"
+								requiredMessage="Le montant est obligatoire">
+								<f:validateLength minimum="1" />
+							</p:inputText>
+							<h:message style="color:red" for="fundingAmount" />
+							<br /> <br />
+							<p:messages id="messages" showDetail="true" closable="true">
+								<p:autoUpdate />
+							</p:messages>
+							<p:commandButton
+								action="#{fundingMB.payer(loginController.accountDto.idAccount)}"
+								value="Payer" update="messages" />
+						</div>
+					</h:form>
+				</div>
+			</section>
+		</f:view>
+	</ui:define>
+</ui:composition>

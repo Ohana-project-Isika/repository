@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/layout.xhtml"
+                xmlns:p="http://primefaces.org/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xsi:schemaLocation="http://primefaces.org/ui ">
+    <ui:define name="content">
+        <!-- Simple Post -->
+        <h:form >
+            <section class="simple-post">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="http://localhost:8080/ohana-project/resources/img/#{eventsControllerDetails.event.imageFileName}" alt=""/>
+                            <div class="down-content">
+                                <h1><h:outputText value="#{eventsControllerDetails.event.name}" /></h1>
+                                <h2><h:outputText value="#{eventsControllerDetails.event.ticketing.association.nameAssos}" /></h2>
+                                <p><strong><h:outputText value="#{eventsControllerDetails.event.description}" /></strong>
+                                    <strong>du </strong> <h:outputText value="#{eventsControllerDetails.event.startDate}" />
+                                    <strong>au </strong> <h:outputText value="#{eventsControllerDetails.event.endDate}" />
+                                    <br/>
+                                    <strong>Tickets disponible : </strong>
+                                    <h:outputText value="#{eventsControllerDetails.event.ticketQuantity}" />
+                                    <br/>
+                                    <strong>Tarif : </strong>
+                                    <h:outputText value="#{eventsControllerDetails.event.ticket.rateType}" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="buttons">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="border-radius-button">
+                                <h:commandLink value="Détails" action="#{eventsControllerDetails.afficherDetails(eventsControllerDetails.event.id)}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border-radius-button">
+                                <h:commandLink value="Modifier" action="#{eventsControllerUpdate.afficherModifier(eventsControllerUpdate.event.id)}" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border-radius-button">
+                                <h:commandLink value="Supprimer" action="#{eventsControllerDelete.supprimer(eventsControllerDetails.event.id)}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </h:form>
+    </ui:define>
+</ui:composition>

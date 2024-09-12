@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/templates/layout2.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="head">
+		<h:outputStylesheet name="css/style.css" />
+		<h:outputStylesheet name="css/SimplePage.css" />
+		<style>
+img.box {
+	max-width: 100%;
+	max-height: 100%;
+	width: 600px;
+	border: 5px solid white;
+}
+</style>
+	</ui:define>
+	<ui:define name="content">
+		<f:view>
+			<h:form>
+				<section class="left-image borderline">
+					<div class="container-fluid">
+						<div class="row">
+
+							<c:set var="c" value="#{membershipController.association}" />
+							<div class="col-md-6">
+								<img class="box" src="#{c.logoAsso}" alt="" />
+							</div>
+
+							<div class="col-md-6 subform">
+								<h2 class="section-title">
+								<br></br><br></br><br></br>
+									<b>#{c.nameAssos}</b> vous remercie !
+								</h2>
+								<h1></h1>
+								<h1>Vous êtes désormais adhérent de l'association.</h1>
+							</div>
+						</div>
+					</div>
+				</section>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
